@@ -1,0 +1,127 @@
+@import url('./variables.css');
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+:root {
+  font-size: var(--font-size-base);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+  color: var(--color-black);
+}
+body {
+  position: relative;
+  transform: translateX(-50%);
+  left: 50%;
+  min-width: 320px;
+  min-height: 100vh;
+
+  @media (min-width: 768px) {
+    width: 600px;
+  }
+}
+abbr,
+blockquote,
+body,
+button,
+dd,
+dl,
+dt,
+fieldset,
+figure,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+address,
+caption,
+code,
+figcaption,
+pre,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+fieldset,
+iframe {
+  border: 0;
+}
+caption,
+th {
+  text-align: left;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+details,
+main,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  vertical-align: initial;
+}
+button {
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+  vertical-align: inherit;
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+}
+button:disabled {
+  cursor: default;
+}
+:focus,
+:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+  outline-offset: 1px;
+}
+:focus[data-focus-method='mouse']:not(input):not(textarea):not(select),
+:focus[data-focus-method='touch']:not(input):not(textarea):not(select) {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+}
+a:focus {
+  outline: none;
+}

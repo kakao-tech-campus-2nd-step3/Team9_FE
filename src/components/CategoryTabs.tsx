@@ -22,7 +22,7 @@ export const ThreeCategoryTabs = () => {
 
 const Wrapper = styled.div`
   background-color: var(--color-white);
-  color: black;
+  color: var(--color-black);
   padding: 0 1.6rem;
   width: 36rem;
   height: 4.4rem;

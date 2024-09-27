@@ -19,6 +19,10 @@ import Signup from '@/pages/Signup';
 import { ProtectedRoute } from './ProtectedRoute';
 import { RouterPath } from './path';
 
+const Routes = () => {
+  return <RouterProvider router={router} />;
+};
+
 const router = createBrowserRouter([
   {
     path: RouterPath.root,
@@ -120,6 +124,4 @@ const router = createBrowserRouter([
   { path: RouterPath.signup, element: <Signup /> },
 ]);
 
-export const Routes = () => {
-  return <RouterProvider router={router} />;
-};
+export default Routes;

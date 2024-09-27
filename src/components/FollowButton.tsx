@@ -18,7 +18,7 @@ const Wrapper = styled.div<{ color: 'white' | 'gray' }>`
   width: 4.4rem;
   height: 2rem;
   font-size: var(--font-size-xxs);
-  border: ${({ color }) => (color === 'white' ? '0.1rem solid black' : 'none')};
+  border: ${({ color }) => (color === 'white' ? '0.1rem solid var(--color-black)' : 'none')};
   border-radius: 5rem;
   display: flex;
   justify-content: center;

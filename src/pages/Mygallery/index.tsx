@@ -1,5 +1,5 @@
-const Mygallery = () => {
+const MyGallery = () => {
   return <></>;
 };
 
-export default Mygallery;
+export default MyGallery;

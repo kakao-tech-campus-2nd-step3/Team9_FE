@@ -20,7 +20,7 @@ const LikeFollowers = () => {
 export default LikeFollowers;
 
 const Wrapper = styled.div`
-  font-size: 1rem;
+  font-size: var(--font-size-xxs);
   display: flex;
   flex-direction: row;
   width: 5.6rem;

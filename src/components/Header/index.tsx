@@ -49,7 +49,7 @@ export const HEADER_HEIGHT = '44px';
 const HeaderWrapper = styled.div`
   position: sticky;
   top: 0;
-  width: 100vw;
+  width: 100%;
   height: ${HEADER_HEIGHT};
   padding: 0 16px;
   display: flex;

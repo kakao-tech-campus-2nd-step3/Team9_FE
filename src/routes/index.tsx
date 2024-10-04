@@ -26,7 +26,7 @@ const Routes = () => {
 const router = createBrowserRouter([
   {
     path: RouterPath.root,
-    element: <></>, // 레이아웃 추후 추가하기
+    element: <Home />, // 레이아웃 추후 추가하기
     children: [
       {
         path: RouterPath.home,
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         path: RouterPath.products,
         element: null,
         children: [
-          { path: '/:productId', element: <ProductDetails /> },
+          { path: ':productId', element: <ProductDetails /> },
           {
             path: RouterPath.posting,
             element: (

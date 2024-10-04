@@ -1,28 +1,35 @@
 import styled from '@emotion/styled';
-import { ThumbnailSquare } from './Thumbnail';
-import LikeFollowers from './LikeFollowers';
-import FollowButton from './FollowButton';
+import Thumbnail from '@/components/Thumbnail';
+import LikeFollowers from '@/components/ArtistItem/LikeFollowers';
+import FollowButton from '@/components/FollowButton';
 
 interface ArtistItemProps {
-  themeNum: 'one' | 'two';
+  author: string;
+  like: string;
+  follower: string;
+  size?: 'large' | 'default';
+  src?: string;
+  alt?: string;
 }
 
-export const ArtistItem = ({ themeNum }: ArtistItemProps) => {
+const ArtistItem = ({ author, like, follower, size = 'default', src, alt }: ArtistItemProps) => {
   return (
-    <Wrapper themeNum={themeNum}>
-      <ThumbnailSquare />
+    <Wrapper size={size}>
+      <Thumbnail ratio="square" src={src} alt={alt} />
       <MidWrapper>
-        <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>작가</p>
+        <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
         <FollowButton color="white" children="팔로우" />
       </MidWrapper>
-      <LikeFollowers />
+      <LikeFollowers like={like} follower={follower} />
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div<{ themeNum: 'one' | 'two' }>`
-  width: ${({ themeNum }) => (themeNum === 'one' ? '15.8rem' : '14rem')};
-  height: ${({ themeNum }) => (themeNum === 'one' ? '22.5em' : '20.7em')};
+export default ArtistItem;
+
+const Wrapper = styled.div<{ size: 'large' | 'default' }>`
+  width: ${({ size }) => (size === 'large' ? '15.8rem' : '14rem')};
+  height: ${({ size }) => (size === 'large' ? '22.5em' : '20.7em')};
   background-color: var(--color-white);
 `;
 

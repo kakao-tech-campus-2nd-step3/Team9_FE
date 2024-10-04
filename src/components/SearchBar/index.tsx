@@ -68,13 +68,13 @@ const InputBox = styled.div`
   flex: 1 0 0;
   border-radius: 2px;
   border: 1px solid var(--color-gray-02);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
 `;
 
 const Input = styled.input`
   width: 100%;
   align-self: stretch;
-  margin: 0 30px;
+  margin: 0 30px 0 34px;
   outline: none;
 
   &::placeholder {

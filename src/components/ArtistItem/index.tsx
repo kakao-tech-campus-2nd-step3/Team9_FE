@@ -1,55 +1,43 @@
 import styled from '@emotion/styled';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'; // 속이 빈 하트 아이콘 임포트
+import Thumbnail from '@/components/Thumbnail';
+import LikeFollowers from '@/components/ArtistItem/LikeFollowers';
+import FollowButton from '@/components/FollowButton';
 
-const LikeFollowers = () => {
+interface ArtistItemProps {
+  author: string;
+  like: string;
+  follower: string;
+  size?: 'large' | 'default';
+  src?: string;
+  alt?: string;
+}
+
+const ArtistItem = ({ author, like, follower, size = 'default', src, alt }: ArtistItemProps) => {
   return (
-    <Wrapper>
-      <LeftWrapper>
-        <FavoriteBorderIcon style={{ color: 'var(--color-gray-03)' }} />
-        <div>1K</div>
-      </LeftWrapper>
-      <Divider />
-      <RightWrapper>
-        <p style={{ color: 'var(--color-gray-03)' }}>팔로워</p>
-        <p>1.2K</p>
-      </RightWrapper>
+    <Wrapper size={size}>
+      <Thumbnail ratio="square" src={src} alt={alt} />
+      <MidWrapper>
+        <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
+        <FollowButton color="white" children="팔로우" />
+      </MidWrapper>
+      <LikeFollowers like={like} follower={follower} />
     </Wrapper>
   );
 };
 
-export default LikeFollowers;
+export default ArtistItem;
 
-const Wrapper = styled.div`
-  font-size: var(--font-size-xxs);
+const Wrapper = styled.div<{ size: 'large' | 'default' }>`
+  width: ${({ size }) => (size === 'large' ? '15.8rem' : '14rem')};
+  height: ${({ size }) => (size === 'large' ? '22.5em' : '20.7em')};
+  background-color: var(--color-white);
+`;
+
+const MidWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 5.6rem;
-  height: 2.6rem;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-`;
-
-const LeftWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 1.2rem;
-  height: 2.6rem;
-`;
-
-const RightWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 2.8rem;
-  height: 2.6rem;
-`;
-
-const Divider = styled.div`
-  width: 0.1rem;
-  height: 1.6rem;
-  background-color: var(--color-gray-03);
-  margin: 0 0.8rem;
+  width: 100%;
+  height: 1.7rem;
+  margin: 0.8rem 0;
 `;

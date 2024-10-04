@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 
-const Gap = () => {
-  return (
-    <>
-      <CustomGap />
-    </>
-  );
+interface GapProps {
+  height: number;
+}
+
+const Gap = ({ height }: GapProps) => {
+  return <CustomGap height={height} />;
 };
 
 export default Gap;
 
-const CustomGap = styled.hr`
-  width: 36rem;
-  height: 1.2rem;
+const CustomGap = styled.hr<{ height: number }>`
+  width: 100%;
+  height: ${({ height }) => height}rem;
   background-color: var(--color-gray-01);
 `;

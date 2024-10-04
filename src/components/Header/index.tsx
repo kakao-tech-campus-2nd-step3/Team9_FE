@@ -8,7 +8,7 @@ interface HeaderProps {
   mode: 'user' | 'seller';
   page: 'home' | 'other';
   title?: 'string';
-  leftSideChildren: React.ReactNode;
+  leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;
 }
 
@@ -28,9 +28,10 @@ const Header = ({ mode, page, title, leftSideChildren, rightSideChildren }: Head
     if (page === 'other') {
       return (
         <>
+          {/* 있을 때만 렌더링됨 */}
           <IconBox>{leftSideChildren}</IconBox>
-          <TitleBox>{title}</TitleBox> {/* 있을 때만 렌더링됨 */}
-          <IconBox>{rightSideChildren}</IconBox> {/* 있을 때만 렌더링됨 */}
+          <TitleBox>{title}</TitleBox>
+          <IconBox>{rightSideChildren}</IconBox>
         </>
       );
     }

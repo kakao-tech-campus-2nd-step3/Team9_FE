@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    // svgr 플러그인
+    "types": ["vite-plugin-svgr/client"],
+
     // 절대 경로
     "composite": true,
     "baseUrl": ".",
@@ -36,5 +39,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "svg.d.ts"]
 }

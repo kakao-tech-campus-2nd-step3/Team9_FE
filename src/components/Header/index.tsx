@@ -1,7 +1,7 @@
-import FavoriteIcon from '@/assets/icons/favorite-default.svg';
-import SearchIcon from '@/assets/icons/search.svg';
-import StoreIcon from '@/assets/icons/store-default.svg';
-import Logo from '@/assets/logo.svg';
+import FavoriteIcon from '@/assets/icons/favorite-default.svg?react';
+import SearchIcon from '@/assets/icons/search.svg?react';
+import StoreIcon from '@/assets/icons/store-default.svg?react';
+import Logo from '@/assets/logo.svg?react';
 import styled from '@emotion/styled';
 
 interface HeaderProps {

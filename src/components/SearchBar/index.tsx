@@ -29,7 +29,14 @@ const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
             //   console.log(e.target.value); // test
           }}
         />
-        {searchWord.trim().length > 0 && <StyledCancelIcon />}
+        {searchWord.trim().length > 0 && (
+          <StyledCancelIcon
+            onClick={(e) => {
+              e.preventDefault();
+              setSearchWord('');
+            }}
+          />
+        )}
       </InputBox>
       {includeFavorite && <FavoriteIcon />}
     </SearchBarWrapper>

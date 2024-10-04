@@ -59,14 +59,17 @@ const HeaderWrapper = styled.div`
 
 export const IconBox = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 10px;
 `;
 
 const TitleBox = styled.div`
   position: absolute;
-  // 중앙 배치
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: var(--font-size-md);
+  font-weight: 600;
 `;

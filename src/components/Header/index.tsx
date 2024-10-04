@@ -44,7 +44,7 @@ const Header = ({ mode, page, title, leftSideChildren, rightSideChildren }: Head
 export default Header;
 
 // styles
-const HEADER_HEIGHT = '44px';
+export const HEADER_HEIGHT = '44px';
 
 const HeaderWrapper = styled.div`
   position: sticky;

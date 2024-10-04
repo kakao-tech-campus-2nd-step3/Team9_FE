@@ -1,23 +1,16 @@
 import styled from '@emotion/styled';
 
-export const Thumbnail = () => {
-  return <Wrapper />;
+interface Thumbnail {
+  ratio?: 'square' | 'default';
+}
+
+export const Thumbnail = ({ ratio = 'default' }: Thumbnail) => {
+  return <Wrapper ratio={ratio} />;
 };
 
-export const ThumbnailSquare = () => {
-  return <SquareWrapper />;
-};
-
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ ratio: 'square' | 'default' }>`
   width: 100%;
-  aspect-ratio: 4 / 5;
-  background-color: var(--color-gray-01);
-  border-radius: 0.2rem;
-`;
-
-const SquareWrapper = styled.div`
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: ${({ ratio }) => (ratio === 'square' ? '1/1' : '4/5')};
   background-color: var(--color-gray-01);
   border-radius: 0.2rem;
 `;

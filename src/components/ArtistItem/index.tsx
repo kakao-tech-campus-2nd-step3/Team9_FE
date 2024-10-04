@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
-import { ThumbnailSquare } from './Thumbnail';
+import { Thumbnail } from './Thumbnail';
 import LikeFollowers from './LikeFollowers';
 import FollowButton from '../FollowButton';
+
 interface ArtistItemProps {
-  themeNum: 'one' | 'two';
+  size?: 'large' | 'default'; // themeNum을 optional로 설정
 }
 
-export const ArtistItem = ({ themeNum }: ArtistItemProps) => {
+export const ArtistItem = ({ size = 'default' }: ArtistItemProps) => {
   return (
-    <Wrapper themeNum={themeNum}>
-      <ThumbnailSquare />
+    <Wrapper size={size}>
+      <Thumbnail ratio="square" />
       <MidWrapper>
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>작가</p>
         <FollowButton color="white" children="팔로우" />
@@ -19,9 +20,9 @@ export const ArtistItem = ({ themeNum }: ArtistItemProps) => {
   );
 };
 
-const Wrapper = styled.div<{ themeNum: 'one' | 'two' }>`
-  width: ${({ themeNum }) => (themeNum === 'one' ? '15.8rem' : '14rem')};
-  height: ${({ themeNum }) => (themeNum === 'one' ? '22.5em' : '20.7em')};
+const Wrapper = styled.div<{ size: 'large' | 'default' }>`
+  width: ${({ size }) => (size === 'large' ? '15.8rem' : '14rem')};
+  height: ${({ size }) => (size === 'large' ? '22.5em' : '20.7em')};
   background-color: var(--color-white);
 `;
 

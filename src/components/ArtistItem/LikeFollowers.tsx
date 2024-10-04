@@ -1,17 +1,23 @@
 import styled from '@emotion/styled';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'; // 속이 빈 하트 아이콘 임포트
+import FavoriteDefault from '@/assets/icons/favorite-default.svg';
+import { Image } from '@chakra-ui/react';
 
-const LikeFollowers = () => {
+interface LikeFollowersProps {
+  like: string;
+  follower: string;
+}
+
+const LikeFollowers = ({ like, follower }: LikeFollowersProps) => {
   return (
     <Wrapper>
       <LeftWrapper>
-        <FavoriteBorderIcon style={{ color: 'var(--color-gray-03)' }} />
-        <div>1K</div>
+        <Image src={FavoriteDefault} />
+        <div>{like}</div>
       </LeftWrapper>
       <Divider />
       <RightWrapper>
         <p style={{ color: 'var(--color-gray-03)' }}>팔로워</p>
-        <p>1.2K</p>
+        <p>{follower}</p>
       </RightWrapper>
     </Wrapper>
   );

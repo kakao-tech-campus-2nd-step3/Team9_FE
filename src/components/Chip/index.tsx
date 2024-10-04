@@ -2,10 +2,14 @@ import styled from '@emotion/styled';
 import CancelDefault from '@/assets/icons/cancel-default.svg';
 import { Image } from '@chakra-ui/react';
 
-const Chip = () => {
+interface ChipProps {
+  tag: string;
+}
+
+const Chip = ({ tag }: ChipProps) => {
   return (
     <Wrapper>
-      <span># Chip</span>
+      <span># {tag}</span>
       <Image src={CancelDefault} style={{ width: '1.2rem' }} />
     </Wrapper>
   );
@@ -18,9 +22,10 @@ const Wrapper = styled.div`
   border-radius: 0.2rem;
   background-color: var(--color-white);
   font-size: var(--font-size-xs);
-  width: 9rem;
+  padding: 0.6rem;
+  gap: 0.6rem;
   height: 2.3rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
 `;

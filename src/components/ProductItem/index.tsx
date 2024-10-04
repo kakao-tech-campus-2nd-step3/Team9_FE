@@ -1,22 +1,38 @@
 import styled from '@emotion/styled';
-import { Thumbnail } from './Thumbnail';
+import Thumbnail from '@/components/Thumbnail';
 
 interface ArtistItemProps {
+  author: string;
+  title: string;
+  price: number;
   size?: 'large' | 'default';
+  heart?: boolean;
+  src?: string;
+  alt?: string;
 }
 
-export const ProductItem = ({ size = 'default' }: ArtistItemProps) => {
+const ProductItem = ({
+  author,
+  title,
+  price,
+  size = 'default',
+  heart = false,
+  src,
+  alt,
+}: ArtistItemProps) => {
   return (
     <Wrapper size={size}>
-      <Thumbnail ratio="square" />
+      <Thumbnail ratio="square" heart={heart} src={src} alt={alt} />
       <MidWrapper>
-        <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: '600' }}>작가</p>
-        <p style={{ fontSize: 'var(--font-size-sm)' }}>제목</p>
-        <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: '600' }}>87,000원</p>
+        <DescriptionWrapper style={{ fontWeight: '600' }}>{author}</DescriptionWrapper>
+        <DescriptionWrapper>{title}</DescriptionWrapper>
+        <DescriptionWrapper style={{ fontWeight: '600' }}>{price}원</DescriptionWrapper>
       </MidWrapper>
     </Wrapper>
   );
 };
+
+export default ProductItem;
 
 const Wrapper = styled.div<{ size: 'large' | 'default' }>`
   width: ${({ size }) => (size === 'large' ? '15.8rem' : '14rem')};
@@ -32,4 +48,8 @@ const MidWrapper = styled.div`
   width: 100%;
   height: 1.7rem;
   margin: 0.8rem 0;
+`;
+
+const DescriptionWrapper = styled.p`
+  font-size: var(--font-size-sm);
 `;

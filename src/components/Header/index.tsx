@@ -2,18 +2,21 @@ import styled from '@emotion/styled';
 
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/IconButton';
+import { useLocation } from 'react-router-dom';
+import { RouterPath } from '@/routes/path';
 
 interface HeaderProps {
   mode: 'user' | 'seller';
-  page: 'home' | 'other';
-  title?: 'string';
+  title?: string;
   leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;
 }
 
-const Header = ({ mode, page, title, leftSideChildren, rightSideChildren }: HeaderProps) => {
+const Header = ({ mode, title, leftSideChildren, rightSideChildren }: HeaderProps) => {
+  const { pathname } = useLocation();
+
   const renderElements = () => {
-    if (page === 'home') {
+    if (pathname === RouterPath.home) {
       return (
         <>
           <Logo />
@@ -27,8 +30,7 @@ const Header = ({ mode, page, title, leftSideChildren, rightSideChildren }: Head
           </IconBox>
         </>
       );
-    }
-    if (page === 'other') {
+    } else {
       return (
         <>
           {/* 있을 때만 렌더링됨 */}
@@ -38,7 +40,6 @@ const Header = ({ mode, page, title, leftSideChildren, rightSideChildren }: Head
         </>
       );
     }
-    return null;
   };
 
   return <HeaderWrapper>{renderElements()}</HeaderWrapper>;

@@ -26,7 +26,6 @@ const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
           value={searchWord}
           onChange={(e) => {
             setSearchWord(e.target.value);
-            //   console.log(e.target.value); // test
           }}
         />
         {searchWord.trim().length > 0 && (

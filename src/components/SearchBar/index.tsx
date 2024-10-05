@@ -1,11 +1,9 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import ArrowBackIcon from '@/assets/icons/arrow-back.svg?react';
 import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
-import FavoriteIcon from '@/assets/icons/favorite-default.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
-import { IconButton } from '@/styles';
+import IconButton from '@/components/IconButton';
 import { HEADER_HEIGHT } from '../Header';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
@@ -24,9 +22,7 @@ const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
 
   return (
     <SearchBarWrapper>
-      <IconButton>
-        <ArrowBackIcon />
-      </IconButton>
+      <IconButton icon="arrow-back" />
       <InputBox>
         <StyledSearchIcon />
         <Input
@@ -37,17 +33,9 @@ const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
             setSearchWord(e.target.value);
           }}
         />
-        {searchWord.trim().length > 0 && (
-          <IconButton onClick={handleRemoveSearchWord}>
-            <StyledCancelIcon />
-          </IconButton>
-        )}
+        {searchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>
-      {includeFavorite && (
-        <IconButton>
-          <FavoriteIcon />
-        </IconButton>
-      )}
+      {includeFavorite && <IconButton icon="favorite-default" />}
     </SearchBarWrapper>
   );
 };
@@ -98,9 +86,10 @@ const StyledSearchIcon = styled(SearchIcon)`
   left: 8px;
 `;
 
-const StyledCancelIcon = styled(CancelIcon)`
+const CancelIconButton = styled(CancelIcon)`
   width: 16px;
   height: 16px;
   position: absolute;
   right: 8px;
+  cursor: pointer;
 `;

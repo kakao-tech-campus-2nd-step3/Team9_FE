@@ -1,8 +1,7 @@
-import FavoriteIcon from '@/assets/icons/favorite-default.svg?react';
-import SearchIcon from '@/assets/icons/search.svg?react';
-import StoreIcon from '@/assets/icons/store-default.svg?react';
-import Logo from '@/assets/logo.svg?react';
 import styled from '@emotion/styled';
+
+import Logo from '@/assets/logo.svg?react';
+import IconButton from '@/components/IconButton';
 
 interface HeaderProps {
   mode: 'user' | 'seller';
@@ -19,8 +18,12 @@ const Header = ({ mode, page, title, leftSideChildren, rightSideChildren }: Head
         <>
           <Logo />
           <IconBox>
-            <SearchIcon />
-            {mode === 'user' ? <FavoriteIcon /> : <StoreIcon />}
+            <IconButton icon="search" />
+            {mode === 'user' ? (
+              <IconButton icon="favorite-default" />
+            ) : (
+              <IconButton icon="store-default" />
+            )}
           </IconBox>
         </>
       );

@@ -15,6 +15,11 @@ interface SearchBarProps {
 const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
   const [searchWord, setSearchWord] = useState<string>('');
 
+  const handleRemoveSearchWord = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setSearchWord('');
+  };
+
   return (
     <SearchBarWrapper>
       <ArrowBackIcon />
@@ -28,14 +33,7 @@ const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
             setSearchWord(e.target.value);
           }}
         />
-        {searchWord.trim().length > 0 && (
-          <StyledCancelIcon
-            onClick={(e) => {
-              e.preventDefault();
-              setSearchWord('');
-            }}
-          />
-        )}
+        {searchWord.trim().length > 0 && <StyledCancelIcon onClick={handleRemoveSearchWord} />}
       </InputBox>
       {includeFavorite && <FavoriteIcon />}
     </SearchBarWrapper>

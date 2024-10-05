@@ -80,15 +80,15 @@ const Input = styled.input`
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
-  width: 20px;
-  height: 20px;
+  width: 2rem;
+  height: 2rem;
   position: absolute;
   left: 8px;
 `;
 
 const CancelIconButton = styled(CancelIcon)`
-  width: 16px;
-  height: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
   position: absolute;
   right: 8px;
   cursor: pointer;

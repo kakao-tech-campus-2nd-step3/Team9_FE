@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import CancelDefault from '@/assets/icons/cancel-default.svg';
-import { Image } from '@chakra-ui/react';
+import CancelDefault from '@/assets/icons/cancel-default.svg?react';
 
 interface ChipProps {
   tag: string;
@@ -10,7 +9,7 @@ const Chip = ({ tag }: ChipProps) => {
   return (
     <Wrapper>
       <span># {tag}</span>
-      <Image src={CancelDefault} style={{ width: '1.2rem' }} />
+      <CancelDefault style={{ width: '1.5rem', height: '1.5rem' }} />
     </Wrapper>
   );
 };

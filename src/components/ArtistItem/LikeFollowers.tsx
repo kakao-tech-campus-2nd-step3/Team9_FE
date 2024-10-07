@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import FavoriteDefault from '@/assets/icons/favorite-default.svg';
-import { Image } from '@chakra-ui/react';
+import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 
 interface LikeFollowersProps {
   like: string;
@@ -11,7 +10,7 @@ const LikeFollowers = ({ like, follower }: LikeFollowersProps) => {
   return (
     <Wrapper>
       <LeftWrapper>
-        <Image src={FavoriteDefault} />
+        <FavoriteDefault />
         <div>{like}</div>
       </LeftWrapper>
       <Divider />

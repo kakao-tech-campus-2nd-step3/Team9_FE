@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
+import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 import { Image } from '@chakra-ui/react';
-import FavoriteDefault from '@/assets/icons/favorite-default.svg';
 
 interface ThumbnailProps {
   ratio?: 'square' | 'default';
@@ -18,7 +18,7 @@ const Thumbnail = ({
   return (
     <Wrapper ratio={ratio}>
       {src && <StyledImage src={src} alt={alt} />}
-      {heart && <HeartImage src={FavoriteDefault} />}
+      {heart && <FavoriteDefault />}
     </Wrapper>
   );
 };
@@ -38,11 +38,4 @@ const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`;
-
-const HeartImage = styled(Image)`
-  position: absolute;
-  left: 88%;
-  top: 84%;
-  width: 1.6rem;
 `;

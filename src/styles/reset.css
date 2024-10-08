@@ -21,6 +21,8 @@ html {
   color: var(--color-black);
 }
 body {
+  border-left: 1px solid var(--color-gray-light);
+  border-right: 1px solid var(--color-gray-light);
   position: relative;
   transform: translateX(-50%);
   left: 50%;

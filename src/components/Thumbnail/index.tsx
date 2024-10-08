@@ -29,8 +29,8 @@ const Wrapper = styled.div<{ ratio: 'square' | 'default' }>`
   width: 100%;
   position: relative;
   aspect-ratio: ${({ ratio }) => (ratio === 'square' ? '1/1' : '4/5')};
-  background-color: var(--color-gray-01);
-  border-radius: 0.2rem;
+  background-color: var(--color-gray-light);
+  border-radius: var(--border-radius);
   overflow: hidden;
 `;
 

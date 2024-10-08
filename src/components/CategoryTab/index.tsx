@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   width: 36rem;
   height: 4.4rem;
   font-size: var(--font-size-sm);
-  border-bottom: 0.1rem solid var(--color-gray-02);
+  border-bottom: 0.1rem solid var(--color-gray-medium);
   display: flex;
   justify-content: center;
   align-items: center;

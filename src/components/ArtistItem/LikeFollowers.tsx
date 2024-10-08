@@ -15,7 +15,7 @@ const LikeFollowers = ({ like, follower }: LikeFollowersProps) => {
       </LeftWrapper>
       <Divider />
       <RightWrapper>
-        <p style={{ color: 'var(--color-gray-03)' }}>팔로워</p>
+        <p style={{ color: 'var(--color-gray-deep)' }}>팔로워</p>
         <p>{follower}</p>
       </RightWrapper>
     </Wrapper>
@@ -55,6 +55,6 @@ const RightWrapper = styled.div`
 const Divider = styled.div`
   width: 0.1rem;
   height: 1.6rem;
-  background-color: var(--color-gray-03);
+  background-color: var(--color-gray-deep);
   margin: 0 0.8rem;
 `;

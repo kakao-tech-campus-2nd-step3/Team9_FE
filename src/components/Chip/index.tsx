@@ -17,7 +17,7 @@ const Chip = ({ tag }: ChipProps) => {
 export default Chip;
 
 const Wrapper = styled.div`
-  border: 0.05rem solid var(--color-gray-02);
+  border: 0.05rem solid var(--color-gray-medium);
   border-radius: 0.2rem;
   background-color: var(--color-white);
   font-size: var(--font-size-xs);

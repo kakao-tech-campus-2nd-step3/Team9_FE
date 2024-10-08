@@ -1,5 +1,5 @@
 const MyGallery = () => {
-  return <></>;
+  return <>MyGallery</>;
 };
 
 export default MyGallery;

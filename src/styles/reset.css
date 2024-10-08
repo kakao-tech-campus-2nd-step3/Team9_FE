@@ -98,7 +98,9 @@ button {
   overflow: visible;
   vertical-align: inherit;
   padding: 0.6em 1.2em;
-  border-radius: 8px;
+}
+button:focus {
+  outline: none !important;
 }
 button:disabled {
   cursor: default;

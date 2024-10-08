@@ -18,7 +18,7 @@ export default Chip;
 
 const Wrapper = styled.div`
   border: 0.05rem solid var(--color-gray-medium);
-  border-radius: 0.2rem;
+  border-radius: var(--border-radius);
   background-color: var(--color-white);
   font-size: var(--font-size-xs);
   padding: 0.6rem;

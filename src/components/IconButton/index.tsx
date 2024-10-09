@@ -6,7 +6,7 @@ import SearchIcon from '@/assets/icons/search.svg?react';
 import StoreDefaultIcon from '@/assets/icons/store-default.svg?react';
 
 interface IconButtonProps {
-  icon: "arrow-back" | "favorite-default" | "search" | "store-default";
+  icon: 'arrow-back' | 'favorite-default' | 'search' | 'store-default';
   onClick?: (e?: React.MouseEvent) => void;
 }
 
@@ -36,4 +36,5 @@ const StyledIconButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
+  background-color: transparent;
 `;

@@ -1,8 +1,9 @@
-import Category from './components/Category';
-import Grid from './components/Grid';
+import Category from './components/CategoryItem';
+import Grid from '@/components/layout/Grid';
 import styled from '@emotion/styled';
 import SearchBar from '@/components/SearchBar';
-import Gap from '@/components/Gap';
+import Gap from '@/components/layout/Gap';
+import { Text } from '@chakra-ui/react';
 
 const categories = [
   {
@@ -56,20 +57,20 @@ const Categories = () => {
   return (
     <Wrapper>
       <SearchBar includeFavorite={true} />
-      <Grid>
+      <Grid col={4}>
         {categories.map((category) => (
           <Category key={category.id} src={category.src} des={category.des} />
         ))}
       </Grid>
       <Gap height={18} />
       <SectionWrapper>
-        <p style={{ fontSize: 'var(--font-size-md)', fontWeight: 'bold' }}>매거진</p>
-        <p style={{ fontSize: 'var(--font-size-sm)' }}>숨겨진 무한의 가치를 발견하고 싶다면</p>
+        <Title>매거진</Title>
+        <Des>숨겨진 무한의 가치를 발견하고 싶다면</Des>
       </SectionWrapper>
       <Gap height={2} />
       <SectionWrapper>
-        <p style={{ fontSize: 'var(--font-size-md)', fontWeight: 'bold' }}>아티스트 그라운드</p>
-        <p style={{ fontSize: 'var(--font-size-sm)' }}>내 취향대로 작가 골라보기</p>
+        <Title>아티스트 그라운드</Title>
+        <Des>내 취향대로 작가 골라보기</Des>
       </SectionWrapper>
     </Wrapper>
   );
@@ -84,4 +85,13 @@ const SectionWrapper = styled.div`
   align-items: center;
   padding: 24px 16px 32px 16px;
   gap: 10px;
+`;
+
+const Title = styled(Text)`
+  font-size: var(--font-size-md);
+  font-weight: bold;
+`;
+
+const Des = styled(Text)`
+  font-size: var(--font-size-sm);
 `;

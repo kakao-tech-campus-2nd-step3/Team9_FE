@@ -4,14 +4,14 @@ import styled from '@emotion/styled';
 import SearchBar from '@/components/SearchBar';
 import Gap from '@/components/layout/Gap';
 import { Text } from '@chakra-ui/react';
-import categorydata from '@/apis/CategoryData';
+import categories from '@/apis/data/categories';
 
 const Categories = () => {
   return (
     <Wrapper>
       <SearchBar includeFavorite={true} />
       <Grid col={4}>
-        {categorydata.map((category) => (
+        {categories.map((category) => (
           <Category key={category.id} src={category.src} des={category.des} />
         ))}
       </Grid>

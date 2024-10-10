@@ -1,4 +1,4 @@
-const categorydata = [
+const categories = [
   {
     id: 1,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
@@ -46,4 +46,4 @@ const categorydata = [
   },
 ];
 
-export default categorydata;
+export default categories;

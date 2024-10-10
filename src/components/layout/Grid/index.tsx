@@ -13,8 +13,8 @@ export default Grid;
 
 const Wrapper = styled.div<{ col: number }>`
   display: grid;
-  gap: 40px 12px;
+  gap: ${({ col }) => (col === 2 ? '8px' : '40px 12px')};
   grid-template-columns: ${({ col }) => (col === 2 ? '1fr 1fr' : '1fr 1fr 1fr 1fr')};
   justify-items: center;
-  padding: 24px 16px 32px 16px;
+  padding: ${({ col }) => (col === 2 ? '16px' : '24px 16px 32px 16px;')};
 `;

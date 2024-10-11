@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 
 interface TabProps {
   label: string;
-  icon: React.ReactNode;
+  defaultIcon: React.ReactNode;
+  activeIcon: React.ReactNode;
   linkTo: string;
+  isActive: boolean; // 현재 페이지인지 여부 / pathname === tab.linkTo
 }
 
-const Tab = ({ label, icon, linkTo }: TabProps) => {
+const Tab = ({ label, defaultIcon, activeIcon, linkTo, isActive }: TabProps) => {
   return (
     <Wrapper>
-      <StyledLink to={linkTo}>
-        {icon}
+      <StyledLink isActive={isActive} to={linkTo}>
+        {isActive ? activeIcon : defaultIcon}
         <span>{label}</span>
       </StyledLink>
     </Wrapper>
@@ -27,7 +29,7 @@ const Wrapper = styled.div`
   flex: 1;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<{ isActive: boolean }>`
   display: flex;
   flex: 1;
   border-radius: var(--border-radius);
@@ -38,7 +40,7 @@ const StyledLink = styled(Link)`
   font-size: var(--font-size-xxs);
   font-weight: 400;
   text-align: center;
-  color: var(--color-gray-deep);
+  color: ${({ isActive }) => (isActive ? 'var(--color-black)' : 'var(--color-gray-deep)')};
   transition: transform 0.2s ease;
 
   &:hover {

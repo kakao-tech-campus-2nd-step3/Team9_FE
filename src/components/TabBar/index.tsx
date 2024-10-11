@@ -51,16 +51,20 @@ const TabBar = () => {
 
   return (
     <Wrapper>
-      {TabList.map((tab, index) => (
-        <Tab
-          key={index}
-          label={tab.label}
-          defaultIcon={tab.defaultIcon}
-          activeIcon={tab.activeIcon}
-          linkTo={tab.linkTo}
-          isActive={pathname === tab.linkTo}
-        />
-      ))}
+      {TabList.map((tab, index) => {
+        const isActive = pathname === tab.linkTo;
+
+        return (
+          <Tab
+            key={index}
+            label={tab.label}
+            defaultIcon={tab.defaultIcon}
+            activeIcon={tab.activeIcon}
+            linkTo={tab.linkTo}
+            isActive={isActive}
+          />
+        );
+      })}
     </Wrapper>
   );
 };

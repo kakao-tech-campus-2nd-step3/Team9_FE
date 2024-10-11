@@ -18,31 +18,31 @@ const TabList = [
     label: '카테고리',
     defaultIcon: <CategoriesIcon />,
     activeIcon: <CategoriesIcon />,
-    linkTo: `${RouterPath.categories}`,
+    linkTo: RouterPath.categories,
   },
   {
     label: '둘러보기',
     defaultIcon: <DefaultDiscoverIcon />,
     activeIcon: <ActiveDiscoverIcon />,
-    linkTo: `${RouterPath.discover}`,
+    linkTo: RouterPath.discover,
   },
   {
     label: '홈',
     defaultIcon: <DefaultHomeIcon />,
     activeIcon: <ActiveHomeIcon />,
-    linkTo: `${RouterPath.home}`,
+    linkTo: RouterPath.home,
   },
   {
     label: '채팅',
     defaultIcon: <DefaultChatIcon />,
     activeIcon: <ActiveChatIcon />,
-    linkTo: `${RouterPath.chat}`,
+    linkTo: RouterPath.chat,
   },
   {
     label: '마이페이지',
     defaultIcon: <DefaultMyIcon />,
     activeIcon: <ActiveMyIcon />,
-    linkTo: `${RouterPath.my}`,
+    linkTo: RouterPath.my,
   },
 ];
 

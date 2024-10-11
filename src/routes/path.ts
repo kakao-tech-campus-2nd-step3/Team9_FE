@@ -7,6 +7,7 @@ export const RouterPath = {
   results: 'results',
   products: 'products',
   artists: 'artists',
+  chat: 'chat',
 
   my: 'my',
   orders: 'orders',
@@ -16,8 +17,8 @@ export const RouterPath = {
 
   posting: 'posting',
 
-  login: '/login',
-  signup: '/signup',
+  login: 'login',
+  signup: 'signup',
   notFound: '*',
 };
 

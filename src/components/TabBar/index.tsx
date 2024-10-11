@@ -6,20 +6,21 @@ import DiscoverIcon from '@/assets/icons/dashboard-default.svg?react';
 import HomeIcon from '@/assets/icons/home-default.svg?react';
 import ChatIcon from '@/assets/icons/chat-default.svg?react';
 import MyIcon from '@/assets/icons/person-default.svg?react';
+import { RouterPath } from '@/routes/path';
 
 const TabList = [
-  { label: '카테고리', icon: <CategoriesIcon /> },
-  { label: '둘러보기', icon: <DiscoverIcon /> },
-  { label: '홈', icon: <HomeIcon /> },
-  { label: '채팅', icon: <ChatIcon /> },
-  { label: '마이페이지', icon: <MyIcon /> },
+  { label: '카테고리', icon: <CategoriesIcon />, linkTo: `${RouterPath.categories}` },
+  { label: '둘러보기', icon: <DiscoverIcon />, linkTo: `${RouterPath.discover}` },
+  { label: '홈', icon: <HomeIcon />, linkTo: `${RouterPath.home}` },
+  { label: '채팅', icon: <ChatIcon />, linkTo: `${RouterPath.chat}` },
+  { label: '마이페이지', icon: <MyIcon />, linkTo: `${RouterPath.my}` },
 ];
 
 const TabBar = () => {
   return (
     <Wrapper>
       {TabList.map((tab, index) => (
-        <Tab key={index} label={tab.label} icon={tab.icon} />
+        <Tab key={index} label={tab.label} icon={tab.icon} linkTo={tab.linkTo} />
       ))}
     </Wrapper>
   );

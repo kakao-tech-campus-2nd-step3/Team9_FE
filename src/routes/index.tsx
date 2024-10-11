@@ -1,5 +1,4 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
 
 import ArtistDetails from '@/pages/ArtistDetails';
 import Categories from '@/pages/Categories';
@@ -19,6 +18,7 @@ import Signup from '@/pages/Signup';
 
 import { ProtectedRoute } from './ProtectedRoute';
 import { RouterPath } from './path';
+import BasicLayout from '@/components/layouts/BasicLayout';
 
 const Routes = () => {
   return <RouterProvider router={router} />;
@@ -27,7 +27,7 @@ const Routes = () => {
 const router = createBrowserRouter([
   {
     path: RouterPath.root,
-    element: <Outlet />, // 레이아웃 추후 추가하기
+    element: <BasicLayout />,
     children: [
       {
         path: RouterPath.home,

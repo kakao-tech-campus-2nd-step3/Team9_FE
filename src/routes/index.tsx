@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
+import BasicLayout from '@/components/layouts/BasicLayout';
 import ArtistDetails from '@/pages/ArtistDetails';
 import Categories from '@/pages/Categories';
 import Discover from '@/pages/Discover';
@@ -15,10 +16,8 @@ import ProductPosting from '@/pages/ProductPosting';
 import Search from '@/pages/Search';
 import SearchResults from '@/pages/SearchResults';
 import Signup from '@/pages/Signup';
-
 import { ProtectedRoute } from './ProtectedRoute';
 import { RouterPath } from './path';
-import BasicLayout from '@/components/layouts/BasicLayout';
 
 const Routes = () => {
   return <RouterProvider router={router} />;

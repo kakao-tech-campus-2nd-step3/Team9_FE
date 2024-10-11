@@ -8,7 +8,7 @@ import SearchIcon from '@/assets/icons/search.svg?react';
 import StoreDefaultIcon from '@/assets/icons/store-default.svg?react';
 
 interface IconButtonProps {
-  icon: 'arrow-back' | 'arrow-forward' | 'chat' | 'favorite-default' | 'search' | 'store-default';
+  icon: 'arrow-back' | 'arrow-forward' | 'favorite-default' | 'search' | 'store-default';
   onClick?: (e?: React.MouseEvent) => void;
 }
 
@@ -19,8 +19,6 @@ const IconButton = ({ icon, onClick }: IconButtonProps) => {
         return <ArrowBackIcon />;
       case 'arrow-forward':
         return <ArrowForward />;
-      case 'chat':
-        return <ChatDefault />;
       case 'favorite-default':
         return <FavoriteDefaultIcon />;
       case 'search':
@@ -42,4 +40,5 @@ const StyledIconButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
+  background-color: transparent;
 `;

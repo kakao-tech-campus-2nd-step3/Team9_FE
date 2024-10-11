@@ -66,6 +66,7 @@ const InputBox = styled.div`
   border-radius: var(--border-radius);
   border: 1px solid var(--color-gray-medium);
   font-size: var(--font-size-sm);
+  cursor: text;
 `;
 
 const Input = styled.input`
@@ -73,6 +74,7 @@ const Input = styled.input`
   align-self: stretch;
   margin: 0 30px 0 34px;
   outline: none;
+  border: none;
 
   &::placeholder {
     color: var(--color-gray-deep);
@@ -84,6 +86,7 @@ const StyledSearchIcon = styled(SearchIcon)`
   height: 2rem;
   position: absolute;
   left: 8px;
+  cursor: pointer;
 `;
 
 const CancelIconButton = styled(CancelIcon)`

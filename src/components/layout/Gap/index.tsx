@@ -12,6 +12,7 @@ export default Gap;
 
 const CustomGap = styled.hr<{ height: number }>`
   width: 100%;
-  height: ${({ height }) => height}rem;
+  height: ${({ height }) => height}px;
   background-color: var(--color-gray-light);
+  border: none;
 `;

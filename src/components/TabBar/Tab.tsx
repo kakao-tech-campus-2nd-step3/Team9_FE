@@ -43,6 +43,10 @@ const StyledLink = styled(Link)`
 
   &:hover {
     color: var(--color-black);
+
+    svg {
+      fill: var(--color-black);
+    }
   }
 
   &:active {

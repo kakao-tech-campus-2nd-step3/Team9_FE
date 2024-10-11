@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import BasicLayout from '@/components/layouts/BasicLayout';
 import ArtistDetails from '@/pages/ArtistDetails';
 import Categories from '@/pages/Categories';
+import Chat from '@/pages/Chat';
 import Discover from '@/pages/Discover';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
@@ -67,6 +68,11 @@ const router = createBrowserRouter([
       {
         path: `${RouterPath.artists}/:artistId`,
         element: <ArtistDetails />,
+      },
+      {
+        path: RouterPath.chat,
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <Chat /> }],
       },
       {
         path: RouterPath.my,

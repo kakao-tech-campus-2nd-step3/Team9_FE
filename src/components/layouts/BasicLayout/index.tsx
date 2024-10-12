@@ -9,8 +9,8 @@ const BasicLayout = () => {
     <>
       <Header mode="seller" />
       <Outlet />
-      <TabBar />
       <FABContainer mode="seller" />
+      <TabBar />
     </>
   );
 };

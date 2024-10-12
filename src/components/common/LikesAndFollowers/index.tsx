@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 
-interface LikeFollowersProps {
+interface LikesAndFollowersProps {
   like: string;
   follower: string;
 }
 
-const LikeFollowers = ({ like, follower }: LikeFollowersProps) => {
+const LikesAndFollowers = ({ like, follower }: LikesAndFollowersProps) => {
   return (
     <Wrapper>
       <LeftWrapper>
@@ -22,7 +22,7 @@ const LikeFollowers = ({ like, follower }: LikeFollowersProps) => {
   );
 };
 
-export default LikeFollowers;
+export default LikesAndFollowers;
 
 const Wrapper = styled.div`
   font-size: var(--font-size-xxs);

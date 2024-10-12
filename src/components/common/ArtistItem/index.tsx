@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import Thumbnail from '@/components/Thumbnail';
-import LikeFollowers from '@/components/ArtistItem/LikeFollowers';
-import FollowButton from '@/components/FollowButton';
+
+import Thumbnail from '@/components/common/Thumbnail';
+import LikesAndFollowers from '../LikesAndFollowers';
+import FollowButton from '@/components/common/FollowButton';
 
 interface ArtistItemProps {
   author: string;
@@ -20,7 +21,7 @@ const ArtistItem = ({ author, like, follower, size = 'default', src, alt }: Arti
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
         <FollowButton color="white" children="팔로우" />
       </MidWrapper>
-      <LikeFollowers like={like} follower={follower} />
+      <LikesAndFollowers like={like} follower={follower} />
     </Wrapper>
   );
 };

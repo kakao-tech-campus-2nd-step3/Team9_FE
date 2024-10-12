@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import CategoryTabElement from '@/components/CategoryTab/CategoryTabElement';
+import CategoryTabElement from '@/components/common/CategoryTabBar/CategoryTabElement';
 
 export const TwoCategoryTabs = () => {
   return (

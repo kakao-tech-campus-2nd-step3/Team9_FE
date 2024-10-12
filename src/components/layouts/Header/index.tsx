@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import Logo from '@/assets/logo.svg?react';
-import IconButton from '@/components/IconButton';
+import IconButton from '@/components/common/IconButton';
 import { useLocation } from 'react-router-dom';
 import { RouterPath } from '@/routes/path';
 

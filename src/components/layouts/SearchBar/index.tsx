@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
-import IconButton from '@/components/IconButton';
+import IconButton from '@/components/common/IconButton';
 import { HEADER_HEIGHT } from '../Header';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';

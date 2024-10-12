@@ -1,8 +1,8 @@
 import Category from './components/CategoryItem';
-import Grid from '@/components/layout/Grid';
+import Grid from '@/components/styles/Grid';
 import styled from '@emotion/styled';
-import SearchBar from '@/components/SearchBar';
-import Gap from '@/components/layout/Gap';
+import SearchBar from '@/components/layouts/SearchBar';
+import Gap from '@/components/styles/Gap';
 import { Text } from '@chakra-ui/react';
 import categories from '@/apis/data/categories';
 

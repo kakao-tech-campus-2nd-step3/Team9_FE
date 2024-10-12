@@ -1,14 +1,15 @@
 export const RouterPath = {
   root: '/',
   home: '/',
-  discover: 'discover',
-  categories: 'categories',
+  discover: '/discover',
+  categories: '/categories',
   search: 'search',
   results: 'results',
   products: 'products',
   artists: 'artists',
+  chat: '/chat',
 
-  my: 'my',
+  my: '/my',
   orders: 'orders',
   favorites: 'favorites',
   sales: 'sales',
@@ -16,8 +17,8 @@ export const RouterPath = {
 
   posting: 'posting',
 
-  login: '/login',
-  signup: '/signup',
+  login: 'login',
+  signup: 'signup',
   notFound: '*',
 };
 

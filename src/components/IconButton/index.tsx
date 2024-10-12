@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 import ArrowBackIcon from '@/assets/icons/arrow-back.svg?react';
 import ArrowForward from '@/assets/icons/arrow-forward.svg?react';
-import ChatDefault from '@/assets/icons/chat-default.svg';
 import FavoriteDefaultIcon from '@/assets/icons/favorite-default.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import StoreDefaultIcon from '@/assets/icons/store-default.svg?react';

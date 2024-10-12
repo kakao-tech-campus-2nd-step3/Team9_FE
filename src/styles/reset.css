@@ -129,3 +129,6 @@ a:hover {
 a:focus {
   outline: none;
 }
+hr {
+  margin: 0;
+}

@@ -12,6 +12,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -43,8 +44,10 @@ module.exports = {
           ['^@?\\w'],
           // Imports starting with `@/` (your internal modules).
           ['^@'],
-          // Relative imports.
-          ['^\\.'],
+          // Parent imports. Put `..` last.
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
           // Side effect imports (e.g., polyfills or styles).
           ['^\\u0000'],
         ],

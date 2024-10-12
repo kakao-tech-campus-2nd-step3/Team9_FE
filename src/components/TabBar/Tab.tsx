@@ -29,7 +29,9 @@ const Wrapper = styled.div`
   flex: 1;
 `;
 
-const StyledLink = styled(Link)<{ isActive: boolean }>`
+const StyledLink = styled(Link, {
+  shouldForwardProp: (prop) => prop !== 'isActive',
+})<{ isActive: boolean }>`
   display: flex;
   flex: 1;
   border-radius: var(--border-radius);

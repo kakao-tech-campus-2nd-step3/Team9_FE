@@ -65,7 +65,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  position: absolute;
+  position: fixed;
   right: 16px;
   bottom: 16px;
   margin-bottom: ${TABBAR_HEIGHT};

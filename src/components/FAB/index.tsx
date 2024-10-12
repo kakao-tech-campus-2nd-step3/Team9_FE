@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import ArrowUpwardIcon from '@/assets/icons/arrow-upward.svg?react';
 import AddIcon from '@/assets/icons/add.svg?react';
+import { TABBAR_HEIGHT } from '../TabBar';
 
 interface FABContainerProps {
   mode: 'user' | 'seller';
@@ -42,9 +43,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  /* position: absolute;
+  position: absolute;
   right: 16px;
-  bottom: 16px; */
+  bottom: 16px;
+  margin-bottom: ${TABBAR_HEIGHT};
 `;
 
 const StyledFAB = styled.button`

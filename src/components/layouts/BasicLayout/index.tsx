@@ -5,11 +5,13 @@ import Header from '../../Header';
 import TabBar from '../../TabBar';
 
 const BasicLayout = () => {
+  const mode = 'seller';
+
   return (
     <>
-      <Header mode="seller" />
+      <Header mode={mode} />
       <Outlet />
-      <FABContainer mode="seller" />
+      <FABContainer mode={mode} />
       <TabBar />
     </>
   );

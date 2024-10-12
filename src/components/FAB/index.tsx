@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
 
-import ArrowUpwardIcon from '@/assets/icons/arrow-upward.svg?react';
 import AddIcon from '@/assets/icons/add.svg?react';
+import ArrowUpwardIcon from '@/assets/icons/arrow-upward.svg?react';
+import type { Mode } from '@/types';
 import { TABBAR_HEIGHT } from '../TabBar';
 
 interface FABContainerProps {
-  mode: 'user' | 'seller';
+  mode: Mode;
 }
 
 // 추후 사용자 모드 받는 API 구현되면 수정해야 함
-const FABContainer = ({ mode = 'seller' }: FABContainerProps) => {
+const FABContainer = ({ mode }: FABContainerProps) => {
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
 
   useEffect(() => {

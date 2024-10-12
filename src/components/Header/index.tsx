@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/IconButton';
-import { useLocation } from 'react-router-dom';
 import { RouterPath } from '@/routes/path';
+import type { Mode } from '@/types';
 
 interface HeaderProps {
-  mode: 'user' | 'seller';
+  mode: Mode;
   title?: string;
   leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;

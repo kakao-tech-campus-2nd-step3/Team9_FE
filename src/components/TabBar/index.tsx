@@ -73,7 +73,7 @@ export default TabBar;
 
 // styles
 
-const TABBAR_HEIGHT = '54px';
+export const TABBAR_HEIGHT = '54px';
 
 const Wrapper = styled.div`
   width: 100%;

@@ -1,17 +1,18 @@
+// import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import FABContainer from '@/components/FAB';
 import Footer from '@/components/Footer';
 import { HEADER_HEIGHT } from '@/components/Header';
 import { TABBAR_HEIGHT } from '@/components/TabBar';
 
 const Home = () => {
   return (
-    <Wrapper className="home-contents">
-      Home
-      <Footer />
-      <FABContainer mode="seller" />
-    </Wrapper>
+    <>
+      <Wrapper className="home-contents">
+        Home
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 

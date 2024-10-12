@@ -8,6 +8,6 @@ export default HorizontalLine;
 
 const CustomHorizontalLine = styled.hr`
   width: 100%;
-  height: 0.01rem;
+  height: 1px;
   background-color: var(--color-gray-lt);
 `;

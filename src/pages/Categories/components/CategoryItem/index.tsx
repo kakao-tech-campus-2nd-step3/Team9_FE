@@ -20,12 +20,11 @@ const CategoryItem = ({ des, src }: CategoryItemProps) => {
 export default CategoryItem;
 
 const Wrapper = styled.div`
-  width: 6.4rem;
-  height: 10.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  gap: 8px;
 `;
 
 const RoundImage = styled(Image)`
@@ -38,4 +37,5 @@ const DesWrapper = styled.p`
   font-size: var(--font-size-sm);
   display: inline;
   white-space: pre-wrap;
+  text-align: center;
 `;

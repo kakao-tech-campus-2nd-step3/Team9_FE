@@ -1,4 +1,3 @@
-// import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import Footer from '@/components/Footer';

@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { Box } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 import GitHubIcon from '@/assets/github.svg?react';
 import NotionIcon from '@/assets/notion.svg?react';

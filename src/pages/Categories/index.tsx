@@ -1,10 +1,11 @@
-import Category from './components/CategoryItem';
-import Grid from '@/components/styles/Grid';
+import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+
+import categories from '@/apis/data/categories';
 import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
-import { Text } from '@chakra-ui/react';
-import categories from '@/apis/data/categories';
+import Grid from '@/components/styles/Grid';
+import Category from './components/CategoryItem';
 
 const Categories = () => {
   return (

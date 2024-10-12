@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 
 interface LikesAndFollowersProps {

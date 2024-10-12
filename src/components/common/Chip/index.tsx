@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import CancelDefault from '@/assets/icons/cancel-default.svg?react';
 
 interface ChipProps {

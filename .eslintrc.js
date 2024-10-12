@@ -33,7 +33,23 @@ module.exports = {
   ],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'simple-import-sort/imports': 'error',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          // Node.js built-ins and external imports.
+          ['^\\u0000', '^react', '^@?\\w'],
+          // Absolute imports and other imports.
+          ['^@?\\w'],
+          // Imports starting with `@/` (your internal modules).
+          ['^@'],
+          // Relative imports.
+          ['^\\.'],
+          // Side effect imports (e.g., polyfills or styles).
+          ['^\\u0000'],
+        ],
+      },
+    ],
     'simple-import-sort/exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'warn',
     '@typescript-eslint/no-unused-vars': [

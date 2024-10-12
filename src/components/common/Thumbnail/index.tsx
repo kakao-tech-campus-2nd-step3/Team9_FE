@@ -1,6 +1,7 @@
-import styled from '@emotion/styled';
-import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 import { Image } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+
+import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 
 interface ThumbnailProps {
   ratio?: 'square' | 'default';

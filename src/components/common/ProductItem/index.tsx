@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import Thumbnail from '@/components/common/Thumbnail';
 
 interface ArtistItemProps {

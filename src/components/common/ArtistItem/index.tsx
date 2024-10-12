@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
+import FollowButton from '@/components/common/FollowButton';
 import Thumbnail from '@/components/common/Thumbnail';
 import LikesAndFollowers from '../LikesAndFollowers';
-import FollowButton from '@/components/common/FollowButton';
 
 interface ArtistItemProps {
   author: string;

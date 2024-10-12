@@ -10,9 +10,8 @@ const Gap = ({ height }: GapProps) => {
 
 export default Gap;
 
-const CustomGap = styled.hr<{ height: number }>`
+const CustomGap = styled.div<{ height: number }>`
   width: 100%;
   height: ${({ height }) => height}px;
   background-color: var(--color-gray-lt);
-  border: none;
 `;

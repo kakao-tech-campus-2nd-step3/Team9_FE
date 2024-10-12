@@ -14,7 +14,7 @@ const Tab = ({ label, defaultIcon, activeIcon, linkTo, isActive }: TabProps) => 
     <Wrapper>
       <StyledLink isActive={isActive} to={linkTo}>
         {isActive ? activeIcon : defaultIcon}
-        <span>{label}</span>
+        <p>{label}</p>
       </StyledLink>
     </Wrapper>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+
 import ArrowUpwardIcon from '@/assets/icons/arrow-upward.svg?react';
 import AddIcon from '@/assets/icons/add.svg?react';
 import { TABBAR_HEIGHT } from '../TabBar';

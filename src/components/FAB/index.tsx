@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-
 import ArrowUpwardIcon from '@/assets/icons/arrow-upward.svg?react';
 import AddIcon from '@/assets/icons/add.svg?react';
 import { TABBAR_HEIGHT } from '../TabBar';
@@ -10,10 +10,27 @@ interface FABContainerProps {
 
 // 추후 사용자 모드 받는 API 구현되면 수정해야 함
 const FABContainer = ({ mode = 'seller' }: FABContainerProps) => {
+  const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setShowScrollToTopButton(true);
+      } else {
+        setShowScrollToTopButton(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <Wrapper>
-      {/* 스크롤 내려갔을 때만 나타나도록 하기 */}
-      <ScrollToTopButton />
+      {showScrollToTopButton && <ScrollToTopButton />}
       {mode === 'seller' && <PostButton />}
     </Wrapper>
   );
@@ -22,8 +39,12 @@ const FABContainer = ({ mode = 'seller' }: FABContainerProps) => {
 export default FABContainer;
 
 const ScrollToTopButton = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <StyledScrollToTopButton>
+    <StyledScrollToTopButton onClick={scrollToTop}>
       <ArrowUpwardIcon />
     </StyledScrollToTopButton>
   );

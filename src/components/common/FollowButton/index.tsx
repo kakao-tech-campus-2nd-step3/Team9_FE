@@ -13,7 +13,7 @@ export default FollowButton;
 
 const Wrapper = styled.div<{ color: 'white' | 'gray' }>`
   background-color: ${({ color }) =>
-    color === 'white' ? 'var(--color-white)' : 'var(--color-gray-light)'};
+    color === 'white' ? 'var(--color-white)' : 'var(--color-gray-lt)'};
   color: black;
   width: 4.4rem;
   height: 2rem;

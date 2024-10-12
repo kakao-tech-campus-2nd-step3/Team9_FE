@@ -63,7 +63,7 @@ const InputBox = styled.div`
   align-items: center;
   flex: 1 0 0;
   border-radius: var(--border-radius);
-  border: 1px solid var(--color-gray-medium);
+  border: 1px solid var(--color-gray-md);
   font-size: var(--font-size-sm);
   cursor: text;
 `;
@@ -76,7 +76,7 @@ const Input = styled.input`
   border: none;
 
   &::placeholder {
-    color: var(--color-gray-deep);
+    color: var(--color-gray-dk);
   }
 `;
 

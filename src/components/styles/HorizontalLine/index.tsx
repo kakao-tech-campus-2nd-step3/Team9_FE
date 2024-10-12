@@ -9,5 +9,5 @@ export default HorizontalLine;
 const CustomHorizontalLine = styled.hr`
   width: 100%;
   height: 0.01rem;
-  background-color: var(--color-gray-light);
+  background-color: var(--color-gray-lt);
 `;

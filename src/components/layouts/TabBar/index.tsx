@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   background-color: var(--color-white);
-  border-top: 1px solid var(--color-gray-medium);
+  border-top: 1px solid var(--color-gray-md);
   position: sticky;
   bottom: 0;
 `;

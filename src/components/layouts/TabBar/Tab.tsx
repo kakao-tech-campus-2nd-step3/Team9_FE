@@ -40,7 +40,7 @@ const StyledLink = styled(Link, {
   font-size: var(--font-size-xxs);
   font-weight: 400;
   text-align: center;
-  color: ${({ isActive }) => (isActive ? 'var(--color-black)' : 'var(--color-gray-deep)')};
+  color: ${({ isActive }) => (isActive ? 'var(--color-black)' : 'var(--color-gray-dk)')};
   transition: transform 0.2s ease;
 
   &:hover {
@@ -53,6 +53,6 @@ const StyledLink = styled(Link, {
 
   &:active {
     transform: scale(0.95);
-    background-color: var(--color-gray-light);
+    background-color: var(--color-gray-lt);
   }
 `;

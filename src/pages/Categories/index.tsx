@@ -16,15 +16,15 @@ const Categories = () => {
         ))}
       </Grid>
       <Gap height={18} />
-      <SectionWrapper>
+      <CurationItem>
         <Title>매거진</Title>
         <Des>숨겨진 무한의 가치를 발견하고 싶다면</Des>
-      </SectionWrapper>
+      </CurationItem>
       <Gap height={2} />
-      <SectionWrapper>
+      <CurationItem>
         <Title>아티스트 그라운드</Title>
         <Des>내 취향대로 작가 골라보기</Des>
-      </SectionWrapper>
+      </CurationItem>
     </Wrapper>
   );
 };
@@ -33,16 +33,17 @@ export default Categories;
 
 const Wrapper = styled.div``;
 
-const SectionWrapper = styled.div`
+const CurationItem = styled.div`
   display: flex;
   align-items: center;
-  padding: 24px 16px 32px 16px;
-  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  gap: 8px;
 `;
 
 const Title = styled(Text)`
   font-size: var(--font-size-md);
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 const Des = styled(Text)`

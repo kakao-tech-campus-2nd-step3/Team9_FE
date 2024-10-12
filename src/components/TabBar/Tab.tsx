@@ -22,8 +22,6 @@ const Tab = ({ label, defaultIcon, activeIcon, linkTo, isActive }: TabProps) => 
 
 export default Tab;
 
-// styles
-
 const Wrapper = styled.div`
   display: flex;
   flex: 1;

@@ -47,7 +47,6 @@ const Header = ({ mode, title, leftSideChildren, rightSideChildren }: HeaderProp
 
 export default Header;
 
-// styles
 export const HEADER_HEIGHT = '4.4rem';
 
 const HeaderWrapper = styled.div`

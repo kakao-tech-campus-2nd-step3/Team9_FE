@@ -29,8 +29,6 @@ const TabBar = () => {
 
 export default TabBar;
 
-// styles
-
 export const TABBAR_HEIGHT = '54px';
 
 const Wrapper = styled.div`

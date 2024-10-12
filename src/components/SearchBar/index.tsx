@@ -42,7 +42,6 @@ const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
 
 export default SearchBar;
 
-// styles
 const SEARCHBAR_HEIGHT = HEADER_HEIGHT;
 
 const SearchBarWrapper = styled.div`

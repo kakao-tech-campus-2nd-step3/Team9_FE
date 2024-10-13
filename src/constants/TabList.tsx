@@ -9,12 +9,14 @@ import DefaultMyIcon from '@/assets/icons/person-default.svg?react';
 import ActiveMyIcon from '@/assets/icons/person-filled.svg?react';
 import { RouterPath } from '@/routes/path';
 
-const TabList: Array<{
+interface Tab {
   label: string;
   defaultIcon: React.ReactNode;
   activeIcon: React.ReactNode;
   linkTo: string;
-}> = [
+}
+
+const TabList: Tab[] = [
   {
     label: '카테고리',
     defaultIcon: <CategoriesIcon />,

@@ -6,7 +6,7 @@ const App = () => {
   const chakraProps: ChakraProviderProps = {};
 
   return (
-    <ChakraProvider {...chakraProps}>
+    <ChakraProvider {...chakraProps} resetCSS={false}>
       <Routes />
     </ChakraProvider>
   );

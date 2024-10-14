@@ -18,6 +18,7 @@ import SearchResults from '@/pages/SearchResults';
 import Signup from '@/pages/Signup';
 import { ProtectedRoute } from './ProtectedRoute';
 import { RouterPath } from './path';
+import NoHeaderLayout from '@/components/layouts/NoHeaderLayout';
 
 const Routes = () => {
   return <RouterProvider router={router} />;
@@ -35,10 +36,6 @@ const router = createBrowserRouter([
       {
         path: RouterPath.discover,
         element: <Discover />,
-      },
-      {
-        path: RouterPath.categories,
-        element: <Categories />,
       },
       {
         path: `${RouterPath.products}/:productId`,
@@ -89,6 +86,16 @@ const router = createBrowserRouter([
       {
         path: RouterPath.notFound,
         element: <Navigate to={RouterPath.home} />,
+      },
+    ],
+  },
+  {
+    path: RouterPath.root,
+    element: <NoHeaderLayout />,
+    children: [
+      {
+        path: RouterPath.categories,
+        element: <Categories />,
       },
     ],
   },

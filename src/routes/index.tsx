@@ -14,7 +14,6 @@ import MyOrders from '@/pages/MyOrders';
 import MySales from '@/pages/MySales';
 import ProductDetails from '@/pages/ProductDetails';
 import ProductPosting from '@/pages/ProductPosting';
-import Search from '@/pages/Search';
 import SearchResults from '@/pages/SearchResults';
 import Signup from '@/pages/Signup';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -40,16 +39,6 @@ const router = createBrowserRouter([
       {
         path: RouterPath.categories,
         element: <Categories />,
-      },
-      {
-        path: RouterPath.search,
-        element: <Search />,
-        children: [
-          {
-            path: RouterPath.results,
-            element: <SearchResults />,
-          },
-        ],
       },
       {
         path: `${RouterPath.products}/:productId`,
@@ -102,6 +91,10 @@ const router = createBrowserRouter([
         element: <Navigate to={RouterPath.home} />,
       },
     ],
+  },
+  {
+    path: `${RouterPath.results}`,
+    element: <SearchResults />,
   },
   {
     path: RouterPath.login,

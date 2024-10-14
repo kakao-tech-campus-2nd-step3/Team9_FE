@@ -4,13 +4,14 @@ import CancelDefault from '@/assets/icons/cancel-default.svg?react';
 
 interface ChipProps {
   tag: string;
+  onClick: () => void; // onClick prop 추가
 }
 
-const Chip = ({ tag }: ChipProps) => {
+const Chip = ({ tag, onClick }: ChipProps) => {
   return (
     <Wrapper>
       <span># {tag}</span>
-      <CancelDefault style={{ width: '1.5rem', height: '1.5rem' }} />
+      <CancelIcon onClick={onClick} />
     </Wrapper>
   );
 };
@@ -28,4 +29,16 @@ const Wrapper = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const CancelIcon = styled(CancelDefault)`
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+  transition: fill 0.3s ease;
+
+  &:hover {
+    fill: var(--color-black);
+  }
 `;

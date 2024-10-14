@@ -5,24 +5,37 @@ import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { HEADER_HEIGHT } from '../Header';
+import { useNavigate } from 'react-router-dom';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 
 interface SearchBarProps {
   includeFavorite?: boolean;
+  modalClose?: () => void;
 }
 
-const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
+const SearchBar = ({ includeFavorite = false, modalClose }: SearchBarProps) => {
   const [searchWord, setSearchWord] = useState<string>('');
+  const navigate = useNavigate();
 
   const handleRemoveSearchWord = (e: React.MouseEvent) => {
     e.preventDefault();
     setSearchWord('');
   };
 
+  const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchWord.trim()) {
+      const storedData = localStorage.getItem('searchArray');
+      const searchArray = storedData ? JSON.parse(storedData) : [];
+      const updatedArray = [searchWord, ...searchArray];
+      localStorage.setItem('searchArray', JSON.stringify(updatedArray));
+      navigate(`/results?query=${searchWord}`);
+    }
+  };
+
   return (
     <SearchBarWrapper>
-      <IconButton icon="arrow-back" />
+      <IconButton icon="arrow-back" onClick={modalClose} />
       <InputBox>
         <StyledSearchIcon />
         <Input
@@ -31,6 +44,9 @@ const SearchBar = ({ includeFavorite = false }: SearchBarProps) => {
           value={searchWord}
           onChange={(e) => {
             setSearchWord(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            activeEnter(e);
           }}
         />
         {searchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}

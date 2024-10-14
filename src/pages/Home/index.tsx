@@ -3,12 +3,18 @@ import styled from '@emotion/styled';
 import Footer from '@/components/layouts/Footer';
 import { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
+import ArticleBanner from './ArticleBanner';
 
 const Home = () => {
   return (
     <>
       <Wrapper className="home-contents">
-        Home
+        <ArticleBanner
+          image="http://www.mediadale.com/news/photo/202007/53159_63324_3446.jpg"
+          title="한계를 부수고, 더 많이 그리고 싶어요"
+          subtitle="주목하는 대학생 신인 작가"
+          description='"예술은 삶의 기록이라고 생각해요"'
+        />
         <Footer />
       </Wrapper>
     </>

@@ -1,13 +1,17 @@
 import { Outlet } from 'react-router-dom';
 
-import Header from '../Header';
-import TabBar from '../TabBar';
+import FABContainer from '@/components/layouts/FAB';
+import Header from '@/components/layouts/Header';
+import TabBar from '@/components/layouts/TabBar';
 
 const BasicLayout = () => {
+  const mode = 'seller';
+
   return (
     <>
-      <Header mode="seller" />
+      <Header mode={mode} />
       <Outlet />
+      <FABContainer mode={mode} />
       <TabBar />
     </>
   );

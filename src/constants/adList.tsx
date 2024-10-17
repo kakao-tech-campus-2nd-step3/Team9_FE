@@ -21,4 +21,9 @@ export const adList: Ad[] = [
     title: '제 17회 대구국제아트페어',
     description: '티켓 사전 구매 시 추첨을 통해 경품 증정',
   },
+  {
+    image: 'https://groundseesaw.co.kr/web/product/big/202409/677bbc59cec139dfc8c237e38626bbc7.jpg',
+    title: '일상을 딛고 세계 곳곳을 여행하자',
+    description: '얼리버드 구매 시 50% 할인',
+  },
 ];

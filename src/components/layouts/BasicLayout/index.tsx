@@ -33,4 +33,5 @@ const PageLayout = styled.div`
 const ContentWrapper = styled.main`
   flex: 1;
   overflow-y: auto;
+  display: flex;
 `;

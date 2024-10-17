@@ -88,7 +88,7 @@ const StyledScrollToTopButton = styled(StyledFAB)`
   background: var(--color-white);
 
   svg {
-    fill: var(--color-black);
+    color: var(--color-black);
   }
 `;
 
@@ -97,6 +97,6 @@ const StyledPostButton = styled(StyledFAB)`
   background: var(--color-black);
 
   svg {
-    fill: var(--color-white);
+    color: var(--color-white);
   }
 `;

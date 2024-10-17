@@ -17,8 +17,10 @@ const Home = () => {
 
 export default Home;
 
-const Wrapper = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${TABBAR_HEIGHT});
+const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  margin: ${HEADER_HEIGHT} 0 ${TABBAR_HEIGHT} 0;
+  overflow-y: auto;
 `;

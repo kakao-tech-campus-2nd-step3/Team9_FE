@@ -43,7 +43,7 @@ const Header = ({ mode, title, leftSideChildren, rightSideChildren }: HeaderProp
     }
   };
 
-  return <HeaderWrapper>{renderElements()}</HeaderWrapper>;
+  return <Wrapper>{renderElements()}</Wrapper>;
 };
 
 export default Header;
@@ -51,8 +51,8 @@ export default Header;
 // styles
 export const HEADER_HEIGHT = '4.4rem';
 
-const HeaderWrapper = styled.div`
-  position: sticky;
+const Wrapper = styled.header`
+  position: fixed;
   top: 0;
   width: 100%;
   height: ${HEADER_HEIGHT};

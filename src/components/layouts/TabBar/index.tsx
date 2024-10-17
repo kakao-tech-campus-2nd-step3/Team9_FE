@@ -31,13 +31,13 @@ export default TabBar;
 
 export const TABBAR_HEIGHT = '5.4rem';
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   width: 100%;
   height: ${TABBAR_HEIGHT};
   display: flex;
   flex-direction: row;
   background-color: var(--color-white);
   border-top: 1px solid var(--color-gray-md);
-  position: sticky;
+  position: fixed;
   bottom: 0;
 `;

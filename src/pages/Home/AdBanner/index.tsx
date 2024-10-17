@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
 import type { Ad } from '@/constants/adList';
+import { Box } from '@chakra-ui/react';
 
 type AdBannerProps = {
   adList: Ad[];
@@ -36,8 +37,10 @@ const AdBanner = ({ adList }: AdBannerProps) => {
               src={ad.image}
               style={{ width: '100%', aspectRatio: '4 / 5', objectFit: 'cover' }}
             />
-            <Title>{ad.title}</Title>
-            <Description>{ad.description}</Description>
+            <Description>
+              <h1 className="title">{ad.title}</h1>
+              <p className="description">{ad.description}</p>
+            </Description>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -77,32 +80,35 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = styled.h1`
+const Description = styled.div`
   position: absolute;
   left: 16px;
-  bottom: 94px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 8px 12px;
-  color: var(--color-white);
-  font-size: var(--font-size-xl);
-  font-weight: 800;
+  right: 16px;
+  bottom: 40px;
 
-  @media (min-width: 480px) {
-    font-size: var(--font-size-xxl);
-  }
-`;
-
-const Description = styled.p`
-  position: absolute;
-  left: 16px;
-  bottom: 48px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 8px 12px;
-  color: var(--color-white);
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-
-  @media (min-width: 480px) {
+  .title {
+    display: inline-block; // block과 달리 자기 너비만큼만 차지
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 12px;
+    color: var(--color-white);
     font-size: var(--font-size-xl);
+    font-weight: 800;
+
+    @media (min-width: 480px) {
+      font-size: var(--font-size-xxl);
+    }
+  }
+
+  .description {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 12px;
+    color: var(--color-white);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+
+    @media (min-width: 480px) {
+      font-size: var(--font-size-xl);
+    }
   }
 `;

@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import IconButton from '@/components/common/IconButton';
@@ -10,7 +9,7 @@ const ArticleBanner = ({ image, title, subtitle, description }: ArticleBannerPro
   return (
     <Wrapper>
       <Title>{title}</Title>
-      <Box display="grid" gridTemplateColumns="1fr 1.5fr">
+      <BannerLayout>
         <ImageWrapper>
           <img src={image} />
         </ImageWrapper>
@@ -21,7 +20,7 @@ const ArticleBanner = ({ image, title, subtitle, description }: ArticleBannerPro
             <IconButton icon="arrow-forward" />
           </div>
         </Description>
-      </Box>
+      </BannerLayout>
     </Wrapper>
   );
 };
@@ -54,12 +53,22 @@ const ImageWrapper = styled.div`
 
 const Title = styled.h1`
   text-align: start;
-  margin-left: 8px;
-  font-size: var(--font-size-lg);
+  margin: 0 8px;
+  font-size: var(--font-size-xl);
   font-weight: 700;
 
   @media (min-width: 480px) {
     font-size: var(--font-size-xl);
+  }
+`;
+
+const BannerLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 480px) {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
   }
 `;
 
@@ -86,7 +95,6 @@ const Description = styled.div`
     font-size: var(--font-size-sm);
     font-weight: 400;
     word-break: keep-all;
-    margin-bottom: 20px;
 
     @media (min-width: 480px) {
       font-size: var(--font-size-sm);
@@ -95,17 +103,24 @@ const Description = styled.div`
 
   .icon-button-wrapper {
     position: absolute;
-    bottom: 36px;
     right: 20px;
+
+    @media (min-width: 480px) {
+      position: absolute;
+      bottom: 36px;
+      right: 20px;
+    }
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 16px;
-    right: 20px;
-    width: 220px;
-    height: 4px;
-    background-color: var(--color-black);
+  @media (min-width: 480px) {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      width: 220px;
+      height: 4px;
+      background-color: var(--color-black);
+    }
   }
 `;

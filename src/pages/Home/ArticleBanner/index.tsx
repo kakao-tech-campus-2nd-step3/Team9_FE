@@ -1,35 +1,30 @@
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+
+import IconButton from '@/components/common/IconButton';
 
 interface ArticleBannerProps {
   image: string;
   title: string;
   subtitle: string;
-  description?: string;
+  description: string;
 }
 
 const ArticleBanner = ({ image, title, subtitle, description }: ArticleBannerProps) => {
   return (
     <Wrapper>
-      <Text as="title" margin="0 0 0 8px" fontSize="var(--font-size-lg)" fontWeight="700">
-        {title}
-      </Text>
-      <Box height="17rem" display="grid" grid-template-columns="1fr 1fr">
-        <Image src={image} alt="이미지" />
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          alignSelf="stretch"
-          padding="10px 16px"
-        >
-          <Text textAlign="center" fontSize="var(--font-size-md)" fontWeight="600">
-            {subtitle}
-          </Text>
-          <Text textAlign="center" fontSize="var(--font-size-xs)" fontWeight="400">
-            {description}
-          </Text>
-        </Box>
+      <Title>{title}</Title>
+      <Box display="grid" gridTemplateColumns="1fr 1.5fr">
+        <ImageWrapper>
+          <img src={image} />
+        </ImageWrapper>
+        <Description>
+          <h2 className="subtitle">{subtitle}</h2>
+          <p className="description">{description}</p>
+          <Box alignSelf="flex-end">
+            <IconButton icon="arrow-forward" />
+          </Box>
+        </Description>
       </Box>
     </Wrapper>
   );
@@ -39,7 +34,73 @@ export default ArticleBanner;
 
 const Wrapper = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
   gap: 10px;
+  margin: 0 0 16px 0;
+
+  @media (min-width: 480px) {
+  }
+`;
+
+const ImageWrapper = styled.div`
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+
+  .img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const Title = styled.h1`
+  text-align: start;
+  margin-left: 8px;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+
+  @media (min-width: 480px) {
+    font-size: var(--font-size-xl);
+  }
+`;
+
+const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  position: relative;
+
+  .subtitle {
+    text-align: start;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    word-break: keep-all;
+    margin-bottom: 10px;
+
+    @media (min-width: 480px) {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  .description {
+    text-align: start;
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    word-break: keep-all;
+    margin-bottom: 20px;
+
+    @media (min-width: 480px) {
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    width: 220px;
+    height: 4px;
+    background-color: var(--color-black);
+  }
 `;

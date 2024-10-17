@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Image, Text } from '@chakra-ui/react';
+import { Image } from '@chakra-ui/react';
 import Grid from '@/components/styles/Grid';
 import ad from '@/apis/data/ad';
 
@@ -8,10 +8,10 @@ const Ad = () => {
   return (
     <Wrapper>
       <TitleWrapper>
-        <TitleText>
+        <div>
           <RedText>요즘 뜨는</RedText> 작품
-          <p>광고</p>
-        </TitleText>
+        </div>
+        <Tab>광고</Tab>
       </TitleWrapper>
       <Grid col={2}>
         {ad.map((ad) => (
@@ -31,12 +31,12 @@ const Wrapper = styled.div`
 `;
 
 const TitleWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const TitleText = styled(Text)`
+  align-items: center;
+  margin-bottom: 16px;
   color: var(--color-black, #020715);
   font-size: var(--font-size-md);
   font-weight: 700;
@@ -49,4 +49,18 @@ const RedText = styled.span`
 
 const AdImage = styled(Image)`
   width: 158px;
+`;
+
+const Tab = styled.p`
+  background: var(--color-gray-lt);
+  border-radius: 50px;
+  padding: 3px 7px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 36px;
+  height: 20px;
+  font-size: var(--font-size-xs);
+  color: var(--white, #fff);
+  font-weight: 700;
 `;

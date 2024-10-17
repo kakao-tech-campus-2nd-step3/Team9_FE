@@ -47,7 +47,7 @@ const StyledLink = styled(Link, {
     color: var(--color-black);
 
     svg {
-      fill: var(--color-black);
+      color: var(--color-black);
     }
   }
 

@@ -82,7 +82,6 @@ const Description = styled.div`
     text-align: start;
     font-size: var(--font-size-md);
     font-weight: 600;
-    word-break: keep-all;
     margin-bottom: 10px;
 
     @media (min-width: 480px) {

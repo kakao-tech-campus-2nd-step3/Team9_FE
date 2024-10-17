@@ -13,6 +13,7 @@
 
 * {
   box-sizing: border-box;
+  word-break: keep-all;
 }
 html {
   -ms-text-size-adjust: 100%;

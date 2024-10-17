@@ -38,6 +38,6 @@ const Wrapper = styled.div`
   flex-direction: row;
   background-color: var(--color-white);
   border-top: 1px solid var(--color-gray-md);
-  position: sticky;
+  position: fixed;
   bottom: 0;
 `;

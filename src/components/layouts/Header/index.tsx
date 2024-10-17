@@ -52,7 +52,7 @@ export default Header;
 export const HEADER_HEIGHT = '4.4rem';
 
 const HeaderWrapper = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   height: ${HEADER_HEIGHT};

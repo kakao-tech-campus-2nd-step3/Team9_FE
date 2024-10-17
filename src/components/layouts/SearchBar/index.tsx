@@ -11,10 +11,10 @@ const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 
 interface SearchBarProps {
   includeFavorite?: boolean;
-  modalClose?: () => void;
+  goBack?: () => void;
 }
 
-const SearchBar = ({ includeFavorite = false, modalClose }: SearchBarProps) => {
+const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
   const [searchWord, setSearchWord] = useState<string>('');
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const SearchBar = ({ includeFavorite = false, modalClose }: SearchBarProps) => {
 
   return (
     <SearchBarWrapper>
-      <IconButton icon="arrow-back" onClick={modalClose} />
+      <IconButton icon="arrow-back" onClick={goBack} />
       <InputBox>
         <StyledSearchIcon />
         <Input

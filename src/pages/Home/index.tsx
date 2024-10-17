@@ -17,7 +17,7 @@ const Home = () => {
 
 export default Home;
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1;

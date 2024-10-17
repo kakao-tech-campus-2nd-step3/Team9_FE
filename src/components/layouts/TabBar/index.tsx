@@ -31,7 +31,7 @@ export default TabBar;
 
 export const TABBAR_HEIGHT = '5.4rem';
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   width: 100%;
   height: ${TABBAR_HEIGHT};
   display: flex;

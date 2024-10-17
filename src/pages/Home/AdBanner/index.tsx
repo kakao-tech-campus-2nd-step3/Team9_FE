@@ -25,7 +25,11 @@ const AdBanner = ({ adList }: AdBannerProps) => {
           modifier: 1, // 효과의 강도 조절
           slideShadows: true, // 그림자 표시 여부
         }}
-        loop={true}
+        loop={true} // 무한 반복
+        centeredSlides={true} // 슬라이드를 중앙에 정렬
+        centeredSlidesBounds={true} // 슬라이드가 경계에 걸치지 않도록
+        slidesPerView={1.2} // 한 번에 보이는 슬라이드 개수
+        spaceBetween={12} // 슬라이드 간의 간격
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >
@@ -36,8 +40,9 @@ const AdBanner = ({ adList }: AdBannerProps) => {
                 src={ad.image}
                 style={{ width: '100%', aspectRatio: '4 / 5', objectFit: 'cover' }}
               />
+              <Title>{ad.title}</Title>
+              <Description>{ad.description}</Description>
             </SwiperSlide>
-            <Title>{ad.title}</Title>
           </>
         ))}
       </Swiper>
@@ -50,9 +55,10 @@ export default AdBanner;
 const Wrapper = styled.div`
   margin-bottom: 16px;
   position: relative;
+  cursor: pointer;
 
-  .swiper-button-next,
-  .swiper-button-prev {
+  .swiper-button-prev,
+  .swiper-button-next {
     color: var(--color-white);
 
     &::after {
@@ -60,9 +66,16 @@ const Wrapper = styled.div`
     }
   }
 
+  .swiper-pagination {
+    bottom: 10px;
+  }
   .swiper-pagination-bullet {
     background-color: var(--color-gray-dk);
     opacity: 1;
+    border-radius: 0%;
+    width: 20px;
+    height: 4px;
+    margin: 0;
   }
   .swiper-pagination-bullet-active {
     background-color: var(--color-white);
@@ -71,7 +84,30 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   position: absolute;
-  left: 20px;
-  bottom: 20px;
-  z-index: 100;
+  left: 16px;
+  bottom: 94px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  color: var(--color-white);
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+
+  @media (min-width: 480px) {
+    font-size: var(--font-size-xxl);
+  }
+`;
+
+const Description = styled.p`
+  position: absolute;
+  left: 16px;
+  bottom: 48px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  color: var(--color-white);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+
+  @media (min-width: 480px) {
+    font-size: var(--font-size-xl);
+  }
 `;

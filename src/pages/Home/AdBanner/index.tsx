@@ -27,7 +27,6 @@ const AdBanner = ({ adList }: AdBannerProps) => {
         }}
         loop={true} // 무한 반복
         centeredSlides={true} // 슬라이드를 중앙에 정렬
-        centeredSlidesBounds={true} // 슬라이드가 경계에 걸치지 않도록
         slidesPerView={1.2} // 한 번에 보이는 슬라이드 개수
         spaceBetween={12} // 슬라이드 간의 간격
         onSlideChange={() => console.log('slide change')}

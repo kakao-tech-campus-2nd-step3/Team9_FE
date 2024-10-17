@@ -15,6 +15,7 @@ const Home = () => {
           subtitle="주목하는 대학생 신인 작가"
           description='"예술은 삶의 기록이라고 생각해요"'
         />
+        <div style={{ height: '100vh' }} />
         <Footer />
       </Wrapper>
     </>

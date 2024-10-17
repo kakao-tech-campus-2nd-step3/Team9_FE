@@ -1,6 +1,9 @@
 import SearchBar from '@/components/layouts/SearchBar';
 import styled from '@emotion/styled';
 import RecentSearch from './RecentSearch';
+import HorizontalLine from '@/components/styles/HorizontalLine';
+import PopularSearch from './PopularSearch';
+import Ad from './Ad';
 
 interface SearchModalProps {
   modalClose: () => void;
@@ -9,9 +12,13 @@ interface SearchModalProps {
 const SearchModal = ({ modalClose }: SearchModalProps) => {
   return (
     <ModalWrapper>
-      <SearchBar modalClose={modalClose} />
+      <SearchBar goBack={modalClose} />
       <SearchWrapper>
         <RecentSearch />
+        <HorizontalLine />
+        <PopularSearch />
+        <HorizontalLine />
+        <Ad />
       </SearchWrapper>
     </ModalWrapper>
   );
@@ -36,5 +43,4 @@ const SearchWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 16px 0;
 `;

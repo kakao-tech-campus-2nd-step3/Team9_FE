@@ -1,4 +1,6 @@
-const popularSearch = [
+import { PopularSearch } from '@/types/index';
+
+const popularSearch: PopularSearch[] = [
   { id: 1, text: '모던 아트' },
   { id: 2, text: '추상화' },
   { id: 3, text: '인상파' },

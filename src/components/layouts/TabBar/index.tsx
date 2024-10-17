@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useLocation } from 'react-router-dom';
 
-// import TabList from '@/constants/TabList';
+import { tabList } from '@/constants/tabList';
 import Tab from './Tab';
 
 const TabBar = () => {
@@ -9,7 +9,7 @@ const TabBar = () => {
 
   return (
     <Wrapper>
-      {TabList.map((tab, index) => {
+      {tabList.map((tab, index) => {
         const isActive = pathname === tab.linkTo;
 
         return (

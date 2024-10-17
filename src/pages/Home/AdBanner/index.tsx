@@ -29,8 +29,6 @@ const AdBanner = ({ adList }: AdBannerProps) => {
         centeredSlides={true} // 슬라이드를 중앙에 정렬
         slidesPerView={1.2} // 한 번에 보이는 슬라이드 개수
         spaceBetween={12} // 슬라이드 간의 간격
-        onSlideChange={(e) => console.log('현재 인덱스: ', e.activeIndex)}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         {adList.map((ad, index) => (
           <SwiperSlide key={index}>

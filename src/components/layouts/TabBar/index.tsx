@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useLocation } from 'react-router-dom';
 
-import TabList from '@/constants/TabList';
+// import TabList from '@/constants/TabList';
 import Tab from './Tab';
 
 const TabBar = () => {

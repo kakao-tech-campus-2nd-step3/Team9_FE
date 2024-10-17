@@ -50,7 +50,7 @@ const AdBanner = ({ adList }: AdBannerProps) => {
 export default AdBanner;
 
 const Wrapper = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 32px;
   position: relative;
   cursor: pointer;
 

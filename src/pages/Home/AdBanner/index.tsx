@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
 import type { Ad } from '@/constants/adList';
-import { Box } from '@chakra-ui/react';
 
 type AdBannerProps = {
   adList: Ad[];

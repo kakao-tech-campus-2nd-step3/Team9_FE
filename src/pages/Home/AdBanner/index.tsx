@@ -33,16 +33,14 @@ const AdBanner = ({ adList }: AdBannerProps) => {
         onSwiper={(swiper) => console.log(swiper)}
       >
         {adList.map((ad, index) => (
-          <>
-            <SwiperSlide key={index}>
-              <img
-                src={ad.image}
-                style={{ width: '100%', aspectRatio: '4 / 5', objectFit: 'cover' }}
-              />
-              <Title>{ad.title}</Title>
-              <Description>{ad.description}</Description>
-            </SwiperSlide>
-          </>
+          <SwiperSlide key={index}>
+            <img
+              src={ad.image}
+              style={{ width: '100%', aspectRatio: '4 / 5', objectFit: 'cover' }}
+            />
+            <Title>{ad.title}</Title>
+            <Description>{ad.description}</Description>
+          </SwiperSlide>
         ))}
       </Swiper>
     </Wrapper>

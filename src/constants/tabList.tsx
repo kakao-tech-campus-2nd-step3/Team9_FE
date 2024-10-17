@@ -9,7 +9,7 @@ import DefaultMyIcon from '@/assets/icons/person-default.svg?react';
 import ActiveMyIcon from '@/assets/icons/person-filled.svg?react';
 import { RouterPath } from '@/routes/path';
 
-type Tab = {
+export type Tab = {
   label: string;
   defaultIcon: React.ReactNode;
   activeIcon: React.ReactNode;

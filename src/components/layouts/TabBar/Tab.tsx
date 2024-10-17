@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-interface TabProps {
-  label: string;
-  defaultIcon: React.ReactNode;
-  activeIcon: React.ReactNode;
-  linkTo: string;
+import type { Tab as TabType } from '@/constants/tabList';
+
+type TabProps = TabType & {
   isActive: boolean; // 현재 페이지인지 여부 / pathname === tab.linkTo
-}
+};
 
 const Tab = ({ label, defaultIcon, activeIcon, linkTo, isActive }: TabProps) => {
   return (

@@ -2,13 +2,9 @@ import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import IconButton from '@/components/common/IconButton';
+import type { Article } from '@/constants/articleList';
 
-interface ArticleBannerProps {
-  image: string;
-  title: string;
-  subtitle: string;
-  description: string;
-}
+type ArticleBannerProps = Article;
 
 const ArticleBanner = ({ image, title, subtitle, description }: ArticleBannerProps) => {
   return (

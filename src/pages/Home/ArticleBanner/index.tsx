@@ -21,9 +21,9 @@ const ArticleBanner = ({ image, title, subtitle, description }: ArticleBannerPro
         <Description>
           <h2 className="subtitle">{subtitle}</h2>
           <p className="description">{description}</p>
-          <Box alignSelf="flex-end">
+          <div className="icon-button-wrapper">
             <IconButton icon="arrow-forward" />
-          </Box>
+          </div>
         </Description>
       </Box>
     </Wrapper>
@@ -45,6 +45,9 @@ const Wrapper = styled.div`
 const ImageWrapper = styled.div`
   overflow: hidden;
   aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .img {
     min-width: 100%;
@@ -92,6 +95,12 @@ const Description = styled.div`
     @media (min-width: 480px) {
       font-size: var(--font-size-sm);
     }
+  }
+
+  .icon-button-wrapper {
+    position: absolute;
+    bottom: 36px;
+    right: 20px;
   }
 
   &::after {

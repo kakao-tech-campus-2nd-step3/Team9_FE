@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import FABContainer from '@/components/layouts/FAB';
-import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
-import TabBar, { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
+import Header from '@/components/layouts/Header';
+import TabBar from '@/components/layouts/TabBar';
 
 const BasicLayout = () => {
   const mode = 'seller';

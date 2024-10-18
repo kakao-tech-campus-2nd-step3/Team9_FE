@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 import { Image } from '@chakra-ui/react';
 import Grid from '@/components/styles/Grid';
-import ad from '@/apis/data/ad';
+import searchAdList from '@/apis/data/searchAdList';
 
-const Ad = () => {
+const SearchAd = () => {
   return (
     <Wrapper>
       <TitleWrapper>
@@ -14,7 +14,7 @@ const Ad = () => {
         <Tab>광고</Tab>
       </TitleWrapper>
       <Grid col={2}>
-        {ad.map((ad) => (
+        {searchAdList.map((ad) => (
           <AdImage key={ad.id} src={ad.src} />
         ))}
       </Grid>
@@ -22,7 +22,7 @@ const Ad = () => {
   );
 };
 
-export default Ad;
+export default SearchAd;
 
 const Wrapper = styled.div`
   display: flex;

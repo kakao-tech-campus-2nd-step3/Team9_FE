@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import FABContainer from '@/components/layouts/FAB';
-import Header from '@/components/layouts/Header';
 import TabBar from '@/components/layouts/TabBar';
 
 const BasicLayout = () => {
@@ -12,7 +11,6 @@ const BasicLayout = () => {
 
   return (
     <PageLayout>
-      <Header mode={mode} />
       <ContentWrapper ref={contentWrapperRef}>
         <Outlet />
       </ContentWrapper>

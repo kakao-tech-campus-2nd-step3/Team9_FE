@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: 0px 16px;
   align-items: center;
-  border-bottom: 1px solid var(--color-gray-medium);
+  border-bottom: 1px solid var(--color-gray-md);
   background: var(--white, #fff);
   font-size: 1.4rem;
   text-align: center;

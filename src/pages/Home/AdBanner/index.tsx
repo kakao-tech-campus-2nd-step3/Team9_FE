@@ -3,10 +3,10 @@ import { Autoplay, EffectCoverflow, Navigation, Pagination } from 'swiper/module
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
-import type { Ad } from '@/constants/adList';
+import type { HomeAd } from '@/constants/homeAdList';
 
 type AdBannerProps = {
-  adList: Ad[];
+  adList: HomeAd[];
 };
 
 const AdBanner = ({ adList }: AdBannerProps) => {

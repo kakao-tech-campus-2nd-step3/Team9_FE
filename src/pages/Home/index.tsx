@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Footer from '@/components/layouts/Footer';
 import { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
-import { adList } from '@/constants/adList';
+import { homeAdList } from '@/constants/homeAdList';
 import { articleList } from '@/constants/articleList';
 import AdBanner from './AdBanner';
 import ArticleBanner from './ArticleBanner';
@@ -11,7 +11,7 @@ import ArticleBanner from './ArticleBanner';
 const Home = () => {
   return (
     <Wrapper>
-      <AdBanner adList={adList} />
+      <AdBanner adList={homeAdList} />
       {articleList.map((item, _) => (
         <ArticleBanner
           key={item.title}

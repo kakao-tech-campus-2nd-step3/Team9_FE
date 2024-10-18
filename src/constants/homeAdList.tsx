@@ -1,10 +1,10 @@
-export type Ad = {
+export type HomeAd = {
   image: string;
   title: string;
   description: string;
 };
 
-export const adList: Ad[] = [
+export const homeAdList: HomeAd[] = [
   {
     image: 'https://ilmin.org/wp-content/uploads/2023/04/20230411_010038-scaled.jpg',
     title: '《히스테리아: 동시대 리얼리즘 회화》',

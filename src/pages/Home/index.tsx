@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <Wrapper>
       <AdBanner adList={homeAdList} />
-      {articleList.map((item, _) => (
+      {articleList.map((item) => (
         <ArticleBanner
           key={item.title}
           image={item.image}

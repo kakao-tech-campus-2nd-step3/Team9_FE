@@ -2,15 +2,25 @@ import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import categories from '@/apis/data/categories';
-import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
 import Grid from '@/components/styles/Grid';
 import Category from './components/CategoryItem';
+import { useState } from 'react';
+import FakeSearchBar from '@/components/common/FakeSearchBar';
+import SearchModal from '@/components/common/SearchModal';
 
 const Categories = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <Wrapper>
-      <SearchBar includeFavorite={true} />
+      <FakeSearchBar modalOpen={handleModalOpen} />
+      {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
+
       <Grid col={4}>
         {categories.map((category) => (
           <Category key={category.id} src={category.src} des={category.des} />

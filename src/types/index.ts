@@ -8,7 +8,7 @@ export type SearchWork = {
   price: number;
 };
 
-export type Ad = {
+export type SearchAd = {
   id: number;
   src: string;
 };

@@ -1,6 +1,6 @@
-import { Ad } from '@/types/index';
+import { SearchAd } from '@/types/index';
 
-const ad: Ad[] = [
+const searchAdList: SearchAd[] = [
   {
     id: 1,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
@@ -11,4 +11,4 @@ const ad: Ad[] = [
   },
 ];
 
-export default ad;
+export default searchAdList;

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import RecentSearch from './RecentSearch';
 import HorizontalLine from '@/components/styles/HorizontalLine';
 import PopularSearch from './PopularSearch';
-import Ad from './Ad';
+import Ad from './SearchAd';
 
 interface SearchModalProps {
   modalClose: () => void;
@@ -35,7 +35,6 @@ const ModalWrapper = styled.div`
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
   z-index: 1000;
 `;
 

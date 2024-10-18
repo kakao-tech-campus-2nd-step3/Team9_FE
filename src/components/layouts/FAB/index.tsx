@@ -8,31 +8,38 @@ import { TABBAR_HEIGHT } from '../TabBar';
 
 interface FABContainerProps {
   mode: Mode;
+  scrollContainerRef: React.RefObject<HTMLElement>;
 }
 
-// 추후 사용자 모드 받는 API 구현되면 수정해야 함
-const FABContainer = ({ mode }: FABContainerProps) => {
+const FABContainer = ({ mode, scrollContainerRef }: FABContainerProps) => {
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setShowScrollToTopButton(true);
-      } else {
-        setShowScrollToTopButton(false);
+      if (scrollContainerRef.current) {
+        if (scrollContainerRef.current.scrollTop > 0) {
+          setShowScrollToTopButton(true);
+        } else {
+          setShowScrollToTopButton(false);
+        }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const currentContainer = scrollContainerRef.current;
+    if (currentContainer) {
+      currentContainer.addEventListener('scroll', handleScroll);
+    }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      if (currentContainer) {
+        currentContainer.removeEventListener('scroll', handleScroll);
+      }
     };
-  }, []);
+  }, [scrollContainerRef]);
 
   return (
     <Wrapper>
-      {showScrollToTopButton && <ScrollToTopButton />}
+      {showScrollToTopButton && <ScrollToTopButton scrollContainerRef={scrollContainerRef} />}
       {mode === 'seller' && <PostButton />}
     </Wrapper>
   );
@@ -40,9 +47,15 @@ const FABContainer = ({ mode }: FABContainerProps) => {
 
 export default FABContainer;
 
-const ScrollToTopButton = () => {
+interface ScrollToTopButtonProps {
+  scrollContainerRef: React.RefObject<HTMLElement>;
+}
+
+const ScrollToTopButton = ({ scrollContainerRef }: ScrollToTopButtonProps) => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -59,8 +72,6 @@ const PostButton = () => {
     </StyledPostButton>
   );
 };
-
-// styles
 
 const Wrapper = styled.div`
   display: flex;

@@ -10,7 +10,7 @@ interface ChipProps {
 const Chip = ({ tag, onClick }: ChipProps) => {
   return (
     <Wrapper>
-      <span># {tag}</span>
+      <span>{tag}</span>
       <CancelIconButton onClick={onClick}>
         <CancelDefault />
       </CancelIconButton>

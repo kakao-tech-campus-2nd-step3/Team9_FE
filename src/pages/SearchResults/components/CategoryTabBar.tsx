@@ -7,18 +7,15 @@ interface TapWrapperProps {
 
 const CategoryTabBar = () => {
   const [onActive, setOnActive] = useState(0);
+  const categoryList = ['전체', '작품', '작가'];
 
   return (
     <Wrapper>
-      <TapWrapper isActive={onActive === 0} onClick={() => setOnActive(0)}>
-        전체
-      </TapWrapper>
-      <TapWrapper isActive={onActive === 1} onClick={() => setOnActive(1)}>
-        작품
-      </TapWrapper>
-      <TapWrapper isActive={onActive === 2} onClick={() => setOnActive(2)}>
-        작가
-      </TapWrapper>
+      {categoryList.map((category, index) => (
+        <TabWrapper key={index} isActive={onActive === index} onClick={() => setOnActive(index)}>
+          {category}
+        </TabWrapper>
+      ))}
     </Wrapper>
   );
 };
@@ -39,7 +36,7 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const TapWrapper = styled.div<TapWrapperProps>`
+const TabWrapper = styled.div<TapWrapperProps>`
   width: 100%;
   padding: 0px 8px;
   cursor: pointer;

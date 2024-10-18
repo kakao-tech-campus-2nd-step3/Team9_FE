@@ -11,7 +11,9 @@ const Chip = ({ tag, onClick }: ChipProps) => {
   return (
     <Wrapper>
       <span># {tag}</span>
-      <CancelIcon onClick={onClick} />
+      <CancelIconButton onClick={onClick}>
+        <CancelDefault />
+      </CancelIconButton>
     </Wrapper>
   );
 };
@@ -30,13 +32,16 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const CancelIcon = styled(CancelDefault)`
+const CancelIconButton = styled.button`
   cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-white);
   transition: fill 0.3s ease;
 
-  path {
+  & svg {
+    width: 100%;
+    height: 100%;
   }
 
   &:hover {
@@ -44,6 +49,3 @@ const CancelIcon = styled(CancelDefault)`
     fill: var(--color-black);
   }
 `;
-// 이 svg가 html의 조합으로 만들어지는데
-// 이 svg 자체의 속성을 변경하고 있어서 안되었다.
-// stroke속성이랑 내부의 path의 fill을 바꾸어주니 정상적으로 나왔다.

@@ -42,7 +42,9 @@ const Categories = () => {
 
 export default Categories;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 100%;
+`;
 
 const CurationItem = styled.div`
   display: flex;

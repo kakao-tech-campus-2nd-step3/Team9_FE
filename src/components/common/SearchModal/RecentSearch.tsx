@@ -3,22 +3,24 @@ import Chip from '../Chip';
 import { useState, useEffect } from 'react';
 import { Text } from '@chakra-ui/react';
 
+const SEARCH_ARRAY_KEY = 'searchArray';
+
 const RecentSearch = () => {
   const [searchArray, setSearchArray] = useState([]);
 
   const allDelete = () => {
     setSearchArray([]);
-    localStorage.removeItem('searchArray');
+    localStorage.removeItem(SEARCH_ARRAY_KEY);
   };
 
   const handleStoredData = (tag: string) => {
     const updatedArray = searchArray.filter((item) => item !== tag);
     setSearchArray(updatedArray);
-    localStorage.setItem('searchArray', JSON.stringify(updatedArray));
+    localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(updatedArray));
   };
 
   useEffect(() => {
-    const storedData = localStorage.getItem('searchArray');
+    const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
     if (storedData) {
       setSearchArray(JSON.parse(storedData));
     }

@@ -15,6 +15,54 @@ const Signup = () => {
   const navigate = useNavigate();
   const [memberType, setMemberType] = useState<Mode | undefined>();
 
+  const DefaultProgress = () => (
+    <ProgressBox>
+      <ProgressBar percentage={50} />
+      <p className="guidance">
+        1.618이 처음이시네요!
+        <br />
+        회원 유형을 선택해주세요.
+      </p>
+      <form className="signup-form">
+        <Box display="flex" width="100%" gap="8px">
+          <Button label="일반 회원" onClick={() => setMemberType('user')} />
+          <Button label="작가(판매자) 회원" onClick={() => setMemberType('seller')} />
+        </Box>
+      </form>
+    </ProgressBox>
+  );
+
+  const UserProgress = () => (
+    <ProgressBox>
+      <ProgressBar percentage={100} />
+      <p className="guidance">
+        000 님, 반가워요.
+        <br />
+        회원 정보를 입력해주세요.
+      </p>
+      <form></form>
+    </ProgressBox>
+  );
+
+  const SellerProgress = () => (
+    <>
+      <ProgressBox>
+        <ProgressBar percentage={75} />
+        <p className="guidance">
+          000 님, 반가워요.
+          <br />
+          작가 유형을 선택해주세요.
+        </p>
+        <form></form>
+      </ProgressBox>
+      <ProgressBox>
+        <ProgressBar percentage={100} />
+        <p className="guidance">작가 정보를 입력해주세요.</p>
+        <form></form>
+      </ProgressBox>
+    </>
+  );
+
   return (
     <Wrapper>
       <Header
@@ -25,29 +73,9 @@ const Signup = () => {
         }
       />
       <ContentWrapper>
-        <ProgressBox>
-          <ProgressBar percentage={50} />
-          <p className="guidance">
-            1.618이 처음이시네요!
-            <br />
-            회원 유형을 선택해주세요.
-          </p>
-          <form className="signup-form">
-            <Box display="flex" width="100%" gap="8px">
-              <Button label="일반 회원" onClick={() => setMemberType('user')} />
-              <Button label="작가(판매자) 회원" onClick={() => setMemberType('seller')} />
-            </Box>
-          </form>
-        </ProgressBox>
-        <ProgressBox>
-          <ProgressBar percentage={100} />
-          <p className="guidance">
-            000 님, 반가워요.
-            <br />
-            회원 정보를 입력해주세요.
-          </p>
-          <form></form>
-        </ProgressBox>
+        <DefaultProgress />
+        {/* memberType에 따라 가입 절차 다르게 */}
+        {memberType === 'user' ? <UserProgress /> : memberType === 'seller' && <SellerProgress />}
       </ContentWrapper>
     </Wrapper>
   );

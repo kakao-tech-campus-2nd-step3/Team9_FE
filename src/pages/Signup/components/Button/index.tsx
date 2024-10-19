@@ -7,7 +7,12 @@ type ButtonProps = {
 };
 
 const Button = ({ label, onClick }: ButtonProps) => {
-  return <Wrapper onClick={onClick}>{label}</Wrapper>;
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onClick();
+  };
+
+  return <Wrapper onClick={handleClick}>{label}</Wrapper>;
 };
 
 export default Button;

@@ -1,15 +1,19 @@
 import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-const ProgressBar = () => {
+type ProgressBarProps = {
+  percentage: number;
+};
+
+const ProgressBar = ({ percentage }: ProgressBarProps) => {
   return (
     <Wrapper>
-      <Bar>
+      <Bar percentage={percentage}>
         <div className="progress-bar" />
         <div className="progress-bar progress-bar-current" />
       </Bar>
       <Text as="span" fontSize="12px">
-        50%
+        {percentage}%
       </Text>
     </Wrapper>
   );
@@ -25,7 +29,7 @@ const Wrapper = styled.div`
   margin: 8px 16px;
 `;
 
-const Bar = styled.div`
+const Bar = styled.div<{ percentage: number }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -42,7 +46,7 @@ const Bar = styled.div`
   }
 
   .progress-bar-current {
-    width: 50%;
+    width: ${({ percentage }) => `${percentage}%`};
     position: absolute;
     background: var(--color-black);
     z-index: 10;

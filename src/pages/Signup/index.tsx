@@ -21,7 +21,7 @@ const Signup = () => {
       />
       <ContentWrapper>
         <ProgressBox>
-          <ProgressBar />
+          <ProgressBar percentage={50} />
           <p className="guidance">
             1.618이 처음이시네요!
             <br />
@@ -29,7 +29,7 @@ const Signup = () => {
           </p>
         </ProgressBox>
         <ProgressBox>
-          <ProgressBar />
+          <ProgressBar percentage={100} />
           <p className="guidance">
             000 님, 반가워요.
             <br />

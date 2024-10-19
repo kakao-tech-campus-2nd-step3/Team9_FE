@@ -29,12 +29,12 @@ const Signup = () => {
             <br />
             회원 유형을 선택해주세요.
           </p>
-          <Form>
+          <form className="signup-form">
             <Box display="flex" width="100%" gap="8px">
               <Button label="일반 회원" />
               <Button label="작가(판매자) 회원" />
             </Box>
-          </Form>
+          </form>
         </ProgressBox>
         <ProgressBox>
           <ProgressBar percentage={100} />
@@ -43,7 +43,7 @@ const Signup = () => {
             <br />
             회원 정보를 입력해주세요.
           </p>
-          <Form></Form>
+          <form></form>
         </ProgressBox>
       </ContentWrapper>
     </Wrapper>
@@ -84,13 +84,13 @@ const ProgressBox = styled.div`
     font-weight: 700;
     line-height: normal;
   }
-`;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 16px 0;
-  gap: 8px;
-  align-self: stretch;
-  padding: 0 16px;
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 16px 0;
+    gap: 8px;
+    align-self: stretch;
+    padding: 0 16px;
+  }
 `;

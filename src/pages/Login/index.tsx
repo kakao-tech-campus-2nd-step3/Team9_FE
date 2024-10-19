@@ -18,12 +18,6 @@ const Login = () => {
   const backgroundImage = backgroundImageList[randomIndex].src;
   const backgroundImageCreator = backgroundImageList[randomIndex].creator;
 
-  const handleLogin = () => {
-    if (!isMember) {
-      navigate(`/${RouterPath.signup}`);
-    }
-  };
-
   return (
     <Wrapper backgroundImage={backgroundImage}>
       <Header
@@ -46,10 +40,7 @@ const Login = () => {
           그 무한은 숨겨진 가치를 밝혀줍니다. <br />
           예술 속에 숨겨진 가치를 찾아드립니다.
         </Text>
-        <KakaoLoginButton onClick={handleLogin}>
-          <KakaoSymbol />
-          카카오로 시작하기
-        </KakaoLoginButton>
+        <KakaoLoginButton isMember={isMember} />
       </ContentWrapper>
       <Text
         fontSize="var(--font-size-xs)"
@@ -65,6 +56,25 @@ const Login = () => {
 };
 
 export default Login;
+
+type KakaoLoginButtonProps = { isMember: boolean };
+
+const KakaoLoginButton = ({ isMember }: KakaoLoginButtonProps) => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (!isMember) {
+      navigate(`/${RouterPath.signup}`);
+    }
+  };
+
+  return (
+    <StyledKakaoLoginButton onClick={handleLogin}>
+      <KakaoSymbol />
+      카카오로 시작하기
+    </StyledKakaoLoginButton>
+  );
+};
 
 const Wrapper = styled.div<{ backgroundImage: string }>`
   display: flex;
@@ -101,7 +111,7 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const KakaoLoginButton = styled.button`
+const StyledKakaoLoginButton = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;

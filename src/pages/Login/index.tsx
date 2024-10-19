@@ -46,7 +46,7 @@ const Login = () => {
         fontSize="var(--font-size-xs)"
         color="var(--color-gray-dk)"
         position="absolute"
-        left="16px"
+        right="16px"
         bottom="16px"
       >
         사진: Unsplash의 {backgroundImageCreator}

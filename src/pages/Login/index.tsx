@@ -6,8 +6,8 @@ import KakaoSymbol from '@/assets/kakao-symbol.svg?react';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
-import { RouterPath } from '@/routes/path';
 import { backgroundImageList } from '@/constants/login/backgroundImageList';
+import { RouterPath } from '@/routes/path';
 
 const Login = () => {
   const isMember = false; // 추후 API 연동

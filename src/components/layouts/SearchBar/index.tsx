@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { HEADER_HEIGHT } from '../Header';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 
@@ -15,42 +15,47 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
-  const [searchWord, setSearchWord] = useState<string>('');
   const navigate = useNavigate();
+  const { register, handleSubmit, watch, setValue, formState } = useForm<{ searchWord: string }>({
+    defaultValues: {
+      searchWord: '',
+    },
+    mode: 'onSubmit',
+  });
 
   const handleRemoveSearchWord = (e: React.MouseEvent) => {
     e.preventDefault();
-    setSearchWord('');
+    setValue('searchWord', '');
   };
 
-  const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && searchWord.trim()) {
-      const storedData = localStorage.getItem('searchArray');
-      const searchArray = storedData ? JSON.parse(storedData) : [];
-      const updatedArray = [searchWord, ...searchArray];
-      localStorage.setItem('searchArray', JSON.stringify(updatedArray));
-      navigate(`/results?query=${searchWord}`);
-    }
+  const activeEnter = (data: { searchWord: string }) => {
+    const { searchWord } = data;
+    const storedData = localStorage.getItem('searchArray');
+    const searchArray = storedData ? JSON.parse(storedData) : [];
+    const updatedArray = [searchWord, ...searchArray];
+    localStorage.setItem('searchArray', JSON.stringify(updatedArray));
+    navigate(`/results?query=${searchWord}`);
   };
+
+  const nowSearchWord = watch('searchWord');
 
   return (
     <SearchBarWrapper>
       <IconButton icon="arrow-back" onClick={goBack} />
-      <InputBox>
+      <InputBox onSubmit={handleSubmit(activeEnter)}>
         <StyledSearchIcon />
         <Input
           type="text"
           placeholder={SEARCH_PLACEHOLDER}
-          value={searchWord}
-          onChange={(e) => {
-            setSearchWord(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            activeEnter(e);
-          }}
+          {...register('searchWord', {
+            validate: (value) => value.trim() !== '' || '공백만 입력할 수 없습니다.',
+          })}
         />
-        {searchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
+        {nowSearchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>
+      {formState.errors.searchWord && (
+        <ErrorMessage>{formState.errors.searchWord.message}</ErrorMessage>
+      )}
       {includeFavorite && <IconButton icon="favorite-default" />}
     </SearchBarWrapper>
   );
@@ -72,7 +77,7 @@ const SearchBarWrapper = styled.div`
   gap: 10px;
 `;
 
-const InputBox = styled.div`
+const InputBox = styled.form`
   position: relative;
   align-self: stretch;
   display: flex;
@@ -110,4 +115,10 @@ const CancelIconButton = styled(CancelIcon)`
   position: absolute;
   right: 8px;
   cursor: pointer;
+`;
+
+const ErrorMessage = styled.div`
+  color: red; /* 오류 메시지 색상 설정 */
+  font-size: var(--font-size-sm);
+  margin-top: 4px; /* 입력 필드와 오류 메시지 간의 간격 설정 */
 `;

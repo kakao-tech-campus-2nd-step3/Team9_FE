@@ -111,7 +111,7 @@ const KakaoLoginButton = styled.button`
   justify-content: center;
   align-items: center;
   margin: 0 16px;
-  padding: 10px 16px;
+  padding: 10px 50px;
   background-color: var(--color-yellow-kakao);
   border-radius: var(--border-radius);
   gap: 16px;

@@ -4,6 +4,7 @@ import CategoryTabBar from './components/CategoryTabBar';
 import SwiperFrame from './components/SwiperFrame';
 import searchWork from '@/apis/data/searchWork';
 import searchArtist from '@/apis/data/searchArtist';
+import { RouterPath } from '@/routes/path';
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -11,7 +12,7 @@ const SearchResults = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1);
+    navigate(RouterPath.categories);
   };
 
   return (

@@ -3,10 +3,11 @@ import styled from '@emotion/styled';
 type ButtonProps = {
   label: string;
   disabled?: boolean;
+  onClick: () => void;
 };
 
-const Button = ({ label, disabled }: ButtonProps) => {
-  return <Wrapper>{label}</Wrapper>;
+const Button = ({ label, onClick }: ButtonProps) => {
+  return <Wrapper onClick={onClick}>{label}</Wrapper>;
 };
 
 export default Button;

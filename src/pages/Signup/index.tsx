@@ -1,16 +1,19 @@
 import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
 import { RouterPath } from '@/routes/path';
+import { Mode } from '@/types';
 import ProgressBar from './ProgressBar';
 import Button from './components/Button';
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [memberType, setMemberType] = useState<Mode | undefined>();
 
   return (
     <Wrapper>
@@ -31,8 +34,8 @@ const Signup = () => {
           </p>
           <form className="signup-form">
             <Box display="flex" width="100%" gap="8px">
-              <Button label="일반 회원" />
-              <Button label="작가(판매자) 회원" />
+              <Button label="일반 회원" onClick={() => setMemberType('user')} />
+              <Button label="작가(판매자) 회원" onClick={() => setMemberType('seller')} />
             </Box>
           </form>
         </ProgressBox>

@@ -16,6 +16,7 @@ const Login = () => {
   // 랜덤 배경이미지
   const randomIndex = Math.floor(Math.random() * backgroundImageList.length);
   const backgroundImage = backgroundImageList[randomIndex].src;
+  const backgroundImageCreator = backgroundImageList[randomIndex].creator;
 
   const handleLogin = () => {
     if (!isMember) {
@@ -50,6 +51,15 @@ const Login = () => {
           카카오로 시작하기
         </KakaoLoginButton>
       </ContentWrapper>
+      <Text
+        fontSize="var(--font-size-xs)"
+        color="var(--color-gray-dk)"
+        position="absolute"
+        left="16px"
+        bottom="16px"
+      >
+        사진: Unsplash의 {backgroundImageCreator}
+      </Text>
     </Wrapper>
   );
 };
@@ -61,11 +71,11 @@ const Wrapper = styled.div<{ backgroundImage: string }>`
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
-
   min-height: 100vh;
   background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
   background-size: cover;
   background-position: center;
+  position: relative;
 `;
 
 const ContentWrapper = styled.div`

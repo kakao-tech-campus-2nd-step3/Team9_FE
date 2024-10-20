@@ -15,24 +15,23 @@ const FABContainer = ({ mode, scrollContainerRef }: FABContainerProps) => {
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
 
   useEffect(() => {
+    const currentContainer = scrollContainerRef.current;
+
     const handleScroll = () => {
-      if (scrollContainerRef.current) {
-        if (scrollContainerRef.current.scrollTop > 0) {
-          setShowScrollToTopButton(true);
-        } else {
-          setShowScrollToTopButton(false);
-        }
+      if (currentContainer?.scrollTop && currentContainer.scrollTop > 0) {
+        setShowScrollToTopButton(true);
+      } else {
+        setShowScrollToTopButton(false);
       }
     };
 
-    const currentContainer = scrollContainerRef.current;
     if (currentContainer) {
       currentContainer.addEventListener('scroll', handleScroll);
     }
 
     return () => {
       if (currentContainer) {
-        currentContainer.removeEventListener('scroll', handleScroll);
+        currentContainer.removeEventListener('scroll', handleScroll); // 언마운트
       }
     };
   }, [scrollContainerRef]);

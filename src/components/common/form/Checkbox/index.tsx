@@ -1,11 +1,17 @@
-import React from 'react';
 import styled from '@emotion/styled';
 
-type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement>;
+type StyledCheckboxProps = {
+  isChecked: boolean;
+  onChange: (checked: boolean) => void;
+};
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({ ...props }, ref) => {
-  return <StyledCheckbox ref={ref} type="checkbox" {...props} />;
-});
+const Checkbox = ({ isChecked, onChange }: StyledCheckboxProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.checked);
+  };
+
+  return <StyledCheckbox type="checkbox" checked={isChecked} onChange={handleChange} />;
+};
 
 const StyledCheckbox = styled.input`
   width: 14px;

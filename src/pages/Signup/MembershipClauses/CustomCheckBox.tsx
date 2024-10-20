@@ -17,7 +17,7 @@ const CustomCheckbox = ({ children, isChecked, onChange, ...props }: CustomCheck
       <Label fontSize={props.fontSize} fontWeight={props.fontWeight}>
         {children}
       </Label>
-      <Checkbox checked={isChecked} onChange={(e) => onChange(e.target.checked)} {...props} />
+      <Checkbox isChecked={isChecked} onChange={onChange} />
     </Wrapper>
   );
 };

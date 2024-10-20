@@ -33,11 +33,8 @@ const Signup = () => {
         {progressStep === 'default' && (
           <DefaultProgress memberType={memberType} onSelectMemberType={handleMemberTypeSelection} />
         )}
-        {progressStep === 'user' ? (
-          <UserProgress />
-        ) : (
-          progressStep === 'seller' && <SellerProgress />
-        )}
+        {progressStep === 'user' && <UserProgress />}
+        {progressStep === 'seller' && <SellerProgress />}
       </ContentWrapper>
     </Wrapper>
   );

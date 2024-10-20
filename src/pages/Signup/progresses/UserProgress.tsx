@@ -14,7 +14,7 @@ const UserProgress = () => {
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
 
-  // 값 업데이트 및 유효성 검사
+  // 생년월일 업데이트 및 유효성 검사
   const handleBirthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBirthDate(e.target.value);
 
@@ -22,13 +22,23 @@ const UserProgress = () => {
     setIsBirthDateValid(birthDateRegex.test(e.target.value));
   };
 
+  // 휴대폰 포맷팅하여 업데이트 및 유효성 검사
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value);
+    const formatPhone = (phone: string) => {
+      if (phone.length <= 3) return phone;
+      if (phone.length <= 6) return `${phone.slice(0, 3)}-${phone.slice(3)}`;
+      if (phone.length <= 10) return `${phone.slice(0, 3)}-${phone.slice(3, 6)}-${phone.slice(6)}`;
+      return `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7, 11)}`;
+    };
 
-    const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
-    setIsPhoneValid(phoneRegex.test(e.target.value));
+    const formattedPhone = formatPhone(e.target.value.replace(/\D/g, '')); // 숫자 외의 문자 제거 후 전달
+    setPhone(formattedPhone);
+
+    const phoneRegex = /^(\d{3}-\d{3,4}-\d{4})$/;
+    setIsPhoneValid(phoneRegex.test(formattedPhone));
   };
 
+  // 이메일 업데이트 및 유효성 검사
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
 
@@ -61,7 +71,7 @@ const UserProgress = () => {
           <p className="input-label">휴대 전화 *</p>
           <StyledInput valid={isPhoneValid}>
             <input
-              type="number"
+              type="tel"
               className="input-element"
               placeholder="000-0000-0000"
               value={phone}

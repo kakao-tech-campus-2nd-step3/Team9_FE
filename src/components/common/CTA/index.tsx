@@ -23,29 +23,44 @@ const StyledCTA = styled.button<{
   theme: 'primary' | 'secondary';
   disabled?: boolean;
 }>`
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   border: ${({ theme }) => (theme === 'primary' ? `none` : `1px solid var(--color-black)`)};
   background-color: ${({ theme }) =>
     theme === 'primary' ? `var(--color-black)` : `var(--color-white)`};
   color: ${({ theme }) => (theme === 'primary' ? `var(--color-white)` : `var(--color-black)`)};
   outline: none;
+  flex: 1;
+  min-height: 42px;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: transform 0.2s ease;
 
   &:disabled {
     cursor: not-allowed;
-    color: var(--color-gray-md);
+    border: 1px solid var(--color-gray-md);
     background-color: var(--color-gray-lt);
+    color: var(--color-gray-dk);
   }
 
-  /* &:hover와 &:focus는 disabled === false일 때만 적용 */
-  &:hover,
-  &:focus {
+  /* disabled 아닐 때만 적용 */
+  &:hover {
     ${({ disabled }) =>
       !disabled &&
       `
       opacity: 0.8 !important;
-      color: var(--color-gray-md) !important;
-      background-color: var(--color-gray-lt) !important;
     `}
+  }
+
+  &:active {
+    ${({ disabled }) =>
+      !disabled &&
+      `
+      transform: scale(0.98);
+   `}
   }
 `;
 

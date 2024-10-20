@@ -1,8 +1,9 @@
-import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
 import styled from '@emotion/styled';
 
+import { CTA_CONTAINER_HEIGHT } from '@/components/common/CTA';
+
 export const ProgressBox = styled.div`
-  margin: 0 0 ${TABBAR_HEIGHT} 0;
+  margin: 0 0 ${CTA_CONTAINER_HEIGHT} 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

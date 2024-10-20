@@ -11,7 +11,7 @@ import { Mode } from '@/types';
 import ProgressBar from './ProgressBar';
 import Button from './components/Button';
 import HorizontalLine from '@/components/styles/HorizontalLine';
-import MembershipAgreement from './MembershipAgreement';
+import MembershipAgreement from './MembershipClauses';
 
 const Signup = () => {
   const navigate = useNavigate();

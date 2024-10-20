@@ -47,20 +47,14 @@ const StyledCTA = styled.button<{
   }
 
   /* disabled 아닐 때만 적용 */
-  &:hover {
-    ${({ disabled }) =>
-      !disabled &&
-      `
+  &:not(:disabled) {
+    &:hover {
       opacity: 0.8 !important;
-    `}
-  }
+    }
 
-  &:active {
-    ${({ disabled }) =>
-      !disabled &&
-      `
-      transform: scale(0.98);
-   `}
+    &:active {
+      transform: scale(0.96);
+    }
   }
 `;
 

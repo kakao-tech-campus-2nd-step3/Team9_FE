@@ -49,8 +49,18 @@ const StyledCheckbox = styled.input`
   border-radius: 2px;
   appearance: none; /* 기본 체크박스 스타일 제거 */
   outline: none;
+  position: relative;
 
   &:checked {
     background-color: var(--color-gray-dk);
+  }
+
+  &:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 0;
+    left: 3px;
+    color: white;
+    font-size: 14px;
   }
 `;

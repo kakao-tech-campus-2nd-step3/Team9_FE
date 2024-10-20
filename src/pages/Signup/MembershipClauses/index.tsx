@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import CustomCheckbox from './CustomCheckBox';
+import CustomCheckbox from './CustomCheckbox';
 
 const MembershipClauses = () => {
   const clauseList: string[] = [

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Checkbox from '@/components/common/form/Checkbox';
 
 type CustomCheckboxProps = {
-  children: React.ReactNode;
+  label: string;
   isChecked: boolean;
   onChange: (checked: boolean) => void;
   marginBottom?: number;
@@ -11,11 +11,11 @@ type CustomCheckboxProps = {
   fontWeight?: string;
 };
 
-const CustomCheckbox = ({ children, isChecked, onChange, ...props }: CustomCheckboxProps) => {
+const CustomCheckbox = ({ label, isChecked, onChange, ...props }: CustomCheckboxProps) => {
   return (
     <Wrapper marginBottom={props.marginBottom}>
       <Label fontSize={props.fontSize} fontWeight={props.fontWeight}>
-        {children}
+        {label}
       </Label>
       <Checkbox isChecked={isChecked} onChange={onChange} />
     </Wrapper>

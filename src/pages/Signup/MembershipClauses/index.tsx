@@ -34,24 +34,22 @@ const MembershipClauses = () => {
   return (
     <Wrapper>
       <CustomCheckbox
+        label="약관 전체 동의"
         isChecked={isCheckedAll}
         onChange={handleCheckAll}
         marginBottom={8}
         fontSize="var(--font-size-sm)"
         fontWeight="600"
-      >
-        약관 전체 동의
-      </CustomCheckbox>
+      />
       {clauseList.map((item, index) => (
         <CustomCheckbox
           key={index}
+          label={item}
           isChecked={isCheckedList[index]}
           onChange={() => handleCheckItem(index)}
           marginBottom={4}
           fontSize="var(--font-size-xs)"
-        >
-          {item}
-        </CustomCheckbox>
+        />
       ))}
     </Wrapper>
   );

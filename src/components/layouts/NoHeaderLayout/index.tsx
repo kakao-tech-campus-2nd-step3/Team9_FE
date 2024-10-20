@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import FABContainer from '@/components/layouts/FAB';
+import FABContainer from '@/components/layouts/FAB/FABContainer';
 import TabBar from '@/components/layouts/TabBar';
 
 const BasicLayout = () => {

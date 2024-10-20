@@ -53,6 +53,7 @@ export const HEADER_HEIGHT = '4.4rem';
 
 const Wrapper = styled.header`
   position: fixed;
+  z-index: 1000;
   top: 0;
   width: 100%;
   height: ${HEADER_HEIGHT};
@@ -60,6 +61,7 @@ const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
 `;
 
 export const IconBox = styled.div`

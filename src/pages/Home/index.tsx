@@ -29,9 +29,8 @@ const Home = () => {
 export default Home;
 
 const Wrapper = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
   margin: ${HEADER_HEIGHT} 0 ${TABBAR_HEIGHT} 0;
-  overflow-y: auto;
 `;

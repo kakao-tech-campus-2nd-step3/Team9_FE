@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import FABContainer from '@/components/layouts/FAB';
+import FABContainer from '@/components/layouts/FAB/FABContainer';
 import Header from '@/components/layouts/Header';
 import TabBar from '@/components/layouts/TabBar';
 
@@ -34,4 +34,5 @@ const ContentWrapper = styled.main`
   flex: 1;
   overflow-y: auto;
   display: flex;
+  flex-direction: column;
 `;

@@ -44,7 +44,9 @@ const Signup = () => {
       </p>
       <form className="signup-form">
         <UserInputItem>
-          <Text fontSize="var(--font-size-sm)">생년월일 *</Text>
+          <Text fontSize="var(--font-size-sm)" fontWeight="600">
+            생년월일 *
+          </Text>
           <Input
             type="Date"
             border="none"
@@ -55,7 +57,9 @@ const Signup = () => {
           />
         </UserInputItem>
         <UserInputItem>
-          <Text fontSize="var(--font-size-sm)">휴대 전화 *</Text>
+          <Text fontSize="var(--font-size-sm)" fontWeight="600">
+            휴대 전화 *
+          </Text>
           <Input
             type="number"
             border="none"
@@ -66,7 +70,9 @@ const Signup = () => {
           />
         </UserInputItem>
         <UserInputItem>
-          <Text fontSize="var(--font-size-sm)">이메일 *</Text>
+          <Text fontSize="var(--font-size-sm)" fontWeight="600">
+            이메일 *
+          </Text>
           <Input
             type="email"
             border="none"

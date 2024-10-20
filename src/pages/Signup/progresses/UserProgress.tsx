@@ -7,6 +7,7 @@ import ProgressBar from '../ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from './styles';
 
 const UserProgress = () => {
+  const name = '000';
   const [birthDate, setBirthDate] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -50,7 +51,7 @@ const UserProgress = () => {
     <ProgressBox>
       <ProgressBar percentage={100} />
       <p className="progress-guidance">
-        000 님, 반가워요.
+        {name} 님, 반가워요.
         <br />
         회원 정보를 입력해주세요.
       </p>

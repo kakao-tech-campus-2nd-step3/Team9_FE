@@ -24,7 +24,7 @@ const Signup = () => {
         }
       />
       <ContentWrapper>
-        <DefaultProgress setMemberType={setMemberType} />
+        <DefaultProgress memberType={memberType} setMemberType={setMemberType} />
         {/* memberType에 따라 가입 절차 다르게 */}
         {memberType === 'user' ? <UserProgress /> : memberType === 'seller' && <SellerProgress />}
       </ContentWrapper>

@@ -13,6 +13,12 @@ import UserProgress from './progresses/UserProgress';
 const Signup = () => {
   const navigate = useNavigate();
   const [memberType, setMemberType] = useState<Mode | undefined>();
+  const [progressStep, setProgressStep] = useState<'default' | 'user' | 'seller'>('default');
+
+  const handleMemberTypeSelection = (type: Mode) => {
+    setMemberType(type);
+    setProgressStep(type === 'user' ? 'user' : 'seller');
+  };
 
   return (
     <Wrapper>
@@ -24,9 +30,14 @@ const Signup = () => {
         }
       />
       <ContentWrapper>
-        <DefaultProgress memberType={memberType} setMemberType={setMemberType} />
-        {/* memberType에 따라 가입 절차 다르게 */}
-        {memberType === 'user' ? <UserProgress /> : memberType === 'seller' && <SellerProgress />}
+        {progressStep === 'default' && (
+          <DefaultProgress memberType={memberType} onSelectMemberType={handleMemberTypeSelection} />
+        )}
+        {progressStep === 'user' ? (
+          <UserProgress />
+        ) : (
+          progressStep === 'seller' && <SellerProgress />
+        )}
       </ContentWrapper>
     </Wrapper>
   );

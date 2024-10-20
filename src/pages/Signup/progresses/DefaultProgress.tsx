@@ -7,12 +7,12 @@ import { ProgressBox } from './styles';
 
 type DefaultProgressProps = {
   memberType: Mode | undefined;
-  setMemberType: (memberType: Mode) => void;
+  onSelectMemberType: (memberType: Mode) => void;
 };
 
-const DefaultProgress = ({ memberType, setMemberType }: DefaultProgressProps) => {
-  const handleSelect = (memberType: Mode) => {
-    setMemberType(memberType); // 부모 컴포넌트에 선택된 타입 전달
+const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProps) => {
+  const handleSelect = (type: Mode) => {
+    onSelectMemberType(type);
   };
 
   return (

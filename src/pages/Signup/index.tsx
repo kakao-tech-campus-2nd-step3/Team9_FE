@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
+import HorizontalLine from '@/components/styles/HorizontalLine';
 import { RouterPath } from '@/routes/path';
-import { Mode } from '@/types';
+import type { Mode } from '@/types';
+import MembershipAgreement from './MembershipClauses';
 import ProgressBar from './ProgressBar';
 import Button from './components/Button';
-import HorizontalLine from '@/components/styles/HorizontalLine';
-import MembershipAgreement from './MembershipClauses';
 
 const Signup = () => {
   const navigate = useNavigate();

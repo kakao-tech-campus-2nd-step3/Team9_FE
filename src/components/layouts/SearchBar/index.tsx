@@ -6,9 +6,10 @@ import IconButton from '@/components/common/IconButton';
 import { HEADER_HEIGHT } from '../Header';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
-
+const MAX_RECENT_SEARCHES = 10;
 interface SearchBarProps {
   includeFavorite?: boolean;
   goBack?: () => void;
@@ -23,6 +24,10 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
     mode: 'onSubmit',
   });
 
+  const generateRandomKey = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   const handleRemoveSearchWord = (e: React.MouseEvent) => {
     e.preventDefault();
     setValue('searchWord', '');
@@ -30,10 +35,20 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
 
   const activeEnter = (data: { searchWord: string }) => {
     const { searchWord } = data;
-    const storedData = localStorage.getItem('searchArray');
-    const searchArray = storedData ? JSON.parse(storedData) : [];
-    const updatedArray = [searchWord, ...searchArray];
-    localStorage.setItem('searchArray', JSON.stringify(updatedArray));
+    const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
+    let searchArray = storedData ? JSON.parse(storedData) : [];
+    const existingIndex = searchArray.findIndex(
+      (item: { key: string; keyword: string }) => item.keyword === searchWord,
+    );
+    if (existingIndex !== -1) {
+      searchArray.splice(existingIndex, 1);
+    }
+    const newItem = { keyword: searchWord, key: generateRandomKey() };
+    searchArray = [newItem, ...searchArray];
+    if (searchArray.length > MAX_RECENT_SEARCHES) {
+      searchArray = searchArray.slice(0, MAX_RECENT_SEARCHES);
+    }
+    localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
     navigate(`/results?query=${searchWord}`);
   };
 

@@ -3,18 +3,18 @@ import Chip from '../Chip';
 import { useState, useEffect } from 'react';
 import { Text } from '@chakra-ui/react';
 
-const SEARCH_ARRAY_KEY = 'searchArray';
+export const SEARCH_ARRAY_KEY = 'searchArray';
 
 const RecentSearch = () => {
-  const [searchArray, setSearchArray] = useState([]);
+  const [searchArray, setSearchArray] = useState<Array<{ keyword: string; key: string }>>([]);
 
   const allDelete = () => {
     setSearchArray([]);
     localStorage.removeItem(SEARCH_ARRAY_KEY);
   };
 
-  const handleStoredData = (tag: string) => {
-    const updatedArray = searchArray.filter((item) => item !== tag);
+  const handleStoredData = (key: string) => {
+    const updatedArray = searchArray.filter((item) => item.key !== key);
     setSearchArray(updatedArray);
     localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(updatedArray));
   };
@@ -33,8 +33,8 @@ const RecentSearch = () => {
         {searchArray.length > 0 && <DelText onClick={allDelete}>모두 삭제하기</DelText>}
       </TitleWrapper>
       <ChipWrapper>
-        {searchArray.map((item, index) => (
-          <Chip key={index} tag={item} onClick={() => handleStoredData(item)} />
+        {searchArray.map((item) => (
+          <Chip key={item.key} tag={item.keyword} onClick={() => handleStoredData(item.key)} />
         ))}
       </ChipWrapper>
     </Wrapper>

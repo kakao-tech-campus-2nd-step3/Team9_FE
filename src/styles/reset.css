@@ -13,6 +13,7 @@
 
 * {
   box-sizing: border-box;
+  word-break: keep-all;
 }
 html {
   -ms-text-size-adjust: 100%;
@@ -96,10 +97,10 @@ video {
 }
 button {
   border: none;
+  background-color: none;
   cursor: pointer;
   overflow: visible;
   vertical-align: inherit;
-  padding: 0.6em 1.2em;
 }
 button:focus {
   outline: none !important;

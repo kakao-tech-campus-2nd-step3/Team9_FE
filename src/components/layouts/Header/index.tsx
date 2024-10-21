@@ -4,9 +4,10 @@ import { useLocation } from 'react-router-dom';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { RouterPath } from '@/routes/path';
+import type { Mode } from '@/types';
 
 interface HeaderProps {
-  mode: 'user' | 'seller';
+  mode: Mode;
   title?: string;
   leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;
@@ -42,15 +43,17 @@ const Header = ({ mode, title, leftSideChildren, rightSideChildren }: HeaderProp
     }
   };
 
-  return <HeaderWrapper>{renderElements()}</HeaderWrapper>;
+  return <Wrapper>{renderElements()}</Wrapper>;
 };
 
 export default Header;
 
+// styles
 export const HEADER_HEIGHT = '4.4rem';
 
-const HeaderWrapper = styled.div`
-  position: sticky;
+const Wrapper = styled.header`
+  position: fixed;
+  z-index: 1000;
   top: 0;
   width: 100%;
   height: ${HEADER_HEIGHT};
@@ -58,6 +61,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
 `;
 
 export const IconBox = styled.div`

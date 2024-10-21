@@ -39,6 +39,7 @@ export const InputItem = styled.div`
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+  width: 100%;
 
   .input-label {
     font-size: var(--font-size-sm);

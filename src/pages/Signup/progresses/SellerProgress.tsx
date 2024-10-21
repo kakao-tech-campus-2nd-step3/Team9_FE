@@ -108,7 +108,7 @@ const SellerProgress = () => {
                   <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>
                 )}
               </StyledInput>
-              <CustomCTA label="인증 코드 발송" onClick={() => handleSendCode} />
+              <CustomCTA label="인증 코드 발송" onClick={handleSendCode} />
             </InputItem>
           )}
         </form>

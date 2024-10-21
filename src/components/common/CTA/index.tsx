@@ -4,7 +4,7 @@ type CTAProps = {
   theme?: 'primary' | 'secondary';
   label: string;
   disabled?: boolean;
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const CTA = ({ theme = 'primary', label, disabled, onClick }: CTAProps) => {

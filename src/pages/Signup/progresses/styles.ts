@@ -27,6 +27,12 @@ export const ProgressBox = styled.div`
   }
 `;
 
+export const SelectItem = styled.div`
+  flex: 1;
+  display: flex;
+  gap: 8px;
+`;
+
 export const InputItem = styled.div`
   display: flex;
   flex-direction: column;

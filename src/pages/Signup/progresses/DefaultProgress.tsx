@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 import type { Mode } from '@/types';
 import Button from '../components/Button';
 import ProgressBar from '../ProgressBar';
-import { ProgressBox } from './styles';
+import { ProgressBox, SelectItem } from './styles';
 
 type DefaultProgressProps = {
   memberType: Mode | undefined;
@@ -24,7 +24,7 @@ const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProp
         회원 유형을 선택해주세요.
       </p>
       <form className="progress-form">
-        <Box display="flex" width="100%" gap="8px">
+        <SelectItem>
           <Button
             label="일반 회원"
             isSelected={memberType === 'user'}
@@ -35,7 +35,7 @@ const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProp
             isSelected={memberType === 'seller'}
             onClick={() => handleSelect('seller')}
           />
-        </Box>
+        </SelectItem>
       </form>
     </ProgressBox>
   );

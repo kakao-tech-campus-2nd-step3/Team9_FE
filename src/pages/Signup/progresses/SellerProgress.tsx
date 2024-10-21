@@ -12,6 +12,7 @@ const SellerProgress = () => {
   const [email, setEmail] = useState<string>('');
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+  const [isUnivNameChecked, setIsUnivNameChecked] = useState<boolean>(false);
 
   // 이메일 업데이트 및 유효성 검사
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,39 +26,40 @@ const SellerProgress = () => {
     e.preventDefault();
 
     if (isEmailValid) {
-      // 학교 체크하고 이메일 전송
-      postCheckUniv({ univName })
-        .then(() => {
-          setIsUnivValid(true);
-        })
-        .catch((error) => {
-          // API에서 받은 오류 객체일 경우
-          if (error.result === 'FAIL') {
-            setIsUnivValid(false);
-            alert(error.message || '학교 체크 오류');
-          }
-          // 예상치 못한 오류 처리
-          else {
-            alert('학교 체크 오류');
-          }
-        });
-      if (isUnivValid) {
+      setIsUnivNameChecked(true);
+
+      if (univName) {
         postCheckUniv({ univName })
-          .then(() => {
-            console.log('인증 코드가 전송되었습니다.\n메일함을 확인해주세요.');
+          .then((data) => {
+            if (data.success) {
+              setIsUnivValid(true);
+            } else {
+              setIsUnivValid(false);
+            }
           })
           .catch((error) => {
-            // API에서 받은 오류 객체일 경우
-            if (error.result === 'FAIL') {
-              setIsUnivValid(false);
-              alert(error.message || '메일 발송 오류');
-            }
-            // 예상치 못한 오류 처리
-            else {
-              alert('메일 발송 오류');
-            }
+            setIsUnivValid(false);
+            alert(error.message || '학교 체크 오류');
           });
       }
+
+      // if (univName && isUnivValid) {
+      //   postCheckUniv({ univName })
+      //     .then(() => {
+      //       alert('인증 코드가 전송되었습니다.\n메일함을 확인해주세요.');
+      //     })
+      //     .catch((error) => {
+      //       // API에서 받은 오류 객체일 경우
+      //       if (error.result === 'FAIL') {
+      //         setIsUnivValid(false);
+      //         alert(error.message || '메일 발송 오류');
+      //       }
+      //       // 예상치 못한 오류 처리
+      //       else {
+      //         alert('메일 발송 오류');
+      //       }
+      //     });
+      // }
     }
   };
 
@@ -90,11 +92,21 @@ const SellerProgress = () => {
                 <input
                   type="text"
                   className="input-element"
-                  placeholder="대학교명"
+                  placeholder="대학명"
                   value={univName}
                   onChange={(e) => setUnivName(e.target.value)}
                 />
-                {!isUnivValid && <p className="input-validation">인증 불가한 대학교입니다.</p>}
+                {/* {!isUnivValid ? (
+                  <p className="input-validation">존재하지 않는 대학명입니다.</p>
+                ) : (
+                  isUnivNameChecked &&
+                  !univName && <p className="input-validation">대학명을 입력해주세요.</p>
+                )} */}
+                {isUnivNameChecked && !univName ? (
+                  <p className="input-validation">대학명을 입력해주세요.</p>
+                ) : (
+                  !isUnivValid && <p className="input-validation">존재하지 않는 대학명입니다.</p>
+                )}
               </StyledInput>
               <StyledInput valid={isEmailValid}>
                 <input

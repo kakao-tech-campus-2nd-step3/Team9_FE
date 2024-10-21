@@ -9,16 +9,22 @@ type PostCheckUnivProps = {
   univName: string;
 };
 
-// type PostCheckUnivResponse = {
-//   success: boolean;
-// };
+type PostCheckUnivResponse = {
+  code?: number;
+  success: boolean;
+  message?: string;
+};
 
-export async function postCheckUniv({ univName }: PostCheckUnivProps): Promise<void> {
+export async function postCheckUniv({
+  univName,
+}: PostCheckUnivProps): Promise<PostCheckUnivResponse> {
   const requestBody = { univName };
 
   try {
     const response = await fetchInstance(BASE_URL).post(`/check`, requestBody);
     console.log('postCheckUniv response: ', response);
+
+    return response.data;
   } catch (error) {
     if (error instanceof AxiosError && error.response) {
       throw error.response;

@@ -3,23 +3,24 @@ import Button from '../components/Button';
 import ProgressBar from '../ProgressBar';
 import { InputItem, ProgressBox, SelectItem, StyledInput } from './styles';
 import CustomCTA from '../components/CustomCTA';
-import { postCheckUniv } from '@/apis/univ-cert';
+import { postCertify, postCheckUniv } from '@/apis/univ-cert';
 
 const SellerProgress = () => {
   const name = '000';
   const [artistType, setArtistType] = useState<'student' | 'business' | undefined>();
   const [univName, setUnivName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
+  const [isUnivNameChecked, setIsUnivNameChecked] = useState<boolean>(false);
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
-  const [isUnivNameChecked, setIsUnivNameChecked] = useState<boolean>(false);
 
   // 이메일 업데이트 및 유효성 검사
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsEmailValid(emailRegex.test(e.target.value));
+    setIsEmailFormValid(emailRegex.test(e.target.value));
   };
 
   const handleSendCode = (e: React.MouseEvent) => {
@@ -28,7 +29,7 @@ const SellerProgress = () => {
     if (isEmailValid) {
       setIsUnivNameChecked(true);
 
-      if (univName) {
+      if (univName && isEmailFormValid) {
         postCheckUniv({ univName })
           .then((data) => {
             if (data.success) {
@@ -43,23 +44,22 @@ const SellerProgress = () => {
           });
       }
 
-      // if (univName && isUnivValid) {
-      //   postCheckUniv({ univName })
-      //     .then(() => {
-      //       alert('인증 코드가 전송되었습니다.\n메일함을 확인해주세요.');
-      //     })
-      //     .catch((error) => {
-      //       // API에서 받은 오류 객체일 경우
-      //       if (error.result === 'FAIL') {
-      //         setIsUnivValid(false);
-      //         alert(error.message || '메일 발송 오류');
-      //       }
-      //       // 예상치 못한 오류 처리
-      //       else {
-      //         alert('메일 발송 오류');
-      //       }
-      //     });
-      // }
+      if (isUnivNameChecked && isUnivValid && isEmailFormValid) {
+        // console.log(email);
+
+        postCertify({ email, univName })
+          .then((data) => {
+            if (data.success) {
+              alert('인증 코드가 전송되었습니다.\n메일함을 확인해주세요.');
+            } else {
+              setIsEmailValid(false);
+            }
+          })
+          .catch((error) => {
+            setIsEmailValid(false);
+            alert(error.message || '인증 코드 발송 오류');
+          });
+      }
     }
   };
 
@@ -116,8 +116,12 @@ const SellerProgress = () => {
                   value={email}
                   onChange={handleEmailChange}
                 />
-                {!isEmailValid && (
+                {!isEmailFormValid ? (
                   <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>
+                ) : (
+                  !isEmailValid && (
+                    <p className="input-validation">대학명과 이메일을 재확인 바랍니다.</p>
+                  )
                 )}
               </StyledInput>
               <CustomCTA label="인증 코드 발송" onClick={handleSendCode} />

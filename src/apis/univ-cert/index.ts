@@ -5,19 +5,17 @@ import { fetchInstance } from '../instance';
 const BASE_URL = 'https://univcert.com/api/v1';
 const API_KEY = import.meta.env.VITE_APP_UNIVCERT_API_KEY;
 
-type PostCheckUnivProps = {
-  univName: string;
-};
-
-type PostCheckUnivResponse = {
+type UnivCertResponse = {
   code?: number;
   success: boolean;
   message?: string;
 };
 
-export async function postCheckUniv({
-  univName,
-}: PostCheckUnivProps): Promise<PostCheckUnivResponse> {
+type PostCheckUnivProps = {
+  univName: string;
+};
+
+export async function postCheckUniv({ univName }: PostCheckUnivProps): Promise<UnivCertResponse> {
   const requestBody = { univName };
 
   try {
@@ -35,10 +33,10 @@ export async function postCheckUniv({
 }
 
 type PostCertifyProps = {
-  key: string;
+  key?: string;
   email: string;
   univName: string;
-  univ_check: boolean;
+  univ_check?: boolean;
 };
 
 export async function postCertify({
@@ -46,12 +44,14 @@ export async function postCertify({
   email,
   univName,
   univ_check = true,
-}: PostCertifyProps): Promise<void> {
+}: PostCertifyProps): Promise<UnivCertResponse> {
   const requestBody = { key, email, univName, univ_check };
 
   try {
     const response = await fetchInstance(BASE_URL).post(`/certify`, requestBody);
     console.log('postCertify response: ', response);
+
+    return response.data;
   } catch (error) {
     if (error instanceof AxiosError && error.response) {
       throw error.response;

@@ -13,6 +13,7 @@ const SellerProgress = () => {
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
   const [isUnivNameChecked, setIsUnivNameChecked] = useState<boolean>(false);
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
+  const [isEmailChecked, setIsEmailChecked] = useState<boolean>(false);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
 
   // 이메일 업데이트 및 유효성 검사
@@ -50,6 +51,7 @@ const SellerProgress = () => {
         postCertify({ email, univName })
           .then((data) => {
             if (data.success) {
+              setIsEmailChecked(true);
               alert('인증 코드가 전송되었습니다.\n메일함을 확인해주세요.');
             } else {
               setIsEmailValid(false);
@@ -96,12 +98,6 @@ const SellerProgress = () => {
                   value={univName}
                   onChange={(e) => setUnivName(e.target.value)}
                 />
-                {/* {!isUnivValid ? (
-                  <p className="input-validation">존재하지 않는 대학명입니다.</p>
-                ) : (
-                  isUnivNameChecked &&
-                  !univName && <p className="input-validation">대학명을 입력해주세요.</p>
-                )} */}
                 {isUnivNameChecked && !univName ? (
                   <p className="input-validation">대학명을 입력해주세요.</p>
                 ) : (
@@ -116,15 +112,19 @@ const SellerProgress = () => {
                   value={email}
                   onChange={handleEmailChange}
                 />
-                {!isEmailFormValid ? (
+                {isEmailChecked && !isEmailFormValid ? (
                   <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>
                 ) : (
+                  isEmailChecked &&
                   !isEmailValid && (
-                    <p className="input-validation">대학명과 이메일을 재확인 바랍니다.</p>
+                    <p className="input-validation">이메일을 올바르게 입력해주세요.</p>
                   )
                 )}
               </StyledInput>
-              <CustomCTA label="인증 코드 발송" onClick={handleSendCode} />
+              <CustomCTA
+                label={isEmailChecked ? '인증 코드 재발송' : '인증 코드 발송'}
+                onClick={handleSendCode}
+              />
             </InputItem>
           )}
         </form>

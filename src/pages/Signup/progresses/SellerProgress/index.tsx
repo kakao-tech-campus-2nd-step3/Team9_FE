@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import Button from '../components/Button';
-import ProgressBar from '../ProgressBar';
+import Button from '../../components/Button';
+import ProgressBar from '../../ProgressBar';
 import StudentProgress from './StudentProgress';
-import { ProgressBox, SelectItem } from './styles';
+import { ProgressBox, SelectItem } from '../styles';
 
 const SellerProgress = () => {
   const name = '000';

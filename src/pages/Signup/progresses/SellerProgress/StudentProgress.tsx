@@ -2,8 +2,8 @@ import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import { postCertify, postCertifyCode, postCheckUniv } from '@/apis/univ-cert';
-import CustomCTA from '../components/CustomCTA';
-import { InputItem, StyledInput } from './styles';
+import CustomCTA from '../../components/CustomCTA';
+import { InputItem, StyledInput } from '../styles';
 
 const StudentProgress = () => {
   const [univName, setUnivName] = useState<string>('');

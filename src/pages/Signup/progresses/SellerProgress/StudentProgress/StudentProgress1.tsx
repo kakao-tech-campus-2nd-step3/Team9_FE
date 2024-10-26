@@ -9,7 +9,7 @@ interface Step1Props {
   onSuccess: () => void;
 }
 
-const Step1 = ({ onSuccess }: Step1Props) => {
+const StudentProgress1 = ({ onSuccess }: Step1Props) => {
   const [univName, setUnivName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
@@ -155,4 +155,4 @@ const Step1 = ({ onSuccess }: Step1Props) => {
   );
 };
 
-export default Step1;
+export default StudentProgress1;

@@ -143,11 +143,7 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
           />
           {isCodeChecked && !code && <p className="input-validation">코드를 입력해주세요.</p>}
         </StyledInput>
-        <CustomCTA
-          label="인증하기"
-          onClick={handleVerifyCode}
-          disabled={isCodeChecked && isCodeValid}
-        />
+        <CustomCTA label="인증하기" onClick={handleVerifyCode} disabled={!code} />
       </Box>
       {/* 임시 */}
       <CustomCTA label="인증 취소" onClick={handleRevoke} />

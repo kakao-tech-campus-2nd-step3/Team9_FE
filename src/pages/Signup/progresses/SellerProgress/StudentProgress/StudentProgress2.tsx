@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
-import MembershipClauses from '../../../MembershipClauses';
-import ProgressBar from '../../../ProgressBar';
+import MembershipClauses from '../../../components/MembershipClauses';
+import ProgressBar from '../../../components/ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from '../../styles';
 import { Box } from '@chakra-ui/react';
 

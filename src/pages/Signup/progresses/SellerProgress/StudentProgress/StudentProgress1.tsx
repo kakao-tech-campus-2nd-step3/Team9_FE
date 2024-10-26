@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import { clearUser, postCertify, postCertifyCode, postCheckUniv } from '@/apis/univ-cert';
-import CustomCTA from '../../../components/CustomCTA';
+import CustomCTA from '../../../../../components/common/CustomCTA';
 import { InputItem, StyledInput } from '../../styles';
 
 interface Step1Props {

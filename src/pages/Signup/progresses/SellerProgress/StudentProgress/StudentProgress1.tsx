@@ -37,7 +37,13 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
 
       if (univName && isEmailFormValid) {
         postCheckUniv({ univName })
-          .then((data) => setIsUnivValid(data.success === true))
+          .then((data) => {
+            if (data.success === true) {
+              setIsUnivValid(true);
+            } else {
+              setIsUnivValid(false);
+            }
+          })
           .catch((error) => {
             setIsUnivValid(false);
             alert(error.data.message || '학교 체크 오류');
@@ -49,8 +55,12 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
 
         postCertify({ email, univName })
           .then((data) => {
-            setIsEmailValid(data.success === true);
-            alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
+            if (data.success === true) {
+              setIsEmailValid(true);
+              alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
+            } else {
+              setIsEmailValid(false);
+            }
           })
           .catch((error) => {
             setIsEmailValid(false);
@@ -74,9 +84,12 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
     if (code) {
       postCertifyCode({ email, univName, code })
         .then((data) => {
-          setIsCodeValid(data.success === true);
-          alert('인증되었습니다.');
-          onSuccess(); // 인증 성공 시 Step2로 이동
+          if (data.success === true) {
+            setIsCodeValid(true);
+            onSuccess(); // 인증 성공 시 Step2로 이동
+          } else {
+            setIsCodeValid(false);
+          }
         })
         .catch((error) => {
           setIsCodeValid(false);
@@ -141,7 +154,9 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
             value={code}
             onChange={handleCodeChange}
           />
-          {isCodeChecked && !code && <p className="input-validation">코드를 입력해주세요.</p>}
+          {isCodeChecked && !isCodeValid && (
+            <p className="input-validation">인증코드가 일치하지 않습니다.</p>
+          )}
         </StyledInput>
         <CustomCTA label="인증하기" onClick={handleVerifyCode} disabled={!code} />
       </Box>

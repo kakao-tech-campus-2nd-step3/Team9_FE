@@ -2,7 +2,8 @@ import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import { clearUser, postCertify, postCertifyCode, postCheckUniv } from '@/apis/univ-cert';
-import CustomCTA from '../../../../../components/common/CustomCTA';
+// import CustomCTA from '../../../../../components/common/CustomCTA';
+import CTA from '@/components/common/CTA';
 import { InputItem, StyledInput } from '../../styles';
 
 interface Step1Props {
@@ -137,7 +138,7 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
           isEmailChecked && !email && <p className="input-validation">이메일을 입력해주세요.</p>
         )}
       </StyledInput>
-      <CustomCTA label={isEmailChecked ? '재발송' : '인증코드 발송'} onClick={handleSendCode} />
+      <CTA label={isEmailChecked ? '재발송' : '인증코드 발송'} onClick={handleSendCode} />
       <Box display="flex" gap="12px" alignItems="center" alignSelf="stretch">
         {/* 인증코드 입력란 */}
         <StyledInput valid={isCodeValid}>
@@ -152,10 +153,10 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
             <p className="input-validation">인증코드가 일치하지 않습니다.</p>
           )}
         </StyledInput>
-        <CustomCTA label="인증하기" onClick={handleVerifyCode} disabled={!code} />
+        <CTA label="인증하기" display="block" onClick={handleVerifyCode} disabled={!code} />
       </Box>
       {/* 임시 */}
-      <CustomCTA label="인증 취소" onClick={handleRevoke} />
+      <CTA label="인증 취소" display="block" onClick={handleRevoke} />
     </InputItem>
   );
 };

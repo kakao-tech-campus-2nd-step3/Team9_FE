@@ -28,43 +28,6 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
   };
 
   // 인증코드 전송
-  // const handleSendCode = (e: React.MouseEvent) => {
-  //   e.preventDefault();
-
-  //   setIsUnivNameChecked(true);
-
-  //   if (univName && email && isEmailFormValid) {
-  //     postCheckUniv({ univName })
-  //       .then((data) => {
-  //         if (data.success === true) {
-  //           setIsUnivValid(true);
-
-  //           setIsEmailChecked(true);
-
-  //           postCertify({ email, univName })
-  //             .then((data) => {
-  //               if (data.success === true) {
-  //                 alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
-  //               } else {
-  //               }
-  //             })
-  //             .catch((error) => {
-  //               alert(error.data.message || '인증코드 발송 오류');
-  //             });
-  //         } else {
-  //           setIsUnivValid(false);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         setIsUnivValid(false);
-  //         alert(error.data.message || '학교 체크 오류');
-  //       });
-  //   }
-
-  //   // if (isUnivNameChecked && isUnivValid) {
-  //   // }
-  // };
-
   const handleSendCode = async (e: React.MouseEvent) => {
     e.preventDefault();
 

@@ -5,7 +5,11 @@ import { postCertify, postCertifyCode, postCheckUniv } from '@/apis/univ-cert';
 import CustomCTA from '../../../components/CustomCTA';
 import { InputItem, StyledInput } from '../../styles';
 
-const StudentProgress = () => {
+interface Step1Props {
+  onSuccess: () => void;
+}
+
+const Step1 = ({ onSuccess }: Step1Props) => {
   const [univName, setUnivName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
@@ -20,7 +24,6 @@ const StudentProgress = () => {
   // 이메일 업데이트 및 유효성 검사
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setIsEmailFormValid(emailRegex.test(e.target.value));
   };
@@ -73,6 +76,7 @@ const StudentProgress = () => {
         .then((data) => {
           setIsCodeValid(data.success === true);
           alert('인증되었습니다.');
+          onSuccess(); // 인증 성공 시 Step2로 이동
         })
         .catch((error) => {
           setIsCodeValid(false);
@@ -135,4 +139,4 @@ const StudentProgress = () => {
   );
 };
 
-export default StudentProgress;
+export default Step1;

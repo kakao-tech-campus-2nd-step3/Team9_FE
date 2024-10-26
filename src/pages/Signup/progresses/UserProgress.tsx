@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
-import MembershipAgreement from '../MembershipClauses';
+import MembershipClauses from '../MembershipClauses';
 import ProgressBar from '../ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from './styles';
 
@@ -124,7 +124,7 @@ const UserProgress = () => {
             </StyledInput>
           </InputItem>
           <HorizontalLine />
-          <MembershipAgreement />
+          <MembershipClauses />
         </form>
       </ProgressBox>
       <CTAContainer>

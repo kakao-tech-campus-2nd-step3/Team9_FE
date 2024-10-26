@@ -3,7 +3,8 @@ import Button from '../components/Button';
 import ProgressBar from '../ProgressBar';
 import { InputItem, ProgressBox, SelectItem, StyledInput } from './styles';
 import CustomCTA from '../components/CustomCTA';
-import { postCertify, postCheckUniv } from '@/apis/univ-cert';
+import { postCertify, postCheckUniv, postCertifyCode } from '@/apis/univ-cert';
+import { Box } from '@chakra-ui/react';
 
 const SellerProgress = () => {
   const name = '000';
@@ -15,6 +16,9 @@ const SellerProgress = () => {
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailChecked, setIsEmailChecked] = useState<boolean>(false);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+  const [code, setCode] = useState<string>('');
+  const [isCodeChecked, setIsCodeChecked] = useState<boolean>(false);
+  const [isCodeValid, setIsCodeValid] = useState<boolean>(true);
 
   // 이메일 업데이트 및 유효성 검사
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +28,7 @@ const SellerProgress = () => {
     setIsEmailFormValid(emailRegex.test(e.target.value));
   };
 
+  // 인증 코드 전송
   const handleSendCode = (e: React.MouseEvent) => {
     e.preventDefault();
 
@@ -62,6 +67,35 @@ const SellerProgress = () => {
             alert(error.message || '인증 코드 발송 오류');
           });
       }
+    }
+  };
+
+  // 인증 코드 값 업데이트
+  const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCode(e.target.value);
+  };
+
+  // 인증하기
+  const handleVerifyCode = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    setIsCodeChecked(true);
+
+    if (code) {
+      postCertifyCode({ email, univName, code })
+        .then((data) => {
+          if (data.success === true) {
+            setIsCodeValid(true);
+            alert('인증되었습니다.');
+          } else {
+            setIsCodeValid(false);
+            alert(data.message);
+          }
+        })
+        .catch((error) => {
+          setIsCodeValid(false);
+          alert(error.message || '인증 오류');
+        });
     }
   };
 
@@ -114,6 +148,8 @@ const SellerProgress = () => {
                 />
                 {isEmailChecked && !isEmailFormValid ? (
                   <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>
+                ) : isEmailChecked && !email ? (
+                  <p className="input-validatio">이메일을 입력해주세요.</p>
                 ) : (
                   isEmailChecked &&
                   !isEmailValid && (
@@ -125,6 +161,22 @@ const SellerProgress = () => {
                 label={isEmailChecked ? '인증 코드 재발송' : '인증 코드 발송'}
                 onClick={handleSendCode}
               />
+              <Box display="flex" gap="12px" alignItems="center" alignSelf="stretch">
+                {/* 인증 코드 입력란 */}
+                <StyledInput valid={isCodeValid}>
+                  <input
+                    type="text"
+                    className="input-element"
+                    placeholder="인증 코드"
+                    value={code}
+                    onChange={handleCodeChange}
+                  />
+                  {isCodeChecked && !code && (
+                    <p className="input-validation">코드를 입력해주세요.</p>
+                  )}
+                </StyledInput>
+                <CustomCTA label="인증하기" onClick={handleVerifyCode} />
+              </Box>
             </InputItem>
           )}
         </form>

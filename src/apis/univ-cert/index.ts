@@ -60,3 +60,41 @@ export async function postCertify({
     throw new Error('postCertify error: unexpected');
   }
 }
+
+type PostCertifyCodeProps = {
+  key?: string;
+  email: string;
+  univName: string;
+  code: string;
+};
+
+type PostCertifyCodeResponse = {
+  success: boolean;
+  univName: string;
+  certified_email: string;
+  certified_date: string;
+  status?: number; // 실패 시에만
+  message?: string; // 실패 시에만
+};
+
+export async function postCertifyCode({
+  key = API_KEY,
+  email,
+  univName,
+  code,
+}: PostCertifyCodeProps): Promise<PostCertifyCodeResponse> {
+  const requestBody = { key, email, univName, code };
+
+  try {
+    const response = await fetchInstance(BASE_URL).post(`/certifycode`, requestBody);
+    console.log('postCertifyCode response: ', response);
+
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      throw error.response;
+    }
+    // AxiosError가 아닌 경우 예외 처리
+    throw new Error('postCertifyCode error: unexpected');
+  }
+}

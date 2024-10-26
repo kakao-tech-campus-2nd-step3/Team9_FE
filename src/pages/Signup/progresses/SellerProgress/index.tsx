@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Button from '../../components/InputButton';
+import Button from '../../components/InputButton';
 import ProgressBar from '../../ProgressBar';
 import { ProgressBox, SelectItem } from '../styles';
 import BusinessProgress from './BusinessProgress';

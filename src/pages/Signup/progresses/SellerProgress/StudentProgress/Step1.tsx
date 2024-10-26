@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
 
-import { postCertify, postCertifyCode, postCheckUniv } from '@/apis/univ-cert';
+import { clearUser, postCertify, postCertifyCode, postCheckUniv } from '@/apis/univ-cert';
 import CustomCTA from '../../../components/CustomCTA';
 import { InputItem, StyledInput } from '../../styles';
 
@@ -85,6 +85,20 @@ const Step1 = ({ onSuccess }: Step1Props) => {
     }
   };
 
+  const handleRevoke = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (email) {
+      clearUser({ email })
+        .then(() => {
+          alert('인증 취소되었습니다.');
+        })
+        .catch((error) => {
+          alert(error.data.message || '인증 취소 오류');
+        });
+    }
+  };
+
   return (
     <InputItem>
       <p className="input-label">학생 인증</p>
@@ -135,6 +149,8 @@ const Step1 = ({ onSuccess }: Step1Props) => {
           disabled={isCodeChecked && isCodeValid}
         />
       </Box>
+      {/* 임시 */}
+      <CustomCTA label="인증 취소" onClick={handleRevoke} />
     </InputItem>
   );
 };

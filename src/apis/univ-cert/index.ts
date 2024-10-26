@@ -97,3 +97,34 @@ export async function postCertifyCode({
     throw new Error('postCertifyCode error: unexpected');
   }
 }
+
+type ClearUserProps = {
+  key?: string;
+  email: string;
+};
+
+type ClearUserResponse = {
+  success: boolean;
+  status?: number; // 실패 시에만
+  message?: string; // 실패 시에만
+};
+
+export async function clearUser({
+  key = API_KEY,
+  email,
+}: ClearUserProps): Promise<ClearUserResponse> {
+  const requestBody = { key };
+
+  try {
+    const response = await fetchInstance(BASE_URL).post(`/clear/${email}`, requestBody);
+    console.log('clearUser response: ', response);
+
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      throw error.response;
+    }
+    // AxiosError가 아닌 경우 예외 처리
+    throw new Error('clearUser error: unexpected');
+  }
+}

@@ -8,7 +8,7 @@ const API_KEY = import.meta.env.VITE_APP_UNIVCERT_API_KEY;
 type UnivCertResponse = {
   code?: number;
   success: boolean;
-  message?: string;
+  message?: string; // 실패 시에만
 };
 
 type PostCheckUnivProps = {
@@ -73,7 +73,6 @@ type PostCertifyCodeResponse = {
   univName: string;
   certified_email: string;
   certified_date: string;
-  status?: number; // 실패 시에만
   message?: string; // 실패 시에만
 };
 

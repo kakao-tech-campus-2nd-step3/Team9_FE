@@ -38,7 +38,7 @@ const SellerProgress = () => {
       if (univName && isEmailFormValid) {
         postCheckUniv({ univName })
           .then((data) => {
-            if (data.success) {
+            if (data.success === true) {
               setIsUnivValid(true);
             } else {
               setIsUnivValid(false);
@@ -55,11 +55,12 @@ const SellerProgress = () => {
 
         postCertify({ email, univName })
           .then((data) => {
-            if (data.success) {
+            if (data.success === true) {
               setIsEmailChecked(true);
               alert('인증 코드가 전송되었습니다.\n메일함을 확인해주세요.');
             } else {
               setIsEmailValid(false);
+              alert(data.message);
             }
           })
           .catch((error) => {

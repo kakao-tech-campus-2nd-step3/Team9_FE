@@ -28,7 +28,7 @@ const SellerProgress = () => {
     setIsEmailFormValid(emailRegex.test(e.target.value));
   };
 
-  // 인증 코드 전송
+  // 인증코드 전송
   const handleSendCode = (e: React.MouseEvent) => {
     e.preventDefault();
 
@@ -46,18 +46,19 @@ const SellerProgress = () => {
           })
           .catch((error) => {
             setIsUnivValid(false);
-            alert(error.message || '학교 체크 오류');
+            alert(error.data.message || '학교 체크 오류');
           });
       }
 
       if (isUnivNameChecked && isUnivValid && isEmailFormValid) {
         // console.log(email);
+        setIsEmailChecked(true);
 
         postCertify({ email, univName })
           .then((data) => {
             if (data.success === true) {
-              setIsEmailChecked(true);
-              alert('인증 코드가 전송되었습니다.\n메일함을 확인해주세요.');
+              setIsEmailValid(true);
+              alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
             } else {
               setIsEmailValid(false);
               alert(data.message);
@@ -65,13 +66,13 @@ const SellerProgress = () => {
           })
           .catch((error) => {
             setIsEmailValid(false);
-            alert(error.message || '인증 코드 발송 오류');
+            alert(error.data.message || '인증코드 발송 오류');
           });
       }
     }
   };
 
-  // 인증 코드 값 업데이트
+  // 인증코드 값 업데이트
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCode(e.target.value);
   };
@@ -95,7 +96,7 @@ const SellerProgress = () => {
         })
         .catch((error) => {
           setIsCodeValid(false);
-          alert(error.message || '인증 오류');
+          alert(error.data.message || '인증 오류');
         });
     }
   };
@@ -147,36 +148,47 @@ const SellerProgress = () => {
                   value={email}
                   onChange={handleEmailChange}
                 />
-                {isEmailChecked && !isEmailFormValid ? (
-                  <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>
-                ) : isEmailChecked && !email ? (
-                  <p className="input-validatio">이메일을 입력해주세요.</p>
-                ) : (
-                  isEmailChecked &&
-                  !isEmailValid && (
-                    <p className="input-validation">이메일을 올바르게 입력해주세요.</p>
+                {
+                  isEmailChecked && !isEmailFormValid ? (
+                    <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>
+                  ) : (
+                    isEmailChecked &&
+                    !email && <p className="input-validatio">이메일을 입력해주세요.</p>
                   )
-                )}
+                  // isEmailChecked &&
+                  // !isEmailValid && (
+                  //   <p className="input-validation">에러 메시지</p>
+                  // )
+                }
               </StyledInput>
               <CustomCTA
-                label={isEmailChecked ? '인증 코드 재발송' : '인증 코드 발송'}
+                label={isEmailChecked ? '재발송' : '인증코드 발송'}
                 onClick={handleSendCode}
               />
               <Box display="flex" gap="12px" alignItems="center" alignSelf="stretch">
-                {/* 인증 코드 입력란 */}
+                {/* 인증코드 입력란 */}
                 <StyledInput valid={isCodeValid}>
                   <input
                     type="text"
                     className="input-element"
-                    placeholder="인증 코드"
+                    placeholder="인증코드"
                     value={code}
                     onChange={handleCodeChange}
                   />
-                  {isCodeChecked && !code && (
-                    <p className="input-validation">코드를 입력해주세요.</p>
-                  )}
+                  {
+                    isCodeChecked && !code && (
+                      <p className="input-validation">코드를 입력해주세요.</p>
+                    )
+                    // isCodeChecked &&
+                    // !isCodeValid && <p className="input-validation">에러 메시지</p>
+                    // )
+                  }
                 </StyledInput>
-                <CustomCTA label="인증하기" onClick={handleVerifyCode} />
+                <CustomCTA
+                  label="인증하기"
+                  onClick={handleVerifyCode}
+                  disabled={isCodeChecked && isCodeValid}
+                />
               </Box>
             </InputItem>
           )}

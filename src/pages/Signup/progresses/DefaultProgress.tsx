@@ -1,5 +1,3 @@
-import { Box } from '@chakra-ui/react';
-
 import type { Mode } from '@/types';
 import Button from '../components/Button';
 import ProgressBar from '../ProgressBar';

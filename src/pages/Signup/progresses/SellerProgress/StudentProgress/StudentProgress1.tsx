@@ -12,11 +12,10 @@ interface Step1Props {
 const StudentProgress1 = ({ onSuccess }: Step1Props) => {
   const [univName, setUnivName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-  const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
+  const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true); // 이메일 형식이 맞는지 검사
   const [isUnivNameChecked, setIsUnivNameChecked] = useState<boolean>(false);
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailChecked, setIsEmailChecked] = useState<boolean>(false);
-  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [code, setCode] = useState<string>('');
   const [isCodeChecked, setIsCodeChecked] = useState<boolean>(false);
   const [isCodeValid, setIsCodeValid] = useState<boolean>(true);
@@ -29,44 +28,76 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
   };
 
   // 인증코드 전송
-  const handleSendCode = (e: React.MouseEvent) => {
+  // const handleSendCode = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+
+  //   setIsUnivNameChecked(true);
+
+  //   if (univName && email && isEmailFormValid) {
+  //     postCheckUniv({ univName })
+  //       .then((data) => {
+  //         if (data.success === true) {
+  //           setIsUnivValid(true);
+
+  //           setIsEmailChecked(true);
+
+  //           postCertify({ email, univName })
+  //             .then((data) => {
+  //               if (data.success === true) {
+  //                 alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
+  //               } else {
+  //               }
+  //             })
+  //             .catch((error) => {
+  //               alert(error.data.message || '인증코드 발송 오류');
+  //             });
+  //         } else {
+  //           setIsUnivValid(false);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         setIsUnivValid(false);
+  //         alert(error.data.message || '학교 체크 오류');
+  //       });
+  //   }
+
+  //   // if (isUnivNameChecked && isUnivValid) {
+  //   // }
+  // };
+
+  const handleSendCode = async (e: React.MouseEvent) => {
     e.preventDefault();
 
-    if (isEmailValid) {
-      setIsUnivNameChecked(true);
+    setIsUnivNameChecked(true);
 
-      if (univName && isEmailFormValid) {
-        postCheckUniv({ univName })
-          .then((data) => {
-            if (data.success === true) {
-              setIsUnivValid(true);
-            } else {
-              setIsUnivValid(false);
-            }
-          })
-          .catch((error) => {
-            setIsUnivValid(false);
-            alert(error.data.message || '학교 체크 오류');
-          });
+    if (univName && email && isEmailFormValid) {
+      try {
+        // 대학명 확인
+        const checkUnivData = await postCheckUniv({ univName });
+        if (checkUnivData.success) {
+          setIsUnivValid(true);
+          setIsEmailChecked(true);
+
+          // 이메일 인증 코드 발송
+          const certifyData = await postCertify({ email, univName });
+          if (certifyData.success) {
+            alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
+          } else {
+            alert('인증코드 발송 실패');
+          }
+        } else {
+          setIsUnivValid(false);
+        }
+      } catch (error) {
+        setIsUnivValid(false);
+        if (error instanceof Error) {
+          alert(error.message || '대학명 오류');
+        } else {
+          alert('대학명 오류');
+        }
       }
-
-      if (isUnivNameChecked && isUnivValid && isEmailFormValid) {
-        setIsEmailChecked(true);
-
-        postCertify({ email, univName })
-          .then((data) => {
-            if (data.success === true) {
-              setIsEmailValid(true);
-              alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
-            } else {
-              setIsEmailValid(false);
-            }
-          })
-          .catch((error) => {
-            setIsEmailValid(false);
-            alert(error.data.message || '인증코드 발송 오류');
-          });
-      }
+    } else {
+      alert('대학명과 올바른 이메일을 입력해주세요.');
     }
   };
 
@@ -129,7 +160,7 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
           !isUnivValid && <p className="input-validation">존재하지 않는 대학명입니다.</p>
         )}
       </StyledInput>
-      <StyledInput valid={isEmailValid}>
+      <StyledInput valid={true}>
         <input
           type="email"
           className="input-element"

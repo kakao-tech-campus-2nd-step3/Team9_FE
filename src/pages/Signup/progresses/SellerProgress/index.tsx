@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 import Button from '../../components/InputButton';
 import ProgressBar from '../../ProgressBar';
-import StudentProgress from './StudentProgress';
 import { ProgressBox, SelectItem } from '../styles';
+import BusinessProgress from './BusinessProgress';
+import StudentProgress from './StudentProgress';
 
 const SellerProgress = () => {
   const name = '000';
@@ -32,6 +33,7 @@ const SellerProgress = () => {
             />
           </SelectItem>
           {artistType === 'student' && <StudentProgress />}
+          {artistType === 'business' && <BusinessProgress />}
         </form>
       </ProgressBox>
     </>

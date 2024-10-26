@@ -112,7 +112,7 @@ const Step2 = () => {
             </StyledInput>
           </InputItem>
           <InputItem>
-            <p className="input-label">학생 정보</p>
+            <p className="input-label">학생 정보 *</p>
             <Box display="flex" gap="12px">
               <StyledInput valid={true}>
                 <input

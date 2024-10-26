@@ -5,15 +5,17 @@ import HorizontalLine from '@/components/styles/HorizontalLine';
 import MembershipClauses from '../../../MembershipClauses';
 import ProgressBar from '../../../ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from '../../styles';
+import { Box } from '@chakra-ui/react';
 
 const Step2 = () => {
   const [birthDate, setBirthDate] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>('인증받은이메일@naver.com');
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const univName = '인증받은 대학명';
+  const [major, setMajor] = useState<string>('');
   const [intro, setIntro] = useState<string>('');
 
   // 생년월일 업데이트 및 유효성 검사
@@ -52,7 +54,7 @@ const Step2 = () => {
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
 
   useEffect(() => {
-    if (birthDate && phone && email) {
+    if (birthDate && phone && email && univName && major) {
       setIsSubmitDisabled(false);
     } else {
       setIsSubmitDisabled(true);
@@ -111,9 +113,25 @@ const Step2 = () => {
           </InputItem>
           <InputItem>
             <p className="input-label">학생 정보</p>
-            <StyledInput valid={true}>
-              <input type="text" className="input-element" placeholder="대학명" value={univName} />
-            </StyledInput>
+            <Box display="flex" gap="12px">
+              <StyledInput valid={true}>
+                <input
+                  type="text"
+                  className="input-element"
+                  placeholder="대학명"
+                  value={univName}
+                />
+              </StyledInput>
+              <StyledInput valid={true}>
+                <input
+                  type="text"
+                  className="input-element"
+                  placeholder="학부/과"
+                  value={major}
+                  onChange={(e) => setMajor(e.target.value)}
+                />
+              </StyledInput>
+            </Box>
           </InputItem>
           <InputItem>
             <p className="input-label">작가 소개글</p>

@@ -9,6 +9,7 @@ type UserInfoState = {
   setEmail: (email: string) => void;
   interests: string[];
   setInterests: (interest: string) => void;
+  clearUserInfo: () => void;
 };
 
 const useUserInfoStore = create<UserInfoState>((set) => ({
@@ -23,6 +24,13 @@ const useUserInfoStore = create<UserInfoState>((set) => ({
     set((state) => ({
       interests: [...state.interests, interest],
     })),
+  clearUserInfo: () =>
+    set({
+      birthDate: '',
+      phone: '',
+      email: '',
+      interests: [],
+    }),
 }));
 
 export default useUserInfoStore;

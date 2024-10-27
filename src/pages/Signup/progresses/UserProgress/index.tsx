@@ -11,14 +11,15 @@ import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../
 
 const UserProgress = () => {
   const name = '000';
-  const { birthDate, setBirthDate, phone, setPhone, email, setEmail, interests } =
+  const { birthDate, setBirthDate, phone, setPhone, email, setEmail, interests, clearUserInfo } =
     useUserInfoStore();
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
 
   const handleSubmit = () => {
-    console.log('제출 완료');
+    console.log('회원가입을 축하합니다!');
+    clearUserInfo();
   };
 
   return (

@@ -14,7 +14,8 @@ import { ProgressBox } from '../../styles';
 import { handleEmailChange } from '../../utils';
 
 const StudentSeller2 = () => {
-  const { email, setEmail, univName, major, setMajor, about, setAbout } = useStudentInfoStore();
+  const { email, setEmail, univName, major, setMajor, about, setAbout, clearStudentInfo } =
+    useStudentInfoStore();
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
 
   const { mutate: postStudentArtist } = usePostStudentArtist();
@@ -26,6 +27,7 @@ const StudentSeller2 = () => {
       {
         onSuccess: () => {
           alert('회원가입을 축하합니다!');
+          clearStudentInfo();
           navigate(RouterPath.home);
         },
         onError: (error) => {

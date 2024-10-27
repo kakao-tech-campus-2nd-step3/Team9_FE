@@ -5,12 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { RouterPath } from '@/routes/path';
+import useStudentInfoStore from '@/store/useStudentInfoStore';
+import useUserInfoStore from '@/store/useUserInfoStore';
 import type { Mode } from '@/types';
 import DefaultProgress from './progresses/DefaultProgress';
 import SellerProgress from './progresses/SellerProgress';
 import UserProgress from './progresses/UserProgress';
 
 const Signup = () => {
+  const { clearUserInfo } = useUserInfoStore();
+  const { clearStudentInfo } = useStudentInfoStore();
   const navigate = useNavigate();
   const [memberType, setMemberType] = useState<Mode | undefined>();
   const [progressStep, setProgressStep] = useState<'default' | 'user' | 'seller'>('default');
@@ -29,8 +33,11 @@ const Signup = () => {
           <IconButton
             icon="home"
             onClick={() => {
-              if (confirm('이 페이지를 나가면 작성 중인 정보는 저장되지 않습니다.'))
+              if (confirm('이 페이지를 나가면 작성 중인 정보는 저장되지 않습니다.')) {
+                clearUserInfo();
+                clearStudentInfo();
                 navigate(`${RouterPath.home}`);
+              }
             }}
           />
         }

@@ -67,7 +67,7 @@ const StyledCTA = styled.button<{
 
 // 컨테이너 필요할 때 따로 임포트하여 사용
 export const CTAContainer = styled.div`
-  flex: 1;
+  width: 100%;
   position: sticky;
   bottom: 0;
   display: flex;

@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { QueryClient } from '@tanstack/react-query';
+import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
 const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
@@ -18,3 +19,14 @@ export const fetchInstance = (baseURL: string) => {
     baseURL,
   });
 };
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    },
+  },
+});

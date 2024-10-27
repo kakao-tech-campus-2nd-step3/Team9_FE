@@ -1,51 +1,69 @@
-import { Categories } from '@/types/index';
+import { SearchWork } from '@/types/index';
 
-const categories: Categories[] = [
+const searchWork: SearchWork[] = [
   {
     id: 1,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '동양화/서양화',
+    title: '무제',
+    artist: '김영석',
+    price: 100000,
   },
   {
     id: 2,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '서양화/현대미술',
+    title: '현대 서양화',
+    artist: '이수정',
+    price: 200000,
   },
   {
     id: 3,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '민화/추상화',
+    title: '추상 민화',
+    artist: '박민지',
+    price: 300000,
   },
   {
     id: 4,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '동양화/모던아트',
+    title: '모던 동양화',
+    artist: '최윤영',
+    price: 250000,
   },
   {
     id: 5,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '서양화/클래식',
+    title: '클래식 서양화',
+    artist: '김정민',
+    price: 150000,
   },
   {
     id: 6,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '수묵화/풍경화',
+    title: '풍경 수묵화',
+    artist: '이성현',
+    price: 350000,
   },
   {
     id: 7,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '동양화/인물화',
+    title: '인물 동양화',
+    artist: '박서윤',
+    price: 180000,
   },
   {
     id: 8,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '서양화/정물화',
+    title: '정물 서양화',
+    artist: '이혜원',
+    price: 220000,
   },
   {
     id: 9,
     src: 'https://i.pinimg.com/474x/45/37/93/4537932e76ebcc6186f86b75d9eeac87.jpg',
-    des: '동양화/서양화',
+    title: '동서양화',
+    artist: '김동욱',
+    price: 270000,
   },
 ];
 
-export default categories;
+export default searchWork;

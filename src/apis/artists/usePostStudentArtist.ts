@@ -2,8 +2,6 @@ import { useMutation } from '@tanstack/react-query';
 
 import { fetchInstance } from '../instance';
 
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-
 type PostStudentArtistProps = {
   schoolEmail: string;
   schoolName: string;
@@ -11,21 +9,23 @@ type PostStudentArtistProps = {
   about: string;
 };
 
-type PostArtistResponse = string;
-
 async function postStudentArtist({
   schoolEmail,
   schoolName,
   major,
   about,
-}: PostStudentArtistProps): Promise<PostArtistResponse> {
+}: PostStudentArtistProps): Promise<void> {
   const requestBody = { schoolEmail, schoolName, major, about };
+  const token = localStorage.getItem('accessToken');
 
   try {
-    const response = await fetchInstance(BASE_URL).post(`/artists/students`, requestBody);
-    // console.log('certifyCode response: ', response);
+    await fetchInstance().post(`/artists/students`, requestBody, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    return response.data; // 맞는지 모르겠음 data가 그냥 string인 건지...?
+    // console.log('postStudentArtist response: ', response);
   } catch (error: any) {
     if (error.response) {
       throw new Error(error.response.data.message || '회원가입 실패');
@@ -36,9 +36,8 @@ async function postStudentArtist({
 }
 
 const usePostStudentArtist = () => {
-  return useMutation<PostArtistResponse, Error, PostStudentArtistProps>({
-    mutationFn: ({ schoolEmail, schoolName, major, about }: PostStudentArtistProps) =>
-      postStudentArtist({ schoolEmail, schoolName, major, about }),
+  return useMutation<void, Error, PostStudentArtistProps>({
+    mutationFn: (props: PostStudentArtistProps) => postStudentArtist(props),
   });
 };
 

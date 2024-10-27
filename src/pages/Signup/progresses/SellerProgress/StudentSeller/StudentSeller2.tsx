@@ -1,46 +1,35 @@
+import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import usePostStudentArtist from '@/apis/artists/usePostStudentArtist';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
+import { RouterPath } from '@/routes/path';
 import useStudentInfoStore from '@/store/useStudentInfoStore';
-import { Box } from '@chakra-ui/react';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
 import { ProgressBox } from '../../styles';
-import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../../utils';
-import usePostStudentArtist from '@/apis/artists/usePostStudentArtist';
+import { handleEmailChange } from '../../utils';
 
 const StudentSeller2 = () => {
-  const {
-    birthDate,
-    setBirthDate,
-    phone,
-    setPhone,
-    email,
-    setEmail,
-    univName,
-    major,
-    setMajor,
-    about,
-    setAbout,
-  } = useStudentInfoStore();
-  const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
-  const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
+  const { email, setEmail, univName, major, setMajor, about, setAbout } = useStudentInfoStore();
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
 
   const { mutate: postStudentArtist } = usePostStudentArtist();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     postStudentArtist(
       { schoolEmail: email, schoolName: univName, major, about },
       {
         onSuccess: () => {
-          console.log('회원가입을 축하합니다!');
-          // navigate(RouterPath.home);
+          alert('회원가입을 축하합니다!');
+          navigate(RouterPath.home);
         },
         onError: (error) => {
-          console.log(error);
+          alert(error);
         },
       },
     );
@@ -52,25 +41,6 @@ const StudentSeller2 = () => {
         <ProgressBar percentage={100} />
         <p className="progress-guidance">판매자 정보를 입력해주세요.</p>
         <form className="progress-form">
-          <InputItem label="생년월일 *">
-            <CustomInput
-              type="date"
-              value={birthDate}
-              onChange={(e) => handleBirthDateChange(e, setBirthDate, setIsBirthDateValid)}
-              valid={isBirthDateValid}
-              caution="생년월일을 다시 확인해주세요."
-            />
-          </InputItem>
-          <InputItem label="휴대 전화 *">
-            <CustomInput
-              type="tel"
-              placeholder="000-0000-0000"
-              value={phone}
-              onChange={(e) => handlePhoneChange(e, setPhone, setIsPhoneValid)}
-              valid={isPhoneValid}
-              caution="휴대 전화를 다시 확인해주세요."
-            />
-          </InputItem>
           <InputItem label="이메일 *">
             <CustomInput
               type="email"
@@ -109,7 +79,7 @@ const StudentSeller2 = () => {
       <CTAContainer>
         <CTA
           label="가입하기"
-          disabled={!(birthDate && phone && isEmailFormValid && univName && major)}
+          disabled={!(isEmailFormValid && univName && major)}
           onClick={handleSubmit}
         />
       </CTAContainer>

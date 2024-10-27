@@ -8,7 +8,7 @@ import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from '../../styles';
 
-const Step2 = () => {
+const StudentProgress2 = () => {
   const [birthDate, setBirthDate] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
   const [email, setEmail] = useState<string>(sessionStorage.getItem('certifiedEmail') || '');
@@ -160,4 +160,4 @@ const Step2 = () => {
   );
 };
 
-export default Step2;
+export default StudentProgress2;

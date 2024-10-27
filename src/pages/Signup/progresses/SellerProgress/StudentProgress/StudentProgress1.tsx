@@ -9,11 +9,11 @@ import CTA from '@/components/common/CTA';
 import validateEmailInput from '@/utils/validateEmailInput';
 import { InputItem, StyledInput } from '../../styles';
 
-interface Step1Props {
+interface StudentProgress1Props {
   onSuccess: () => void;
 }
 
-const StudentProgress1 = ({ onSuccess }: Step1Props) => {
+const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   const [univName, setUnivName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);

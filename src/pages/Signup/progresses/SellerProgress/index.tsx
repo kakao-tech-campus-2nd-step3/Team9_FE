@@ -17,7 +17,7 @@ const SellerProgress = () => {
   return (
     <>
       <ProgressBox>
-        {currentStep === 1 ? (
+        {currentStep === 1 && (
           <>
             <ProgressBar percentage={75} />
             <p className="progress-guidance">
@@ -42,7 +42,8 @@ const SellerProgress = () => {
               {artistType === 'business' && <BusinessProgress />}
             </form>
           </>
-        ) : (
+        )}
+        {currentStep === 2 && (
           <>
             {artistType === 'student' && <StudentProgress2 />}
             {artistType === 'business' && <></>}

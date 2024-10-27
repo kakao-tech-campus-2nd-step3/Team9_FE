@@ -6,6 +6,7 @@ import useCertifyEmail from '@/apis/univ-cert/useCertifyEmail';
 import useCheckUniv from '@/apis/univ-cert/useCheckUniv';
 import useClearUser from '@/apis/univ-cert/useClearUser';
 import CTA from '@/components/common/CTA';
+import validateEmailInput from '@/utils/validateEmailInput';
 import { InputItem, StyledInput } from '../../styles';
 
 interface Step1Props {
@@ -25,9 +26,12 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
 
   // 이메일 업데이트 및 유효성 검사
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsEmailFormValid(emailRegex.test(e.target.value));
+    const emailInput = e.target.value;
+
+    setEmail(emailInput);
+
+    const isValid = validateEmailInput(emailInput);
+    setIsEmailFormValid(isValid);
   };
 
   const { mutate: checkUniv, isError: checkUnivError } = useCheckUniv();

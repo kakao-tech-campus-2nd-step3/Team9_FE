@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
+import validateEmailInput from '@/utils/validateEmailInput';
 import MembershipClauses from '../components/MembershipClauses';
 import ProgressBar from '../components/ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from './styles';
@@ -14,7 +15,7 @@ const UserProgress = () => {
   const [email, setEmail] = useState<string>('');
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
-  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+  const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
 
   // 생년월일 업데이트 및 유효성 검사
   const handleBirthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,10 +43,12 @@ const UserProgress = () => {
 
   // 이메일 업데이트 및 유효성 검사
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    const emailInput = e.target.value;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsEmailValid(emailRegex.test(e.target.value));
+    setEmail(emailInput);
+
+    const isValid = validateEmailInput(emailInput);
+    setIsEmailFormValid(isValid);
   };
 
   // 유효성 검사 -> 버튼 상태 관리
@@ -102,7 +105,7 @@ const UserProgress = () => {
           </InputItem>
           <InputItem>
             <p className="input-label">이메일 *</p>
-            <StyledInput valid={isEmailValid}>
+            <StyledInput valid={isEmailFormValid}>
               <input
                 type="email"
                 className="input-element"
@@ -110,7 +113,7 @@ const UserProgress = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
-              {!isEmailValid && <p className="input-validation">이메일을 다시 확인해주세요.</p>}
+              {!isEmailFormValid && <p className="input-validation">이메일을 다시 확인해주세요.</p>}
             </StyledInput>
           </InputItem>
           <InputItem>

@@ -7,7 +7,7 @@ import useCheckUniv from '@/apis/univ-cert/useCheckUniv';
 import useClearUser from '@/apis/univ-cert/useClearUser';
 import CTA from '@/components/common/CTA';
 import useStudentInfoStore from '@/store/useStudentInfoStore';
-import { InputItem, StyledInput } from '../../styles';
+import { CustomInput, InputItem } from '../../../components/InputItem';
 import { handleEmailChange } from '../../utils';
 
 interface StudentProgress1Props {
@@ -39,41 +39,40 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
     setIsUnivNameChecked(true);
     setCheckUnivError('');
 
-    if (univName && email && isEmailFormValid) {
-      checkUniv(
-        { univName },
-        {
-          onSuccess: (data) => {
-            if (data.success) {
-              setIsEmailChecked(true);
-              setCertifyEmailError('');
+    checkUniv(
+      { univName },
+      {
+        onSuccess: (data) => {
+          if (data.success) {
+            setIsEmailChecked(true);
+            setCertifyEmailError('');
 
-              certifyEmail(
-                { email, univName },
-                {
-                  onSuccess: (data) => {
-                    if (data.success) {
-                      alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
-                    } else {
-                      setCertifyEmailError(data.message);
-                    }
-                  },
-                  onError: (error) => {
-                    setCertifyEmailError(error.message);
-                  },
+            certifyEmail(
+              { email, univName },
+              {
+                onSuccess: (data) => {
+                  if (data.success) {
+                    alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
+                  } else {
+                    setCertifyEmailError(data.message);
+                  }
                 },
-              );
-            } else {
-              setIsUnivValid(false);
-              setCheckUnivError(data.message);
-            }
-          },
-          onError: (error) => {
-            setCheckUnivError(error.message);
-          },
+                onError: (error) => {
+                  setCertifyEmailError(error.message);
+                },
+              },
+            );
+          } else {
+            setIsUnivValid(false);
+            setCheckUnivError(data.message);
+          }
         },
-      );
-    }
+        onError: (error) => {
+          setIsUnivValid(false);
+          setCheckUnivError(error.message);
+        },
+      },
+    );
   };
 
   // 인증코드 값 업데이트
@@ -133,54 +132,38 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   };
 
   return (
-    <InputItem>
-      <p className="input-label">학생 인증</p>
-      <StyledInput valid={isUnivValid}>
-        <input
-          type="text"
-          className="input-element"
-          placeholder="대학명"
-          value={univName}
-          onChange={(e) => setUnivName(e.target.value)}
-        />
-        {isUnivNameChecked && !univName ? (
-          <p className="input-validation">대학명을 입력해주세요.</p>
-        ) : (
-          checkUnivError && <p className="input-validation">{checkUnivError}</p>
-        )}
-      </StyledInput>
-      <StyledInput valid={true}>
-        <input
-          type="email"
-          className="input-element"
-          placeholder="abc@1618.com"
-          value={email}
-          onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
-        />
-        {isEmailChecked && !isEmailFormValid ? (
-          <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>
-        ) : isEmailChecked && !email ? (
-          <p className="input-validation">이메일을 입력해주세요.</p>
-        ) : (
-          certifyEmailError && <p className="input-validation">{certifyEmailError}</p>
-        )}
-      </StyledInput>
-      <CTA label={isEmailChecked ? '재발송' : '인증코드 발송'} onClick={handleSendCode} />
+    <InputItem label="학생 인증">
+      <CustomInput
+        type="text"
+        placeholder="대학명"
+        value={univName}
+        onChange={(e) => setUnivName(e.target.value)}
+        valid={isUnivValid}
+        caution={checkUnivError}
+      />
+      <CustomInput
+        type="email"
+        placeholder="abc@1618.com"
+        value={email}
+        onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
+        valid={isEmailFormValid}
+        caution={certifyEmailError || '올바른 이메일 형식으로 입력해주세요.'}
+      />
+      <CTA
+        label={isEmailChecked ? '재발송' : '인증코드 발송'}
+        disabled={!(univName && email && isEmailFormValid)}
+        onClick={handleSendCode}
+      />
       <Box display="flex" gap="12px" alignItems="center" alignSelf="stretch">
-        {/* 인증코드 입력란 */}
-        <StyledInput valid={isCodeValid}>
-          <input
-            type="text"
-            className="input-element"
-            placeholder="인증코드"
-            value={code}
-            onChange={handleCodeChange}
-          />
-          {isCodeChecked && certifyCodeError && (
-            <p className="input-validation">{certifyCodeError}</p>
-          )}
-        </StyledInput>
-        <CTA label="인증하기" display="block" onClick={handleVerifyCode} disabled={!code} />
+        <CustomInput
+          type="text"
+          placeholder="인증코드"
+          value={code}
+          onChange={handleCodeChange}
+          valid={isCodeValid}
+          caution={certifyCodeError}
+        />
+        <CTA label="인증하기" display="block" disabled={!code} onClick={handleVerifyCode} />
       </Box>
       {/* 임시 */}
       <CTA label="인증 취소" display="block" onClick={handleRevoke} />

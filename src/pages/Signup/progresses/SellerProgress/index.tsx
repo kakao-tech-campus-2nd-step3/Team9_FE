@@ -3,9 +3,9 @@ import { useState } from 'react';
 import Button from '../../../../components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, SelectItem } from '../styles';
-import BusinessProgress from './BusinessProgress';
-import StudentProgress1 from './StudentProgress/StudentProgress1';
-import StudentProgress2 from './StudentProgress/StudentProgress2';
+import BusinessSeller from './BusinessSeller';
+import StudentSeller1 from './StudentSeller/StudentSeller1';
+import StudentSeller2 from './StudentSeller/StudentSeller2';
 
 const SellerProgress = () => {
   const name = '000';
@@ -37,14 +37,14 @@ const SellerProgress = () => {
                   onClick={() => setArtistType('business')}
                 />
               </SelectItem>
-              {artistType === 'student' && <StudentProgress1 onSuccess={goToStep2} />}
-              {artistType === 'business' && <BusinessProgress />}
+              {artistType === 'student' && <StudentSeller1 onSuccess={goToStep2} />}
+              {artistType === 'business' && <BusinessSeller />}
             </form>
           </>
         )}
         {currentStep === 2 && (
           <>
-            {artistType === 'student' && <StudentProgress2 />}
+            {artistType === 'student' && <StudentSeller2 />}
             {artistType === 'business' && <></>}
           </>
         )}

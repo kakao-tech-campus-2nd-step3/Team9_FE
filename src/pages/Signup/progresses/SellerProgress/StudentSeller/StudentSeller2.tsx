@@ -10,7 +10,7 @@ import ProgressBar from '../../../components/ProgressBar';
 import { ProgressBox } from '../../styles';
 import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../../utils';
 
-const StudentProgress2 = () => {
+const StudentSeller2 = () => {
   const {
     birthDate,
     setBirthDate,
@@ -103,4 +103,4 @@ const StudentProgress2 = () => {
   );
 };
 
-export default StudentProgress2;
+export default StudentSeller2;

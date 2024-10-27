@@ -10,11 +10,11 @@ import useStudentInfoStore from '@/store/useStudentInfoStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import { handleEmailChange } from '../../utils';
 
-interface StudentProgress1Props {
+interface StudentSeller1Props {
   onSuccess: () => void;
 }
 
-const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
+const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
   const { email, setEmail, univName, setUnivName } = useStudentInfoStore();
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
@@ -171,4 +171,4 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   );
 };
 
-export default StudentProgress1;
+export default StudentSeller1;

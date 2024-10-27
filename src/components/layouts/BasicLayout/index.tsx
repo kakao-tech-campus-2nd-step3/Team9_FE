@@ -35,4 +35,5 @@ const ContentWrapper = styled.main`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;

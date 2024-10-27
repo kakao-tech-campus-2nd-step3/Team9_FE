@@ -74,7 +74,11 @@ const UserProgress = () => {
         </form>
       </ProgressBox>
       <CTAContainer>
-        <CTA label="가입하기" disabled={!(birthDate && phone && email)} onClick={handleSubmit} />
+        <CTA
+          label="가입하기"
+          disabled={!(birthDate && phone && isEmailFormValid)}
+          onClick={handleSubmit}
+        />
       </CTAContainer>
     </>
   );

@@ -95,7 +95,7 @@ const StudentProgress2 = () => {
       <CTAContainer>
         <CTA
           label="가입하기"
-          disabled={!(birthDate && phone && email && univName && major)}
+          disabled={!(birthDate && phone && isEmailFormValid && univName && major)}
           onClick={handleSubmit}
         />
       </CTAContainer>

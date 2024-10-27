@@ -44,8 +44,8 @@ export const handleEmailChange = (
 };
 
 const validateEmailInput = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const isValid = emailRegex.test(email);
+  if (!email) return false; // 이메일이 빈 값일 경우 false 반환
 
-  return isValid;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 };

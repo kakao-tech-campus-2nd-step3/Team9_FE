@@ -151,7 +151,7 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
       />
       <CTA
         label={isEmailChecked ? '재발송' : '인증코드 발송'}
-        disabled={!(univName && email && isEmailFormValid)}
+        disabled={!(univName && isEmailFormValid)}
         onClick={handleSendCode}
       />
       <Box display="flex" gap="12px" alignItems="center" alignSelf="stretch">

@@ -16,8 +16,8 @@ interface StudentProgress1Props {
 
 const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   const { email, setEmail, univName, setUnivName } = useStudentInfoStore();
-  const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
+  const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
   const [isEmailChecked, setIsEmailChecked] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
   const [isCodeValid, setIsCodeValid] = useState<boolean>(true);

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
+import useStudentInfoStore from '@/store/useStudentInfoStore';
 import { Box } from '@chakra-ui/react';
 import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
@@ -9,15 +10,22 @@ import { InputItem, ProgressBox, StyledInput } from '../../styles';
 import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../../utils';
 
 const StudentProgress2 = () => {
-  const [birthDate, setBirthDate] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [email, setEmail] = useState<string>(sessionStorage.getItem('certifiedEmail') || '');
+  const {
+    birthDate,
+    setBirthDate,
+    phone,
+    setPhone,
+    email,
+    setEmail,
+    univName,
+    major,
+    setMajor,
+    intro,
+    setIntro,
+  } = useStudentInfoStore();
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
-  const univName = sessionStorage.getItem('univName') || '';
-  const [major, setMajor] = useState<string>('');
-  const [intro, setIntro] = useState<string>('');
 
   // 유효성 검사 -> 버튼 상태 관리
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);

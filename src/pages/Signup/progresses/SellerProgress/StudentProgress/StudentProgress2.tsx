@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
-import validateEmailInput from '@/utils/validateEmailInput';
 import { Box } from '@chakra-ui/react';
 import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from '../../styles';
+import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../../utils';
 
 const StudentProgress2 = () => {
   const [birthDate, setBirthDate] = useState<string>('');
@@ -18,40 +18,6 @@ const StudentProgress2 = () => {
   const univName = sessionStorage.getItem('univName') || '';
   const [major, setMajor] = useState<string>('');
   const [intro, setIntro] = useState<string>('');
-
-  // 생년월일 업데이트 및 유효성 검사
-  const handleBirthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBirthDate(e.target.value);
-
-    const birthDateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    setIsBirthDateValid(birthDateRegex.test(e.target.value));
-  };
-
-  // 휴대폰 포맷팅하여 업데이트 및 유효성 검사
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatPhone = (phone: string) => {
-      if (phone.length <= 3) return phone;
-      if (phone.length <= 6) return `${phone.slice(0, 3)}-${phone.slice(3)}`;
-      if (phone.length <= 10) return `${phone.slice(0, 3)}-${phone.slice(3, 6)}-${phone.slice(6)}`;
-      return `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7, 11)}`;
-    };
-
-    const formattedPhone = formatPhone(e.target.value.replace(/\D/g, '')); // 숫자 외의 문자 제거 후 전달
-    setPhone(formattedPhone);
-
-    const phoneRegex = /^(\d{3}-\d{3,4}-\d{4})$/;
-    setIsPhoneValid(phoneRegex.test(formattedPhone));
-  };
-
-  // 이메일 업데이트 및 유효성 검사
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const emailInput = e.target.value;
-
-    setEmail(emailInput);
-
-    const isValid = validateEmailInput(emailInput);
-    setIsEmailFormValid(isValid);
-  };
 
   // 유효성 검사 -> 버튼 상태 관리
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
@@ -81,7 +47,7 @@ const StudentProgress2 = () => {
                 type="date"
                 className="input-element"
                 value={birthDate}
-                onChange={handleBirthDateChange}
+                onChange={(e) => handleBirthDateChange(e, setBirthDate, setIsBirthDateValid)}
               />
               {!isBirthDateValid && (
                 <p className="input-validation">생년월일을 다시 확인해주세요.</p>
@@ -96,7 +62,7 @@ const StudentProgress2 = () => {
                 className="input-element"
                 placeholder="000-0000-0000"
                 value={phone}
-                onChange={handlePhoneChange}
+                onChange={(e) => handlePhoneChange(e, setPhone, setIsPhoneValid)}
               />
               {!isPhoneValid && <p className="input-validation">휴대 전화를 다시 확인해주세요.</p>}
             </StyledInput>
@@ -109,7 +75,7 @@ const StudentProgress2 = () => {
                 className="input-element"
                 placeholder="abc@1618.com"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
               />
               {!isEmailFormValid && <p className="input-validation">이메일을 다시 확인해주세요.</p>}
             </StyledInput>

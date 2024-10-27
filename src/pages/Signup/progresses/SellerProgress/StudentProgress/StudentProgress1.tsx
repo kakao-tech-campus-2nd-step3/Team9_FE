@@ -6,8 +6,8 @@ import useCertifyEmail from '@/apis/univ-cert/useCertifyEmail';
 import useCheckUniv from '@/apis/univ-cert/useCheckUniv';
 import useClearUser from '@/apis/univ-cert/useClearUser';
 import CTA from '@/components/common/CTA';
-import validateEmailInput from '@/utils/validateEmailInput';
 import { InputItem, StyledInput } from '../../styles';
+import { handleEmailChange } from '../../utils';
 
 interface StudentProgress1Props {
   onSuccess: () => void;
@@ -23,15 +23,6 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   const [code, setCode] = useState<string>('');
   const [isCodeChecked, setIsCodeChecked] = useState<boolean>(false);
   const [isCodeValid, setIsCodeValid] = useState<boolean>(true);
-
-  // 이메일 업데이트 및 유효성 검사
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const emailInput = e.target.value;
-
-    setEmail(emailInput);
-    const isValid = validateEmailInput(emailInput);
-    setIsEmailFormValid(isValid);
-  };
 
   const { mutate: checkUniv } = useCheckUniv();
   const { mutate: certifyEmail } = useCertifyEmail();
@@ -164,7 +155,7 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
           className="input-element"
           placeholder="abc@1618.com"
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
         />
         {isEmailChecked && !isEmailFormValid ? (
           <p className="input-validation">올바른 이메일 형식으로 입력해주세요.</p>

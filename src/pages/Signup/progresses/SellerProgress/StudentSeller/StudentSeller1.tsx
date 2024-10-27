@@ -154,7 +154,7 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
         disabled={!(univName && isEmailFormValid)}
         onClick={handleSendCode}
       />
-      <Box display="flex" gap="12px" alignItems="center" alignSelf="stretch">
+      <Box display="flex" gap="12px" alignItems="center" width="100%">
         <CustomInput
           type="text"
           placeholder="인증코드"

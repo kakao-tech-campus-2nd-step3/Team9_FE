@@ -51,12 +51,11 @@ export const CustomInput = ({
 };
 
 const StyledInputItem = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  align-self: stretch;
-  width: 100%;
 
   .input-label {
     font-size: var(--font-size-sm);
@@ -65,7 +64,7 @@ const StyledInputItem = styled.div`
 `;
 
 const StyledCustomInput = styled.div<{ valid: boolean }>`
-  align-self: stretch;
+  width: 100%;
   display: flex;
   flex-direction: column;
 

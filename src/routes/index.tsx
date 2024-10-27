@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
 import BasicLayout from '@/components/layouts/BasicLayout';
+import FreeLayout from '@/components/layouts/FreeLayout';
 import ArtistDetails from '@/pages/ArtistDetails';
 import Categories from '@/pages/Categories';
 import Chat from '@/pages/Chat';
@@ -18,7 +19,6 @@ import SearchResults from '@/pages/SearchResults';
 import Signup from '@/pages/Signup';
 import { ProtectedRoute } from './ProtectedRoute';
 import { RouterPath } from './path';
-import NoHeaderLayout from '@/components/layouts/NoHeaderLayout';
 
 const Routes = () => {
   return <RouterProvider router={router} />;
@@ -36,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: RouterPath.discover,
         element: <Discover />,
+      },
+      {
+        path: RouterPath.categories,
+        element: <Categories />,
       },
       {
         path: `${RouterPath.products}/:productId`,
@@ -91,25 +95,21 @@ const router = createBrowserRouter([
   },
   {
     path: RouterPath.root,
-    element: <NoHeaderLayout />,
+    element: <FreeLayout />,
     children: [
       {
-        path: RouterPath.categories,
-        element: <Categories />,
+        path: RouterPath.results,
+        element: <SearchResults />,
+      },
+      {
+        path: RouterPath.login,
+        element: <Login />,
+      },
+      {
+        path: RouterPath.signup,
+        element: <Signup />,
       },
     ],
-  },
-  {
-    path: `${RouterPath.results}`,
-    element: <SearchResults />,
-  },
-  {
-    path: RouterPath.login,
-    element: <Login />,
-  },
-  {
-    path: RouterPath.signup,
-    element: <Signup />,
   },
 ]);
 

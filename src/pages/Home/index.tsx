@@ -1,16 +1,19 @@
 import styled from '@emotion/styled';
 
 import Footer from '@/components/layouts/Footer';
-import { HEADER_HEIGHT } from '@/components/layouts/Header';
+import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
-import { homeAdList } from '@/constants/home/homeAdList';
 import { articleList } from '@/constants/home/articleList';
+import { homeAdList } from '@/constants/home/homeAdList';
 import AdBanner from './AdBanner';
 import ArticleBanner from './ArticleBanner';
 
 const Home = () => {
+  const mode = 'seller';
+
   return (
     <Wrapper>
+      <Header mode={mode} />
       <AdBanner adList={homeAdList} />
       {articleList.map((item) => (
         <ArticleBanner

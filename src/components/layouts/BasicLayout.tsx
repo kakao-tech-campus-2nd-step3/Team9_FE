@@ -11,9 +11,9 @@ const BasicLayout = () => {
 
   return (
     <PageLayout>
-      <ContentWrapper ref={contentWrapperRef}>
+      <InnerLayout ref={contentWrapperRef}>
         <Outlet />
-      </ContentWrapper>
+      </InnerLayout>
       <FABContainer mode={mode} scrollContainerRef={contentWrapperRef} />
       <TabBar />
     </PageLayout>
@@ -28,8 +28,10 @@ const PageLayout = styled.div`
   height: 100vh;
 `;
 
-const ContentWrapper = styled.main`
+const InnerLayout = styled.main`
   flex: 1;
   overflow-y: auto;
   display: flex;
+  flex-direction: column;
+  height: 100%;
 `;

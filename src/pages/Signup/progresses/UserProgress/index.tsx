@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
+import { useUserProgressStore } from '@/store/useUserInfoStore';
 import MembershipClauses from '../../components/MembershipClauses';
 import ProgressBar from '../../components/ProgressBar';
 import { InputItem, ProgressBox, StyledInput } from '../styles';
@@ -10,9 +11,7 @@ import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../
 
 const UserProgress = () => {
   const name = '000';
-  const [birthDate, setBirthDate] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const { birthDate, setBirthDate, phone, setPhone, email, setEmail } = useUserProgressStore();
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);

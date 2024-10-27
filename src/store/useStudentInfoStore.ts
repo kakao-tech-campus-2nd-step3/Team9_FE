@@ -11,8 +11,8 @@ type StudentInfoState = {
   setUnivName: (univName: string) => void;
   major: string;
   setMajor: (major: string) => void;
-  intro: string;
-  setIntro: (intro: string) => void;
+  about: string;
+  setAbout: (about: string) => void;
 };
 
 const useStudentInfoStore = create<StudentInfoState>((set) => ({
@@ -26,8 +26,8 @@ const useStudentInfoStore = create<StudentInfoState>((set) => ({
   setUnivName: (univName) => set({ univName }),
   major: '',
   setMajor: (major) => set({ major }),
-  intro: '',
-  setIntro: (intro) => set({ intro }),
+  about: '',
+  setAbout: (about) => set({ about }),
 }));
 
 export default useStudentInfoStore;

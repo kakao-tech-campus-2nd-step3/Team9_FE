@@ -9,6 +9,7 @@ import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
 import { ProgressBox } from '../../styles';
 import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../../utils';
+import usePostStudentArtist from '@/apis/artists/usePostStudentArtist';
 
 const StudentSeller2 = () => {
   const {
@@ -21,15 +22,28 @@ const StudentSeller2 = () => {
     univName,
     major,
     setMajor,
-    intro,
-    setIntro,
+    about,
+    setAbout,
   } = useStudentInfoStore();
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
 
+  const { mutate: postStudentArtist } = usePostStudentArtist();
+
   const handleSubmit = () => {
-    console.log('제출 완료');
+    postStudentArtist(
+      { schoolEmail: email, schoolName: univName, major, about },
+      {
+        onSuccess: () => {
+          console.log('회원가입을 축하합니다!');
+          // navigate(RouterPath.home);
+        },
+        onError: (error) => {
+          console.log(error);
+        },
+      },
+    );
   };
 
   return (
@@ -83,8 +97,8 @@ const StudentSeller2 = () => {
             <CustomInput
               type="textarea"
               placeholder="작가 경력, 작품 스타일 등을 소개해주세요."
-              value={intro}
-              onChange={(e) => setIntro(e.target.value)}
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
               valid={true}
             />
           </InputItem>

@@ -13,7 +13,6 @@ const SellerProgress = () => {
   const [currentStep, setCurrentStep] = useState<1 | 2>(1);
 
   const goToStep2 = () => setCurrentStep(2);
-
   return (
     <>
       <ProgressBox>

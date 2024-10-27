@@ -11,11 +11,11 @@ import { InputItem, ProgressBox, StyledInput } from '../../styles';
 const Step2 = () => {
   const [birthDate, setBirthDate] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [email, setEmail] = useState<string>('인증받은이메일@naver.com');
+  const [email, setEmail] = useState<string>(sessionStorage.getItem('certifiedEmail') || '');
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
-  const univName = '인증받은 대학명';
+  const univName = sessionStorage.getItem('univName') || '';
   const [major, setMajor] = useState<string>('');
   const [intro, setIntro] = useState<string>('');
 
@@ -123,6 +123,7 @@ const Step2 = () => {
                   className="input-element"
                   placeholder="대학명"
                   value={univName}
+                  readOnly
                 />
               </StyledInput>
               <StyledInput valid={true}>

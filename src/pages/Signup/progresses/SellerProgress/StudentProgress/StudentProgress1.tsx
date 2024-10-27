@@ -105,6 +105,8 @@ const StudentProgress1 = ({ onSuccess }: Step1Props) => {
           onSuccess: (data) => {
             if (data.success) {
               setIsCodeValid(true);
+              sessionStorage.setItem('univName', data.univName);
+              sessionStorage.setItem('certifiedEmail', data.certified_email);
               onSuccess(); // 인증 성공 시 Step2로 이동
             } else {
               setIsCodeValid(false);

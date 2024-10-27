@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type UserProgressState = {
+type UserInfoState = {
   birthDate: string;
   setBirthDate: (birthDate: string) => void;
   phone: string;
@@ -9,7 +9,7 @@ type UserProgressState = {
   setEmail: (email: string) => void;
 };
 
-export const useUserProgressStore = create<UserProgressState>((set) => ({
+const useUserInfoStore = create<UserInfoState>((set) => ({
   birthDate: '',
   setBirthDate: (birthDate) => set({ birthDate }),
   phone: '',
@@ -17,3 +17,5 @@ export const useUserProgressStore = create<UserProgressState>((set) => ({
   email: '',
   setEmail: (email) => set({ email }),
 }));
+
+export default useUserInfoStore;

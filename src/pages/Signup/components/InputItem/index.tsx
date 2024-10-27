@@ -36,16 +36,29 @@ export const CustomInput = ({
 }: CustomInputProps) => {
   return (
     <StyledCustomInput valid={valid}>
-      <input
-        className="input-element"
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        readOnly={readOnly}
-        {...props}
-      />
-      {!valid && <p className="input-validation">{caution}</p>}
+      {type === 'textarea' ? (
+        <textarea
+          className="input-element input-element-textarea"
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          readOnly={readOnly}
+          {...props}
+        />
+      ) : (
+        <>
+          <input
+            className="input-element"
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            readOnly={readOnly}
+            {...props}
+          />
+          {!valid && <p className="input-validation">{caution}</p>}
+        </>
+      )}
     </StyledCustomInput>
   );
 };
@@ -87,6 +100,11 @@ const StyledCustomInput = styled.div<{ valid: boolean }>`
     ::placeholder {
       color: var(--color-gray-dk);
     }
+  }
+
+  .input-element-textarea {
+    height: 120px;
+    resize: none;
   }
 
   .input-validation {

@@ -6,6 +6,7 @@ import useCertifyEmail from '@/apis/univ-cert/useCertifyEmail';
 import useCheckUniv from '@/apis/univ-cert/useCheckUniv';
 import useClearUser from '@/apis/univ-cert/useClearUser';
 import CTA from '@/components/common/CTA';
+import useStudentInfoStore from '@/store/useStudentInfoStore';
 import { InputItem, StyledInput } from '../../styles';
 import { handleEmailChange } from '../../utils';
 
@@ -14,8 +15,7 @@ interface StudentProgress1Props {
 }
 
 const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
-  const [univName, setUnivName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const { email, setEmail, univName, setUnivName } = useStudentInfoStore();
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
   const [isUnivNameChecked, setIsUnivNameChecked] = useState<boolean>(false);
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
@@ -96,8 +96,8 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
           onSuccess: (data) => {
             if (data.success) {
               setIsCodeValid(true);
-              sessionStorage.setItem('univName', data.univName);
-              sessionStorage.setItem('certifiedEmail', data.certified_email);
+              setUnivName(data.univName);
+              setEmail(data.certified_email);
               onSuccess(); // 인증 성공 시 Step2로 이동
             } else {
               setIsCodeValid(false);

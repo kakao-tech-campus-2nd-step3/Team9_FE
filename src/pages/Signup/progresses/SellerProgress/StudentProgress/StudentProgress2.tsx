@@ -26,8 +26,6 @@ const StudentProgress2 = () => {
   const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
-
-  // 유효성 검사 -> 버튼 상태 관리
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
 
   useEffect(() => {

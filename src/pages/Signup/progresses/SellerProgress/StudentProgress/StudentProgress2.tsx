@@ -31,12 +31,8 @@ const StudentProgress2 = () => {
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
 
   useEffect(() => {
-    if (birthDate && phone && email && univName && major) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
-  }, [birthDate, phone, email]);
+    setIsSubmitDisabled(!(birthDate && phone && email && univName && major));
+  }, [birthDate, phone, email, univName, major]);
 
   const handleSubmit = () => {
     console.log('제출 완료');

@@ -20,11 +20,7 @@ const UserProgress = () => {
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
 
   useEffect(() => {
-    if (birthDate && phone && email) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
+    setIsSubmitDisabled(!(birthDate && phone && email));
   }, [birthDate, phone, email]);
 
   const handleSubmit = () => {

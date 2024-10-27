@@ -50,6 +50,8 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
                 onSuccess: (data) => {
                   if (data.success) {
                     alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
+                  } else {
+                    alert('인증코드 전송에 실패했습니다.');
                   }
                 },
                 onError: (error) => {
@@ -120,6 +122,9 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
             } else {
               alert('인증 취소 오류');
             }
+          },
+          onError: (error) => {
+            alert(error.message);
           },
         },
       );

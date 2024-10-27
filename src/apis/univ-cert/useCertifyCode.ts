@@ -24,8 +24,9 @@ async function certifyCode({
 }: CertifyCodeProps): Promise<CertifyCodeResponse> {
   const requestBody = { key: API_KEY, email, univName, code };
 
+  // 실패해도 에러 처리 안 됨. 정상 응답 옴
   const response = await fetchInstance(BASE_URL).post(`/certifycode`, requestBody);
-  console.log('certifyCode response: ', response);
+  // console.log('certifyCode response: ', response);
 
   return response.data;
 }

@@ -5,8 +5,6 @@ import { API_KEY, BASE_URL } from './index';
 
 type UnivCertResponse = {
   success: boolean;
-  code?: number; // 실패 시에만
-  message?: string; // 실패 시에만
 };
 
 type CertifyEmailProps = {
@@ -19,7 +17,7 @@ async function certifyEmail({ email, univName }: CertifyEmailProps): Promise<Uni
 
   try {
     const response = await fetchInstance(BASE_URL).post(`/certify`, requestBody);
-    console.log('certifyEmail response: ', response);
+    // console.log('certifyEmail response: ', response);
 
     return response.data;
   } catch (error: any) {

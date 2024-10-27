@@ -9,17 +9,23 @@ type ClearUserProps = {
 
 type ClearUserResponse = {
   success: boolean;
-  status?: number; // 실패 시에만
-  message?: string; // 실패 시에만
 };
 
 async function clearUser({ email }: ClearUserProps): Promise<ClearUserResponse> {
   const requestBody = { key: API_KEY };
 
-  const response = await fetchInstance(BASE_URL).post(`/clear/${email}`, requestBody);
-  console.log('clearUser response: ', response);
+  try {
+    const response = await fetchInstance(BASE_URL).post(`/clear/${email}`, requestBody);
+    // console.log('clearUser response: ', response);
 
-  return response.data;
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data.message || '인증 취소 실패');
+    } else {
+      throw new Error('네트워크 오류 또는 서버에 연결할 수 없습니다.');
+    }
+  }
 }
 
 const useClearUser = () => {

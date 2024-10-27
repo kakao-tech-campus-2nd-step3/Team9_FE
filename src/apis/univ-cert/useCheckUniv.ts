@@ -5,7 +5,6 @@ import { BASE_URL } from './index';
 
 type UnivCertResponse = {
   success: boolean;
-  code?: number; // 실패 시에만
   message?: string; // 실패 시에만
 };
 
@@ -16,8 +15,9 @@ type CheckUnivProps = {
 async function checkUniv({ univName }: CheckUnivProps): Promise<UnivCertResponse> {
   const requestBody = { univName };
 
+  // 실패해도 에러 처리 안 됨. 정상 응답 옴
   const response = await fetchInstance(BASE_URL).post(`/check`, requestBody);
-  console.log('checkUniv response: ', response);
+  // console.log('checkUniv response: ', response);
 
   return response.data;
 }

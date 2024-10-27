@@ -1,5 +1,4 @@
 import { useMutation, type UseMutationResult } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
 
 import { fetchInstance } from '../instance';
 import { BASE_URL } from './index';

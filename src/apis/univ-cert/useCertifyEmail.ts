@@ -17,10 +17,18 @@ type CertifyEmailProps = {
 async function certifyEmail({ email, univName }: CertifyEmailProps): Promise<UnivCertResponse> {
   const requestBody = { key: API_KEY, email, univName, univ_check: true };
 
-  const response = await fetchInstance(BASE_URL).post(`/certify`, requestBody);
-  console.log('certifyEmail response: ', response);
+  try {
+    const response = await fetchInstance(BASE_URL).post(`/certify`, requestBody);
+    console.log('certifyEmail response: ', response);
 
-  return response.data;
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data.message || '인증코드 전송에 실패했습니다.');
+    } else {
+      throw new Error('네트워크 오류 또는 서버에 연결할 수 없습니다.');
+    }
+  }
 }
 
 const useCertifyEmail = (): UseMutationResult<UnivCertResponse, Error, CertifyEmailProps> => {

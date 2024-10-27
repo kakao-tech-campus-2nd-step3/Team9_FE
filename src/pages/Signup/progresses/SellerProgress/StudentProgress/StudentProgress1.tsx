@@ -50,12 +50,11 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
                 onSuccess: (data) => {
                   if (data.success) {
                     alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
-                  } else {
-                    setCertifyEmailError(data.message);
                   }
                 },
                 onError: (error) => {
                   setCertifyEmailError(error.message);
+                  alert(certifyEmailError);
                 },
               },
             );
@@ -143,7 +142,7 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
         value={email}
         onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
         valid={isEmailFormValid}
-        caution={certifyEmailError || '올바른 이메일 형식으로 입력해주세요.'}
+        caution={'올바른 이메일 형식으로 입력해주세요.'}
       />
       <CTA
         label={isEmailChecked ? '재발송' : '인증코드 발송'}

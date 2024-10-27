@@ -1,7 +1,7 @@
 import type { Mode } from '@/types';
-import Button from '../../../components/common/form/InputButton';
-import ProgressBar from '../components/ProgressBar';
-import { ProgressBox, SelectItem } from './styles';
+import Button from '../../../../components/common/form/InputButton';
+import ProgressBar from '../../components/ProgressBar';
+import { ProgressBox, SelectItem } from '../styles';
 
 type DefaultProgressProps = {
   memberType: Mode | undefined;

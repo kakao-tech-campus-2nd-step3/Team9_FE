@@ -17,11 +17,9 @@ interface StudentProgress1Props {
 const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   const { email, setEmail, univName, setUnivName } = useStudentInfoStore();
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
-  const [isUnivNameChecked, setIsUnivNameChecked] = useState<boolean>(false);
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailChecked, setIsEmailChecked] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
-  const [isCodeChecked, setIsCodeChecked] = useState<boolean>(false);
   const [isCodeValid, setIsCodeValid] = useState<boolean>(true);
 
   const { mutate: checkUniv } = useCheckUniv();
@@ -36,7 +34,6 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   const handleSendCode = async (e: React.MouseEvent) => {
     e.preventDefault();
 
-    setIsUnivNameChecked(true);
     setCheckUnivError('');
 
     checkUniv(
@@ -85,7 +82,6 @@ const StudentProgress1 = ({ onSuccess }: StudentProgress1Props) => {
   const handleVerifyCode = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    setIsCodeChecked(true);
     setCertifyCodeError('');
 
     if (code) {

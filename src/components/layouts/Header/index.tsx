@@ -4,17 +4,17 @@ import { useLocation } from 'react-router-dom';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { RouterPath } from '@/routes/path';
-import type { Mode } from '@/types';
+import useModeStore from '@/store/useModeStore';
 
 interface HeaderProps {
-  mode: Mode;
   title?: string;
   leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;
 }
 
-const Header = ({ mode, title, leftSideChildren, rightSideChildren }: HeaderProps) => {
+const Header = ({ title, leftSideChildren, rightSideChildren }: HeaderProps) => {
   const { pathname } = useLocation();
+  const { mode } = useModeStore();
 
   const renderElements = () => {
     if (pathname === RouterPath.home) {

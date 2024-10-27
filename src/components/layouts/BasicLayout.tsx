@@ -6,7 +6,6 @@ import FABContainer from '@/components/layouts/FAB/FABContainer';
 import TabBar from '@/components/layouts/TabBar';
 
 const BasicLayout = () => {
-  const mode = 'seller';
   const contentWrapperRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -14,7 +13,7 @@ const BasicLayout = () => {
       <InnerLayout ref={contentWrapperRef}>
         <Outlet />
       </InnerLayout>
-      <FABContainer mode={mode} scrollContainerRef={contentWrapperRef} />
+      <FABContainer scrollContainerRef={contentWrapperRef} />
       <TabBar />
     </PageLayout>
   );

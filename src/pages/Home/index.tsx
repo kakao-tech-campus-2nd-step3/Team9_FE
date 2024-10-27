@@ -9,11 +9,9 @@ import AdBanner from './AdBanner';
 import ArticleBanner from './ArticleBanner';
 
 const Home = () => {
-  const mode = 'seller';
-
   return (
     <Wrapper>
-      <Header mode={mode} />
+      <Header />
       <AdBanner adList={homeAdList} />
       {articleList.map((item) => (
         <ArticleBanner

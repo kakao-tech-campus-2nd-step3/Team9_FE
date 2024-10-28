@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from '@/components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, SelectItem } from '../styles';
-import BusinessSeller from './BusinessSeller';
+import BusinessSeller1 from './BusinessSeller/BusinessSeller1';
 import StudentSeller1 from './StudentSeller/StudentSeller1';
 import StudentSeller2 from './StudentSeller/StudentSeller2';
 
@@ -39,7 +39,7 @@ const SellerProgress = () => {
                 />
               </SelectItem>
               {artistType === 'student' && <StudentSeller1 onSuccess={goToStep2} />}
-              {artistType === 'business' && <BusinessSeller />}
+              {artistType === 'business' && <BusinessSeller1 onSuccess={goToStep2} />}
             </form>
           </>
         )}

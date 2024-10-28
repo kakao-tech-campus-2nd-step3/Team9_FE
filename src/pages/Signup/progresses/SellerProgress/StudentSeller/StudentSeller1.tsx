@@ -10,9 +10,9 @@ import useStudentInfoStore from '@/store/useStudentInfoStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import { handleEmailChange } from '../../utils';
 
-interface StudentSeller1Props {
+type StudentSeller1Props = {
   onSuccess: () => void;
-}
+};
 
 const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
   const { email, setEmail, univName, setUnivName } = useStudentInfoStore();
@@ -143,7 +143,7 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
       />
       <CustomInput
         type="email"
-        placeholder="abc@1618.com"
+        placeholder="이메일"
         value={email}
         onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
         valid={isEmailFormValid}

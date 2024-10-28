@@ -15,9 +15,9 @@ export const InputItem = ({ label, children }: InputItemProps) => {
 };
 
 type CustomInputProps = {
-  type: 'text' | 'textarea' | 'date' | 'tel' | 'email';
+  type: 'text' | 'textarea' | 'date' | 'tel' | 'email' | 'number';
   placeholder?: string;
-  value: string | string[];
+  value: string | string[] | number;
   onChange?: (e: any) => void;
   valid?: boolean;
   caution?: string;

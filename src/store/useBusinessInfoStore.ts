@@ -5,8 +5,8 @@ type BusinessInfoState = {
   setPhone: (phone: string) => void;
   email: string;
   setEmail: (email: string) => void;
-  businessNumber: number | null;
-  setBusinessNumber: (businessNumber: number) => void;
+  businessNumber: string;
+  setBusinessNumber: (businessNumber: string) => void;
   startDate: string;
   setStartDate: (startDate: string) => void;
   presidentName: string;
@@ -23,7 +23,7 @@ const useBusinessInfoStore = create<BusinessInfoState>((set) => ({
   email: '',
   setEmail: (email) => set({ email }),
 
-  businessNumber: null,
+  businessNumber: '',
   setBusinessNumber: (businessNumber) => set({ businessNumber }),
 
   startDate: '',
@@ -39,7 +39,7 @@ const useBusinessInfoStore = create<BusinessInfoState>((set) => ({
     set({
       phone: '',
       email: '',
-      businessNumber: 0,
+      businessNumber: '',
       startDate: '',
       presidentName: '',
       about: '',

@@ -23,8 +23,8 @@ const BusinessSeller1 = ({ onSuccess }: BusinessSeller1Props) => {
   const { mutate: verify } = useVerifyBusiness();
   const [verifyError, setVerifyError] = useState<string>('');
 
-  const removeHyphen = (str: string): number => {
-    return Number(str.replace(/-/g, ''));
+  const removeHyphen = (str: string) => {
+    return str.replace(/-/g, '');
   };
 
   // 인증하기
@@ -35,7 +35,7 @@ const BusinessSeller1 = ({ onSuccess }: BusinessSeller1Props) => {
 
     if (businessNumber && startDate && presidentName) {
       verify(
-        { b_no: Number(businessNumber), start_dt: removeHyphen(startDate), p_nm: presidentName },
+        { b_no: businessNumber, start_dt: removeHyphen(startDate), p_nm: presidentName },
         {
           onSuccess: () => {
             // onSuccess(); // 인증 성공 시 Step2로 이동

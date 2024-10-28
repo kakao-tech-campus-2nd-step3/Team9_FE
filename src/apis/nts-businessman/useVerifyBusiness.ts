@@ -5,8 +5,8 @@ import { API_KEY, BASE_URL } from './index';
 
 // 필수 키만
 type VerifyProps = {
-  b_no: number;
-  start_dt: number;
+  b_no: string;
+  start_dt: string;
   p_nm: string;
 };
 

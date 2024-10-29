@@ -37,7 +37,7 @@ async function verify({ b_no, start_dt, p_nm }: VerifyProps): Promise<void> {
       throw new Error(
         error.response.data.msg ||
           error.response.data.status_code ||
-          '사업자등록정보 인증에 실패했습니다.',
+          '사업자등록정보 조회에 실패했습니다.',
       );
     } else {
       throw new Error('네트워크 오류 또는 서버에 연결할 수 없습니다.');

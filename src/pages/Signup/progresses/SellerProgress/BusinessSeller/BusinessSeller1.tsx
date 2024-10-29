@@ -50,7 +50,7 @@ const BusinessSeller1 = ({ onSuccess }: BusinessSeller1Props) => {
   };
 
   return (
-    <InputItem label="사업자 인증">
+    <InputItem label="사업자등록정보 조회">
       <CustomInput
         type="number"
         placeholder="사업자등록번호"

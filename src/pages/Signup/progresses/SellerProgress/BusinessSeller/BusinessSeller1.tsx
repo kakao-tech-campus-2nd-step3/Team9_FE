@@ -1,10 +1,11 @@
+import { Box, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import useVerifyBusiness from '@/apis/nts-businessman/useVerifyBusiness';
 import CTA from '@/components/common/CTA';
 import useBusinessInfoStore from '@/store/useBusinessInfoStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
-import { Text } from '@chakra-ui/react';
+import { ProgressGuidance } from '../../styles';
 
 type BusinessSeller1Props = {
   onSuccess: () => void;
@@ -50,36 +51,53 @@ const BusinessSeller1 = ({ onSuccess }: BusinessSeller1Props) => {
   };
 
   return (
-    <InputItem label="사업자등록정보 조회">
-      <CustomInput
-        type="number"
-        placeholder="사업자등록번호"
-        value={businessNumber ?? ''}
-        onChange={(e) => setBusinessNumber(e.target.value)}
-      />
-      <CustomInput
-        type="date"
-        placeholder="개업일자"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
-      <CustomInput
-        type="text"
-        placeholder="대표자명"
-        value={presidentName}
-        onChange={(e) => setPresidentName(e.target.value)}
-      />
-      <CTA
-        label="인증하기"
-        disabled={!(businessNumber && startDate && presidentName)}
-        onClick={handleVerifyBusiness}
-      />
-      {verifyError && (
-        <Text fontSize="var(--font-size-xs)" color="var(--color-red)" marginTop="4px">
-          {verifyError}
-        </Text>
-      )}
-    </InputItem>
+    <>
+      <ProgressGuidance>사업자등록정보를 조회할게요.</ProgressGuidance>
+      <InputItem>
+        <Box width="100%" display="flex" flexDir="column">
+          <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+            사업자등록번호
+          </Text>
+          <CustomInput
+            type="number"
+            placeholder="0000000000 (- 제외)"
+            value={businessNumber ?? ''}
+            onChange={(e) => setBusinessNumber(e.target.value)}
+          />
+        </Box>
+        <Box width="100%" display="flex" flexDir="column">
+          <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+            개업일자
+          </Text>
+          <CustomInput
+            type="date"
+            placeholder="개업일자"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </Box>
+        <Box width="100%" display="flex" flexDir="column">
+          <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+            대표자명
+          </Text>
+          <CustomInput
+            type="text"
+            value={presidentName}
+            onChange={(e) => setPresidentName(e.target.value)}
+          />
+        </Box>
+        <CTA
+          label="인증하기"
+          disabled={!(businessNumber && startDate && presidentName)}
+          onClick={handleVerifyBusiness}
+        />
+        {verifyError && (
+          <Text fontSize="var(--font-size-xs)" color="var(--color-red)" marginTop="4px">
+            {verifyError}
+          </Text>
+        )}
+      </InputItem>
+    </>
   );
 };
 

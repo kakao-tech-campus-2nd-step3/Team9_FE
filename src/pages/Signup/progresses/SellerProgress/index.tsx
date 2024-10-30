@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Button from '@/components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
-import { ProgressBox, SelectItem } from '../styles';
+import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
 import BusinessSeller1 from './BusinessSeller/BusinessSeller1';
 import StudentSeller1 from './StudentSeller/StudentSeller1';
 import StudentSeller2 from './StudentSeller/StudentSeller2';
@@ -20,12 +20,12 @@ const SellerProgress = () => {
         {currentStep === 1 && (
           <>
             <ProgressBar percentage={75} />
-            <p className="progress-guidance">
+            <ProgressGuidance>
               {name} 님, 반가워요.
               <br />
               작가 유형을 선택해주세요.
-            </p>
-            <form className="progress-form">
+            </ProgressGuidance>
+            <div className="progress-form">
               <SelectItem>
                 <Button
                   label="학생"
@@ -38,9 +38,9 @@ const SellerProgress = () => {
                   onClick={() => setArtistType('business')}
                 />
               </SelectItem>
-              {artistType === 'student' && <StudentSeller1 onSuccess={goToStep2} />}
-              {artistType === 'business' && <BusinessSeller1 onSuccess={goToStep2} />}
-            </form>
+            </div>
+            {artistType === 'student' && <StudentSeller1 onSuccess={goToStep2} />}
+            {artistType === 'business' && <BusinessSeller1 onSuccess={goToStep2} />}
           </>
         )}
         {currentStep === 2 && (

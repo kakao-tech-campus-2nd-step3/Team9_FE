@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 type InputItemProps = {
-  label: string;
+  label?: string;
   children: React.ReactNode;
 };
 
@@ -9,7 +9,7 @@ export const InputItem = ({ label, children }: InputItemProps) => {
   return (
     <StyledInputItem>
       <p className="input-label">{label}</p>
-      {children}
+      <div className="input-items">{children}</div>
     </StyledInputItem>
   );
 };
@@ -69,10 +69,18 @@ const StyledInputItem = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  padding: 0 16px;
 
   .input-label {
     font-size: var(--font-size-sm);
     font-weight: 600;
+  }
+
+  .input-items {
+    width: inherit;
+    display: inherit;
+    flex-direction: inherit;
+    gap: 24px;
   }
 `;
 

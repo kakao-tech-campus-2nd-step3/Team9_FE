@@ -3,10 +3,10 @@ import { useState } from 'react';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import HorizontalLine from '@/components/styles/HorizontalLine';
 import useUserInfoStore from '@/store/useUserInfoStore';
-import { InputItem, CustomInput } from '../../components/InputItem';
+import { CustomInput, InputItem } from '../../components/InputItem';
 import MembershipClauses from '../../components/MembershipClauses';
 import ProgressBar from '../../components/ProgressBar';
-import { ProgressBox } from '../styles';
+import { ProgressBox, ProgressGuidance } from '../styles';
 import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../utils';
 
 const UserProgress = () => {
@@ -26,11 +26,11 @@ const UserProgress = () => {
     <>
       <ProgressBox>
         <ProgressBar percentage={100} />
-        <p className="progress-guidance">
+        <ProgressGuidance>
           {name} 님, 반가워요.
           <br />
           회원 정보를 입력해주세요.
-        </p>
+        </ProgressGuidance>
         <form className="progress-form">
           <InputItem label="생년월일 *">
             <CustomInput

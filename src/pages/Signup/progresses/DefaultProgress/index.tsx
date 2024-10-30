@@ -1,7 +1,7 @@
 import type { Mode } from '@/types';
 import Button from '../../../../components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
-import { ProgressBox, SelectItem } from '../styles';
+import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
 
 type DefaultProgressProps = {
   memberType: Mode | undefined;
@@ -16,11 +16,11 @@ const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProp
   return (
     <ProgressBox>
       <ProgressBar percentage={50} />
-      <p className="progress-guidance">
+      <ProgressGuidance>
         1.618이 처음이시네요!
         <br />
         회원 유형을 선택해주세요.
-      </p>
+      </ProgressGuidance>
       <form className="progress-form">
         <SelectItem>
           <Button

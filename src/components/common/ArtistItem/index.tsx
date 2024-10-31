@@ -6,8 +6,8 @@ import LikesAndFollowers from '../LikesAndFollowers';
 
 interface ArtistItemProps {
   author: string;
-  like: string;
-  follower: string;
+  like: number;
+  follower: number;
   size?: 'large' | 'default';
   src?: string;
   alt?: string;

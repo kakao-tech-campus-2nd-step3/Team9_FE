@@ -21,7 +21,7 @@ async function putUser({
   birthdate,
   phone,
   address,
-  hashTags,
+  hashTags = [],
 }: PutUserProps): Promise<void> {
   const requestBody = {
     name,

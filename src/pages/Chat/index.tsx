@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
-import { useNavigate } from 'react-router-dom';
 import ChatItem from './components/ChatItem';
 
 const chatList = [
@@ -12,11 +11,9 @@ const chatList = [
 ];
 
 const Chat = () => {
-  const navigate = useNavigate();
-
   return (
     <Wrapper>
-      <Header leftSideChildren={<IconButton icon="arrow-back" onClick={() => navigate(-1)} />} />
+      <Header rightSideChildren={<IconButton icon="settings" />} />
       {chatList.map((item, index) => (
         <ChatItem
           key={index}

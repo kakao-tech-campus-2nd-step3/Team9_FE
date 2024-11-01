@@ -39,8 +39,7 @@ const BusinessSeller1 = ({ onSuccess }: BusinessSeller1Props) => {
         { b_no: businessNumber, start_dt: removeHyphen(startDate), p_nm: presidentName },
         {
           onSuccess: () => {
-            // onSuccess(); // 인증 성공 시 Step2로 이동
-            alert('인증 성공');
+            onSuccess(); // 인증 성공 시 Step2로 이동
           },
           onError: (error) => {
             setVerifyError(error.message);

@@ -6,15 +6,14 @@ import FABContainer from '@/components/layouts/FAB/FABContainer';
 import TabBar from '@/components/layouts/TabBar';
 
 const BasicLayout = () => {
-  const mode = 'seller';
   const contentWrapperRef = useRef<HTMLDivElement>(null);
 
   return (
     <PageLayout>
-      <ContentWrapper ref={contentWrapperRef}>
+      <InnerLayout ref={contentWrapperRef}>
         <Outlet />
-      </ContentWrapper>
-      <FABContainer mode={mode} scrollContainerRef={contentWrapperRef} />
+      </InnerLayout>
+      <FABContainer scrollContainerRef={contentWrapperRef} />
       <TabBar />
     </PageLayout>
   );
@@ -28,8 +27,10 @@ const PageLayout = styled.div`
   height: 100vh;
 `;
 
-const ContentWrapper = styled.main`
+const InnerLayout = styled.main`
   flex: 1;
   overflow-y: auto;
   display: flex;
+  flex-direction: column;
+  height: 100%;
 `;

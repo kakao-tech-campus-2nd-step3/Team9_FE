@@ -1,6 +1,8 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+
 const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
     timeout: 5000,
@@ -14,7 +16,7 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   return instance;
 };
 
-export const fetchInstance = (baseURL: string) => {
+export const fetchInstance = (baseURL = BASE_URL) => {
   return initInstance({
     baseURL,
   });

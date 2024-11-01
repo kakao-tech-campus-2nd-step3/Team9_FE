@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import useCertifyCode from '@/apis/univ-cert/useCertifyCode';
@@ -6,19 +6,21 @@ import useCertifyEmail from '@/apis/univ-cert/useCertifyEmail';
 import useCheckUniv from '@/apis/univ-cert/useCheckUniv';
 import useClearUser from '@/apis/univ-cert/useClearUser';
 import CTA from '@/components/common/CTA';
-import useStudentInfoStore from '@/store/useStudentInfoStore';
+import useStudentInfoStore from '@/store/useStudentArtistStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
+import { ProgressGuidance } from '../../styles';
 import { handleEmailChange } from '../../utils';
 
-interface StudentSeller1Props {
+type StudentArtist1Props = {
   onSuccess: () => void;
-}
+};
 
-const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
-  const { email, setEmail, univName, setUnivName } = useStudentInfoStore();
+const StudentArtist1 = ({ onSuccess }: StudentArtist1Props) => {
+  const { univEmail, setUnivEmail, univName, setUnivName } = useStudentInfoStore();
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
   const [isEmailChecked, setIsEmailChecked] = useState<boolean>(false);
+  const [isCodeSent, setIsCodeSent] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
   const [isCodeValid, setIsCodeValid] = useState<boolean>(true);
 
@@ -45,10 +47,11 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
             setCertifyEmailError('');
 
             certifyEmail(
-              { email, univName },
+              { email: univEmail, univName },
               {
                 onSuccess: (data) => {
                   if (data.success) {
+                    setIsCodeSent(true);
                     alert('인증코드가 전송되었습니다.\n메일함을 확인해주세요.');
                   } else {
                     alert('인증코드 전송에 실패했습니다.');
@@ -87,13 +90,13 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
 
     if (code) {
       certifyCode(
-        { email, univName, code },
+        { email: univEmail, univName, code },
         {
           onSuccess: (data) => {
             if (data.success) {
               setIsCodeValid(true);
               setUnivName(data.univName);
-              setEmail(data.certified_email);
+              setUnivEmail(data.certified_email);
               onSuccess(); // 인증 성공 시 Step2로 이동
             } else {
               setIsCodeValid(false);
@@ -112,9 +115,9 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
   const handleRevoke = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    if (email) {
+    if (univEmail) {
       clearUser(
-        { email },
+        { email: univEmail },
         {
           onSuccess: (data) => {
             if (data.success) {
@@ -132,43 +135,64 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
   };
 
   return (
-    <InputItem label="학생 인증">
-      <CustomInput
-        type="text"
-        placeholder="대학명"
-        value={univName}
-        onChange={(e) => setUnivName(e.target.value)}
-        valid={isUnivValid}
-        caution={checkUnivError}
-      />
-      <CustomInput
-        type="email"
-        placeholder="abc@1618.com"
-        value={email}
-        onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
-        valid={isEmailFormValid}
-        caution={'올바른 이메일 형식으로 입력해주세요.'}
-      />
-      <CTA
-        label={isEmailChecked ? '재발송' : '인증코드 발송'}
-        disabled={!(univName && isEmailFormValid)}
-        onClick={handleSendCode}
-      />
-      <Box display="flex" gap="12px" alignItems="center" alignSelf="stretch">
-        <CustomInput
-          type="text"
-          placeholder="인증코드"
-          value={code}
-          onChange={handleCodeChange}
-          valid={isCodeValid}
-          caution={certifyCodeError}
-        />
-        <CTA label="인증하기" display="block" disabled={!code} onClick={handleVerifyCode} />
-      </Box>
-      {/* 임시 */}
-      <CTA label="인증 취소" display="block" onClick={handleRevoke} />
-    </InputItem>
+    <>
+      <ProgressGuidance>학생 인증을 진행할게요.</ProgressGuidance>
+      <form className="progress-container">
+        <InputItem>
+          <Box width="100%" display="flex" flexDir="column">
+            <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+              대학명
+            </Text>
+            <CustomInput
+              type="text"
+              placeholder="OO대학교"
+              value={univName}
+              onChange={(e) => setUnivName(e.target.value)}
+              valid={isUnivValid}
+              caution={checkUnivError}
+            />
+          </Box>
+          <Box width="100%" display="flex" flexDir="column">
+            <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+              이메일
+            </Text>
+            <CustomInput
+              type="email"
+              placeholder="abc@1618.com"
+              value={univEmail}
+              onChange={(e) => handleEmailChange(e, setUnivEmail, setIsEmailFormValid)}
+              valid={isEmailFormValid}
+              caution={'올바른 이메일 형식으로 입력해주세요.'}
+            />
+          </Box>
+          <CTA
+            label={isEmailChecked ? '재발송' : '인증코드 발송'}
+            disabled={!(univName && isEmailFormValid)}
+            onClick={handleSendCode}
+          />
+          {isCodeSent && (
+            <Box display="flex" gap="12px" alignItems="center" width="100%">
+              <Box width="100%" display="flex" flexDir="column">
+                <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+                  인증코드
+                </Text>
+                <CustomInput
+                  type="number"
+                  value={code}
+                  onChange={handleCodeChange}
+                  valid={isCodeValid}
+                  caution={certifyCodeError}
+                />
+              </Box>
+              <CTA label="인증하기" display="block" disabled={!code} onClick={handleVerifyCode} />
+            </Box>
+          )}
+          {/* 임시 */}
+          <CTA label="인증 취소" display="block" onClick={handleRevoke} />
+        </InputItem>
+      </form>
+    </>
   );
 };
 
-export default StudentSeller1;
+export default StudentArtist1;

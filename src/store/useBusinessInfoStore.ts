@@ -1,10 +1,6 @@
 import { create } from 'zustand';
 
 type BusinessInfoState = {
-  phone: string;
-  setPhone: (phone: string) => void;
-  email: string;
-  setEmail: (email: string) => void;
   businessNumber: string;
   setBusinessNumber: (businessNumber: string) => void;
   startDate: string;
@@ -17,12 +13,6 @@ type BusinessInfoState = {
 };
 
 const useBusinessInfoStore = create<BusinessInfoState>((set) => ({
-  phone: '',
-  setPhone: (phone) => set({ phone }),
-
-  email: '',
-  setEmail: (email) => set({ email }),
-
   businessNumber: '',
   setBusinessNumber: (businessNumber) => set({ businessNumber }),
 
@@ -37,8 +27,6 @@ const useBusinessInfoStore = create<BusinessInfoState>((set) => ({
 
   clearBusinessInfo: () =>
     set({
-      phone: '',
-      email: '',
       businessNumber: '',
       startDate: '',
       presidentName: '',

@@ -5,10 +5,18 @@ import ArrowForward from '@/assets/icons/arrow-forward.svg?react';
 import FavoriteDefaultIcon from '@/assets/icons/favorite-default.svg?react';
 import HomeIcon from '@/assets/icons/home-default.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
+import SettingsIcon from '@/assets/icons/settings.svg?react';
 import StoreDefaultIcon from '@/assets/icons/store-default.svg?react';
 
 interface IconButtonProps {
-  icon: 'arrow-back' | 'arrow-forward' | 'favorite-default' | 'home' | 'search' | 'store-default';
+  icon:
+    | 'arrow-back'
+    | 'arrow-forward'
+    | 'favorite-default'
+    | 'home'
+    | 'search'
+    | 'settings'
+    | 'store-default';
   color?: string;
   onClick?: () => void;
 }
@@ -26,6 +34,8 @@ const IconButton = ({ icon, color = 'var(--color-black)', onClick }: IconButtonP
         return <HomeIcon style={{ color: `${color}` }} />;
       case 'search':
         return <SearchIcon />;
+      case 'settings':
+        return <SettingsIcon />;
       case 'store-default':
         return <StoreDefaultIcon />;
       default:

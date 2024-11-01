@@ -5,8 +5,8 @@ import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
 import { articleList } from '@/constants/home/articleList';
 import { homeAdList } from '@/constants/home/homeAdList';
-import AdBanner from './AdBanner';
-import ArticleBanner from './ArticleBanner';
+import AdBanner from './components/AdBanner';
+import ArticleBanner from './components/ArticleBanner';
 
 const Home = () => {
   return (

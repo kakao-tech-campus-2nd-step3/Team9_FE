@@ -9,7 +9,7 @@ import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
 import type { Mode } from '@/types';
 import DefaultProgress from './progresses/DefaultProgress';
-import SellerProgress from './progresses/SellerProgress';
+import SellerProgress from './progresses/ArtistProgress';
 import UserProgress from './progresses/UserProgress';
 
 const Signup = () => {

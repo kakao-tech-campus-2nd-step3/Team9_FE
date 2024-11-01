@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import FollowButton from '@/components/common/FollowButton';
 import Thumbnail from '@/components/common/Thumbnail';
 import LikesAndFollowers from '../LikesAndFollowers';
+import { useState } from 'react';
 
 interface ArtistItemProps {
   author: string;
@@ -14,12 +15,16 @@ interface ArtistItemProps {
 }
 
 const ArtistItem = ({ author, like, follower, size = 'default', src, alt }: ArtistItemProps) => {
+  const [isFollowed, setIsFollowed] = useState(false);
+
   return (
     <Wrapper size={size}>
       <Thumbnail ratio="square" src={src} alt={alt} />
       <MidWrapper>
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
-        <FollowButton color="white" children="팔로우" />
+        <FollowButton isFollowed={isFollowed} onClick={() => setIsFollowed(!isFollowed)}>
+          {isFollowed ? '팔로잉' : '팔로우'}
+        </FollowButton>
       </MidWrapper>
       <LikesAndFollowers like={like} follower={follower} />
     </Wrapper>

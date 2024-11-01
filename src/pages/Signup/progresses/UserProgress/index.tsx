@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import usePutUser from '@/apis/users/usePutUser';
 import CTA, { CTAContainer } from '@/components/common/CTA';
+import { RouterPath } from '@/routes/path';
 import useUserInfoStore from '@/store/useUserInfoStore';
 import { CustomInput, InputItem } from '../../components/InputItem';
 import MembershipClauses from '../../components/MembershipClauses';
@@ -9,16 +12,43 @@ import { ProgressBox, ProgressGuidance } from '../styles';
 import { handleBirthDateChange, handleEmailChange, handlePhoneChange } from '../utils';
 
 const UserProgress = () => {
-  const name = '000';
-  const { birthDate, setBirthDate, phone, setPhone, email, setEmail, interests, clearUserInfo } =
-    useUserInfoStore();
-  const [isBirthDateValid, setIsBirthDateValid] = useState<boolean>(true);
+  const {
+    name,
+    birthdate,
+    setBirthdate,
+    phone,
+    setPhone,
+    email,
+    setEmail,
+    address,
+    setAddress,
+    nickname,
+    setNickname,
+    interests,
+    // setInterests,
+    clearUserInfo,
+  } = useUserInfoStore();
+  const [isBirthdateValid, setIsBirthdateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
 
+  const { mutate: putUser } = usePutUser();
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    console.log('회원가입을 축하합니다!');
-    clearUserInfo();
+    putUser(
+      { name, birthdate, phone, email, address, nickname, hashTags: interests },
+      {
+        onSuccess: () => {
+          alert('회원가입을 축하합니다!');
+          clearUserInfo();
+          navigate(RouterPath.home);
+        },
+        onError: (error) => {
+          alert(error);
+        },
+      },
+    );
   };
 
   return (
@@ -34,9 +64,9 @@ const UserProgress = () => {
           <InputItem label="생년월일 *">
             <CustomInput
               type="date"
-              value={birthDate}
-              onChange={(e) => handleBirthDateChange(e, setBirthDate, setIsBirthDateValid)}
-              valid={isBirthDateValid}
+              value={birthdate}
+              onChange={(e) => handleBirthDateChange(e, setBirthdate, setIsBirthdateValid)}
+              valid={isBirthdateValid}
               caution="생년월일을 다시 확인해주세요."
             />
           </InputItem>
@@ -60,6 +90,22 @@ const UserProgress = () => {
               caution="이메일을 다시 확인해주세요."
             />
           </InputItem>
+          <InputItem label="주소">
+            <CustomInput
+              type="text"
+              placeholder=""
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </InputItem>
+          <InputItem label="닉네임">
+            <CustomInput
+              type="text"
+              placeholder=""
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+          </InputItem>
           <InputItem label="관심사">
             <CustomInput
               type="text"
@@ -75,7 +121,7 @@ const UserProgress = () => {
       <CTAContainer>
         <CTA
           label="가입하기"
-          disabled={!(birthDate && phone && isEmailFormValid)}
+          disabled={!(isBirthdateValid && isPhoneValid && isEmailFormValid)}
           onClick={handleSubmit}
         />
       </CTAContainer>

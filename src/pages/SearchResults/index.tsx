@@ -28,38 +28,74 @@ const SearchResults = () => {
   };
 
   return (
-    <>
-      <SearchBar goBack={goBack} />
-      <CategoryTabBar tabClick={handleTabClick} tabState={selectedTab} />
-      <div>
+    <PageContainer>
+      <HeaderSection>
+        <SearchBar goBack={goBack} />
+        <CategoryTabBar tabClick={handleTabClick} tabState={selectedTab} />
+      </HeaderSection>
+
+      <ContentSection>
         {selectedTab === '전체' && (
-          <div>
+          <AllContentWrapper>
             <ResultFont>{searchLen}건의 결과</ResultFont>
-            <SubTitleFont>
-              작품 <ResultLightFont>({searchWorkLen})</ResultLightFont>
-            </SubTitleFont>
-            <SwiperWrapper>
-              <SwiperFrame children={searchWork}></SwiperFrame>
-              <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
-            </SwiperWrapper>
+            <Section>
+              <SubTitleFont>
+                작품 <ResultLightFont>({searchWorkLen})</ResultLightFont>
+              </SubTitleFont>
+              <SwiperWrapper>
+                <SwiperFrame children={searchWork} />
+                <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
+              </SwiperWrapper>
+            </Section>
+
             <Gap height={12} />
-            <SubTitleFont>
-              작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
-            </SubTitleFont>
-            <SwiperWrapper>
-              <SwiperFrame children={searchArtist}></SwiperFrame>
-              <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
-            </SwiperWrapper>
-          </div>
+
+            <Section>
+              <SubTitleFont>
+                작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
+              </SubTitleFont>
+              <SwiperWrapper>
+                <SwiperFrame children={searchArtist} />
+                <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
+              </SwiperWrapper>
+            </Section>
+          </AllContentWrapper>
         )}
         {selectedTab === '작품' && <ArtWorkContents />}
         {selectedTab === '작가' && <ArtistContents />}
-      </div>
-    </>
+      </ContentSection>
+    </PageContainer>
   );
 };
 
 export default SearchResults;
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+`;
+
+const HeaderSection = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+`;
+
+const ContentSection = styled.div`
+  flex: 1;
+  overflow-y: auto;
+`;
+
+const AllContentWrapper = styled.div`
+  padding-bottom: 20px;
+`;
+
+const Section = styled.div`
+  margin-bottom: 16px;
+`;
 
 const ResultFont = styled.div`
   color: var(--color-black, #020715);

@@ -1,18 +1,34 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface TapWrapperProps {
+type TapWrapperProps = {
   isActive: boolean;
-}
+};
 
-const CategoryTabBar = () => {
-  const [onActive, setOnActive] = useState(0);
+type CategoryTabBarProps = {
+  tabClick: (tab: string) => void;
+  tabState: string;
+};
+
+const CategoryTabBar = ({ tabClick, tabState }: CategoryTabBarProps) => {
+  const [onActive, setOnActive] = useState('전체');
   const categoryList = ['전체', '작품', '작가'];
+
+  useEffect(() => {
+    setOnActive(tabState);
+  }, [tabState]);
 
   return (
     <Wrapper>
       {categoryList.map((category, index) => (
-        <TabWrapper key={index} isActive={onActive === index} onClick={() => setOnActive(index)}>
+        <TabWrapper
+          key={index}
+          isActive={onActive === category}
+          onClick={() => {
+            setOnActive(category);
+            tabClick(category);
+          }}
+        >
           {category}
         </TabWrapper>
       ))}

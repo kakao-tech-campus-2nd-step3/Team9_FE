@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import usePostStudentArtist from '@/apis/artists/usePostStudentArtist';
 import CTA, { CTAContainer } from '@/components/common/CTA';
-import HorizontalLine from '@/components/styles/HorizontalLine';
 import { RouterPath } from '@/routes/path';
 import useStudentInfoStore from '@/store/useStudentInfoStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
-import { ProgressBox } from '../../styles';
+import { ProgressBox, ProgressGuidance } from '../../styles';
 import { handleEmailChange } from '../../utils';
 
 const StudentSeller2 = () => {
@@ -41,8 +40,8 @@ const StudentSeller2 = () => {
     <>
       <ProgressBox>
         <ProgressBar percentage={100} />
-        <p className="progress-guidance">판매자 정보를 입력해주세요.</p>
-        <form className="progress-form">
+        <ProgressGuidance>판매자 정보를 입력해주세요.</ProgressGuidance>
+        <form className="progress-container">
           <InputItem label="이메일 *">
             <CustomInput
               type="email"
@@ -74,7 +73,6 @@ const StudentSeller2 = () => {
               valid={true}
             />
           </InputItem>
-          <HorizontalLine />
           <MembershipClauses />
         </form>
       </ProgressBox>

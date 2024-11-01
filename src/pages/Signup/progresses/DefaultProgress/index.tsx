@@ -21,7 +21,7 @@ const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProp
         <br />
         회원 유형을 선택해주세요.
       </ProgressGuidance>
-      <form className="progress-form">
+      <div className="progress-container">
         <SelectItem>
           <Button
             label="일반 회원"
@@ -34,7 +34,7 @@ const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProp
             onClick={() => handleSelect('seller')}
           />
         </SelectItem>
-      </form>
+      </div>
     </ProgressBox>
   );
 };

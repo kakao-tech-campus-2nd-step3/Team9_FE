@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import CTA, { CTAContainer } from '@/components/common/CTA';
-import HorizontalLine from '@/components/styles/HorizontalLine';
 import useUserInfoStore from '@/store/useUserInfoStore';
 import { CustomInput, InputItem } from '../../components/InputItem';
 import MembershipClauses from '../../components/MembershipClauses';
@@ -31,7 +30,7 @@ const UserProgress = () => {
           <br />
           회원 정보를 입력해주세요.
         </ProgressGuidance>
-        <form className="progress-form">
+        <form className="progress-container">
           <InputItem label="생년월일 *">
             <CustomInput
               type="date"
@@ -70,7 +69,6 @@ const UserProgress = () => {
               readOnly
             />
           </InputItem>
-          <HorizontalLine />
           <MembershipClauses />
         </form>
       </ProgressBox>

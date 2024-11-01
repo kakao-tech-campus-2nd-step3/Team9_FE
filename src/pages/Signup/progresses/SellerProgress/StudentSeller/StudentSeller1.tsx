@@ -137,58 +137,60 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
   return (
     <>
       <ProgressGuidance>학생 인증을 진행할게요.</ProgressGuidance>
-      <InputItem>
-        <Box width="100%" display="flex" flexDir="column">
-          <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
-            대학명
-          </Text>
-          <CustomInput
-            type="text"
-            placeholder="OO대학교"
-            value={univName}
-            onChange={(e) => setUnivName(e.target.value)}
-            valid={isUnivValid}
-            caution={checkUnivError}
-          />
-        </Box>
-        <Box width="100%" display="flex" flexDir="column">
-          <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
-            이메일
-          </Text>
-          <CustomInput
-            type="email"
-            placeholder="abc@1618.com"
-            value={email}
-            onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
-            valid={isEmailFormValid}
-            caution={'올바른 이메일 형식으로 입력해주세요.'}
-          />
-        </Box>
-        <CTA
-          label={isEmailChecked ? '재발송' : '인증코드 발송'}
-          disabled={!(univName && isEmailFormValid)}
-          onClick={handleSendCode}
-        />
-        {isCodeSent && (
-          <Box display="flex" gap="12px" alignItems="center" width="100%">
-            <Box width="100%" display="flex" flexDir="column">
-              <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
-                인증코드
-              </Text>
-              <CustomInput
-                type="number"
-                value={code}
-                onChange={handleCodeChange}
-                valid={isCodeValid}
-                caution={certifyCodeError}
-              />
-            </Box>
-            <CTA label="인증하기" display="block" disabled={!code} onClick={handleVerifyCode} />
+      <form className="progress-container">
+        <InputItem>
+          <Box width="100%" display="flex" flexDir="column">
+            <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+              대학명
+            </Text>
+            <CustomInput
+              type="text"
+              placeholder="OO대학교"
+              value={univName}
+              onChange={(e) => setUnivName(e.target.value)}
+              valid={isUnivValid}
+              caution={checkUnivError}
+            />
           </Box>
-        )}
-        {/* 임시 */}
-        <CTA label="인증 취소" display="block" onClick={handleRevoke} />
-      </InputItem>
+          <Box width="100%" display="flex" flexDir="column">
+            <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+              이메일
+            </Text>
+            <CustomInput
+              type="email"
+              placeholder="abc@1618.com"
+              value={email}
+              onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
+              valid={isEmailFormValid}
+              caution={'올바른 이메일 형식으로 입력해주세요.'}
+            />
+          </Box>
+          <CTA
+            label={isEmailChecked ? '재발송' : '인증코드 발송'}
+            disabled={!(univName && isEmailFormValid)}
+            onClick={handleSendCode}
+          />
+          {isCodeSent && (
+            <Box display="flex" gap="12px" alignItems="center" width="100%">
+              <Box width="100%" display="flex" flexDir="column">
+                <Text fontSize="var(--font-size-xs)" color="var(--color-gray-dk)">
+                  인증코드
+                </Text>
+                <CustomInput
+                  type="number"
+                  value={code}
+                  onChange={handleCodeChange}
+                  valid={isCodeValid}
+                  caution={certifyCodeError}
+                />
+              </Box>
+              <CTA label="인증하기" display="block" disabled={!code} onClick={handleVerifyCode} />
+            </Box>
+          )}
+          {/* 임시 */}
+          <CTA label="인증 취소" display="block" onClick={handleRevoke} />
+        </InputItem>
+      </form>
     </>
   );
 };

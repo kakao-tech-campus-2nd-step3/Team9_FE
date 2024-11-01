@@ -25,7 +25,7 @@ const SellerProgress = () => {
               <br />
               작가 유형을 선택해주세요.
             </ProgressGuidance>
-            <div className="progress-form">
+            <div className="progress-container">
               <SelectItem>
                 <Button
                   label="학생"

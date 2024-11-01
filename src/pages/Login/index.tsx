@@ -21,7 +21,6 @@ const Login = () => {
   return (
     <Wrapper backgroundImage={backgroundImage}>
       <Header
-        mode="seller"
         leftSideChildren={
           <IconButton icon="arrow-back" color="var(--color-white)" onClick={() => navigate(-1)} />
         }

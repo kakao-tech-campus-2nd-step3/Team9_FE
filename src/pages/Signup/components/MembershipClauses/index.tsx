@@ -61,4 +61,11 @@ const Wrapper = styled.ul`
   align-self: stretch;
   display: flex;
   flex-direction: column;
+  padding: 0 16px;
+
+  ::before {
+    content: '';
+    border-top: 1px solid var(--color-gray-lt);
+    margin-bottom: 16px;
+  }
 `;

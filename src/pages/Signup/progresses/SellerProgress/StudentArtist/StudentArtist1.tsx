@@ -11,11 +11,11 @@ import { CustomInput, InputItem } from '../../../components/InputItem';
 import { ProgressGuidance } from '../../styles';
 import { handleEmailChange } from '../../utils';
 
-type StudentSeller1Props = {
+type StudentArtist1Props = {
   onSuccess: () => void;
 };
 
-const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
+const StudentArtist1 = ({ onSuccess }: StudentArtist1Props) => {
   const { univEmail, setUnivEmail, univName, setUnivName } = useStudentInfoStore();
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
@@ -195,4 +195,4 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
   );
 };
 
-export default StudentSeller1;
+export default StudentArtist1;

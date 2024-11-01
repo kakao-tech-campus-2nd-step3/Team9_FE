@@ -3,11 +3,11 @@ import { useState } from 'react';
 import Button from '@/components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
-import BusinessSeller1 from './BusinessSeller/BusinessSeller1';
-import StudentSeller1 from './StudentSeller/StudentSeller1';
-import StudentSeller2 from './StudentSeller/StudentSeller2';
+import BusinessArtist1 from './BusinessArtist/BusinessArtist1';
+import StudentArtist1 from './StudentArtist/StudentArtist1';
+import StudentArtist2 from './StudentArtist/StudentArtist2';
 
-const SellerProgress = () => {
+const ArtistProgress = () => {
   const name = '000';
   const [artistType, setArtistType] = useState<'student' | 'business' | undefined>();
   const [currentStep, setCurrentStep] = useState<1 | 2>(1);
@@ -39,13 +39,13 @@ const SellerProgress = () => {
                 />
               </SelectItem>
             </div>
-            {artistType === 'student' && <StudentSeller1 onSuccess={goToStep2} />}
-            {artistType === 'business' && <BusinessSeller1 onSuccess={goToStep2} />}
+            {artistType === 'student' && <StudentArtist1 onSuccess={goToStep2} />}
+            {artistType === 'business' && <BusinessArtist1 onSuccess={goToStep2} />}
           </>
         )}
         {currentStep === 2 && (
           <>
-            {artistType === 'student' && <StudentSeller2 />}
+            {artistType === 'student' && <StudentArtist2 />}
             {artistType === 'business' && <></>}
           </>
         )}
@@ -54,4 +54,4 @@ const SellerProgress = () => {
   );
 };
 
-export default SellerProgress;
+export default ArtistProgress;

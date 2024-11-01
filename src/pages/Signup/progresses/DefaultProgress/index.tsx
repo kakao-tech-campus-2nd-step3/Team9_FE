@@ -30,8 +30,8 @@ const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProp
           />
           <Button
             label="작가(판매자) 회원"
-            isSelected={memberType === 'seller'}
-            onClick={() => handleSelect('seller')}
+            isSelected={memberType === 'artist'}
+            onClick={() => handleSelect('artist')}
           />
         </SelectItem>
       </div>

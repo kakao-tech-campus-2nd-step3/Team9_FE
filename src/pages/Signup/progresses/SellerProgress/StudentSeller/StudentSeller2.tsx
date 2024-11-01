@@ -1,33 +1,66 @@
 import { Box } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import usePostStudentArtist from '@/apis/artists/usePostStudentArtist';
+import usePutUser from '@/apis/users/usePutUser';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import { RouterPath } from '@/routes/path';
 import useStudentInfoStore from '@/store/useStudentInfoStore';
+import useUserInfoStore from '@/store/useUserInfoStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance } from '../../styles';
-import { handleEmailChange } from '../../utils';
+import { handleBirthDateChange, handlePhoneChange } from '../../utils';
 
 const StudentSeller2 = () => {
-  const { email, setEmail, univName, major, setMajor, about, setAbout, clearStudentInfo } =
+  const {
+    name,
+    birthdate,
+    setBirthdate,
+    phone,
+    setPhone,
+    email,
+    setEmail,
+    address,
+    setAddress,
+    nickname,
+    setNickname,
+    clearUserInfo,
+  } = useUserInfoStore();
+  const { univEmail, univName, major, setMajor, about, setAbout, clearStudentInfo } =
     useStudentInfoStore();
-  const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
+  const [isBirthdateValid, setIsBirthdateValid] = useState<boolean>(true);
+  const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
 
+  useEffect(() => {
+    setEmail(univEmail);
+  }, [univEmail]);
+
+  const { mutate: putUser } = usePutUser();
   const { mutate: postStudentArtist } = usePostStudentArtist();
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    postStudentArtist(
-      { schoolEmail: email, schoolName: univName, major, about },
+    putUser(
+      { name, birthdate, phone, email, address, nickname },
       {
         onSuccess: () => {
-          alert('회원가입을 축하합니다!');
-          clearStudentInfo();
-          navigate(RouterPath.home);
+          postStudentArtist(
+            { schoolEmail: univEmail, schoolName: univName, major, about },
+            {
+              onSuccess: () => {
+                alert('회원가입을 축하합니다!');
+                clearUserInfo();
+                clearStudentInfo();
+                navigate(RouterPath.home);
+              },
+              onError: (error) => {
+                alert(error);
+              },
+            },
+          );
         },
         onError: (error) => {
           alert(error);
@@ -40,16 +73,37 @@ const StudentSeller2 = () => {
     <>
       <ProgressBox>
         <ProgressBar percentage={100} />
-        <ProgressGuidance>판매자 정보를 입력해주세요.</ProgressGuidance>
+        <ProgressGuidance>
+          {name} 님, 반가워요.
+          <br />
+          판매자 정보를 입력해주세요.
+        </ProgressGuidance>
         <form className="progress-container">
+          <InputItem label="생년월일 *">
+            <CustomInput
+              type="date"
+              value={birthdate}
+              onChange={(e) => handleBirthDateChange(e, setBirthdate, setIsBirthdateValid)}
+              valid={isBirthdateValid}
+              caution="생년월일을 다시 확인해주세요."
+            />
+          </InputItem>
+          <InputItem label="휴대 전화 *">
+            <CustomInput
+              type="tel"
+              placeholder="000-0000-0000"
+              value={phone}
+              onChange={(e) => handlePhoneChange(e, setPhone, setIsPhoneValid)}
+              valid={isPhoneValid}
+              caution="휴대 전화를 다시 확인해주세요."
+            />
+          </InputItem>
           <InputItem label="이메일 *">
             <CustomInput
               type="email"
-              placeholder="abc@1618.com"
-              value={email}
-              onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
-              valid={isEmailFormValid}
+              value={univEmail}
               caution="이메일을 다시 확인해주세요."
+              readOnly
             />
           </InputItem>
           <InputItem label="학생 정보 *">
@@ -63,6 +117,22 @@ const StudentSeller2 = () => {
                 valid={true}
               />
             </Box>
+          </InputItem>
+          <InputItem label="주소">
+            <CustomInput
+              type="text"
+              placeholder=""
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </InputItem>
+          <InputItem label="닉네임">
+            <CustomInput
+              type="text"
+              placeholder=""
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
           </InputItem>
           <InputItem label="작가 소개글">
             <CustomInput
@@ -79,7 +149,7 @@ const StudentSeller2 = () => {
       <CTAContainer>
         <CTA
           label="가입하기"
-          disabled={!(isEmailFormValid && univName && major)}
+          disabled={!(isBirthdateValid && isPhoneValid && univName && major)}
           onClick={handleSubmit}
         />
       </CTAContainer>

@@ -1,12 +1,8 @@
 import { create } from 'zustand';
 
 type StudentInfoState = {
-  birthDate: string;
-  setBirthDate: (birthDate: string) => void;
-  phone: string;
-  setPhone: (phone: string) => void;
-  email: string;
-  setEmail: (email: string) => void;
+  univEmail: string;
+  setUnivEmail: (email: string) => void;
   univName: string;
   setUnivName: (univName: string) => void;
   major: string;
@@ -17,12 +13,8 @@ type StudentInfoState = {
 };
 
 const useStudentInfoStore = create<StudentInfoState>((set) => ({
-  birthDate: '',
-  setBirthDate: (birthDate) => set({ birthDate }),
-  phone: '',
-  setPhone: (phone) => set({ phone }),
-  email: '',
-  setEmail: (email) => set({ email }),
+  univEmail: '',
+  setUnivEmail: (univEmail) => set({ univEmail }),
   univName: '',
   setUnivName: (univName) => set({ univName }),
   major: '',
@@ -31,9 +23,7 @@ const useStudentInfoStore = create<StudentInfoState>((set) => ({
   setAbout: (about) => set({ about }),
   clearStudentInfo: () =>
     set({
-      birthDate: '',
-      phone: '',
-      email: '',
+      univEmail: '',
       univName: '',
       major: '',
       about: '',

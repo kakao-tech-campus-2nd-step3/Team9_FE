@@ -10,7 +10,7 @@ type PutUserProps = {
   birthdate: string;
   phone: string;
   address?: string;
-  hashTags: string[];
+  hashTags?: string[];
 };
 
 async function putUser({

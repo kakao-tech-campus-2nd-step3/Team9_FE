@@ -16,7 +16,7 @@ type StudentSeller1Props = {
 };
 
 const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
-  const { email, setEmail, univName, setUnivName } = useStudentInfoStore();
+  const { univEmail, setUnivEmail, univName, setUnivName } = useStudentInfoStore();
   const [isUnivValid, setIsUnivValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);
   const [isEmailChecked, setIsEmailChecked] = useState<boolean>(false);
@@ -47,7 +47,7 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
             setCertifyEmailError('');
 
             certifyEmail(
-              { email, univName },
+              { email: univEmail, univName },
               {
                 onSuccess: (data) => {
                   if (data.success) {
@@ -90,13 +90,13 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
 
     if (code) {
       certifyCode(
-        { email, univName, code },
+        { email: univEmail, univName, code },
         {
           onSuccess: (data) => {
             if (data.success) {
               setIsCodeValid(true);
               setUnivName(data.univName);
-              setEmail(data.certified_email);
+              setUnivEmail(data.certified_email);
               onSuccess(); // 인증 성공 시 Step2로 이동
             } else {
               setIsCodeValid(false);
@@ -115,9 +115,9 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
   const handleRevoke = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    if (email) {
+    if (univEmail) {
       clearUser(
-        { email },
+        { email: univEmail },
         {
           onSuccess: (data) => {
             if (data.success) {
@@ -159,8 +159,8 @@ const StudentSeller1 = ({ onSuccess }: StudentSeller1Props) => {
             <CustomInput
               type="email"
               placeholder="abc@1618.com"
-              value={email}
-              onChange={(e) => handleEmailChange(e, setEmail, setIsEmailFormValid)}
+              value={univEmail}
+              onChange={(e) => handleEmailChange(e, setUnivEmail, setIsEmailFormValid)}
               valid={isEmailFormValid}
               caution={'올바른 이메일 형식으로 입력해주세요.'}
             />

@@ -6,8 +6,8 @@ import usePostStudentArtist from '@/apis/artists/usePostStudentArtist';
 import usePutUser from '@/apis/users/usePutUser';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import { RouterPath } from '@/routes/path';
-import useStudentInfoStore from '@/store/useStudentInfoStore';
-import useUserInfoStore from '@/store/useUserInfoStore';
+import useStudentArtistStore from '@/store/useStudentArtistStore';
+import useUserStore from '@/store/useUserStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import MembershipClauses from '../../../components/MembershipClauses';
 import ProgressBar from '../../../components/ProgressBar';
@@ -28,9 +28,9 @@ const StudentArtist2 = () => {
     nickname,
     setNickname,
     clearUserInfo,
-  } = useUserInfoStore();
+  } = useUserStore();
   const { univEmail, univName, major, setMajor, about, setAbout, clearStudentInfo } =
-    useStudentInfoStore();
+    useStudentArtistStore();
   const [isBirthdateValid, setIsBirthdateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
 

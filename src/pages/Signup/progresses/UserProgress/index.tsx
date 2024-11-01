@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import usePutUser from '@/apis/users/usePutUser';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import { RouterPath } from '@/routes/path';
-import useUserInfoStore from '@/store/useUserInfoStore';
+import useUserStore from '@/store/useUserStore';
 import { CustomInput, InputItem } from '../../components/InputItem';
 import MembershipClauses from '../../components/MembershipClauses';
 import ProgressBar from '../../components/ProgressBar';
@@ -27,7 +27,7 @@ const UserProgress = () => {
     interests,
     // setInterests,
     clearUserInfo,
-  } = useUserInfoStore();
+  } = useUserStore();
   const [isBirthdateValid, setIsBirthdateValid] = useState<boolean>(true);
   const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
   const [isEmailFormValid, setIsEmailFormValid] = useState<boolean>(true);

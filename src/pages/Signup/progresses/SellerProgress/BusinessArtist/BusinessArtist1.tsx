@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import useVerifyBusiness from '@/apis/nts-businessman/useVerifyBusiness';
 import CTA from '@/components/common/CTA';
-import useBusinessInfoStore from '@/store/useBusinessInfoStore';
+import useBusinessInfoStore from '@/store/useBusinessArtistStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import { ProgressGuidance } from '../../styles';
 

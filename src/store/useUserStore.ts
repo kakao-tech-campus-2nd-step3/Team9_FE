@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type UserInfoState = {
+type UserState = {
   name: string;
   setName: (name: string) => void;
   birthdate: string;
@@ -20,7 +20,7 @@ type UserInfoState = {
   clearUserInfo: () => void;
 };
 
-const useUserInfoStore = create<UserInfoState>((set) => ({
+const useUserStore = create<UserState>((set) => ({
   name: '',
   setName: (name) => set({ name }),
   birthdate: '',
@@ -54,4 +54,4 @@ const useUserInfoStore = create<UserInfoState>((set) => ({
     }),
 }));
 
-export default useUserInfoStore;
+export default useUserStore;

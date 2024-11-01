@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type BusinessInfoState = {
+type BusinessArtistState = {
   businessNumber: string;
   setBusinessNumber: (businessNumber: string) => void;
   startDate: string;
@@ -12,7 +12,7 @@ type BusinessInfoState = {
   clearBusinessInfo: () => void;
 };
 
-const useBusinessInfoStore = create<BusinessInfoState>((set) => ({
+const useBusinessArtistStore = create<BusinessArtistState>((set) => ({
   businessNumber: '',
   setBusinessNumber: (businessNumber) => set({ businessNumber }),
 
@@ -34,4 +34,4 @@ const useBusinessInfoStore = create<BusinessInfoState>((set) => ({
     }),
 }));
 
-export default useBusinessInfoStore;
+export default useBusinessArtistStore;

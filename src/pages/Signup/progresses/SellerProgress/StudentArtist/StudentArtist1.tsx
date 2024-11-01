@@ -6,7 +6,7 @@ import useCertifyEmail from '@/apis/univ-cert/useCertifyEmail';
 import useCheckUniv from '@/apis/univ-cert/useCheckUniv';
 import useClearUser from '@/apis/univ-cert/useClearUser';
 import CTA from '@/components/common/CTA';
-import useStudentInfoStore from '@/store/useStudentInfoStore';
+import useStudentInfoStore from '@/store/useStudentArtistStore';
 import { CustomInput, InputItem } from '../../../components/InputItem';
 import { ProgressGuidance } from '../../styles';
 import { handleEmailChange } from '../../utils';

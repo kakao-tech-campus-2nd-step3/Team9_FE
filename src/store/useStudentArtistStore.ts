@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type StudentInfoState = {
+type StudentArtistState = {
   univEmail: string;
   setUnivEmail: (email: string) => void;
   univName: string;
@@ -12,7 +12,7 @@ type StudentInfoState = {
   clearStudentInfo: () => void;
 };
 
-const useStudentInfoStore = create<StudentInfoState>((set) => ({
+const useStudentArtistStore = create<StudentArtistState>((set) => ({
   univEmail: '',
   setUnivEmail: (univEmail) => set({ univEmail }),
   univName: '',
@@ -30,4 +30,4 @@ const useStudentInfoStore = create<StudentInfoState>((set) => ({
     }),
 }));
 
-export default useStudentInfoStore;
+export default useStudentArtistStore;

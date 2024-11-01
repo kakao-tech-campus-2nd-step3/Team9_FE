@@ -5,16 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { RouterPath } from '@/routes/path';
-import useStudentInfoStore from '@/store/useStudentInfoStore';
-import useUserInfoStore from '@/store/useUserInfoStore';
+import useStudentArtistStore from '@/store/useStudentArtistStore';
+import useUserStore from '@/store/useUserStore';
 import type { Mode } from '@/types';
 import DefaultProgress from './progresses/DefaultProgress';
 import SellerProgress from './progresses/SellerProgress';
 import UserProgress from './progresses/UserProgress';
 
 const Signup = () => {
-  const { clearUserInfo } = useUserInfoStore();
-  const { clearStudentInfo } = useStudentInfoStore();
+  const { clearUserInfo } = useUserStore();
+  const { clearStudentInfo } = useStudentArtistStore();
   const navigate = useNavigate();
   const [memberType, setMemberType] = useState<Mode | undefined>();
   const [progressStep, setProgressStep] = useState<'default' | 'user' | 'artist'>('default');

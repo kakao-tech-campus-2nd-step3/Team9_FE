@@ -17,7 +17,7 @@ const Signup = () => {
   const { clearStudentInfo } = useStudentArtistStore();
   const navigate = useNavigate();
   const [memberType, setMemberType] = useState<Mode | undefined>();
-  const [progressStep, setProgressStep] = useState<'default' | 'user' | 'artist'>('default');
+  const [progressStep, setProgressStep] = useState<'default' | Mode>('default');
 
   const handleMemberTypeSelection = (type: Mode) => {
     setMemberType(type);

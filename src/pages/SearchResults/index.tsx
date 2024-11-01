@@ -81,7 +81,7 @@ const HeaderSection = styled.div`
   position: sticky;
   top: 0;
   z-index: 10;
-  background: white;
+  background: var(--color-white);
 `;
 
 const ContentSection = styled.div`
@@ -98,8 +98,8 @@ const Section = styled.div`
 `;
 
 const ResultFont = styled.div`
-  color: var(--color-black, #020715);
-  font-size: 1.4rem;
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -109,8 +109,8 @@ const ResultFont = styled.div`
 `;
 
 const SubTitleFont = styled.div`
-  color: var(--color-black, #020715);
-  font-size: 1.4rem;
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -120,8 +120,8 @@ const SubTitleFont = styled.div`
 `;
 
 const ResultLightFont = styled.div`
-  color: var(--color-black, #020715);
-  font-size: 1.4rem;
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
   font-style: normal;
   font-weight: 400;
   line-height: normal;

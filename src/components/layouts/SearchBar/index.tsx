@@ -4,7 +4,7 @@ import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { HEADER_HEIGHT } from '../Header';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
 
@@ -17,9 +17,12 @@ interface SearchBarProps {
 
 const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialSearchWord = searchParams.get('query') || '';
+
   const { register, handleSubmit, watch, setValue, formState } = useForm<{ searchWord: string }>({
     defaultValues: {
-      searchWord: '',
+      searchWord: initialSearchWord,
     },
     mode: 'onSubmit',
   });
@@ -40,15 +43,19 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
     const existingIndex = searchArray.findIndex(
       (item: { key: string; keyword: string }) => item.keyword === searchWord,
     );
+
     if (existingIndex !== -1) {
       searchArray.splice(existingIndex, 1);
     }
+
     const newItem = { keyword: searchWord, key: generateRandomKey() };
     searchArray = [newItem, ...searchArray];
     if (searchArray.length > MAX_RECENT_SEARCHES) {
       searchArray = searchArray.slice(0, MAX_RECENT_SEARCHES);
     }
+
     localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
+    setSearchParams({ query: searchWord });
     navigate(`/results?query=${searchWord}`);
   };
 
@@ -133,7 +140,7 @@ const CancelIconButton = styled(CancelIcon)`
 `;
 
 const ErrorMessage = styled.div`
-  color: red; /* 오류 메시지 색상 설정 */
-  font-size: var(--font-size-sm);
-  margin-top: 4px; /* 입력 필드와 오류 메시지 간의 간격 설정 */
+  color: red;
+  font-size: var(—font-size-sm);
+  margin-top: 4px;
 `;

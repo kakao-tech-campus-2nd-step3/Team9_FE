@@ -8,10 +8,9 @@ import DropdownButton from './Dropdown';
 
 const ArtWorkContents = () => {
   const searchWorkLen = searchWork.length;
-  const originalSearchWork = useRef(searchWork); // Holds original unsorted list
-
+  const originalSearchWork = useRef(searchWork);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('최신순'); // Default option
+  const [selectedOption, setSelectedOption] = useState('최신순');
   const [sortedWork, setSortedWork] = useState(searchWork);
 
   const options = ['최신순', '가격순', '제목순'];
@@ -30,7 +29,7 @@ const ArtWorkContents = () => {
 
   useEffect(() => {
     if (selectedOption === '최신순') {
-      setSortedWork([...originalSearchWork.current]); // Reset to original order
+      setSortedWork([...originalSearchWork.current]);
     } else if (selectedOption === '가격순') {
       setSortedWork([...searchWork].sort(sortByPrice));
     } else if (selectedOption === '제목순') {

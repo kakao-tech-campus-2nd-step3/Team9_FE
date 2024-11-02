@@ -54,9 +54,10 @@ const Wrapper = styled.div`
 
 const TabWrapper = styled.div<TapWrapperProps>`
   width: 100%;
-  padding: 0px 8px;
+  padding: 11px 58px;
   cursor: pointer;
   text-align: center;
 
   color: ${({ isActive }) => (isActive ? 'var(--color-black)' : 'var(--color-gray-dk)')};
+  border-bottom: ${({ isActive }) => (isActive ? '2px solid var(--color-black)' : 'none')};
 `;

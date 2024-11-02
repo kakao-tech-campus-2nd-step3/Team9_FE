@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const MoreButton = styled.button`
   display: flex;
-  width: 328px;
+  width: 90%;
   height: 42px;
   min-height: 42px;
   padding: 4px 8px;
@@ -10,7 +10,7 @@ const MoreButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  border-radius: 2px;
+  border-radius: var(--border-radius);
   border: 1px solid var(--color-gray-md);
   background: var(--color-white);
 `;

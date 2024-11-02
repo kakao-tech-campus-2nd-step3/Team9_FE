@@ -1,16 +1,16 @@
-import { useNavigate } from 'react-router-dom';
-import SearchBar from '@/components/layouts/SearchBar';
-import CategoryTabBar from './components/CategoryTabBar';
-import SwiperFrame from './components/SwiperFrame';
-import searchWork from '@/apis/data/searchWork';
 import searchArtist from '@/apis/data/searchArtist';
+import searchWork from '@/apis/data/searchWork';
+import SearchBar from '@/components/layouts/SearchBar';
+import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
+import styled from '@emotion/styled';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
-import styled from '@emotion/styled';
-import Gap from '@/components/styles/Gap';
+import CategoryTabBar from './components/CategoryTabBar';
 import MoreButton from './components/MoreButton';
+import SwiperFrame from './components/SwiperFrame';
 
 const SearchResults = () => {
   const [selectedTab, setSelectedTab] = useState('전체');
@@ -70,12 +70,7 @@ const SearchResults = () => {
 
 export default SearchResults;
 
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  position: relative;
-`;
+const PageContainer = styled.div``;
 
 const HeaderSection = styled.div`
   position: sticky;
@@ -100,7 +95,6 @@ const Section = styled.div`
 const ResultFont = styled.div`
   color: var(--color-black);
   font-size: var(--font-size-sm);
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
   display: flex;
@@ -111,7 +105,6 @@ const ResultFont = styled.div`
 const SubTitleFont = styled.div`
   color: var(--color-black);
   font-size: var(--font-size-sm);
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
   display: flex;
@@ -122,9 +115,7 @@ const SubTitleFont = styled.div`
 const ResultLightFont = styled.div`
   color: var(--color-black);
   font-size: var(--font-size-sm);
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   margin-left: 2px;
 `;
 

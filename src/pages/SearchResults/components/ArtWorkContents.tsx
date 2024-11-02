@@ -1,10 +1,10 @@
-import Grid from '@/components/styles/Grid';
 import searchWork from '@/apis/data/searchWork';
 import ProductItem from '@/components/common/ProductItem';
-import styled from '@emotion/styled';
-import DropdownButton from './Dropdown';
-import { useEffect, useState, useRef } from 'react';
+import Grid from '@/components/styles/Grid';
 import { SearchWork } from '@/types';
+import styled from '@emotion/styled';
+import { useEffect, useRef, useState } from 'react';
+import DropdownButton from './Dropdown';
 
 const ArtWorkContents = () => {
   const searchWorkLen = searchWork.length;
@@ -68,8 +68,8 @@ const ArtWorkContents = () => {
 export default ArtWorkContents;
 
 const ResultWrapper = styled.div`
-  color: var(--color-black, #020715);
-  font-size: 1.4rem;
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -77,5 +77,6 @@ const ResultWrapper = styled.div`
   flex-direction: row;
   padding: 8px 16px;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 `;

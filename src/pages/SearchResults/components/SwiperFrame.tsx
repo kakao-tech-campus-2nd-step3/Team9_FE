@@ -1,14 +1,14 @@
-import { SearchArtist, SearchWork } from '@/types/index';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar, Navigation } from 'swiper/modules';
-import ProductItem from '@/components/common/ProductItem';
 import ArtistItem from '@/components/common/ArtistItem';
+import ProductItem from '@/components/common/ProductItem';
+import { SearchArtist, SearchWork } from '@/types/index';
+import { Navigation, Scrollbar } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import styled from '@emotion/styled';
 
 import 'swiper/css';
-import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
+import 'swiper/css/scrollbar';
 
 interface SwiperFrame {
   children: SearchArtist[] | SearchWork[];
@@ -65,7 +65,7 @@ const SwiperWrapper = styled(Swiper)`
     padding: 5px;
 
     &:hover {
-      color: #fff;
+      color: var(--color-white);
     }
   }
 

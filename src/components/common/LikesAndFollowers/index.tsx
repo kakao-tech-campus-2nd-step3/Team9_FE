@@ -56,6 +56,6 @@ const RightWrapper = styled.div`
 const Divider = styled.div`
   width: 0.1rem;
   height: 1.6rem;
-  background-color: var(—color-gray-dk);
+  background-color: var(--color-gray-dk);
   margin: 0 0.8rem;
 `;

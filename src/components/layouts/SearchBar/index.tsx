@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
-import { HEADER_HEIGHT } from '../Header';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
+import { useForm } from 'react-hook-form';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { HEADER_HEIGHT } from '../Header';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 const MAX_RECENT_SEARCHES = 10;
@@ -141,6 +141,6 @@ const CancelIconButton = styled(CancelIcon)`
 
 const ErrorMessage = styled.div`
   color: red;
-  font-size: var(—font-size-sm);
+  font-size: var(--font-size-sm);
   margin-top: 4px;
 `;

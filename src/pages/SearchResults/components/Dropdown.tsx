@@ -42,7 +42,7 @@ const DropButton = styled.button`
   padding: 8px 16px;
   background-color: var(--color-white);
   cursor: pointer;
-  width: 85px;
+  width: 100px;
   font-weight: 600;
 `;
 
@@ -56,7 +56,7 @@ const UlWrapper = styled.ul`
   top: 100%;
   left: 0;
   padding: 8px 4px;
-  width: 85px;
+  width: 100px;
   background-color: var(--color-white);
   cursor: pointer;
   font-weight: 400;

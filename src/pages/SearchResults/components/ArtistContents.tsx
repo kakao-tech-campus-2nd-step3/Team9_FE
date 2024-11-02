@@ -1,10 +1,10 @@
-import Grid from '@/components/styles/Grid';
 import searchArtist from '@/apis/data/searchArtist';
 import ArtistItem from '@/components/common/ArtistItem';
-import styled from '@emotion/styled';
-import { useState, useRef, useEffect } from 'react';
-import DropdownButton from './Dropdown';
+import Grid from '@/components/styles/Grid';
 import { SearchArtist } from '@/types';
+import styled from '@emotion/styled';
+import { useEffect, useRef, useState } from 'react';
+import DropdownButton from './Dropdown';
 
 const ArtistContents = () => {
   const searchArtistLen = searchArtist.length;

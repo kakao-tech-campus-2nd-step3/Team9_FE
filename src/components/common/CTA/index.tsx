@@ -1,3 +1,4 @@
+import Z_INDEX from '@/styles/z_index';
 import styled from '@emotion/styled';
 
 type CTAProps = {
@@ -75,5 +76,5 @@ export const CTAContainer = styled.div`
   padding: 6px 16px;
   background-color: var(--color-white);
   border-top: 1px solid var(--color-gray-md);
-  z-index: 100;
+  z-index: ${Z_INDEX.CTA};
 `;

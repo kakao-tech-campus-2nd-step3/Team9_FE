@@ -6,21 +6,23 @@ import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 import DropdownButton from './Dropdown';
 
+export type ArtistOptions = '최신순' | '인기순' | '이름순' | '팔로우순';
+
 const ArtistContents = () => {
   const searchArtistLen = searchArtist.length;
   const originalSearchArtist = useRef(searchArtist);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('최신순');
+  const [selectedOption, setSelectedOption] = useState<ArtistOptions>('최신순');
   const [sortedArtist, setSortedArtist] = useState(searchArtist);
 
-  const options = ['최신순', '인기순', '이름순', '팔로우순'];
+  const options: ArtistOptions[] = ['최신순', '인기순', '이름순', '팔로우순'];
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelect = (option: string) => {
+  const handleSelect = (option: ArtistOptions) => {
     setSelectedOption(option);
     setIsOpen(false);
   };
@@ -45,7 +47,7 @@ const ArtistContents = () => {
     <div>
       <ResultWrapper>
         {searchArtistLen}명의 작가{' '}
-        <DropdownButton
+        <DropdownButton<ArtistOptions>
           isOpen={isOpen}
           selectedOption={selectedOption}
           setOpen={handleOpen}

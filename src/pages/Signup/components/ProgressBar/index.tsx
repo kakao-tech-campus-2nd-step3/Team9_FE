@@ -1,3 +1,4 @@
+import Z_INDEX from '@/styles/z_index';
 import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
@@ -49,6 +50,6 @@ const Bar = styled.div<{ percentage: number }>`
     width: ${({ percentage }) => `${percentage}%`};
     position: absolute;
     background: var(--color-black);
-    z-index: 10;
+    z-index: ${Z_INDEX.ProgressBar};
   }
 `;

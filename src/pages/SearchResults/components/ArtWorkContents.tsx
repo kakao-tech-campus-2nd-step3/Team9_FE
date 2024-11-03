@@ -6,22 +6,22 @@ import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 import DropdownButton from './Dropdown';
 
-type Options = '최신순' | '가격순' | '제목순';
+export type ArtWorkOptions = '최신순' | '가격순' | '제목순';
 
 const ArtWorkContents = () => {
   const searchWorkLen = searchWork.length;
   const originalSearchWork = useRef(searchWork);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<Options>('최신순');
+  const [selectedOption, setSelectedOption] = useState<ArtWorkOptions>('최신순');
   const [sortedWork, setSortedWork] = useState(searchWork);
 
-  const options = ['최신순', '가격순', '제목순'];
+  const options: ArtWorkOptions[] = ['최신순', '가격순', '제목순'];
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelect = (option: Options) => {
+  const handleSelect = (option: ArtWorkOptions) => {
     setSelectedOption(option);
     setIsOpen(false);
   };
@@ -43,7 +43,7 @@ const ArtWorkContents = () => {
     <div>
       <ResultWrapper>
         {searchWorkLen}점의 작품{' '}
-        <DropdownButton
+        <DropdownButton<ArtWorkOptions>
           isOpen={isOpen}
           selectedOption={selectedOption}
           setOpen={handleOpen}

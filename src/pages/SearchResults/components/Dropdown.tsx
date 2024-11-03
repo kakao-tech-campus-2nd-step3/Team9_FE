@@ -1,21 +1,21 @@
 import Z_INDEX from '@/styles/z_index';
 import styled from '@emotion/styled';
 
-type DropdownButtonProps = {
+interface DropdownButtonProps<T extends string> {
   isOpen: boolean;
-  selectedOption: string;
+  selectedOption: T;
   setOpen: () => void;
-  options: string[];
-  handleSelect: (option: string) => void;
-};
+  options: T[];
+  handleSelect: (option: T) => void;
+}
 
-const DropdownButton = ({
+const DropdownButton = <T extends string>({
   isOpen,
   selectedOption,
   setOpen,
   options,
   handleSelect,
-}: DropdownButtonProps) => {
+}: DropdownButtonProps<T>) => {
   return (
     <Wrapper>
       <DropButton onClick={setOpen}>{selectedOption} ▼ </DropButton>

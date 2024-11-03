@@ -38,6 +38,10 @@ const StudentArtist1 = ({ onSuccess }: StudentArtist1Props) => {
 
     setCheckUnivError('');
 
+    if (!univName || !univEmail) {
+      return;
+    }
+
     checkUniv(
       { univName },
       {
@@ -88,50 +92,54 @@ const StudentArtist1 = ({ onSuccess }: StudentArtist1Props) => {
 
     setCertifyCodeError('');
 
-    if (code) {
-      certifyCode(
-        { email: univEmail, univName, code },
-        {
-          onSuccess: (data) => {
-            if (data.success) {
-              setIsCodeValid(true);
-              setUnivName(data.univName);
-              setUnivEmail(data.certified_email);
-              onSuccess(); // 인증 성공 시 Step2로 이동
-            } else {
-              setIsCodeValid(false);
-              setCertifyCodeError(data.message);
-            }
-          },
-          onError: (error) => {
-            setCertifyCodeError(error.message);
-          },
-        },
-      );
+    if (!code) {
+      return;
     }
+
+    certifyCode(
+      { email: univEmail, univName, code },
+      {
+        onSuccess: (data) => {
+          if (data.success) {
+            setIsCodeValid(true);
+            setUnivName(data.univName);
+            setUnivEmail(data.certified_email);
+            onSuccess(); // 인증 성공 시 Step2로 이동
+          } else {
+            setIsCodeValid(false);
+            setCertifyCodeError(data.message);
+          }
+        },
+        onError: (error) => {
+          setCertifyCodeError(error.message);
+        },
+      },
+    );
   };
 
   // 인증된 유저 이메일 삭제 - 임시
   const handleRevoke = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    if (univEmail) {
-      clearUser(
-        { email: univEmail },
-        {
-          onSuccess: (data) => {
-            if (data.success) {
-              alert('인증 취소되었습니다.');
-            } else {
-              alert('인증 취소 오류');
-            }
-          },
-          onError: (error) => {
-            alert(error.message);
-          },
-        },
-      );
+    if (!univEmail) {
+      return;
     }
+
+    clearUser(
+      { email: univEmail },
+      {
+        onSuccess: (data) => {
+          if (data.success) {
+            alert('인증 취소되었습니다.');
+          } else {
+            alert('인증 취소 오류');
+          }
+        },
+        onError: (error) => {
+          alert(error.message);
+        },
+      },
+    );
   };
 
   return (
@@ -188,7 +196,7 @@ const StudentArtist1 = ({ onSuccess }: StudentArtist1Props) => {
             </Box>
           )}
           {/* 임시 */}
-          <CTA label="인증 취소" display="block" onClick={handleRevoke} />
+          <CTA label="인증 취소" display="block" disabled={!univEmail} onClick={handleRevoke} />
         </InputItem>
       </form>
     </>

@@ -6,9 +6,9 @@ import { isAxiosError } from 'axios';
 
 // 필수 키만
 type VerifyProps = {
-  b_no: string;
-  start_dt: string;
-  p_nm: string;
+  b_no: string; // 사업자등록번호
+  start_dt: string; // 개업일자
+  p_nm: string; // 대표자성명
 };
 
 async function verify({ b_no, start_dt, p_nm }: VerifyProps): Promise<void> {
@@ -18,21 +18,17 @@ async function verify({ b_no, start_dt, p_nm }: VerifyProps): Promise<void> {
         b_no,
         start_dt,
         p_nm,
-        p_nm2: '',
-        b_nm: '',
-        corp_no: '',
-        b_sector: '',
-        b_type: '',
+        p_nm2: '', // 대표자성명2
+        b_nm: '', // 상호
+        corp_no: '', // 법인등록번호
+        b_sector: '', // 주업태명
+        b_type: '', // 주종목명
       },
     ],
   };
 
   try {
-    const response = await fetchInstance(BASE_URL).post(
-      `/validate?serviceKey=${API_KEY}`,
-      requestBody,
-    );
-    console.log('verify response: ', response);
+    await fetchInstance(BASE_URL).post(`/validate?serviceKey=${API_KEY}`, requestBody);
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {

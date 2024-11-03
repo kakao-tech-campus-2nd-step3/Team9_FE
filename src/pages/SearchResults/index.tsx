@@ -3,6 +3,7 @@ import searchWork from '@/apis/data/searchWork';
 import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
+import Z_INDEX from '@/styles/z_index';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -75,7 +76,7 @@ const PageContainer = styled.div``;
 const HeaderSection = styled.div`
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: ${Z_INDEX.SearchHeader};
   background: var(--color-white);
 `;
 

@@ -1,3 +1,4 @@
+import Z_INDEX from '@/styles/z_index';
 import styled from '@emotion/styled';
 
 type DropdownButtonProps = {
@@ -47,7 +48,7 @@ const DropButton = styled.button`
 `;
 
 const UlWrapper = styled.ul`
-  z-index: 1;
+  z-index: ${Z_INDEX.Dropdown};
   position: absolute;
   align-items: center;
   justify-content: center;

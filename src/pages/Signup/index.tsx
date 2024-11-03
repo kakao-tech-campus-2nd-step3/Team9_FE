@@ -27,7 +27,7 @@ const Signup = () => {
   return (
     <Wrapper>
       <Header
-        leftSideChildren={<IconButton icon="arrow-back" onClick={() => navigate(-1)} />} // 카카오톡 로그인 연동되면 수정
+        leftSideChildren={<IconButton icon="arrow-back" onClick={() => navigate(-1)} />} // todo: 카카오톡 로그인 연동되면 수정
         rightSideChildren={
           <IconButton
             icon="home"

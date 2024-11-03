@@ -38,6 +38,10 @@ const StudentArtist1 = ({ onSuccess }: StudentArtist1Props) => {
 
     setCheckUnivError('');
 
+    if (!univName || !univEmail) {
+      return;
+    }
+
     checkUniv(
       { univName },
       {
@@ -192,7 +196,7 @@ const StudentArtist1 = ({ onSuccess }: StudentArtist1Props) => {
             </Box>
           )}
           {/* 임시 */}
-          <CTA label="인증 취소" display="block" onClick={handleRevoke} />
+          <CTA label="인증 취소" display="block" disabled={!univEmail} onClick={handleRevoke} />
         </InputItem>
       </form>
     </>

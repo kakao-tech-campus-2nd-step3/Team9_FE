@@ -28,7 +28,7 @@ const Login = () => {
           <IconButton
             icon="home"
             color="var(--color-white)"
-            onClick={() => navigate(`${RouterPath.home}`)}
+            onClick={() => navigate(RouterPath.home)}
           />
         }
       />

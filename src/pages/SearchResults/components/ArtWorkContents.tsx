@@ -6,11 +6,13 @@ import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 import DropdownButton from './Dropdown';
 
+type Options = '최신순' | '가격순' | '제목순';
+
 const ArtWorkContents = () => {
   const searchWorkLen = searchWork.length;
   const originalSearchWork = useRef(searchWork);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('최신순');
+  const [selectedOption, setSelectedOption] = useState<Options>('최신순');
   const [sortedWork, setSortedWork] = useState(searchWork);
 
   const options = ['최신순', '가격순', '제목순'];
@@ -19,7 +21,7 @@ const ArtWorkContents = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelect = (option: string) => {
+  const handleSelect = (option: Options) => {
     setSelectedOption(option);
     setIsOpen(false);
   };

@@ -1,8 +1,8 @@
-import styled from '@emotion/styled';
 import popularSearch from '@/apis/data/popularSearch';
-import PopularSearchItem from '../PopularSearchItem';
-import { Text } from '@chakra-ui/react';
 import Grid from '@/components/styles/Grid';
+import { Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import PopularSearchItem from '../PopularSearchItem';
 
 const PopularSearch = () => {
   const midPoint = Math.ceil(popularSearch.length / 2);

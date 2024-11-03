@@ -15,8 +15,8 @@ type UserState = {
   setNickname: (nickname: string) => void;
   interests: string[];
   setInterests: (interest: string) => void;
-  image: string;
-  setImage: (image: string) => void;
+  imageUrl: string;
+  setImageUrl: (imageUrl: string) => void;
   clearUserInfo: () => void;
 };
 
@@ -38,8 +38,8 @@ const useUserStore = create<UserState>((set) => ({
     set((state) => ({
       interests: [...state.interests, interest],
     })),
-  image: '',
-  setImage: (image) => set({ image }),
+  imageUrl: '',
+  setImageUrl: (imageUrl) => set({ imageUrl }),
 
   clearUserInfo: () =>
     set({
@@ -50,7 +50,7 @@ const useUserStore = create<UserState>((set) => ({
       address: '',
       nickname: '',
       interests: [],
-      image: '',
+      imageUrl: '',
     }),
 }));
 

@@ -10,9 +10,10 @@ interface HeaderProps {
   title?: string;
   leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;
+  modalOpen?: () => void;
 }
 
-const Header = ({ title, leftSideChildren, rightSideChildren }: HeaderProps) => {
+const Header = ({ title, leftSideChildren, rightSideChildren, modalOpen }: HeaderProps) => {
   const { pathname } = useLocation();
   const { mode } = useModeStore();
 
@@ -22,7 +23,7 @@ const Header = ({ title, leftSideChildren, rightSideChildren }: HeaderProps) => 
         <>
           <Logo />
           <IconBox>
-            <IconButton icon="search" />
+            <IconButton icon="search" onClick={modalOpen} />
             {mode === 'user' ? (
               <IconButton icon="favorite-default" />
             ) : (

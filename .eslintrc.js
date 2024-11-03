@@ -54,6 +54,9 @@ module.exports = {
       },
     ],
     'simple-import-sort/exports': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
     '@typescript-eslint/consistent-type-imports': 'warn',
     '@typescript-eslint/no-unused-vars': [
       'error',

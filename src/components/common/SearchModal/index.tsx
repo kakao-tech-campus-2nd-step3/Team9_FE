@@ -1,8 +1,8 @@
 import SearchBar from '@/components/layouts/SearchBar';
-import styled from '@emotion/styled';
-import RecentSearch from './RecentSearch';
 import HorizontalLine from '@/components/styles/HorizontalLine';
+import styled from '@emotion/styled';
 import PopularSearch from './PopularSearch';
+import RecentSearch from './RecentSearch';
 import Ad from './SearchAd';
 
 interface SearchModalProps {
@@ -35,7 +35,7 @@ const ModalWrapper = styled.div`
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
-  z-index: 1000;
+  z-index: 100000;
 `;
 
 const SearchWrapper = styled.div`

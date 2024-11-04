@@ -14,12 +14,10 @@ interface SwiperFrame {
   children: SearchArtist[] | SearchWork[];
 }
 
-//     const ArtistItem: ({ author, like, follower, size, src, alt }: ArtistItemProps)
-
 const SwiperFrame = ({ children }: SwiperFrame) => {
   return (
     <SwiperWrapper
-      modules={[Scrollbar, Navigation]} // Include Navigation here
+      modules={[Scrollbar, Navigation]}
       slidesPerView="auto"
       spaceBetween={3}
       navigation={true}

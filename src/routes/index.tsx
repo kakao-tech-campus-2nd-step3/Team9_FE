@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         element: <ArtistDetails />,
       },
       {
-        path: RouterPath.chat,
+        path: RouterPath.chats,
         element: <ProtectedRoute />,
         children: [
           { index: true, element: <ChatList /> },

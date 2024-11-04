@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
+import ChatInput from './components/ChatInput';
 
 const NICKNAME = '미니멀앤';
 
@@ -17,6 +18,7 @@ const ChatRoom = () => {
         rightSideChildren={<IconButton icon="menu-kebab" />} // todo: onClick -> 모달
       />
       <ContentWrapper></ContentWrapper>
+      <ChatInput />
     </Wrapper>
   );
 };

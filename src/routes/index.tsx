@@ -63,10 +63,7 @@ const router = createBrowserRouter([
       {
         path: RouterPath.chats,
         element: <ProtectedRoute />,
-        children: [
-          { index: true, element: <ChatList /> },
-          { path: ':id', element: <ChatRoom /> },
-        ],
+        children: [{ index: true, element: <ChatList /> }],
       },
       {
         path: RouterPath.my,
@@ -104,6 +101,11 @@ const router = createBrowserRouter([
       {
         path: RouterPath.results,
         element: <SearchResults />,
+      },
+      {
+        path: RouterPath.chats,
+        element: <ProtectedRoute />,
+        children: [{ path: ':id', element: <ChatRoom /> }],
       },
       {
         path: RouterPath.login,

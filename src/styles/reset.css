@@ -97,7 +97,7 @@ video {
 }
 button {
   border: none;
-  background-color: none;
+  background-color: transparent;
   cursor: pointer;
   overflow: visible;
   vertical-align: inherit;

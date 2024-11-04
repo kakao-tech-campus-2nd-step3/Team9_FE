@@ -1,20 +1,23 @@
 import { Box, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@/utils';
 
 type ChatItemProps = {
+  chatRoomId: number;
   imageUrl: string;
   nickname: string;
   date: string;
   content: string;
 };
 
-const ChatItem = ({ imageUrl, nickname, date, content }: ChatItemProps) => {
+const ChatItem = ({ chatRoomId, imageUrl, nickname, date, content }: ChatItemProps) => {
   const formattedDate = formatDate(date);
+  const navigate = useNavigate();
 
   return (
-    <Wrapper>
+    <Wrapper onClick={() => navigate(`${chatRoomId}`)}>
       <Box
         width="54px"
         aspectRatio="1 / 1"

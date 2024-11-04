@@ -8,8 +8,20 @@ import ChatItem from './components/ChatItem';
 
 const ChatList = () => {
   const [chatList, setChatList] = useState([
-    { imageUrl: '', nickname: '미니멀앤', date: '2024-11-01', content: '네. 알겠습니다.' },
-    { imageUrl: '', nickname: '뾰롱', date: '2024-10-31', content: '네. 그렇게 해요.' },
+    {
+      chatRoomId: 1,
+      imageUrl: '',
+      nickname: '미니멀앤',
+      date: '2024-11-01',
+      content: '네. 알겠습니다.',
+    },
+    {
+      chatRoomId: 2,
+      imageUrl: '',
+      nickname: '뾰롱',
+      date: '2024-10-31',
+      content: '네. 그렇게 해요.',
+    },
   ]);
 
   return (
@@ -18,6 +30,7 @@ const ChatList = () => {
       {chatList.map((item, index) => (
         <ChatItem
           key={index}
+          chatRoomId={item.chatRoomId}
           imageUrl={item.imageUrl}
           nickname={item.nickname}
           date={item.date}

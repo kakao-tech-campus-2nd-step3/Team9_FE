@@ -1,16 +1,27 @@
 import styled from '@emotion/styled';
 
+import SearchModal from '@/components/common/SearchModal';
 import Footer from '@/components/layouts/Footer';
-import { HEADER_HEIGHT } from '@/components/layouts/Header';
+import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
-import { homeAdList } from '@/constants/homeAdList';
-import { articleList } from '@/constants/articleList';
-import AdBanner from './AdBanner';
-import ArticleBanner from './ArticleBanner';
+import { articleList } from '@/constants/home/articleList';
+import { homeAdList } from '@/constants/home/homeAdList';
+import { useState } from 'react';
+import AdBanner from './components/AdBanner';
+import ArticleBanner from './components/ArticleBanner';
 
 const Home = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <Wrapper>
+      {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
+
+      <Header modalOpen={handleModalOpen} />
       <AdBanner adList={homeAdList} />
       {articleList.map((item) => (
         <ArticleBanner

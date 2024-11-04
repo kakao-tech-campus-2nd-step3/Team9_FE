@@ -4,17 +4,19 @@ import { useLocation } from 'react-router-dom';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { RouterPath } from '@/routes/path';
-import type { Mode } from '@/types';
+import useModeStore from '@/store/useModeStore';
+import Z_INDEX from '@/styles/z_index';
 
 interface HeaderProps {
-  mode: Mode;
   title?: string;
   leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;
+  modalOpen?: () => void;
 }
 
-const Header = ({ mode, title, leftSideChildren, rightSideChildren }: HeaderProps) => {
+const Header = ({ title, leftSideChildren, rightSideChildren, modalOpen }: HeaderProps) => {
   const { pathname } = useLocation();
+  const { mode } = useModeStore();
 
   const renderElements = () => {
     if (pathname === RouterPath.home) {
@@ -22,7 +24,7 @@ const Header = ({ mode, title, leftSideChildren, rightSideChildren }: HeaderProp
         <>
           <Logo />
           <IconBox>
-            <IconButton icon="search" />
+            <IconButton icon="search" onClick={modalOpen} />
             {mode === 'user' ? (
               <IconButton icon="favorite-default" />
             ) : (
@@ -53,7 +55,7 @@ export const HEADER_HEIGHT = '4.4rem';
 
 const Wrapper = styled.header`
   position: fixed;
-  z-index: 1000;
+  z-index: ${Z_INDEX.Header};
   top: 0;
   width: 100%;
   height: ${HEADER_HEIGHT};

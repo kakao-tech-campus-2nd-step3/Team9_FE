@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import IconButton from '@/components/common/IconButton';
-import type { Article } from '@/constants/articleList';
+import type { Article } from '@/constants/home/articleList';
 
 type ArticleBannerProps = Article;
 

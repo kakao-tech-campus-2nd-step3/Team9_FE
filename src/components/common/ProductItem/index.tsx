@@ -12,18 +12,10 @@ interface ArtistItemProps {
   alt?: string;
 }
 
-const ProductItem = ({
-  author,
-  title,
-  price,
-  size = 'default',
-  heart = false,
-  src,
-  alt,
-}: ArtistItemProps) => {
+const ProductItem = ({ author, title, price, size = 'default', src, alt }: ArtistItemProps) => {
   return (
     <Wrapper size={size}>
-      <Thumbnail ratio="square" heart={heart} src={src} alt={alt} />
+      <Thumbnail ratio="square" src={src} alt={alt} heart={true} />
       <MidWrapper>
         <DescriptionWrapper style={{ fontWeight: '600' }}>{author}</DescriptionWrapper>
         <DescriptionWrapper>{title}</DescriptionWrapper>

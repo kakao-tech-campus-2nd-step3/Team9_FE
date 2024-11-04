@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 
 interface LikesAndFollowersProps {
-  like: string;
-  follower: string;
+  like: number;
+  follower: number;
 }
 
 const LikesAndFollowers = ({ like, follower }: LikesAndFollowersProps) => {

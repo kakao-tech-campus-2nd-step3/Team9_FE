@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import type { Mode } from '@/types';
+import useModeStore from '@/store/useModeStore';
+import { PostButton, ScrollToTopButton } from '.';
 import { TABBAR_HEIGHT } from '../TabBar';
-import { ScrollToTopButton, PostButton } from '.';
 
 interface FABContainerProps {
-  mode: Mode;
   scrollContainerRef: React.RefObject<HTMLElement>;
 }
 
-const FABContainer = ({ mode, scrollContainerRef }: FABContainerProps) => {
+const FABContainer = ({ scrollContainerRef }: FABContainerProps) => {
+  const { mode } = useModeStore();
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
 
   useEffect(() => {

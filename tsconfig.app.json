@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // svgr 플러그인
-    "types": ["vite-plugin-svgr/client"],
+    "types": ["vite/client", "vite-plugin-svgr/client"],
 
     // 절대 경로
     "composite": true,
@@ -14,6 +14,7 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/pages/*": ["src/pages/*"],
       "@/routes/*": ["src/routes/*"],
+      "@/store/*": ["src/store/*"],
       "@/styles/*": ["src/styles/*"],
       "@/types/*": ["src/types/*"],
       "@/utils/*": ["src/utils/*"]

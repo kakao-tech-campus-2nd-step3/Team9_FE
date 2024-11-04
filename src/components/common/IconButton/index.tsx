@@ -4,6 +4,7 @@ import ArrowBackIcon from '@/assets/icons/arrow-back.svg?react';
 import ArrowForward from '@/assets/icons/arrow-forward.svg?react';
 import FavoriteDefaultIcon from '@/assets/icons/favorite-default.svg?react';
 import HomeIcon from '@/assets/icons/home-default.svg?react';
+import MenuKebabIcon from '@/assets/icons/menu-kebab.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import SettingsIcon from '@/assets/icons/settings.svg?react';
 import StoreDefaultIcon from '@/assets/icons/store-default.svg?react';
@@ -14,6 +15,7 @@ interface IconButtonProps {
     | 'arrow-forward'
     | 'favorite-default'
     | 'home'
+    | 'menu-kebab'
     | 'search'
     | 'settings'
     | 'store-default';
@@ -32,6 +34,8 @@ const IconButton = ({ icon, color = 'var(--color-black)', onClick }: IconButtonP
         return <FavoriteDefaultIcon />;
       case 'home':
         return <HomeIcon style={{ color: `${color}` }} />;
+      case 'menu-kebab':
+        return <MenuKebabIcon style={{ color: `${color}` }} />;
       case 'search':
         return <SearchIcon />;
       case 'settings':

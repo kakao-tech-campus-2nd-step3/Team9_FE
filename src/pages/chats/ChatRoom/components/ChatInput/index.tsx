@@ -39,7 +39,7 @@ const ChatInput = ({ onHeightChange }: ChatInputProps) => {
         value={message}
         onChange={handleInput}
       />
-      <button disabled={!message} onClick={handleSendMessage}>
+      <button disabled={!message.replace(/\s/g, '').length} onClick={handleSendMessage}>
         <SendIcon />
       </button>
     </StyledChatInput>

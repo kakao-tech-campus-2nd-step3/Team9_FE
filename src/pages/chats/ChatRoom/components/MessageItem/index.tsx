@@ -60,11 +60,10 @@ const Time = styled.span`
 `;
 
 const Bubble = styled.div<{ type: 'send' | 'receive' }>`
-  /* display: inline-block; */
   padding: 6px 8px;
   max-width: 100%;
+  flex-wrap: wrap;
   align-content: center;
-  /* flex-wrap: wrap; */
   font-size: var(--font-size-sm);
   border-radius: var(--border-radius);
   white-space: pre-wrap;

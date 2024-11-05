@@ -99,6 +99,7 @@ const SearchBarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  background-color: var(--color-white);
 `;
 
 const InputBox = styled.form`

@@ -10,6 +10,7 @@ import { HEADER_HEIGHT } from '../Header';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 const MAX_RECENT_SEARCHES = 10;
+
 interface SearchBarProps {
   includeFavorite?: boolean;
   goBack?: () => void;

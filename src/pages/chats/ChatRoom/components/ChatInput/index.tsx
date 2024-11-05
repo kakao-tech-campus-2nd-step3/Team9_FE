@@ -12,7 +12,11 @@ const ChatInput = () => {
 
   return (
     <StyledChatInput>
-      <StyledInput value={message} onChange={(e) => setMessage(e.target.value)} />
+      <StyledTextarea
+        placeholder="메시지 입력"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
       <button disabled={!message} onClick={handleSendMessage}>
         <SendIcon />
       </button>
@@ -32,18 +36,20 @@ const StyledChatInput = styled.div`
   padding: 6px 16px;
   gap: 8px;
   background-color: var(--color-white);
+  border-top: 1px solid var(--color-gray-md);
   position: fixed;
   bottom: 0;
 `;
 
-const StyledInput = styled.textarea`
-  flex: 1;
+const StyledTextarea = styled.textarea`
+  width: 100%;
   align-self: stretch;
-  border: 1px solid var(--color-gray-md);
   font-family: inherit;
   resize: none;
   overflow-y: hidden;
-  padding: 6px;
+  padding: 12px 0;
+  font-size: var(--font-size-sm);
+  border: none;
 
   &:focus {
     outline: none;

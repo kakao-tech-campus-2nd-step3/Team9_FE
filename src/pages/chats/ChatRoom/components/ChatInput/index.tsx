@@ -44,14 +44,7 @@ const StyledChatInput = styled.div`
 const StyledTextarea = styled.textarea`
   width: 100%;
   align-self: stretch;
-  font-family: inherit;
-  resize: none;
   overflow-y: hidden;
   padding: 12px 0;
   font-size: var(--font-size-sm);
-  border: none;
-
-  &:focus {
-    outline: none;
-  }
 `;

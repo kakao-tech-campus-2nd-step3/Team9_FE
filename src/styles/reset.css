@@ -133,3 +133,12 @@ a:focus {
 hr {
   margin: 0;
 }
+textarea {
+  resize: none;
+  font-family: inherit;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}

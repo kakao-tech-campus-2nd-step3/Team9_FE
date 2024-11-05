@@ -1,21 +1,43 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import SendIcon from '@/assets/icons/send.svg?react';
 
-const ChatInput = () => {
+type ChatInputProps = {
+  onHeightChange: (height: string) => void;
+};
+
+const ChatInput = ({ onHeightChange }: ChatInputProps) => {
   const [message, setMessage] = useState('');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [chatInputHeight, setChatInputHeight] = useState<string>('5.4rem');
+
+  // 내용의 세로 길이에 맞게 입력창 높이 자동 조정하는 함수
+  const adjustHeight = (textarea: HTMLTextAreaElement) => {
+    textarea.style.height = 'auto'; // 초기화
+
+    const newHeight = textarea.scrollHeight;
+    textarea.style.height = `${newHeight}px`;
+    setChatInputHeight(`${newHeight + 12}px`);
+    onHeightChange(`${newHeight + 12}px`); // 부모로 높이 전달 (패딩 포함)
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+    adjustHeight(e.target);
+  };
 
   const handleSendMessage = () => {
     console.log('전송!'); // todo: 핸들러 구현
   };
 
   return (
-    <StyledChatInput>
+    <StyledChatInput height={chatInputHeight}>
       <StyledTextarea
         placeholder="메시지 입력"
+        ref={textareaRef}
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={handleInput}
       />
       <button disabled={!message} onClick={handleSendMessage}>
         <SendIcon />
@@ -26,11 +48,9 @@ const ChatInput = () => {
 
 export default ChatInput;
 
-export const CHAT_INPUT_HEIGHT = '5.4rem';
-
-const StyledChatInput = styled.div`
+const StyledChatInput = styled.div<{ height: string }>`
   width: 100%;
-  height: ${CHAT_INPUT_HEIGHT};
+  min-height: 5.4rem;
   display: flex;
   align-items: center;
   padding: 6px 16px;
@@ -43,8 +63,6 @@ const StyledChatInput = styled.div`
 
 const StyledTextarea = styled.textarea`
   width: 100%;
-  align-self: stretch;
   overflow-y: hidden;
-  padding: 12px 0;
   font-size: var(--font-size-sm);
 `;

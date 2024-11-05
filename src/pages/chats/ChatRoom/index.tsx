@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@/components/common/IconButton';
@@ -8,7 +9,12 @@ import ChatInput from './components/ChatInput';
 const NICKNAME = '미니멀앤';
 
 const ChatRoom = () => {
+  const [chatInputHeight, setChatInputHeight] = useState('5.4rem');
   const navigate = useNavigate();
+
+  const handleChatInputHeight = (newHeight: string) => {
+    setChatInputHeight(newHeight);
+  };
 
   return (
     <Wrapper>
@@ -17,8 +23,8 @@ const ChatRoom = () => {
         title={NICKNAME}
         rightSideChildren={<IconButton icon="menu-kebab" />} // todo: onClick -> 모달
       />
-      <ContentWrapper></ContentWrapper>
-      <ChatInput />
+      <ContentWrapper marginBottom={chatInputHeight}></ContentWrapper>
+      <ChatInput onHeightChange={handleChatInputHeight} />
     </Wrapper>
   );
 };
@@ -34,8 +40,8 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const ContentWrapper = styled.div`
-  margin: ${HEADER_HEIGHT} 0 0 0;
+const ContentWrapper = styled.div<{ marginBottom: string }>`
+  margin: ${HEADER_HEIGHT} 0 ${({ marginBottom }) => marginBottom} 0;
   flex: 1;
   display: flex;
   flex-direction: column;

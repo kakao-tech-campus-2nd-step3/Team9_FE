@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 import FollowButton from '@/components/common/FollowButton';
 import Thumbnail from '@/components/common/Thumbnail';
-import LikesAndFollowers from '../LikesAndFollowers';
 import { useState } from 'react';
+import LikesAndFollowers from '../LikesAndFollowers';
 
 interface ArtistItemProps {
   author: string;
@@ -12,17 +12,33 @@ interface ArtistItemProps {
   size?: 'large' | 'default';
   src?: string;
   alt?: string;
+  onFollow?: () => void;
+  isFollow: boolean;
 }
 
-const ArtistItem = ({ author, like, follower, size = 'default', src, alt }: ArtistItemProps) => {
-  const [isFollowed, setIsFollowed] = useState(false);
+const ArtistItem = ({
+  author,
+  like,
+  follower,
+  size = 'default',
+  src,
+  alt,
+  onFollow,
+  isFollow,
+}: ArtistItemProps) => {
+  const [isFollowed, setIsFollowed] = useState(isFollow);
+
+  const handleFollowClick = () => {
+    setIsFollowed(!isFollowed);
+    onFollow?.();
+  };
 
   return (
     <Wrapper size={size}>
       <Thumbnail ratio="square" src={src} alt={alt} />
       <MidWrapper>
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
-        <FollowButton isFollowed={isFollowed} onClick={() => setIsFollowed(!isFollowed)}>
+        <FollowButton isFollowed={isFollowed} onClick={handleFollowClick}>
           {isFollowed ? '팔로잉' : '팔로우'}
         </FollowButton>
       </MidWrapper>

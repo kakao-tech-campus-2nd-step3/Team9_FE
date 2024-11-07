@@ -4,7 +4,8 @@ import BasicLayout from '@/components/layouts/BasicLayout';
 import FreeLayout from '@/components/layouts/FreeLayout';
 import ArtistDetails from '@/pages/ArtistDetails';
 import Categories from '@/pages/Categories';
-import Chat from '@/pages/Chat';
+import ChatList from '@/pages/chats/ChatList';
+import ChatRoom from '@/pages/chats/ChatRoom';
 import Discover from '@/pages/Discover';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
@@ -17,8 +18,8 @@ import ProductDetails from '@/pages/ProductDetails';
 import ProductPosting from '@/pages/ProductPosting';
 import SearchResults from '@/pages/SearchResults';
 import Signup from '@/pages/Signup';
-import { ProtectedRoute } from './ProtectedRoute';
 import { RouterPath } from './path';
+import { ProtectedRoute } from './ProtectedRoute';
 
 const Routes = () => {
   return <RouterProvider router={router} />;
@@ -60,9 +61,9 @@ const router = createBrowserRouter([
         element: <ArtistDetails />,
       },
       {
-        path: RouterPath.chat,
+        path: RouterPath.chats,
         element: <ProtectedRoute />,
-        children: [{ index: true, element: <Chat /> }],
+        children: [{ index: true, element: <ChatList /> }],
       },
       {
         path: RouterPath.my,
@@ -100,6 +101,11 @@ const router = createBrowserRouter([
       {
         path: RouterPath.results,
         element: <SearchResults />,
+      },
+      {
+        path: RouterPath.chats,
+        element: <ProtectedRoute />,
+        children: [{ path: ':id', element: <ChatRoom /> }],
       },
       {
         path: RouterPath.login,

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
 
 import SendIcon from '@/assets/icons/send.svg?react';
+import { countNonSpaceChars } from '@/utils';
 
 type ChatInputProps = {
   onHeightChange: (height: string) => void;
@@ -39,7 +40,7 @@ const ChatInput = ({ onHeightChange }: ChatInputProps) => {
         value={message}
         onChange={handleInput}
       />
-      <button disabled={!message.replace(/\s/g, '').length} onClick={handleSendMessage}>
+      <button disabled={!countNonSpaceChars(message)} onClick={handleSendMessage}>
         <SendIcon />
       </button>
     </StyledChatInput>

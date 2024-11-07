@@ -14,10 +14,10 @@ export const getFollow = async (): Promise<APIResponse<FollowResponse>> => {
 };
 
 export const useGetFollow = () => {
-  const { data, status, error } = useQuery<APIResponse<FollowResponse>, Error>({
+  const { data, status, refetch } = useQuery<APIResponse<FollowResponse>, Error>({
     queryKey: ['followList'],
     queryFn: getFollow,
   });
 
-  return { data, status, error };
+  return { data, status, refetch };
 };

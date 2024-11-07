@@ -32,3 +32,25 @@ export type SearchArtist = {
   totalLikes: number;
   followed: boolean;
 };
+
+export interface User {
+  userId: number;
+  nickname: string;
+  userImageUrl: string;
+  totalFollowers: number;
+  totalLikes: number;
+}
+
+export type FollowResponse = { content: User[] };
+
+export type MyInfo = {
+  username: string;
+  hashTags: string[];
+  userImageUrl: string;
+};
+
+export type APIResponse<T = unknown> = {
+  code: number;
+  message: string;
+  data: T;
+};

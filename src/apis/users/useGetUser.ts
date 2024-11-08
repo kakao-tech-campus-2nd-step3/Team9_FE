@@ -5,7 +5,7 @@ import { fetchInstance } from '../instance';
 const token = localStorage.getItem('accessToken');
 
 type UserMode = 'user' | 'artist';
-type InfoType<T> = T extends 'user' ? UserInfo : ArtistInfo;
+type InfoType<T extends UserMode> = T extends 'user' ? UserInfo : ArtistInfo;
 
 export const getUser = async <T extends UserMode>(mode: T): Promise<APIResponse<InfoType<T>>> => {
   const endpoint = mode === 'user' ? '/users' : '/artists';

@@ -1,15 +1,19 @@
 import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
 
+import { sendMessage } from '@/apis/chats';
 import SendIcon from '@/assets/icons/send.svg?react';
 import { countNonSpaceChars } from '@/utils';
 
 type ChatInputProps = {
+  chatRoomId: number;
+  userEmail: string;
   onHeightChange: (height: string) => void;
 };
 
-const ChatInput = ({ onHeightChange }: ChatInputProps) => {
-  const [message, setMessage] = useState('');
+const ChatInput = ({ chatRoomId, userEmail, onHeightChange }: ChatInputProps) => {
+  const [message, setMessage] = useState<string>('');
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [chatInputHeight, setChatInputHeight] = useState<string>('5.4rem');
 
@@ -28,8 +32,21 @@ const ChatInput = ({ onHeightChange }: ChatInputProps) => {
     adjustHeight(e.target);
   };
 
+  // 메시지 전송 핸들러
   const handleSendMessage = () => {
-    console.log('전송!'); // todo: 핸들러 구현
+    if (message && message.trim()) {
+      try {
+        sendMessage(chatRoomId, {
+          sender: { email: userEmail },
+          content: message,
+          imageUrl: undefined,
+        });
+
+        setMessage('');
+      } catch (error) {
+        alert(error);
+      }
+    }
   };
 
   return (

@@ -1,48 +1,68 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { connectWebSocket, disconnectWebSocket, type ChatMessage } from '@/apis/chats';
 import IconButton from '@/components/common/IconButton';
 import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
 import ChatInput from './components/ChatInput';
-import MessageItem, { type MessageItemProps } from './components/MessageItem';
 import Date from './components/Date';
+// import MessageItem from './components/MessageItem'; // parameters 안 맞아서 잠시 사용 안 함 // todo: 파라미터 맞추기
 
+// 임시
 const NICKNAME = '미니멀앤';
-const messageList: MessageItemProps[] = [
-  {
-    type: 'send',
-    time: '오후 1:30',
-    message: 'One look give em Whiplash Beat drop with a big flash',
-  },
-  {
-    type: 'send',
-    time: '오후 1:30',
-    message: `
-      집중해 좀 더
-      Think fast 
-      이유 넌 이해 못 해
-    `,
-  },
-  {
-    imageUrl: '',
-    type: 'receive',
-    time: '오후 1:30',
-    message: `
-      왜 이제야 
-      Know I did that 
-      Day 1 know I been bad
-    `,
-  },
-];
+// const messageList: MessageItemProps[] = [
+//   {
+//     type: 'send',
+//     time: '오후 1:30',
+//     message: 'One look give em Whiplash Beat drop with a big flash',
+//   },
+//   {
+//     type: 'send',
+//     time: '오후 1:30',
+//     message: `
+//       집중해 좀 더
+//       Think fast
+//       이유 넌 이해 못 해
+//     `,
+//   },
+//   {
+//     imageUrl: '',
+//     type: 'receive',
+//     time: '오후 1:30',
+//     message: `
+//       왜 이제야
+//       Know I did that
+//       Day 1 know I been bad
+//     `,
+//   },
+// ];
+const chatRoomId = 1;
+const userEmail = 'abc@1618.com';
 
 const ChatRoom = () => {
-  const [chatInputHeight, setChatInputHeight] = useState('5.4rem');
   const navigate = useNavigate();
+  const [chatInputHeight, setChatInputHeight] = useState('5.4rem');
+  const [messageList, setMessageList] = useState<ChatMessage[]>([]);
 
   const handleChatInputHeight = (newHeight: string) => {
     setChatInputHeight(newHeight);
   };
+
+  useEffect(() => {
+    connectWebSocket(
+      chatRoomId,
+      (receivedMessage: ChatMessage) => {
+        setMessageList((prev) => [...prev, receivedMessage]);
+      },
+      (error) => {
+        console.error('WebSocket error:', error);
+      },
+    );
+
+    // 컴포넌트 언마운트 시 WebSocket 연결 해제
+    return () => disconnectWebSocket();
+  }, [chatRoomId]);
 
   return (
     <Wrapper>
@@ -54,7 +74,8 @@ const ChatRoom = () => {
       <ContentWrapper marginBottom={chatInputHeight}>
         <MessageGroupByDate>
           <Date date="2024년 11월 1일" />
-          {messageList.map((item, index) => (
+          {messageList && <>messageList</>}
+          {/* {messageList.map((item, index) => (
             <MessageItem
               key={index}
               imageUrl={item.imageUrl || undefined}
@@ -62,10 +83,14 @@ const ChatRoom = () => {
               time={item.time}
               message={item.message}
             />
-          ))}
+          ))} */}
         </MessageGroupByDate>
       </ContentWrapper>
-      <ChatInput onHeightChange={handleChatInputHeight} />
+      <ChatInput
+        chatRoomId={chatRoomId}
+        userEmail={userEmail}
+        onHeightChange={handleChatInputHeight}
+      />
     </Wrapper>
   );
 };

@@ -1,22 +1,17 @@
+import { UserInfo } from '@/types';
 import styled from '@emotion/styled';
 
-type ProfileBoxProps = {
-  userImageUrl: string;
-  hashTag: string[];
-  userName: string;
-};
-
-const ProfileBox = ({ userImageUrl, hashTag, userName }: ProfileBoxProps) => {
+const UserProfileBox = ({ userImageUrl, hashTags, username }: UserInfo) => {
   return (
     <Wrapper>
-      <Image src={userImageUrl} alt={userName} />
+      <Image src={userImageUrl} alt={username} />
       <DetailWrapper>
-        <NameWrapper>{userName}</NameWrapper>
+        <NameWrapper>{username}</NameWrapper>
         <TagWrapper>
           {' '}
           <InterestsWrapper>관심사</InterestsWrapper>
           <HastTabWrapper>
-            {hashTag.map((tag: string) => (
+            {hashTags.map((tag: string) => (
               <span key={tag}>{tag}</span>
             ))}
           </HastTabWrapper>
@@ -26,7 +21,7 @@ const ProfileBox = ({ userImageUrl, hashTag, userName }: ProfileBoxProps) => {
   );
 };
 
-export default ProfileBox;
+export default UserProfileBox;
 
 const Wrapper = styled.div`
   display: flex;

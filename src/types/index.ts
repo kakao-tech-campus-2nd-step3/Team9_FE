@@ -43,10 +43,19 @@ export interface User {
 
 export type FollowResponse = { content: User[] };
 
-export type MyInfo = {
+export type UserInfo = {
   username: string;
   hashTags: string[];
   userImageUrl: string;
+};
+
+export type ArtistInfo = {
+  nickname: string;
+  description: string;
+  totalFollowers: number;
+  totalLikes: number;
+  about: string;
+  ImageUrl: string;
 };
 
 export type APIResponse<T = unknown> = {

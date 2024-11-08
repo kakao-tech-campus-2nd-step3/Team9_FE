@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    // svgr 플러그인
+    "types": ["vite/client", "vite-plugin-svgr/client"],
+
     // 절대 경로
     "composite": true,
     "baseUrl": ".",
@@ -11,6 +14,7 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/pages/*": ["src/pages/*"],
       "@/routes/*": ["src/routes/*"],
+      "@/store/*": ["src/store/*"],
       "@/styles/*": ["src/styles/*"],
       "@/types/*": ["src/types/*"],
       "@/utils/*": ["src/utils/*"]
@@ -36,5 +40,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "svg.d.ts"]
 }

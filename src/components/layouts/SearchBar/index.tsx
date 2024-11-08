@@ -1,0 +1,146 @@
+import styled from '@emotion/styled';
+
+import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
+import SearchIcon from '@/assets/icons/search.svg?react';
+import IconButton from '@/components/common/IconButton';
+import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
+import { useForm } from 'react-hook-form';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { HEADER_HEIGHT } from '../Header';
+
+const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
+const MAX_RECENT_SEARCHES = 10;
+interface SearchBarProps {
+  includeFavorite?: boolean;
+  goBack?: () => void;
+}
+
+const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialSearchWord = searchParams.get('query') || '';
+
+  const { register, handleSubmit, watch, setValue, formState } = useForm<{ searchWord: string }>({
+    defaultValues: {
+      searchWord: initialSearchWord,
+    },
+    mode: 'onSubmit',
+  });
+
+  const generateRandomKey = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
+  const handleRemoveSearchWord = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setValue('searchWord', '');
+  };
+
+  const activeEnter = (data: { searchWord: string }) => {
+    const { searchWord } = data;
+    const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
+    let searchArray = storedData ? JSON.parse(storedData) : [];
+    const existingIndex = searchArray.findIndex(
+      (item: { key: string; keyword: string }) => item.keyword === searchWord,
+    );
+
+    if (existingIndex !== -1) {
+      searchArray.splice(existingIndex, 1);
+    }
+
+    const newItem = { keyword: searchWord, key: generateRandomKey() };
+    searchArray = [newItem, ...searchArray];
+    if (searchArray.length > MAX_RECENT_SEARCHES) {
+      searchArray = searchArray.slice(0, MAX_RECENT_SEARCHES);
+    }
+
+    localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
+    setSearchParams({ query: searchWord });
+    navigate(`/results?query=${searchWord}`);
+  };
+
+  const nowSearchWord = watch('searchWord');
+
+  return (
+    <SearchBarWrapper>
+      <IconButton icon="arrow-back" onClick={goBack} />
+      <InputBox onSubmit={handleSubmit(activeEnter)}>
+        <StyledSearchIcon />
+        <Input
+          type="text"
+          placeholder={SEARCH_PLACEHOLDER}
+          {...register('searchWord', {
+            validate: (value) => value.trim() !== '' || '공백만 입력할 수 없습니다.',
+          })}
+        />
+        {nowSearchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
+      </InputBox>
+      {formState.errors.searchWord && (
+        <ErrorMessage>{formState.errors.searchWord.message}</ErrorMessage>
+      )}
+      {includeFavorite && <IconButton icon="favorite-default" />}
+    </SearchBarWrapper>
+  );
+};
+
+export default SearchBar;
+
+const SEARCHBAR_HEIGHT = HEADER_HEIGHT;
+
+const SearchBarWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: ${SEARCHBAR_HEIGHT};
+  padding: 6px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+`;
+
+const InputBox = styled.form`
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-gray-md);
+  font-size: var(--font-size-sm);
+  cursor: text;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  align-self: stretch;
+  margin: 0 30px 0 34px;
+  outline: none;
+  border: none;
+
+  &::placeholder {
+    color: var(--color-gray-dk);
+  }
+`;
+
+const StyledSearchIcon = styled(SearchIcon)`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  left: 8px;
+  cursor: pointer;
+`;
+
+const CancelIconButton = styled(CancelIcon)`
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  right: 8px;
+  cursor: pointer;
+`;
+
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: var(--font-size-sm);
+  margin-top: 4px;
+`;

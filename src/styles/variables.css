@@ -12,9 +12,11 @@
 
   --color-white: #fff;
   --color-black: #020715;
-  --color-gray-01: #f0f0f0;
-  --color-gray-02: #dddddd;
-  --color-gray-03: #909090;
+  --color-gray-lt: #f0f0f0;
+  --color-gray-md: #dddddd;
+  --color-gray-dk: #909090;
   --color-red: #e30000;
-  --color-yellow: #fee500;
+  --color-yellow-kakao: #fee500;
+
+  --border-radius: 2px;
 }

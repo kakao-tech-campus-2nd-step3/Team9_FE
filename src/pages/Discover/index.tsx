@@ -1,5 +1,5 @@
 const Discover = () => {
-  return <></>;
+  return <>Discover</>;
 };
 
 export default Discover;

@@ -1,5 +1,5 @@
 const ArtistDetails = () => {
-  return <></>;
+  return <>ArtistDetails</>;
 };
 
 export default ArtistDetails;

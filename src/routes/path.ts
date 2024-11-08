@@ -3,21 +3,22 @@ export const RouterPath = {
   home: '/',
   discover: '/discover',
   categories: '/categories',
-  search: '/search',
-  results: '/results',
-  products: '/products',
-  artists: '/artists',
+  search: 'search',
+  results: 'results',
+  products: 'products',
+  artists: 'artists',
+  chat: '/chat',
 
   my: '/my',
-  orders: '/orders',
-  favorites: '/favorites',
-  sales: '/sales',
-  gallery: '/gallery',
+  orders: 'orders',
+  favorites: 'favorites',
+  sales: 'sales',
+  gallery: 'gallery',
 
-  posting: '/posting',
+  posting: 'posting',
 
-  login: '/login',
-  signup: '/signup',
+  login: 'login',
+  signup: 'signup',
   notFound: '*',
 };
 

@@ -33,11 +33,11 @@ const MyFavorites = () => {
         <div>작품</div> // 현재 이부분 api가 없어 비워두었습니다.
       ) : (
         <div>
-          <Grid col={2}>
-            {data?.data.content.length === 0 ? (
-              <p>팔로우 하고 있는 작가가 없습니다.</p>
-            ) : (
-              data?.data.content?.map((artist: User) => (
+          {data?.data.content?.length === 0 ? (
+            <p>팔로우한 작가가 없습니다.</p>
+          ) : (
+            <Grid col={2}>
+              {data?.data.content?.map((artist: User) => (
                 <ArtistItem
                   author={artist.nickname}
                   like={artist.totalLikes}
@@ -45,9 +45,9 @@ const MyFavorites = () => {
                   src={artist.userImageUrl}
                   isFollow={true}
                 />
-              ))
-            )}
-          </Grid>
+              ))}
+            </Grid>
+          )}
         </div>
       )}
     </>

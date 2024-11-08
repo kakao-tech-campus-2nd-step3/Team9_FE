@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { MenuItem } from './MenuItem';
 
-const MenuSection = () => {
+const UserMenuSection = () => {
   const navigate = useNavigate();
   return (
     <Wrapper>
@@ -16,7 +16,7 @@ const MenuSection = () => {
   );
 };
 
-export default MenuSection;
+export default UserMenuSection;
 
 const Wrapper = styled.div`
   width: 100%;

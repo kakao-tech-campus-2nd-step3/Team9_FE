@@ -48,6 +48,7 @@ const SwiperFrame = ({ children }: SwiperFrame) => {
               follower={item.totalFollowers}
               key={item.id}
               onFollow={() => handleFollow(item.id)}
+              isFollow={item.followed}
             />
           )}
         </StyledSwiperSlide>

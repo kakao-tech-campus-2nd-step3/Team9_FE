@@ -11,7 +11,6 @@ export type ChatMessage = {
 
 // const accessToken = localStorage.getItem('accessToken');
 
-//  STOMP 클라이언트
 let stompClient: Client | null = null;
 
 /**
@@ -24,10 +23,8 @@ export function connectWebSocket(
   onMessageReceived?: (message: ChatMessage) => void,
   onError?: (error: string) => void,
 ): void {
-  // WebSocket 연결
+  // WebSocket 연결, STOMP 클라이언트 설정
   const socket = new SockJS(`${BASE_URL}/ws`);
-
-  // STOMP 클라이언트 설정
   stompClient = Stomp.over(socket);
 
   // 연결이 열렸을 때 호출될 콜백 함수
@@ -46,7 +43,7 @@ export function connectWebSocket(
     console.log('WebSocket 연결 성공');
   };
 
-  // 메시지 수신 시 호출될 콜백 함수
+  // 에러 났을 때 호출될 콜백 함수
   stompClient.onStompError = (errorFrame) => {
     console.error('Broker reported error: ' + errorFrame.headers['message']);
 

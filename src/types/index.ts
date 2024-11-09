@@ -33,13 +33,13 @@ export type SearchArtist = {
   followed: boolean;
 };
 
-export interface User {
+export type User = {
   userId: number;
   nickname: string;
   userImageUrl: string;
   totalFollowers: number;
   totalLikes: number;
-}
+};
 
 export type FollowResponse = { content: User[] };
 

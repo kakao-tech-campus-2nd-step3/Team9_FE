@@ -1,29 +1,25 @@
 import { Box, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
+import ProfileImage from '@/components/common/ProfileImage';
 import { formatDate } from '@/utils';
 
 type ChatItemProps = {
+  chatRoomId: number;
   imageUrl: string;
   nickname: string;
   date: string;
   content: string;
 };
 
-const ChatItem = ({ imageUrl, nickname, date, content }: ChatItemProps) => {
+const ChatItem = ({ chatRoomId, imageUrl, nickname, date, content }: ChatItemProps) => {
   const formattedDate = formatDate(date);
+  const navigate = useNavigate();
 
   return (
-    <Wrapper>
-      <Box
-        width="54px"
-        aspectRatio="1 / 1"
-        borderRadius="50px"
-        border="1px solid var(--color-gray-md)"
-        backgroundColor="var(--color-gray-lt)"
-      >
-        <img src={imageUrl} />
-      </Box>
+    <Wrapper onClick={() => navigate(`${chatRoomId}`)}>
+      <ProfileImage width={54} imageUrl={imageUrl} />
       <Box display="flex" flexDir="column" gap="4px" margin="0 0 0 12px">
         <Box display="flex" flexDir="row" gap="12px" alignItems="center">
           <Text fontSize="var(--font-size-md)" fontWeight="500">

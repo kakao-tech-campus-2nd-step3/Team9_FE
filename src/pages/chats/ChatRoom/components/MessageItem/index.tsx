@@ -2,8 +2,10 @@ import styled from '@emotion/styled';
 
 import ProfileImage from '@/components/common/ProfileImage';
 
+type MessageType = 'send' | 'receive'; // todo: dto에 맞춰 바꾸기
+
 export type MessageItemProps = {
-  type: 'send' | 'receive';
+  type: MessageType;
   imageUrl?: string;
   time: string;
   message: string;
@@ -31,7 +33,7 @@ const MessageItem = ({ type, imageUrl, time, message }: MessageItemProps) => {
 
 export default MessageItem;
 
-const StyledMessageItem = styled.div<{ type: 'send' | 'receive' }>`
+const StyledMessageItem = styled.div<{ type: MessageType }>`
   width: 100%;
   height: auto;
   padding: 0 16px 8px;
@@ -59,7 +61,7 @@ const Time = styled.span`
   align-self: flex-end;
 `;
 
-const Bubble = styled.div<{ type: 'send' | 'receive' }>`
+const Bubble = styled.div<{ type: MessageType }>`
   padding: 6px 8px;
   max-width: 100%;
   flex-wrap: wrap;

@@ -19,11 +19,11 @@ let stompClient: Client | null = null;
  * @param onMessageReceived - 수신된 메시지를 처리할 콜백 함수
  * @param onError - 에러 시 호출될 콜백 함수
  */
-export const connectWebSocket = (
+export function connectWebSocket(
   chatRoomId: number,
   onMessageReceived?: (message: ChatMessage) => void,
   onError?: (error: string) => void,
-): void => {
+): void {
   // WebSocket 연결
   const socket = new SockJS(`${BASE_URL}/ws`);
 
@@ -56,10 +56,10 @@ export const connectWebSocket = (
   };
 
   stompClient.activate();
-};
+}
 
 // 메시지 전송 함수
-export const sendMessage = (chatRoomId: number, message: ChatMessage): void => {
+export function sendMessage(chatRoomId: number, message: ChatMessage): void {
   if (stompClient && stompClient.connected) {
     stompClient.publish({
       destination: `/pub/chat/${chatRoomId} `,
@@ -68,12 +68,12 @@ export const sendMessage = (chatRoomId: number, message: ChatMessage): void => {
   } else {
     throw new Error('STOMP 클라이언트를 먼저 연결해주세요');
   }
-};
+}
 
-// WebSocket 연결 해제
-export const disconnectWebSocket = (): void => {
+// WebSocket 연결 해제 함수
+export function disconnectWebSocket(): void {
   if (stompClient) {
     stompClient.deactivate();
     stompClient = null;
   }
-};
+}

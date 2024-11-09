@@ -4,7 +4,7 @@ import { fetchInstance } from '../instance';
 
 const token = localStorage.getItem('accessToken');
 
-export const getFollow = async (): Promise<APIResponse<FollowResponse>> => {
+const getFollow = async (): Promise<APIResponse<FollowResponse>> => {
   const response = await fetchInstance().get('/users/following', {
     headers: {
       Authorization: `Bearer ${token}`,

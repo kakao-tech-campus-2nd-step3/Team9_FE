@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useLocation } from 'react-router-dom';
 
 import { tabList } from '@/constants/tabList';
+import Z_INDEX from '@/styles/z_index';
 import Tab from './Tab';
 
 const TabBar = () => {
@@ -40,4 +41,5 @@ const Wrapper = styled.nav`
   border-top: 1px solid var(--color-gray-md);
   position: fixed;
   bottom: 0;
+  z-index: ${Z_INDEX.TabBar};
 `;

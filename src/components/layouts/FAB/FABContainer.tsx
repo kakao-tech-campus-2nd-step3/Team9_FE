@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 import useModeStore from '@/store/useModeStore';
+import Z_INDEX from '@/styles/z_index';
 import { PostButton, ScrollToTopButton } from '.';
 import { TABBAR_HEIGHT } from '../TabBar';
 
@@ -51,4 +52,5 @@ const Wrapper = styled.div`
   right: 16px;
   bottom: 16px;
   margin-bottom: ${TABBAR_HEIGHT};
+  z-index: ${Z_INDEX.FAB};
 `;

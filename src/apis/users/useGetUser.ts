@@ -6,7 +6,7 @@ const token = localStorage.getItem('accessToken');
 
 type InfoType<T extends Mode> = T extends 'user' ? UserInfo : ArtistInfo;
 
-export const getUser = async <T extends Mode>(mode: T): Promise<APIResponse<InfoType<T>>> => {
+const getUser = async <T extends Mode>(mode: T): Promise<APIResponse<InfoType<T>>> => {
   const endpoint = mode === 'user' ? '/users' : '/artists';
   const response = await fetchInstance().get(endpoint, {
     headers: {

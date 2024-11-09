@@ -44,4 +44,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 12px 16px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: var(--color-gray-lt);
+  }
 `;

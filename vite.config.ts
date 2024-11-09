@@ -6,7 +6,7 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
-    global: 'window',
+    global: 'window', // sockjs-client 라이브러리가 window 객체를 global로 인식하도록 설정
   },
   plugins: [react(), svgr()],
   resolve: {

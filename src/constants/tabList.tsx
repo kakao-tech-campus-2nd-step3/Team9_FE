@@ -39,7 +39,7 @@ export const tabList: Tab[] = [
     label: '채팅',
     defaultIcon: <DefaultChatIcon />,
     activeIcon: <ActiveChatIcon />,
-    linkTo: RouterPath.chat,
+    linkTo: RouterPath.chats,
   },
   {
     label: '마이페이지',

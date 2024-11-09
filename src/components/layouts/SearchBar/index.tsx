@@ -4,7 +4,6 @@ import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
-import Z_INDEX from '@/styles/z_index';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { HEADER_HEIGHT } from '../Header';
@@ -89,8 +88,7 @@ export default SearchBar;
 const SEARCHBAR_HEIGHT = HEADER_HEIGHT;
 
 const SearchBarWrapper = styled.div`
-  position: fixed;
-  z-index: ${Z_INDEX.Header};
+  position: sticky;
   top: 0;
   width: 100%;
   height: ${SEARCHBAR_HEIGHT};
@@ -99,7 +97,6 @@ const SearchBarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  background-color: var(--color-white);
 `;
 
 const InputBox = styled.form`

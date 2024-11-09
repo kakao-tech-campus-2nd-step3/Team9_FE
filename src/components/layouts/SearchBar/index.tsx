@@ -6,6 +6,7 @@ import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
+import Z_INDEX from '@/styles/z_index';
 import { HEADER_HEIGHT } from '../Header';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
@@ -89,7 +90,8 @@ export default SearchBar;
 const SEARCHBAR_HEIGHT = HEADER_HEIGHT;
 
 const SearchBarWrapper = styled.div`
-  position: sticky;
+  position: fixed;
+  z-index: ${Z_INDEX.Header};
   top: 0;
   width: 100%;
   height: ${SEARCHBAR_HEIGHT};
@@ -98,6 +100,7 @@ const SearchBarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  background-color: var(--color-white);
 `;
 
 const InputBox = styled.form`

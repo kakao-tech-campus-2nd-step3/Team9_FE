@@ -1,3 +1,4 @@
+import { usePostFollow } from '@/apis/users/usePostFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import ProductItem from '@/components/common/ProductItem';
 import { SearchArtist, SearchWork } from '@/types/index';
@@ -15,6 +16,12 @@ interface SwiperFrame {
 }
 
 const SwiperFrame = ({ children }: SwiperFrame) => {
+  const { mutate: postFollow } = usePostFollow();
+
+  const handleFollow = (artistId: number) => {
+    postFollow(artistId);
+  };
+
   return (
     <SwiperWrapper
       modules={[Scrollbar, Navigation]}
@@ -40,6 +47,8 @@ const SwiperFrame = ({ children }: SwiperFrame) => {
               like={item.totalLikes}
               follower={item.totalFollowers}
               key={item.id}
+              onFollow={() => handleFollow(item.id)}
+              isFollow={item.followed}
             />
           )}
         </StyledSwiperSlide>

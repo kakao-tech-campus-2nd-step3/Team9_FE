@@ -1,5 +1,6 @@
 import searchArtist from '@/apis/data/searchArtist';
 import searchWork from '@/apis/data/searchWork';
+import CategoryTabBar from '@/components/common/CategoryTabBar';
 import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
@@ -9,7 +10,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
-import CategoryTabBar from './components/CategoryTabBar';
 import MoreButton from './components/MoreButton';
 import SwiperFrame from './components/SwiperFrame';
 
@@ -19,6 +19,7 @@ const SearchResults = () => {
   const searchLen = searchWork.length + searchArtist.length;
   const searchWorkLen = searchWork.length;
   const searchArtistLen = searchArtist.length;
+  const categoryList = ['전체', '작품', '작가'];
 
   const goBack = () => {
     navigate(RouterPath.categories);
@@ -32,7 +33,7 @@ const SearchResults = () => {
     <PageContainer>
       <HeaderSection>
         <SearchBar goBack={goBack} />
-        <CategoryTabBar tabClick={handleTabClick} tabState={selectedTab} />
+        <CategoryTabBar tabClick={handleTabClick} tabState={selectedTab} tabList={categoryList} />
       </HeaderSection>
 
       <ContentSection>

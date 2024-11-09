@@ -11,32 +11,6 @@ import Date from './components/Date';
 
 // 임시
 const NICKNAME = '미니멀앤';
-// const messageList: MessageItemProps[] = [
-//   {
-//     type: 'send',
-//     time: '오후 1:30',
-//     message: 'One look give em Whiplash Beat drop with a big flash',
-//   },
-//   {
-//     type: 'send',
-//     time: '오후 1:30',
-//     message: `
-//       집중해 좀 더
-//       Think fast
-//       이유 넌 이해 못 해
-//     `,
-//   },
-//   {
-//     imageUrl: '',
-//     type: 'receive',
-//     time: '오후 1:30',
-//     message: `
-//       왜 이제야
-//       Know I did that
-//       Day 1 know I been bad
-//     `,
-//   },
-// ];
 const chatRoomId = 1;
 const userEmail = 'abc@1618.com';
 

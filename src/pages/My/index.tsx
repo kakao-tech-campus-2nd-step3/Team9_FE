@@ -18,7 +18,7 @@ const My = () => {
     return <p>Error... console.log('Error:', error);</p>;
   }
   return (
-    <>
+    <Wrapper>
       {mode === 'user' ? (
         <>
           <ProfileSection>
@@ -44,8 +44,7 @@ const My = () => {
       )}
 
       <Footer />
-      <div style={{ marginBottom: '53px' }} />
-    </>
+    </Wrapper>
   );
 };
 
@@ -54,4 +53,11 @@ export default My;
 const ProfileSection = styled.div`
   background: var(--color-black);
   padding: 16px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 53px;
 `;

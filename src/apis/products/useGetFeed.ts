@@ -3,26 +3,24 @@ import { isAxiosError } from 'axios';
 
 import { fetchInstance } from '../instance';
 
-type GetFeedProps = {
-  size?: number;
-};
-
-type Products = {
+export type Product = {
   id: number;
   name: string;
   artist: string;
   price: number;
-  thumnailUrl: string;
+  thumbnailUrl: string;
 };
 
 type GetFeedResponse = {
-  hasNext: boolean;
-  products: Products[];
+  pages: {
+    hasNext: boolean;
+    products: Product[];
+  };
 };
 
-async function getFeed({ size }: GetFeedProps): Promise<GetFeedResponse> {
+async function getFeed(size: number, pageParam: number): Promise<GetFeedResponse> {
   try {
-    const response = await fetchInstance().get(`/products/feed?size=${size}`);
+    const response = await fetchInstance().get(`/products/feed?size=${size}&page=${pageParam}`);
     // console.log('getFeed response: ', response);
 
     return response.data;
@@ -39,13 +37,15 @@ async function getFeed({ size }: GetFeedProps): Promise<GetFeedResponse> {
   }
 }
 
-const useGetFeed = (size: number) => {
-  return useSuspenseInfiniteQuery<GetFeedResponse, Error, GetFeedProps>({
-    queryKey: ['feed'],
-    queryFn: () => getFeed({ size }),
+const useGetFeed = () => {
+  const size = 20;
+
+  return useSuspenseInfiniteQuery<GetFeedResponse, Error, void>({
+    queryKey: ['feed', size],
+    queryFn: ({ pageParam = 0 }) => getFeed(size, pageParam as number),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      return lastPage.hasNext ? lastPage.products.length / size + 1 : undefined;
+      return lastPage.pages.hasNext ? lastPage.pages.products.length / size + 1 : undefined;
     },
   });
 };

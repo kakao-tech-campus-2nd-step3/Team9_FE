@@ -1,50 +1,43 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 
-import SearchBar from '@/components/layouts/SearchBar';
+import useGetFeed, { type Product } from '@/apis/products/useGetFeed';
 import { HEADER_HEIGHT } from '@/components/layouts/Header';
+import SearchBar from '@/components/layouts/SearchBar';
 import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
 
 const Discover = () => {
-  const [imageList, setImageList] = useState<string[]>([]);
-  const [page, setPage] = useState(1);
+  const { data, fetchNextPage, hasNextPage } = useGetFeed();
 
-  // 아무 이미지 fetch
-  const fetchImages = async () => {
-    const newImages = Array.from(
-      { length: 10 },
-      (_, i) => `https://picsum.photos/300/300?random=${page * 10 + i}`,
-    );
-    setImageList((prevImages) => [...prevImages, ...newImages]);
-  };
-
-  useEffect(() => {
-    fetchImages();
-  }, [page]);
-
+  // 스크롤 내려감에 따라 다음 페이지 데이터 페칭
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
-      setPage((prevPage) => prevPage + 1);
+    if (scrollTop + clientHeight >= scrollHeight - 100 && hasNextPage) {
+      fetchNextPage();
     }
   };
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
+    return () => window.removeEventListener('scroll', handleScroll); // 언마운트될 때 이벤트 리스너 해제
+  }, [fetchNextPage, hasNextPage]);
 
   return (
     <Wrapper>
       <SearchBar />
       <ContentWrapper>
-        <ImageGrid>
-          {imageList.map((src, index) => (
-            <ImageItem key={index}>
-              <img src={src} />
-            </ImageItem>
-          ))}
-        </ImageGrid>
+        <Suspense fallback={<>Loading...</>}>
+          <ImageGrid>
+            {data?.pages.map((page) =>
+              page.products.map((product: Product) => (
+                <ImageItem key={product.id}>
+                  <img src={product.thumbnailUrl} alt={product.name} />
+                </ImageItem>
+              )),
+            )}
+          </ImageGrid>
+        </Suspense>
       </ContentWrapper>
     </Wrapper>
   );

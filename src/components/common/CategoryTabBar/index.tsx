@@ -47,8 +47,8 @@ const Wrapper = styled.div`
   padding: 0px 16px;
   align-items: center;
   border-bottom: 1px solid var(--color-gray-md);
-  background: var(--white, #fff);
-  font-size: 1.4rem;
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
   text-align: center;
 `;
 

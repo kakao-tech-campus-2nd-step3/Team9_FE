@@ -46,7 +46,6 @@ const Image = styled.img`
 
 const DetailWrapper = styled.div`
   display: flex;
-  width: 167px;
   height: 71px;
   flex-direction: column;
   align-items: flex-start;
@@ -57,7 +56,6 @@ const DetailWrapper = styled.div`
 const NameWrapper = styled.p`
   font-size: var(--font-size-xl);
   text-align: center;
-  font-family: Lato;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -66,7 +64,6 @@ const NameWrapper = styled.p`
 
 const InterestsWrapper = styled.p`
   font-size: var(--font-size-sm);
-  font-family: Lato;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -78,7 +75,6 @@ const HastTabWrapper = styled.div`
   gap: 4px;
   flex-wrap: wrap;
   font-size: var(--font-size-xs);
-  font-family: Lato;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

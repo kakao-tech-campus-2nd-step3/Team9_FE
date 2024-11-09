@@ -50,7 +50,6 @@ const Image = styled.img`
 
 const DetailWrapper = styled.div`
   display: flex;
-  width: 167px;
   height: 71px;
   flex-direction: column;
   align-items: flex-start;
@@ -61,7 +60,6 @@ const DetailWrapper = styled.div`
 const NameWrapper = styled.p`
   font-size: var(--font-size-xl);
   text-align: center;
-  font-family: Lato;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -69,9 +67,8 @@ const NameWrapper = styled.p`
 `;
 
 const DescriptionWrapper = styled.p`
-  color: var(--color-black, #020715);
-  font-family: Inter;
-  font-size: 12px;
+  color: var(--color-black);
+  font-size: var(--font-size-xs);
   font-style: normal;
   font-weight: 400;
   line-height: normal;

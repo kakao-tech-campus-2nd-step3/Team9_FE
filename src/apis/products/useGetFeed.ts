@@ -12,10 +12,8 @@ export type Product = {
 };
 
 type GetFeedResponse = {
-  pages: {
-    hasNext: boolean;
-    products: Product[];
-  };
+  hasNext: boolean;
+  products: Product[];
 };
 
 async function getFeed(size: number, pageParam: number): Promise<GetFeedResponse> {
@@ -45,7 +43,7 @@ const useGetFeed = () => {
     queryFn: ({ pageParam = 0 }) => getFeed(size, pageParam as number),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      return lastPage.pages.hasNext ? lastPage.pages.products.length / size + 1 : undefined;
+      return lastPage.hasNext ? lastPage.products.length / size + 1 : undefined;
     },
   });
 };

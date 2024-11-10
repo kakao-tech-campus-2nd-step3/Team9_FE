@@ -1,36 +1,60 @@
 import styled from '@emotion/styled';
 
+import useDeleteFollow from '@/apis/users/useDeleteFollow';
+import usePostFollow from '@/apis/users/usePostFollow';
 import FollowButton from '@/components/common/FollowButton';
 import Thumbnail from '@/components/common/Thumbnail';
 import { useState } from 'react';
 import LikesAndFollowers from '../LikesAndFollowers';
 
 interface ArtistItemProps {
+  artistId: number;
   author: string;
   like: number;
   follower: number;
   size?: 'large' | 'default';
   src?: string;
   alt?: string;
-  onFollow?: () => void;
   isFollow: boolean;
 }
 
 const ArtistItem = ({
+  artistId,
   author,
   like,
   follower,
   size = 'default',
   src,
   alt,
-  onFollow,
   isFollow,
 }: ArtistItemProps) => {
   const [isFollowed, setIsFollowed] = useState(isFollow);
 
+  const { mutate: postFollow, status: isPostStatus } = usePostFollow();
+  const { mutate: deleteFollow, status: isDeleteStatus } = useDeleteFollow();
+
   const handleFollowClick = () => {
-    setIsFollowed(!isFollowed);
-    onFollow?.();
+    if (isFollowed) {
+      deleteFollow(artistId, {
+        onSuccess: () => {
+          setIsFollowed(false);
+        },
+        onError: (error) => {
+          console.error('Failed to delete follow:', error);
+          alert('팔로우 취소에 실패했습니다.');
+        },
+      });
+    } else {
+      postFollow(artistId, {
+        onSuccess: () => {
+          setIsFollowed(true);
+        },
+        onError: (error) => {
+          console.error('Failed to post follow:', error);
+          alert('팔로우에 실패했습니다.');
+        },
+      });
+    }
   };
 
   return (
@@ -38,7 +62,11 @@ const ArtistItem = ({
       <Thumbnail ratio="square" src={src} alt={alt} />
       <MidWrapper>
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
-        <FollowButton isFollowed={isFollowed} onClick={handleFollowClick}>
+        <FollowButton
+          isFollowed={isFollowed}
+          onClick={handleFollowClick}
+          disabled={isPostStatus === 'pending' || isDeleteStatus === 'pending'}
+        >
           {isFollowed ? '팔로잉' : '팔로우'}
         </FollowButton>
       </MidWrapper>

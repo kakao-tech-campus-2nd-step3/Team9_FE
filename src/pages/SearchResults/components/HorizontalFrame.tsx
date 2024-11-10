@@ -1,4 +1,3 @@
-import usePostFollow from '@/apis/users/usePostFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import ProductItem from '@/components/common/ProductItem';
 import { SearchArtist, SearchWork } from '@/types/index';
@@ -9,12 +8,6 @@ interface HorizontalFrameProps {
 }
 
 const HorizontalFrame = ({ children }: HorizontalFrameProps) => {
-  const { mutate: postFollow } = usePostFollow();
-
-  const handleFollow = (artistId: number) => {
-    postFollow(artistId);
-  };
-
   return (
     <HorizontalScrollWrapper>
       {children.map((item) => (
@@ -31,12 +24,12 @@ const HorizontalFrame = ({ children }: HorizontalFrameProps) => {
           )}
           {'name' in item && (
             <ArtistItem
+              artistId={item.id}
               author={item.name}
               src={item.src}
               like={item.totalLikes}
               follower={item.totalFollowers}
               key={item.id}
-              onFollow={() => handleFollow(item.id)}
               isFollow={item.followed}
               alt="artist"
             />

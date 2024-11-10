@@ -2,20 +2,13 @@ import usePostFollow from '@/apis/users/usePostFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import ProductItem from '@/components/common/ProductItem';
 import { SearchArtist, SearchWork } from '@/types/index';
-import { Navigation, Scrollbar } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
 import styled from '@emotion/styled';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
-
-interface SwiperFrame {
+interface HorizontalFrameProps {
   children: SearchArtist[] | SearchWork[];
 }
 
-const SwiperFrame = ({ children }: SwiperFrame) => {
+const HorizontalFrame = ({ children }: HorizontalFrameProps) => {
   const { mutate: postFollow } = usePostFollow();
 
   const handleFollow = (artistId: number) => {
@@ -23,14 +16,9 @@ const SwiperFrame = ({ children }: SwiperFrame) => {
   };
 
   return (
-    <SwiperWrapper
-      modules={[Scrollbar, Navigation]}
-      slidesPerView="auto"
-      spaceBetween={3}
-      navigation={true}
-    >
+    <HorizontalScrollWrapper>
       {children.map((item) => (
-        <StyledSwiperSlide key={item.id}>
+        <StyledItemWrapper key={item.id}>
           {'title' in item && (
             <ProductItem
               author={item.artist}
@@ -38,6 +26,7 @@ const SwiperFrame = ({ children }: SwiperFrame) => {
               src={item.src}
               price={item.price}
               key={item.id}
+              alt="artwork"
             />
           )}
           {'name' in item && (
@@ -49,43 +38,33 @@ const SwiperFrame = ({ children }: SwiperFrame) => {
               key={item.id}
               onFollow={() => handleFollow(item.id)}
               isFollow={item.followed}
+              alt="artist"
             />
           )}
-        </StyledSwiperSlide>
+        </StyledItemWrapper>
       ))}
-    </SwiperWrapper>
+    </HorizontalScrollWrapper>
   );
 };
 
-export default SwiperFrame;
+export default HorizontalFrame;
 
-const SwiperWrapper = styled(Swiper)`
-  width: 100%;
-  height: 223px;
+const HorizontalScrollWrapper = styled.div`
+  display: flex;
+  overflow-x: scroll;
+  white-space: nowrap;
   padding: 0 16px;
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: #333;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    padding: 5px;
-
-    &:hover {
-      color: var(--color-white);
-    }
-  }
-
-  .swiper-button-next {
-    right: 10px;
-  }
-
-  .swiper-button-prev {
-    left: 10px;
+  gap: 16px;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 
-const StyledSwiperSlide = styled(SwiperSlide)`
+const StyledItemWrapper = styled.div`
+  flex-shrink: 0;
   width: 180px;
-  height: 144px;
+  height: 100%;
 `;

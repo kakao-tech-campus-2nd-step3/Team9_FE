@@ -1,7 +1,6 @@
 import { RouterPath } from '@/routes/path';
-import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import { MenuItem } from './MenuItem';
+import { MenuItem, UlWrapper, Wrapper } from './ArtistMenuSection.styles';
 
 const ArtistMenuSection = () => {
   const navigate = useNavigate();
@@ -18,16 +17,3 @@ const ArtistMenuSection = () => {
 };
 
 export default ArtistMenuSection;
-
-const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  padding: 0px 16px;
-  flex-direction: column;
-  align-items: center;
-  align-self: stretch;
-`;
-
-const UlWrapper = styled.ul`
-  width: 100%;
-`;

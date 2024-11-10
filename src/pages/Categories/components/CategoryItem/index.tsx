@@ -11,7 +11,7 @@ const CategoryItem = ({ des, src }: CategoryItemProps) => {
 
   return (
     <Wrapper>
-      <RoundImage src={src} />
+      <RoundImage src={src} alt="CategoryImage" />
       <DesWrapper>{des}</DesWrapper>
     </Wrapper>
   );
@@ -31,6 +31,7 @@ const RoundImage = styled(Image)`
   width: 80%;
   border-radius: 100%;
   object-fit: cover;
+  background-color: var(--color-gray-lt);
 `;
 
 const DesWrapper = styled.p`

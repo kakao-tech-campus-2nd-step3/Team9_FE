@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Image } from '@chakra-ui/react';
-import Grid from '@/components/styles/Grid';
 import searchAdList from '@/apis/data/searchAdList';
+import Grid from '@/components/styles/Grid';
+import { Image } from '@chakra-ui/react';
 
 const SearchAd = () => {
   return (
@@ -15,7 +15,7 @@ const SearchAd = () => {
       </TitleWrapper>
       <Grid col={2}>
         {searchAdList.map((ad) => (
-          <AdImage key={ad.id} src={ad.src} />
+          <AdImage key={ad.id} src={ad.src} alt="adImage" />
         ))}
       </Grid>
     </Wrapper>
@@ -49,6 +49,7 @@ const RedText = styled.span`
 
 const AdImage = styled(Image)`
   width: 158px;
+  background-color: var(--color-gray-lt);
 `;
 
 const Tab = styled.p`

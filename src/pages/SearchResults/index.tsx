@@ -11,8 +11,8 @@ import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
+import HorizontalFrame from './components/HorizontalFrame';
 import MoreButton from './components/MoreButton';
-import SwiperFrame from './components/SwiperFrame';
 
 const SearchResults = () => {
   const [selectedTab, setSelectedTab] = useState('전체');
@@ -45,10 +45,10 @@ const SearchResults = () => {
               <SubTitleFont>
                 작품 <ResultLightFont>({searchWorkLen})</ResultLightFont>
               </SubTitleFont>
-              <SwiperWrapper>
-                <SwiperFrame children={searchWork} />
+              <HorizontalWRapper>
+                <HorizontalFrame children={searchWork} />
                 <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
-              </SwiperWrapper>
+              </HorizontalWRapper>
             </Section>
 
             <Gap height={12} />
@@ -57,10 +57,10 @@ const SearchResults = () => {
               <SubTitleFont>
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
               </SubTitleFont>
-              <SwiperWrapper>
-                <SwiperFrame children={searchArtist} />
+              <HorizontalWRapper>
+                <HorizontalFrame children={searchArtist} />
                 <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
-              </SwiperWrapper>
+              </HorizontalWRapper>
             </Section>
           </AllContentWrapper>
         )}
@@ -124,7 +124,7 @@ const ResultLightFont = styled.div`
   margin-left: 2px;
 `;
 
-const SwiperWrapper = styled.div`
+const HorizontalWRapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

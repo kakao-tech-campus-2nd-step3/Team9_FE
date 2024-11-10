@@ -1,6 +1,6 @@
 import { APIResponse, ArtistInfo, Mode, UserInfo } from '@/types';
 import { useQuery } from '@tanstack/react-query';
-import { fetchInstance } from '../instance';
+import fetchInstance from '../instance';
 
 type InfoType<T extends Mode> = T extends 'user' ? UserInfo : ArtistInfo;
 

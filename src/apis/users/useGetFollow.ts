@@ -1,6 +1,6 @@
 import { APIResponse, FollowResponse } from '@/types';
 import { useQuery } from '@tanstack/react-query';
-import { fetchInstance } from '../instance';
+import fetchInstance from '../instance';
 
 const getFollow = async (): Promise<APIResponse<FollowResponse>> => {
   const response = await fetchInstance().get('/users/following');

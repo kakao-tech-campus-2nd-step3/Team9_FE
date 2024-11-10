@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { fetchInstance } from '../instance';
+import fetchInstance from '../instance';
 import { API_KEY, BASE_URL } from './index';
 import { isAxiosError } from 'axios';
 

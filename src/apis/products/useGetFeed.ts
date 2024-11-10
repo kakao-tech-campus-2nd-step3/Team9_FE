@@ -16,9 +16,9 @@ type GetFeedResponse = {
   products: Product[];
 };
 
-async function getFeed(size: number, pageParam: number): Promise<GetFeedResponse> {
+async function getFeed(size: number): Promise<GetFeedResponse> {
   try {
-    const response = await fetchInstance().get(`/products/feed?size=${size}&page=${pageParam}`);
+    const response = await fetchInstance().get(`/products/feed?size=${size}`);
     // console.log('getFeed response: ', response);
 
     return response.data;
@@ -40,7 +40,7 @@ const useGetFeed = () => {
 
   return useSuspenseInfiniteQuery({
     queryKey: ['feed', size],
-    queryFn: ({ pageParam = 0 }) => getFeed(size, pageParam as number),
+    queryFn: () => getFeed(size),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.hasNext ? lastPage.products.length / size + 1 : undefined;

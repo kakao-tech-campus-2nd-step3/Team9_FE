@@ -1,6 +1,7 @@
 import { APIResponse, ArtistInfo } from '@/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { fetchInstance, queryKey } from '../instance';
+import { fetchInstance } from '../instance';
+import QueryKeys from '../queryKeys';
 
 const token = localStorage.getItem('accessToken');
 
@@ -13,11 +14,13 @@ const getArtist = async (): Promise<APIResponse<ArtistInfo>> => {
   return response.data;
 };
 
-export const useGetArtist = () => {
+const useGetArtist = () => {
   const { data } = useSuspenseQuery<APIResponse<ArtistInfo>, Error>({
-    queryKey: queryKey.userInfo,
+    queryKey: [QueryKeys.USER_INFO],
     queryFn: getArtist,
   });
 
   return { data };
 };
+
+export default useGetArtist;

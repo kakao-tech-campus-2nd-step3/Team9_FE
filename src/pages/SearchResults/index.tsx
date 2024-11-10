@@ -4,7 +4,7 @@ import CategoryTabBar from '@/components/common/CategoryTabBar';
 import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
-import Z_INDEX from '@/styles/z_index';
+import Z_INDEX from '@/styles/zIndex';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

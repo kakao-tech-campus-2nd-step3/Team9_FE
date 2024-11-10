@@ -1,7 +1,8 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
-import { fetchInstance } from '../instance';
+import fetchInstance from '../fetchInstance';
+import QUERY_KEYS from '../queryKeys';
 
 export type Product = {
   id: number;
@@ -39,7 +40,7 @@ const useGetFeed = () => {
   const size = 20;
 
   return useSuspenseInfiniteQuery({
-    queryKey: ['feed', size],
+    queryKey: [QUERY_KEYS.FEED, size],
     queryFn: () => getFeed(size),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {

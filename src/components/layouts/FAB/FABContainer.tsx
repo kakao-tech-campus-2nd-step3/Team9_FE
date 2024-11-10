@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 import useModeStore from '@/store/useModeStore';
-import Z_INDEX from '@/styles/z_index';
+import Z_INDEX from '@/styles/zIndex';
 import { PostButton, ScrollToTopButton } from '.';
 import { TABBAR_HEIGHT } from '../TabBar';
 

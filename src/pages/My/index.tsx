@@ -1,5 +1,5 @@
-import { useGetArtist } from '@/apis/users/useGetArtist';
-import { useGetUser } from '@/apis/users/useGetUser';
+import useGetArtist from '@/apis/users/useGetArtist';
+import useGetUser from '@/apis/users/useGetUser';
 import Footer from '@/components/layouts/Footer';
 import useModeStore from '@/store/useModeStore';
 import { ArtistInfo, UserInfo } from '@/types';

@@ -5,7 +5,7 @@ import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { RouterPath } from '@/routes/path';
 import useModeStore from '@/store/useModeStore';
-import Z_INDEX from '@/styles/z_index';
+import Z_INDEX from '@/constants/zIndex';
 
 interface HeaderProps {
   title?: string;

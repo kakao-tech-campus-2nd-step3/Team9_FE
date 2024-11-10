@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Suspense, useEffect } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import useGetFeed, { type Product } from '@/apis/products/useGetFeed';
 import { HEADER_HEIGHT } from '@/components/layouts/Header';
@@ -27,17 +28,19 @@ const Discover = () => {
     <Wrapper>
       <SearchBar />
       <ContentWrapper>
-        <Suspense fallback={<>Loading...</>}>
-          <ImageGrid>
-            {data?.pages.map((page) =>
-              page.products.map((product: Product) => (
-                <ImageItem key={product.id}>
-                  <img src={product.thumbnailUrl} alt={product.name} />
-                </ImageItem>
-              )),
-            )}
-          </ImageGrid>
-        </Suspense>
+        <ErrorBoundary fallback={<>Error</>}>
+          <Suspense fallback={<>Loading...</>}>
+            <ImageGrid>
+              {data?.pages.map((page) =>
+                page.products.map((product: Product) => (
+                  <ImageItem key={product.id}>
+                    <img src={product.thumbnailUrl} alt={product.name} />
+                  </ImageItem>
+                )),
+              )}
+            </ImageGrid>
+          </Suspense>
+        </ErrorBoundary>
       </ContentWrapper>
     </Wrapper>
   );

@@ -1,7 +1,8 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
-import { fetchInstance } from '../instance';
+import fetchInstance from '../fetchInstance';
+import QUERY_KEYS from '../queryKeys';
 
 export type Product = {
   id: number;
@@ -16,9 +17,9 @@ type GetFeedResponse = {
   products: Product[];
 };
 
-async function getFeed(size: number, pageParam: number): Promise<GetFeedResponse> {
+async function getFeed(size: number): Promise<GetFeedResponse> {
   try {
-    const response = await fetchInstance().get(`/products/feed?size=${size}&page=${pageParam}`);
+    const response = await fetchInstance().get(`/products/feed?size=${size}`);
     // console.log('getFeed response: ', response);
 
     return response.data;
@@ -38,9 +39,9 @@ async function getFeed(size: number, pageParam: number): Promise<GetFeedResponse
 const useGetFeed = () => {
   const size = 20;
 
-  return useSuspenseInfiniteQuery<GetFeedResponse, Error, void>({
-    queryKey: ['feed', size],
-    queryFn: ({ pageParam = 0 }) => getFeed(size, pageParam as number),
+  return useSuspenseInfiniteQuery({
+    queryKey: [QUERY_KEYS.FEED, size],
+    queryFn: () => getFeed(size),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.hasNext ? lastPage.products.length / size + 1 : undefined;

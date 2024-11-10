@@ -1,22 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import { fetchInstance } from '../instance';
 
-const token = localStorage.getItem('accessToken');
+import fetchInstance from '../fetchInstance';
 
-export const postFollow = async (artistId: number): Promise<void> => {
-  const response = await fetchInstance().post(
-    `/users/following/${artistId}`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
-  return response.data;
-};
+async function postFollow(artistId: number): Promise<void> {
+  await fetchInstance().post(`/users/following/${artistId}`, {});
+}
 
-export const usePostFollow = () => {
+const usePostFollow = () => {
   const { mutate, status } = useMutation<void, Error, number>({
     mutationFn: (artistId: number) => postFollow(artistId),
     onError: (error) => {
@@ -26,3 +16,5 @@ export const usePostFollow = () => {
 
   return { mutate, status };
 };
+
+export default usePostFollow;

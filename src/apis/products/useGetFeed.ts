@@ -38,7 +38,7 @@ async function getFeed(size: number, pageParam: number): Promise<GetFeedResponse
 const useGetFeed = () => {
   const size = 20;
 
-  return useSuspenseInfiniteQuery<GetFeedResponse, Error, void>({
+  return useSuspenseInfiniteQuery({
     queryKey: ['feed', size],
     queryFn: ({ pageParam = 0 }) => getFeed(size, pageParam as number),
     initialPageParam: 0,

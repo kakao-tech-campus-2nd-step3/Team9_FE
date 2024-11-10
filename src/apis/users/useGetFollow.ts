@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { APIResponse, FollowResponse } from '@/types';
-import fetchInstance from '../instance';
+import fetchInstance from '../fetchInstance';
 import QUERY_KEYS from '../queryKeys';
 
 async function getFollow(): Promise<APIResponse<FollowResponse>> {

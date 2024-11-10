@@ -1,7 +1,7 @@
 import { useMutation, type UseMutationResult } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
-import fetchInstance from '../instance';
+import fetchInstance from '../fetchInstance';
 import { API_KEY, BASE_URL } from './index';
 
 type UnivCertResponse = {

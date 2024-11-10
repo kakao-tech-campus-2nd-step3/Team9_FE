@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import fetchInstance from '../instance';
+import fetchInstance from '../fetchInstance';
 
 async function postFollow(artistId: number): Promise<void> {
   const response = await fetchInstance().post(`/users/following/${artistId}`, {});

@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { connectWebSocket, disconnectWebSocket, type ChatMessage } from '@/apis/chats';
 import IconButton from '@/components/common/IconButton';
-import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
+import Header from '@/components/layouts/Header';
+import { HEIGHTS } from '@/constants/heights';
 import ChatInput from './components/ChatInput';
 import Date from './components/Date';
 // import MessageItem from './components/MessageItem'; // parameters 안 맞아서 잠시 사용 안 함 // todo: 파라미터 맞추기
@@ -81,7 +82,7 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div<{ marginBottom: string }>`
-  margin: ${HEADER_HEIGHT} 0 ${({ marginBottom }) => marginBottom} 0;
+  margin: ${HEIGHTS.HEADER} 0 ${({ marginBottom }) => marginBottom} 0;
   flex: 1;
   display: flex;
   flex-direction: column;

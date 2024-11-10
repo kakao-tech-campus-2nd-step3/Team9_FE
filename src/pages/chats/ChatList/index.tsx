@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import IconButton from '@/components/common/IconButton';
-import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
-import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
+import Header from '@/components/layouts/Header';
+import { HEIGHTS } from '@/constants/heights';
 import ChatItem from './components/ChatItem';
 
 const ChatList = () => {
@@ -47,5 +47,5 @@ const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: ${HEADER_HEIGHT} 0 ${TABBAR_HEIGHT} 0;
+  margin: ${HEIGHTS.HEADER} 0 ${HEIGHTS.BOTTOM} 0;
 `;

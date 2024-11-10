@@ -3,9 +3,8 @@ import { Suspense, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import useGetFeed, { type Product } from '@/apis/products/useGetFeed';
-import { HEADER_HEIGHT } from '@/components/layouts/Header';
 import SearchBar from '@/components/layouts/SearchBar';
-import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
+import { HEIGHTS } from '@/constants/heights';
 
 const Discover = () => {
   const { data, fetchNextPage, hasNextPage } = useGetFeed();
@@ -52,7 +51,7 @@ const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: ${HEADER_HEIGHT} 0 ${TABBAR_HEIGHT} 0;
+  margin: ${HEIGHTS.HEADER} 0 ${HEIGHTS.BOTTOM} 0;
 `;
 
 const ContentWrapper = styled.div`

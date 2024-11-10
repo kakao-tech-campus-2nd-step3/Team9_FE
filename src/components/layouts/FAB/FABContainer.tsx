@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
+import { HEIGHTS } from '@/constants/heights';
 import useModeStore from '@/store/useModeStore';
 import Z_INDEX from '@/styles/zIndex';
 import { PostButton, ScrollToTopButton } from '.';
-import { TABBAR_HEIGHT } from '../TabBar';
 
 interface FABContainerProps {
   scrollContainerRef: React.RefObject<HTMLElement>;
@@ -51,6 +51,6 @@ const Wrapper = styled.div`
   position: fixed;
   right: 16px;
   bottom: 16px;
-  margin-bottom: ${TABBAR_HEIGHT};
+  margin-bottom: ${HEIGHTS.BOTTOM};
   z-index: ${Z_INDEX.FAB};
 `;

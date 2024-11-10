@@ -16,7 +16,7 @@ export type Tab = {
   linkTo: string;
 };
 
-export const tabList: Tab[] = [
+export const TAB_LIST: Tab[] = [
   {
     label: '카테고리',
     defaultIcon: <CategoriesIcon />,

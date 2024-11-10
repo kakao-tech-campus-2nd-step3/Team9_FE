@@ -1,4 +1,4 @@
-import useGetArtist from '@/apis/users/useGetArtist';
+import useGetArtist from '@/apis/artists/useGetArtist';
 import useGetUser from '@/apis/users/useGetUser';
 import Footer from '@/components/layouts/Footer';
 import useModeStore from '@/store/useModeStore';
@@ -10,40 +10,45 @@ import ArtistProfileBox from './components/ArtistProfileBox';
 import UserMenuSection from './components/MenuSection/UserMenuSection';
 import UserProfileBox from './components/UserProfileBox';
 
-const My = () => {
+const MyContent = () => {
   const { mode } = useModeStore();
-
   const { data } = mode === 'user' ? useGetUser() : useGetArtist();
 
   return (
+    <Wrapper>
+      {mode === 'user' ? (
+        <>
+          <ProfileSection>
+            <UserProfileBox
+              userImageUrl={(data.data as UserInfo).userImageUrl}
+              username={(data.data as UserInfo).username}
+              hashTags={(data.data as UserInfo).hashTags}
+            />
+          </ProfileSection>
+          <UserMenuSection />
+        </>
+      ) : (
+        <ProfileSection>
+          <ArtistProfileBox
+            ImageUrl={(data.data as ArtistInfo).ImageUrl}
+            nickname={(data.data as ArtistInfo).nickname}
+            description={(data.data as ArtistInfo).description}
+            totalFollowers={(data.data as ArtistInfo).totalFollowers}
+            totalLikes={(data.data as ArtistInfo).totalLikes}
+            about={(data.data as ArtistInfo).about}
+          />
+        </ProfileSection>
+      )}
+      <Footer />
+    </Wrapper>
+  );
+};
+
+const My = () => {
+  return (
     <ErrorBoundary fallback={<div>Error...</div>}>
       <Suspense fallback={<div>Loading...</div>}>
-        <Wrapper>
-          {mode === 'user' ? (
-            <>
-              <ProfileSection>
-                <UserProfileBox
-                  userImageUrl={(data.data as UserInfo).userImageUrl}
-                  username={(data.data as UserInfo).username}
-                  hashTags={(data.data as UserInfo).hashTags}
-                />
-              </ProfileSection>
-              <UserMenuSection />
-            </>
-          ) : (
-            <ProfileSection>
-              <ArtistProfileBox
-                ImageUrl={(data.data as ArtistInfo).ImageUrl}
-                nickname={(data.data as ArtistInfo).nickname}
-                description={(data.data as ArtistInfo).description}
-                totalFollowers={(data.data as ArtistInfo).totalFollowers}
-                totalLikes={(data.data as ArtistInfo).totalLikes}
-                about={(data.data as ArtistInfo).about}
-              />
-            </ProfileSection>
-          )}
-          <Footer />
-        </Wrapper>
+        <MyContent />
       </Suspense>
     </ErrorBoundary>
   );

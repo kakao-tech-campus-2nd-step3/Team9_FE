@@ -1,13 +1,14 @@
+import styled from '@emotion/styled';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import searchArtist from '@/apis/data/searchArtist';
 import searchWork from '@/apis/data/searchWork';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
 import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
-import Z_INDEX from '@/styles/zIndex';
-import styled from '@emotion/styled';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Z_INDEX } from '@/styles/constants';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
 import MoreButton from './components/MoreButton';

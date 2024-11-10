@@ -1,11 +1,11 @@
-import { APIResponse, UserInfo } from '@/types';
+import { APIResponse, ArtistInfo } from '@/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchInstance } from '../instance';
 
 const token = localStorage.getItem('accessToken');
 
-const getUser = async (): Promise<APIResponse<UserInfo>> => {
-  const response = await fetchInstance().get('/users', {
+const getArtist = async (): Promise<APIResponse<ArtistInfo>> => {
+  const response = await fetchInstance().get('/artists', {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -13,10 +13,10 @@ const getUser = async (): Promise<APIResponse<UserInfo>> => {
   return response.data;
 };
 
-export const useGetUser = () => {
-  const { data } = useSuspenseQuery<APIResponse<UserInfo>, Error>({
+export const useGetArtist = () => {
+  const { data } = useSuspenseQuery<APIResponse<ArtistInfo>, Error>({
     queryKey: ['userInfo'],
-    queryFn: getUser,
+    queryFn: getArtist,
   });
 
   return { data };

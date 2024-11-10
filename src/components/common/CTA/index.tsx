@@ -1,5 +1,6 @@
-import Z_INDEX from '@/styles/zIndex';
 import styled from '@emotion/styled';
+
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 type CTAProps = {
   theme?: 'primary' | 'secondary';
@@ -18,8 +19,6 @@ const CTA = ({ theme = 'primary', label, display = 'flex', disabled, onClick }: 
 };
 
 export default CTA;
-
-export const CTA_CONTAINER_HEIGHT = '5.4rem';
 
 const StyledCTA = styled.button<{
   theme: 'primary' | 'secondary';
@@ -72,7 +71,7 @@ export const CTAContainer = styled.div`
   position: sticky;
   bottom: 0;
   display: flex;
-  height: ${CTA_CONTAINER_HEIGHT};
+  height: ${HEIGHTS.BOTTOM};
   padding: 6px 16px;
   background-color: var(--color-white);
   border-top: 1px solid var(--color-gray-md);

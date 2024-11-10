@@ -3,13 +3,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@/components/common/IconButton';
-import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
+import Header from '@/components/layouts/Header';
 import { RouterPath } from '@/routes/path';
 import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
+import { HEIGHTS } from '@/styles/constants';
 import type { Mode } from '@/types';
-import DefaultProgress from './progresses/DefaultProgress';
 import SellerProgress from './progresses/ArtistProgress';
+import DefaultProgress from './progresses/DefaultProgress';
 import UserProgress from './progresses/UserProgress';
 
 const Signup = () => {
@@ -64,7 +65,7 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  margin: ${HEADER_HEIGHT} 0 0 0;
+  margin: ${HEIGHTS.HEADER} 0 0 0;
   flex: 1;
   display: flex;
   flex-direction: column;

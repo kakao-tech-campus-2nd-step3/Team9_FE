@@ -5,18 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import KakaoSymbol from '@/assets/kakao-symbol.svg?react';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
-import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
-import { backgroundImageList } from '@/constants/login/backgroundImageList';
+import Header from '@/components/layouts/Header';
+import { BACKGROUND_IMAGE_LIST } from '@/constants/login';
 import { RouterPath } from '@/routes/path';
+import { HEIGHTS } from '@/styles/constants';
 
 const Login = () => {
   const isMember = false; // 추후 API 연동
   const navigate = useNavigate();
 
   // 랜덤 배경이미지
-  const randomIndex = Math.floor(Math.random() * backgroundImageList.length);
-  const backgroundImage = backgroundImageList[randomIndex].src;
-  const backgroundImageCreator = backgroundImageList[randomIndex].creator;
+  const randomIndex = Math.floor(Math.random() * BACKGROUND_IMAGE_LIST.length);
+  const backgroundImage = BACKGROUND_IMAGE_LIST[randomIndex].src;
+  const backgroundImageCreator = BACKGROUND_IMAGE_LIST[randomIndex].creator;
 
   return (
     <Wrapper backgroundImage={backgroundImage}>
@@ -88,7 +89,7 @@ const Wrapper = styled.div<{ backgroundImage: string }>`
 `;
 
 const ContentWrapper = styled.div`
-  margin: ${HEADER_HEIGHT} 0 0 0;
+  margin: ${HEIGHTS.HEADER} 0 0 0;
   flex: 1;
   display: flex;
   flex-direction: column;

@@ -1,25 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
+import { APIResponse, UserInfo } from '@/types';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import fetchInstance from '../instance';
+import QueryKeys from '../queryKeys';
 
-import { APIResponse, ArtistInfo, Mode, UserInfo } from '@/types';
-import fetchInstance from '../fetchInstance';
-import QUERY_KEYS from '../queryKeys';
-
-type InfoType<T extends Mode> = T extends 'user' ? UserInfo : ArtistInfo;
-
-async function getUser<T extends Mode>(mode: T): Promise<APIResponse<InfoType<T>>> {
-  const endpoint = mode === 'user' ? '/users' : '/artists';
-  const response = await fetchInstance().get(endpoint);
-
+const getUser = async (): Promise<APIResponse<UserInfo>> => {
+  const response = await fetchInstance().get('/users');
   return response.data;
-}
+};
 
-const useGetUser = <T extends Mode>(mode: T) => {
-  const { data, isLoading, isError } = useQuery<APIResponse<InfoType<T>>, Error>({
-    queryKey: [QUERY_KEYS.USER_INFO, mode],
-    queryFn: () => getUser(mode),
+const useGetUser = () => {
+  const { data } = useSuspenseQuery<APIResponse<UserInfo>, Error>({
+    queryKey: [QueryKeys.USER_INFO],
+    queryFn: getUser,
   });
 
-  return { data, isLoading, isError };
+  return { data };
 };
 
 export default useGetUser;

@@ -8,7 +8,6 @@ const UserProfileBox = ({ userImageUrl, hashTags, username }: UserInfo) => {
       <DetailWrapper>
         <NameWrapper>{username}</NameWrapper>
         <TagWrapper>
-          {' '}
           <InterestsWrapper>관심사</InterestsWrapper>
           <HastTabWrapper>
             {hashTags.map((tag: string) => (

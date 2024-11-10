@@ -6,7 +6,7 @@ const token = localStorage.getItem('accessToken');
 
 const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
-    timeout: 5000,
+    timeout: 3000,
     ...config,
     headers: {
       'Content-Type': 'application/json',

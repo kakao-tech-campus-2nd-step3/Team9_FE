@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { useLocation } from 'react-router-dom';
 
-import { HEIGHTS } from '@/constants/heights';
 import { TAB_LIST } from '@/constants/tabList';
-import Z_INDEX from '@/styles/zIndex';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 import Tab from './Tab';
 
 const TabBar = () => {

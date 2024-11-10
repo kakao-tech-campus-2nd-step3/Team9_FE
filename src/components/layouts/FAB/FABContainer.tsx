@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { HEIGHTS } from '@/constants/heights';
 import useModeStore from '@/store/useModeStore';
-import Z_INDEX from '@/styles/zIndex';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 import { PostButton, ScrollToTopButton } from '.';
 
 interface FABContainerProps {

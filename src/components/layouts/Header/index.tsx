@@ -3,10 +3,9 @@ import { useLocation } from 'react-router-dom';
 
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
-import { HEIGHTS } from '@/constants/heights';
 import { RouterPath } from '@/routes/path';
 import useModeStore from '@/store/useModeStore';
-import Z_INDEX from '@/styles/zIndex';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 interface HeaderProps {
   title?: string;

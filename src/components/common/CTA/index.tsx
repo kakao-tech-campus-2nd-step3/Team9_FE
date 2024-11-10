@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
-import { HEIGHTS } from '@/constants/heights';
-import Z_INDEX from '@/styles/zIndex';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 type CTAProps = {
   theme?: 'primary' | 'secondary';

@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
-import { HEIGHTS } from '@/constants/heights';
+import { HEIGHTS } from '@/styles/constants';
 import ChatItem from './components/ChatItem';
 
 const ChatList = () => {

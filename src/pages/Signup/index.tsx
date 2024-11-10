@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
-import { HEIGHTS } from '@/constants/heights';
 import { RouterPath } from '@/routes/path';
 import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
+import { HEIGHTS } from '@/styles/constants';
 import type { Mode } from '@/types';
 import SellerProgress from './progresses/ArtistProgress';
 import DefaultProgress from './progresses/DefaultProgress';

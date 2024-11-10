@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import useGetFeed, { type Product } from '@/apis/products/useGetFeed';
 import SearchBar from '@/components/layouts/SearchBar';
-import { HEIGHTS } from '@/constants/heights';
+import { HEIGHTS } from '@/styles/constants';
 
 const Discover = () => {
   const { data, fetchNextPage, hasNextPage } = useGetFeed();

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { connectWebSocket, disconnectWebSocket, type ChatMessage } from '@/apis/chats';
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
-import { HEIGHTS } from '@/constants/heights';
+import { HEIGHTS } from '@/styles/constants';
 import ChatInput from './components/ChatInput';
 import Date from './components/Date';
 // import MessageItem from './components/MessageItem'; // parameters 안 맞아서 잠시 사용 안 함 // todo: 파라미터 맞추기

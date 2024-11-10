@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import SearchModal from '@/components/common/SearchModal';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
-import { HEIGHTS } from '@/constants/heights';
 import { AD_LIST, ARTICLE_LIST } from '@/constants/home';
-import { useState } from 'react';
+import { HEIGHTS } from '@/styles/constants';
 import AdBanner from './components/AdBanner';
 import ArticleBanner from './components/ArticleBanner';
 

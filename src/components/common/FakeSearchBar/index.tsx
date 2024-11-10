@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
-import { HEIGHTS } from '@/constants/heights';
+import { HEIGHTS } from '@/styles/constants';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 

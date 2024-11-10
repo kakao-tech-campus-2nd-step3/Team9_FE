@@ -28,9 +28,9 @@ const Wrapper = styled.div`
 `;
 
 const RoundImage = styled(Image)`
-  width: 6.4rem;
-  height: 6.4rem;
+  width: 80%;
   border-radius: 100%;
+  object-fit: cover;
 `;
 
 const DesWrapper = styled.p`

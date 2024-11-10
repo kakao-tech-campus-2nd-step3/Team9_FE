@@ -1,5 +1,5 @@
 import searchArtist from '@/apis/data/searchArtist';
-import { usePostFollow } from '@/apis/users/usePostFollow';
+import usePostFollow from '@/apis/users/usePostFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import Grid from '@/components/styles/Grid';
 import { SearchArtist } from '@/types';

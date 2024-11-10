@@ -1,4 +1,4 @@
-import { useGetFollow } from '@/apis/users/useGetFollow';
+import useGetFollow from '@/apis/users/useGetFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
 import Grid from '@/components/styles/Grid';

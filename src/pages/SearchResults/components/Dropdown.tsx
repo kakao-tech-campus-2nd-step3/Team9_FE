@@ -1,4 +1,4 @@
-import Z_INDEX from '@/styles/z_index';
+import Z_INDEX from '@/styles/zIndex';
 import styled from '@emotion/styled';
 
 interface DropdownButtonProps<T extends string> {

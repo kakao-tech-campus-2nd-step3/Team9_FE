@@ -1,26 +1,25 @@
-import { APIResponse, ArtistInfo, Mode, UserInfo } from '@/types';
 import { useQuery } from '@tanstack/react-query';
-import { fetchInstance } from '../instance';
 
-const token = localStorage.getItem('accessToken');
+import { APIResponse, ArtistInfo, Mode, UserInfo } from '@/types';
+import fetchInstance from '../fetchInstance';
+import QUERY_KEYS from '../queryKeys';
 
 type InfoType<T extends Mode> = T extends 'user' ? UserInfo : ArtistInfo;
 
-const getUser = async <T extends Mode>(mode: T): Promise<APIResponse<InfoType<T>>> => {
+async function getUser<T extends Mode>(mode: T): Promise<APIResponse<InfoType<T>>> {
   const endpoint = mode === 'user' ? '/users' : '/artists';
-  const response = await fetchInstance().get(endpoint, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
-};
+  const response = await fetchInstance().get(endpoint);
 
-export const useGetUser = <T extends Mode>(mode: T) => {
+  return response.data;
+}
+
+const useGetUser = <T extends Mode>(mode: T) => {
   const { data, isLoading, isError } = useQuery<APIResponse<InfoType<T>>, Error>({
-    queryKey: ['userInfo', mode],
+    queryKey: [QUERY_KEYS.USER_INFO, mode],
     queryFn: () => getUser(mode),
   });
 
   return { data, isLoading, isError };
 };
+
+export default useGetUser;

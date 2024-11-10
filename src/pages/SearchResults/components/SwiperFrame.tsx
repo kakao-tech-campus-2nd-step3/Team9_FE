@@ -1,4 +1,4 @@
-import { usePostFollow } from '@/apis/users/usePostFollow';
+import usePostFollow from '@/apis/users/usePostFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import ProductItem from '@/components/common/ProductItem';
 import { SearchArtist, SearchWork } from '@/types/index';

@@ -2,14 +2,8 @@ import { APIResponse, FollowResponse } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { fetchInstance } from '../instance';
 
-const token = localStorage.getItem('accessToken');
-
 const getFollow = async (): Promise<APIResponse<FollowResponse>> => {
-  const response = await fetchInstance().get('/users/following', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetchInstance().get('/users/following');
   return response.data;
 };
 

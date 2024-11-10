@@ -17,14 +17,9 @@ async function postStudentArtist({
   about,
 }: PostStudentArtistProps): Promise<void> {
   const requestBody = { schoolEmail, schoolName, major, about };
-  const token = localStorage.getItem('accessToken');
 
   try {
-    await fetchInstance().post(`/artists/students`, requestBody, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await fetchInstance().post(`/artists/students`, requestBody);
 
     // console.log('postStudentArtist response: ', response);
   } catch (error) {

@@ -2,6 +2,7 @@ import { QueryClient } from '@tanstack/react-query';
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+const token = localStorage.getItem('accessToken');
 
 const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
@@ -10,6 +11,7 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
     headers: {
       'Content-Type': 'application/json',
       'Cross-Control-Allow-Origin': '*',
+      Authorization: `Bearer ${token}`,
     },
   });
 

@@ -34,14 +34,9 @@ async function putUser({
     address,
     hashTags,
   };
-  const token = localStorage.getItem('accessToken');
 
   try {
-    await fetchInstance().put(`/users`, requestBody, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await fetchInstance().put(`/users`, requestBody);
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {

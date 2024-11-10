@@ -17,14 +17,9 @@ async function postBusinessArtist({
   about,
 }: PostBusinessArtistProps): Promise<void> {
   const requestBody = { businessNumber, openDate, headName, about };
-  const token = localStorage.getItem('accessToken');
 
   try {
-    await fetchInstance().post(`/artists/bussinesses`, requestBody, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await fetchInstance().post(`/artists/bussinesses`, requestBody);
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {

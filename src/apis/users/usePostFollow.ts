@@ -1,18 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { fetchInstance } from '../instance';
 
-const token = localStorage.getItem('accessToken');
-
 export const postFollow = async (artistId: number): Promise<void> => {
-  const response = await fetchInstance().post(
-    `/users/following/${artistId}`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
+  const response = await fetchInstance().post(`/users/following/${artistId}`, {});
   return response.data;
 };
 

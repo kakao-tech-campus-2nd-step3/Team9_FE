@@ -1,12 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import fetchInstance from '../instance';
 
-export const deleteFollow = async (artistId: number): Promise<void> => {
+async function deleteFollow(artistId: number): Promise<void> {
   const response = await fetchInstance().delete(`/users/following/${artistId}`);
-  return response.data;
-};
 
-export const useDeleteFollow = () => {
+  return response.data;
+}
+
+const useDeleteFollow = () => {
   const queryClient = useQueryClient();
   const { mutate, status } = useMutation<void, Error, number>({
     mutationFn: (artistId: number) => deleteFollow(artistId),
@@ -20,3 +22,5 @@ export const useDeleteFollow = () => {
 
   return { mutate, status };
 };
+
+export default useDeleteFollow;

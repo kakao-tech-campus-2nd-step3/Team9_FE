@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 
 import fetchInstance from '../instance';
-import { isAxiosError } from 'axios';
 
 type PutUserProps = {
   name: string;

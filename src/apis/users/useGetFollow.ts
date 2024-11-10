@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { APIResponse, FollowResponse } from '@/types';
 import fetchInstance from '../instance';
+import QUERY_KEYS from '../queryKeys';
 
 async function getFollow(): Promise<APIResponse<FollowResponse>> {
   const response = await fetchInstance().get('/users/following');
@@ -11,7 +12,7 @@ async function getFollow(): Promise<APIResponse<FollowResponse>> {
 
 const useGetFollow = () => {
   const { data, status, refetch } = useQuery<APIResponse<FollowResponse>, Error>({
-    queryKey: ['followList'],
+    queryKey: [QUERY_KEYS.FOLLOW_LIST],
     queryFn: getFollow,
   });
 

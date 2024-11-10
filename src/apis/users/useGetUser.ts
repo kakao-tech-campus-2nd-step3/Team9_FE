@@ -1,6 +1,6 @@
 import { APIResponse, UserInfo } from '@/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { fetchInstance } from '../instance';
+import { fetchInstance, queryKey } from '../instance';
 
 const token = localStorage.getItem('accessToken');
 
@@ -15,7 +15,7 @@ const getUser = async (): Promise<APIResponse<UserInfo>> => {
 
 export const useGetUser = () => {
   const { data } = useSuspenseQuery<APIResponse<UserInfo>, Error>({
-    queryKey: ['userInfo'],
+    queryKey: queryKey.userInfo,
     queryFn: getUser,
   });
 

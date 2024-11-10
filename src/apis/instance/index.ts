@@ -33,3 +33,8 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+export const queryKey = {
+  userInfo: ['userInfo'],
+  followList: ['followList'],
+};

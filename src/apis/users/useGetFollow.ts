@@ -1,6 +1,6 @@
 import { APIResponse, FollowResponse } from '@/types';
 import { useQuery } from '@tanstack/react-query';
-import { fetchInstance } from '../instance';
+import { fetchInstance, queryKey } from '../instance';
 
 const token = localStorage.getItem('accessToken');
 
@@ -15,7 +15,7 @@ const getFollow = async (): Promise<APIResponse<FollowResponse>> => {
 
 export const useGetFollow = () => {
   const { data, status, refetch } = useQuery<APIResponse<FollowResponse>, Error>({
-    queryKey: ['followList'],
+    queryKey: queryKey.followList,
     queryFn: getFollow,
   });
 

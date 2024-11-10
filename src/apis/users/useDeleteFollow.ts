@@ -4,9 +4,7 @@ import fetchInstance from '../fetchInstance';
 import QUERY_KEYS from '../queryKeys';
 
 async function deleteFollow(artistId: number): Promise<void> {
-  const response = await fetchInstance().delete(`/users/following/${artistId}`);
-
-  return response.data;
+  await fetchInstance().delete(`/users/following/${artistId}`);
 }
 
 const useDeleteFollow = () => {

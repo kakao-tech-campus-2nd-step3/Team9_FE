@@ -3,10 +3,10 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import fetchInstance from '../instance';
 import QueryKeys from '../queryKeys';
 
-const getUser = async (): Promise<APIResponse<UserInfo>> => {
+async function getUser(): Promise<APIResponse<UserInfo>> {
   const response = await fetchInstance().get('/users');
   return response.data;
-};
+}
 
 const useGetUser = () => {
   const { data } = useSuspenseQuery<APIResponse<UserInfo>, Error>({

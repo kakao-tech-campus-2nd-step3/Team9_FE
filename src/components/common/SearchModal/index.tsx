@@ -1,6 +1,6 @@
 import SearchBar from '@/components/layouts/SearchBar';
 import HorizontalLine from '@/components/styles/HorizontalLine';
-import Z_INDEX from '@/constants/zIndex';
+import Z_INDEX from '@/styles/zIndex';
 import styled from '@emotion/styled';
 import PopularSearch from './PopularSearch';
 import RecentSearch from './RecentSearch';

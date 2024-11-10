@@ -1,4 +1,4 @@
-import Z_INDEX from '@/constants/zIndex';
+import Z_INDEX from '@/styles/zIndex';
 import styled from '@emotion/styled';
 
 type CTAProps = {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useLocation } from 'react-router-dom';
 
 import { tabList } from '@/constants/tabList';
-import Z_INDEX from '@/constants/zIndex';
+import Z_INDEX from '@/styles/zIndex';
 import Tab from './Tab';
 
 const TabBar = () => {

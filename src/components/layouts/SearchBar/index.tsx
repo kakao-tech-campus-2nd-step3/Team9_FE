@@ -6,7 +6,7 @@ import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
-import Z_INDEX from '@/constants/zIndex';
+import Z_INDEX from '@/styles/zIndex';
 import { HEADER_HEIGHT } from '../Header';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';

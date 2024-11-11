@@ -1,8 +1,8 @@
 import usePostChatRoom from '@/apis/chats/usePostChatRoom';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 
-const USER_EMAIL_1 = 'ble6859@knu.ac.kr';
-const USER_EMAIL_2 = 'abc@knu.ac.kr';
+const USER_EMAIL_1 = 'pjhcsols@naver.com';
+const USER_EMAIL_2 = 'user2@example.com';
 
 const ProductDetails = () => {
   const userEmail1 = USER_EMAIL_1; // 사용자 본인 이메일

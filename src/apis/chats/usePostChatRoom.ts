@@ -10,11 +10,30 @@ type PostChatRoomProps = {
   userEmail2: string;
 };
 
-async function postChatRoom({ userEmail1, userEmail2 }: PostChatRoomProps): Promise<void> {
-  const requestBody = { userEmail1, userEmail2 };
+type UserInfo = {
+  id: number;
+  email: string;
+};
 
+type PostChatRoomData = {
+  id: number;
+  user1: UserInfo;
+  user2: UserInfo;
+  title: string;
+};
+
+async function postChatRoom({
+  userEmail1,
+  userEmail2,
+}: PostChatRoomProps): Promise<PostChatRoomData> {
   try {
-    await fetchInstance(BASE_URL).post(`/v1/chat/rooms`, requestBody);
+    const queryParams = new URLSearchParams();
+    queryParams.append('userEmail1', userEmail1);
+    queryParams.append('userEmail2', userEmail2);
+    queryParams.toString();
+    const response = await fetchInstance(BASE_URL).post(`/v1/chat/rooms?${queryParams}`);
+
+    return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {
@@ -29,7 +48,7 @@ async function postChatRoom({ userEmail1, userEmail2 }: PostChatRoomProps): Prom
 }
 
 const usePostChatRoom = () => {
-  return useMutation<void, Error, PostChatRoomProps>({
+  return useMutation<PostChatRoomData, Error, PostChatRoomProps>({
     mutationFn: (props: PostChatRoomProps) => postChatRoom(props),
   });
 };

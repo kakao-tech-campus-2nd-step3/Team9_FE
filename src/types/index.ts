@@ -32,3 +32,34 @@ export type SearchArtist = {
   totalLikes: number;
   followed: boolean;
 };
+
+export type User = {
+  userId: number;
+  nickname: string;
+  userImageUrl: string;
+  totalFollowers: number;
+  totalLikes: number;
+};
+
+export type FollowResponse = { content: User[] };
+
+export type UserInfo = {
+  username: string;
+  hashTags: string[];
+  userImageUrl: string;
+};
+
+export type ArtistInfo = {
+  nickname: string;
+  description: string;
+  totalFollowers: number;
+  totalLikes: number;
+  about: string;
+  ImageUrl: string;
+};
+
+export type APIResponse<T = unknown> = {
+  code: number;
+  message: string;
+  data: T;
+};

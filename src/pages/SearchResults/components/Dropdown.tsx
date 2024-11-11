@@ -1,5 +1,6 @@
-import Z_INDEX from '@/styles/z_index';
 import styled from '@emotion/styled';
+
+import { Z_INDEX } from '@/styles/constants';
 
 interface DropdownButtonProps<T extends string> {
   isOpen: boolean;

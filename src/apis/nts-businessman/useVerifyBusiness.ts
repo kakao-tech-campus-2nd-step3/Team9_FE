@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-
-import { fetchInstance } from '../instance';
-import { API_KEY, BASE_URL } from './index';
 import { isAxiosError } from 'axios';
+
+import fetchInstance from '../fetchInstance';
+import { API_KEY, BASE_URL } from './index';
 
 // 필수 키만
 type VerifyProps = {

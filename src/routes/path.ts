@@ -7,7 +7,7 @@ export const RouterPath = {
   results: 'results',
   products: 'products',
   artists: 'artists',
-  chat: '/chat',
+  chats: '/chats',
 
   my: '/my',
   orders: 'orders',

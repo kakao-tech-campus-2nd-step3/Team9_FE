@@ -2,7 +2,7 @@ import usePostChatRoom from '@/apis/chats/usePostChatRoom';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import useUserStore from '@/store/useUserStore';
 
-const USER_EMAIL_1 = 'pjhcsols@naver.com';
+const USER_EMAIL_1 = 'ble6859@knu.ac.kr';
 const USER_EMAIL_2 = 'user2@example.com';
 
 const ProductDetails = () => {

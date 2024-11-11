@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
+import { getQueryParams } from '@/utils/queryParams';
 import fetchInstance from '../fetchInstance';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
@@ -27,10 +28,7 @@ async function postChatRoom({
   userEmail2,
 }: PostChatRoomProps): Promise<PostChatRoomData> {
   try {
-    const queryParams = new URLSearchParams();
-    queryParams.append('userEmail1', userEmail1);
-    queryParams.append('userEmail2', userEmail2);
-    queryParams.toString();
+    const queryParams = getQueryParams({ userEmail1: userEmail1, userEmail2: userEmail2 });
     const response = await fetchInstance(BASE_URL).post(`/v1/chat/rooms?${queryParams}`);
 
     return response.data;

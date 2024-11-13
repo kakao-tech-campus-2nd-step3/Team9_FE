@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { connectWebSocket, disconnectWebSocket, type ChatMessage } from '@/apis/chats';
+import { connectWebSocket, disconnectWebSocket } from '@/apis/chats';
+import type { ChatMessage, ChatRoom } from '@/apis/chats/types';
+import useGetChatRoom from '@/apis/chats/useGetChatRoom';
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
 import { HEIGHTS } from '@/styles/constants';
@@ -10,13 +12,13 @@ import ChatInput from './components/ChatInput';
 import Date from './components/Date';
 // import MessageItem from './components/MessageItem'; // parameters 안 맞아서 잠시 사용 안 함 // todo: 파라미터 맞추기
 
-// 임시
-const NICKNAME = '미니멀앤';
-const chatRoomId = 1;
-const userEmail = 'abc@1618.com';
-
 const ChatRoom = () => {
   const navigate = useNavigate();
+
+  const { chatRoomId } = useParams();
+  const chatRoomIdAsNumber = Number(chatRoomId);
+  const { data } = useGetChatRoom(chatRoomIdAsNumber); // ChatRoom 타입
+
   const [chatInputHeight, setChatInputHeight] = useState('5.4rem');
   const [messageList, setMessageList] = useState<ChatMessage[]>([]);
 
@@ -26,7 +28,7 @@ const ChatRoom = () => {
 
   useEffect(() => {
     connectWebSocket(
-      chatRoomId,
+      chatRoomIdAsNumber,
       (receivedMessage: ChatMessage) => {
         setMessageList((prev) => [...prev, receivedMessage]);
       },
@@ -43,13 +45,13 @@ const ChatRoom = () => {
     <Wrapper>
       <Header
         leftSideChildren={<IconButton icon="arrow-back" onClick={() => navigate(-1)} />}
-        title={NICKNAME}
+        title={data.title}
         rightSideChildren={<IconButton icon="menu-kebab" />} // todo: onClick -> 모달
       />
       <ContentWrapper marginBottom={chatInputHeight}>
         <MessageGroupByDate>
           <Date date="2024년 11월 1일" />
-          {messageList && <>messageList</>}
+          {messageList && <>{messageList}</>}
           {/* {messageList.map((item, index) => (
             <MessageItem
               key={index}
@@ -62,8 +64,8 @@ const ChatRoom = () => {
         </MessageGroupByDate>
       </ContentWrapper>
       <ChatInput
-        chatRoomId={chatRoomId}
-        userEmail={userEmail}
+        chatRoomId={chatRoomIdAsNumber}
+        sender={data.user1}
         onHeightChange={handleChatInputHeight}
       />
     </Wrapper>

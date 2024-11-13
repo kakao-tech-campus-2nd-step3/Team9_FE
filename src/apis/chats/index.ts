@@ -1,15 +1,9 @@
 import { Client, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
+import type { ChatMessage, MessageType } from './types';
+
 export const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
-
-export type ChatMessage = {
-  sender: { email: string };
-  content: string;
-  imageUrl?: string;
-};
-
-// const accessToken = localStorage.getItem('accessToken');
 
 let stompClient: Client | null = null;
 
@@ -25,22 +19,20 @@ export function connectWebSocket(
 ): void {
   // WebSocket 연결, STOMP 클라이언트 설정
   const socket = new SockJS(`${BASE_URL}/ws`);
-  stompClient = Stomp.over(socket);
+  stompClient = Stomp.over(() => socket);
 
   // 연결이 열렸을 때 호출될 콜백 함수
-  stompClient.onConnect = (frame) => {
-    console.log('Connected: ' + frame);
+  stompClient.onConnect = () => {
+    // SUBSCRIBE
+    stompClient?.subscribe(`/v1/sub/chat/rooms/${chatRoomId}`, (message) => {
+      console.log('received messages: ', message);
 
-    // 토픽 구독
-    stompClient?.subscribe(`/sub/chat/rooms/${chatRoomId}`, (message) => {
-      const parsedMessage: ChatMessage = JSON.parse(message.body);
+      // const parsedMessage: ChatMessage = JSON.parse(message.body);
 
-      if (onMessageReceived) {
-        onMessageReceived(parsedMessage);
-      }
+      // if (onMessageReceived) {
+      //   onMessageReceived(parsedMessage);
+      // }
     });
-
-    console.log('WebSocket 연결 성공');
   };
 
   // 에러 났을 때 호출될 콜백 함수
@@ -52,24 +44,52 @@ export function connectWebSocket(
     }
   };
 
+  // CONNECT
   stompClient.activate();
 }
 
 // 메시지 전송 함수
-export function sendMessage(chatRoomId: number, message: ChatMessage): void {
+export function sendMessage(
+  chatRoomId: number,
+  email: string,
+  name: string,
+  content: string,
+): void {
+  const message: SendFrame = {
+    sender: {
+      email,
+      name,
+    },
+    content,
+    messageType: 'TALK',
+  };
+
   if (stompClient && stompClient.connected) {
+    // SEND
     stompClient.publish({
-      destination: `/pub/chat/${chatRoomId} `,
+      destination: `/v1/pub/chat/${chatRoomId}`,
       body: JSON.stringify(message),
+      // headers: { receipt: 'message-1' },
     });
   } else {
-    throw new Error('STOMP 클라이언트를 먼저 연결해주세요');
+    console.log('STOMP 클라이언트를 먼저 연결해주세요');
+    throw new Error('연결이 끊겼습니다.');
   }
 }
+
+type SendFrame = {
+  sender: {
+    email: string;
+    name: string;
+  };
+  content: string;
+  messageType: MessageType;
+};
 
 // WebSocket 연결 해제 함수
 export function disconnectWebSocket(): void {
   if (stompClient) {
+    // DISCONNECT
     stompClient.deactivate();
     stompClient = null;
   }

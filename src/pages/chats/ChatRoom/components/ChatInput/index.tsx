@@ -2,17 +2,18 @@ import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
 
 import { sendMessage } from '@/apis/chats';
+import type { User } from '@/apis/chats/types';
 import SendIcon from '@/assets/icons/send.svg?react';
 import { countNonSpaceChars } from '@/utils';
 
 type ChatInputProps = {
   chatRoomId: number;
-  userEmail: string;
+  sender: User;
   onHeightChange: (height: string) => void;
 };
 
-const ChatInput = ({ chatRoomId, userEmail, onHeightChange }: ChatInputProps) => {
-  const [message, setMessage] = useState<string>('');
+const ChatInput = ({ chatRoomId, sender, onHeightChange }: ChatInputProps) => {
+  const [content, setContent] = useState<string>('');
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [chatInputHeight, setChatInputHeight] = useState<string>('5.4rem');
@@ -28,24 +29,22 @@ const ChatInput = ({ chatRoomId, userEmail, onHeightChange }: ChatInputProps) =>
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
+    setContent(e.target.value);
     adjustHeight(e.target);
   };
 
   // 메시지 전송 핸들러
   const handleSendMessage = () => {
-    if (message && message.trim()) {
-      try {
-        sendMessage(chatRoomId, {
-          sender: { email: userEmail },
-          content: message,
-          imageUrl: undefined,
-        });
+    if (!content || content.trim() === '') {
+      return;
+    }
 
-        setMessage('');
-      } catch (error) {
-        alert(error);
-      }
+    try {
+      // chatRoomId, email, name, content
+      sendMessage(chatRoomId, sender.email, sender.email, content);
+      setContent('');
+    } catch (error) {
+      alert(error);
     }
   };
 
@@ -54,10 +53,10 @@ const ChatInput = ({ chatRoomId, userEmail, onHeightChange }: ChatInputProps) =>
       <StyledTextarea
         placeholder="메시지 입력"
         ref={textareaRef}
-        value={message}
+        value={content}
         onChange={handleInput}
       />
-      <button disabled={!countNonSpaceChars(message)} onClick={handleSendMessage}>
+      <button disabled={!countNonSpaceChars(content)} onClick={handleSendMessage}>
         <SendIcon />
       </button>
     </StyledChatInput>

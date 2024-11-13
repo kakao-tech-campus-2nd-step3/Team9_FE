@@ -3,25 +3,15 @@ import { isAxiosError } from 'axios';
 
 import { getQueryParams } from '@/utils/queryParams';
 import fetchInstance from '../fetchInstance';
-
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
+import { BASE_URL } from './index';
+import type { ChatRoom } from './types';
 
 type PostChatRoomProps = {
   userEmail1: string;
   userEmail2: string;
 };
 
-type UserInfo = {
-  id: number;
-  email: string;
-};
-
-type PostChatRoomData = {
-  id: number;
-  user1: UserInfo;
-  user2: UserInfo;
-  title: string;
-};
+type PostChatRoomData = ChatRoom;
 
 async function postChatRoom({
   userEmail1,

@@ -11,8 +11,7 @@ import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
 import { HEIGHTS } from '@/styles/constants';
 import ChatInput from './components/ChatInput';
-import Date from './components/Date';
-import MessageItem from './components/MessageItem';
+import MessageList from './components/MessageList';
 
 export const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
 
@@ -85,19 +84,7 @@ const ChatRoom = () => {
         rightSideChildren={<IconButton icon="menu-kebab" />} // todo: onClick -> 모달
       />
       <ContentWrapper marginBottom={chatInputHeight}>
-        <MessageGroupByDate>
-          <Date date="2024년 11월 1일" />
-          {messageList &&
-            messageList.map((item, index) => (
-              <MessageItem
-                key={index}
-                senderName={item.sender.email}
-                // imageUrl={item.imageUrl || undefined}
-                timestamp={item.timestamp || ''}
-                content={item.content}
-              />
-            ))}
-        </MessageGroupByDate>
+        <MessageList messageList={messageList} />
       </ContentWrapper>
       <ChatInput
         client={client}
@@ -123,12 +110,6 @@ const Wrapper = styled.div`
 const ContentWrapper = styled.div<{ marginBottom: string }>`
   margin: ${HEIGHTS.HEADER} 0 ${({ marginBottom }) => marginBottom} 0;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-const MessageGroupByDate = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
 `;

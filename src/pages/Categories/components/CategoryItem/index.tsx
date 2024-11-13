@@ -28,6 +28,7 @@ const Wrapper = styled.div`
 `;
 
 const RoundImage = styled(Image)`
+  aspect-ratio: 1/1;
   width: 80%;
   border-radius: 100%;
   object-fit: cover;

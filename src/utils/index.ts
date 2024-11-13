@@ -13,6 +13,9 @@ export function formatDate(dateStr: string): string {
 export function formatTimestamp(timestamp: string): string {
   const date = new Date(timestamp);
 
+  // KST(UTC+9)으로 변경
+  date.setUTCHours(date.getUTCHours() + 9);
+
   let hours = date.getUTCHours();
   const minutes = date.getUTCMinutes().toString().padStart(2, '0');
   const period = hours <= 12 ? 'A.M.' : 'P.M.';

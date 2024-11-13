@@ -56,7 +56,8 @@ const ChatRoom = () => {
     // 컴포넌트가 언마운트될 때 WebSocket 연결 해제
     return () => {
       if (stompClient) {
-        stompClient.disconnect();
+        disconnectWebSocket(stompClient);
+        // stompClient.disconnect();
       }
     };
   }, [chatRoomIdAsNumber]);

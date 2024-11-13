@@ -68,7 +68,7 @@ export function sendMessage(
       body: JSON.stringify(message),
       // headers: { receipt: 'message-12345' },
     });
-    // client.send(`/v1/pub/chat/${chatRoomId}`, {}, JSON.stringify(messageDto));
+    // stompClient.send(`/v1/pub/chat/${chatRoomId}`, {}, JSON.stringify(message));
   } else {
     console.log('STOMP 클라이언트를 먼저 연결해주세요');
     throw new Error('연결이 끊겼습니다.');
@@ -76,10 +76,10 @@ export function sendMessage(
 }
 
 // WebSocket 연결 해제 함수
-export function disconnectWebSocket(): void {
+export function disconnectWebSocket(stompClient: CompatClient) {
   if (stompClient) {
     // DISCONNECT
     stompClient.deactivate();
-    stompClient = null;
+    // stompClient.disconnect();
   }
 }

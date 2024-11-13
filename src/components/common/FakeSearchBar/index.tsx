@@ -35,6 +35,7 @@ const SearchBarWrapper = styled.div`
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  background-color: var(--color-white);
 `;
 
 const InputBox = styled.div`

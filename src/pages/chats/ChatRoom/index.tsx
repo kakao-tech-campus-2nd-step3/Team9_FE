@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { CompatClient } from '@stomp/stompjs';
+import { CompatClient, Stomp } from '@stomp/stompjs';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import SockJS from 'sockjs-client';
 
 import { connectWebSocket, disconnectWebSocket } from '@/apis/chats';
 import type { ChatMessage, ChatRoom } from '@/apis/chats/types';
@@ -13,13 +14,15 @@ import ChatInput from './components/ChatInput';
 import Date from './components/Date';
 import MessageItem from './components/MessageItem';
 
+export const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
+
 const ChatRoom = () => {
   const navigate = useNavigate();
 
   const { chatRoomId } = useParams();
   const chatRoomIdAsNumber = Number(chatRoomId);
-  const { data: chatRoom } = useGetChatRoom(chatRoomIdAsNumber); // ChatRoom 타입
-  const [client, setClient] = useState<CompatClient | null>();
+  const { data } = useGetChatRoom(chatRoomIdAsNumber); // ChatRoom 타입
+  const [client, setClient] = useState<CompatClient | null>(null); // stomp client 상태
 
   const [chatInputHeight, setChatInputHeight] = useState('5.4rem');
   const [messageList, setMessageList] = useState<ChatMessage[]>([]); // 채팅 메시지 목록
@@ -30,31 +33,54 @@ const ChatRoom = () => {
 
   // WebSocket 연결 및 구독 설정
   useEffect(() => {
-    const newClient = connectWebSocket(
-      chatRoomIdAsNumber,
-      (receivedMessage: ChatMessage) => {
-        setMessageList((prev) => [...prev, receivedMessage]);
-      },
-      (error) => {
-        console.error('WebSocket error:', error);
-      },
-    );
+    const socket = new SockJS(`${BASE_URL}/ws`);
+    const stompClient = Stomp.over(() => socket);
 
-    setClient(newClient);
+    stompClient.connect({}, () => {
+      // SUBSCRIBE - 채팅방에 대한 초기 메시지 구독
+      stompClient.subscribe(`/v1/sub/chat/rooms/${chatRoomIdAsNumber}/list`, (message) => {
+        const initialMessages = JSON.parse(message.body);
+        setMessageList(initialMessages);
+      });
+
+      // SUBSCRIBE - 새로운 메시지 수신
+      stompClient.subscribe(`/v1/sub/chat/rooms/${chatRoomIdAsNumber}`, (message) => {
+        const receivedMessage = JSON.parse(message.body);
+        setMessageList((prevMessages) => [...prevMessages, receivedMessage]);
+      });
+    });
+
+    // 클라이언트 상태에 설정
+    setClient(stompClient);
 
     // 컴포넌트가 언마운트될 때 WebSocket 연결 해제
-    if (client) {
-      return () => {
-        disconnectWebSocket(client);
-      };
-    }
-  }, [chatRoomId]);
+    return () => {
+      if (stompClient) {
+        stompClient.disconnect();
+      }
+    };
+  }, [chatRoomIdAsNumber]);
+
+  //   useEffect(() => {
+  //     connectWebSocket(
+  //       chatRoomIdAsNumber,
+  //       (receivedMessage: ChatMessage) => {
+  //         setMessageList((prev) => [...prev, receivedMessage]);
+  //       },
+  //       (error) => {
+  //         console.error('WebSocket error:', error);
+  //       },
+  //     );
+
+  //     // 컴포넌트 언마운트 시 WebSocket 연결 해제
+  //     return () => disconnectWebSocket();
+  //   }, [chatRoomId]);
 
   return (
     <Wrapper>
       <Header
         leftSideChildren={<IconButton icon="arrow-back" onClick={() => navigate(-1)} />}
-        title={chatRoom.title}
+        title={data.title}
         rightSideChildren={<IconButton icon="menu-kebab" />} // todo: onClick -> 모달
       />
       <ContentWrapper marginBottom={chatInputHeight}>
@@ -72,14 +98,12 @@ const ChatRoom = () => {
             ))}
         </MessageGroupByDate>
       </ContentWrapper>
-      {client && (
-        <ChatInput
-          client={client}
-          chatRoomId={chatRoomIdAsNumber}
-          sender={chatRoom.user1}
-          onHeightChange={handleChatInputHeight}
-        />
-      )}
+      <ChatInput
+        client={client}
+        chatRoomId={chatRoomIdAsNumber}
+        sender={data.user1}
+        onHeightChange={handleChatInputHeight}
+      />
     </Wrapper>
   );
 };

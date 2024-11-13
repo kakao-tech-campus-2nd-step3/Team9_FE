@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { CompatClient } from '@stomp/stompjs';
 import { useRef, useState } from 'react';
+import { CompatClient } from '@stomp/stompjs';
 
 import { sendMessage } from '@/apis/chats';
 import type { User } from '@/apis/chats/types';
@@ -38,13 +38,20 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
 
   // 메시지 전송 핸들러
   const handleSendMessage = () => {
+    const messageDto = {
+      sender: sender.email,
+      content: content,
+      messageType: 'TEXT',
+    };
+
     if (!client || !content || content.trim() === '') {
       return;
     }
 
     try {
-      // Client, chatRoomId, email, content
-      sendMessage(client, chatRoomId, sender.email, content);
+      // chatRoomId, email, name, content
+      // sendMessage(chatRoomId, sender.email, sender.email, content);
+      client.send(`/v1/pub/chat/${chatRoomId}`, {}, JSON.stringify(messageDto));
       setContent('');
     } catch (error) {
       alert(error);

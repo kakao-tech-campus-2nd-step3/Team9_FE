@@ -48,7 +48,11 @@ const RedText = styled.span`
 `;
 
 const AdImage = styled(Image)`
-  width: 158px;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 200px;
+  max-height: 200px;
   background-color: var(--color-gray-lt);
 `;
 

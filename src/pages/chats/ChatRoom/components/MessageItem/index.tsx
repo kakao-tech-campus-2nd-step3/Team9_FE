@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import ProfileImage from '@/components/common/ProfileImage';
 import { formatTimestamp } from '@/utils';
+import { Box } from '@chakra-ui/react';
 
 export type MessageItemProps = {
   senderName: string;
@@ -25,8 +26,13 @@ const MessageItem = ({ senderName, profileImageUrl, timestamp, content }: Messag
       {!isMe && (
         <>
           <ProfileImage width={32} imageUrl={profileImageUrl} />
-          <Bubble isMe={isMe}>{content}</Bubble>
-          <Time>{timeAsString}</Time>
+          <Box display="flex" flexDir="column" gap="8px">
+            <Name>{senderName}</Name>
+            <Box display="flex" flexDir="row" gap="8px">
+              <Bubble isMe={isMe}>{content}</Bubble>
+              <Time>{timeAsString}</Time>
+            </Box>
+          </Box>
         </>
       )}
     </StyledMessageItem>
@@ -54,6 +60,12 @@ const StyledMessageItem = styled.div<{ isMe: boolean }>`
     `
         justify-content: flex-start;
   `}
+`;
+
+const Name = styled.p`
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
 `;
 
 const Time = styled.span`

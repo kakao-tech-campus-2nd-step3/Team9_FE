@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
+import { CompatClient } from '@stomp/stompjs';
 
 import { sendMessage } from '@/apis/chats';
 import type { User } from '@/apis/chats/types';
@@ -7,16 +8,18 @@ import SendIcon from '@/assets/icons/send.svg?react';
 import { countNonSpaceChars } from '@/utils';
 
 type ChatInputProps = {
+  client: CompatClient | null;
   chatRoomId: number;
   sender: User;
   onHeightChange: (height: string) => void;
 };
 
-const ChatInput = ({ chatRoomId, sender, onHeightChange }: ChatInputProps) => {
-  const [content, setContent] = useState<string>('');
-
+const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProps) => {
+  // 메시지 인풋 창 높이 조정
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [chatInputHeight, setChatInputHeight] = useState<string>('5.4rem');
+
+  const [content, setContent] = useState<string>('');
 
   // 내용의 세로 길이에 맞게 입력창 높이 자동 조정하는 함수
   const adjustHeight = (textarea: HTMLTextAreaElement) => {
@@ -35,13 +38,20 @@ const ChatInput = ({ chatRoomId, sender, onHeightChange }: ChatInputProps) => {
 
   // 메시지 전송 핸들러
   const handleSendMessage = () => {
-    if (!content || content.trim() === '') {
+    const messageDto = {
+      sender: sender.email,
+      content: content,
+      messageType: 'TEXT',
+    };
+
+    if (!client || !content || content.trim() === '') {
       return;
     }
 
     try {
       // chatRoomId, email, name, content
-      sendMessage(chatRoomId, sender.email, sender.email, content);
+      // sendMessage(chatRoomId, sender.email, sender.email, content);
+      client.send(`/v1/pub/chat/${chatRoomId}`, {}, JSON.stringify(messageDto));
       setContent('');
     } catch (error) {
       alert(error);

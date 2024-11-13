@@ -2,6 +2,7 @@ import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
+import { getKakaoLgoin } from '@/apis/login/useGetKakaoLogin';
 import KakaoSymbol from '@/assets/kakao-symbol.svg?react';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
@@ -11,13 +12,16 @@ import { RouterPath } from '@/routes/path';
 import { HEIGHTS } from '@/styles/constants';
 
 const Login = () => {
-  const isMember = false; // 추후 API 연동
   const navigate = useNavigate();
 
   // 랜덤 배경이미지
   const randomIndex = Math.floor(Math.random() * BACKGROUND_IMAGE_LIST.length);
   const backgroundImage = BACKGROUND_IMAGE_LIST[randomIndex].src;
   const backgroundImageCreator = BACKGROUND_IMAGE_LIST[randomIndex].creator;
+
+  const handleLogin = () => {
+    getKakaoLgoin();
+  };
 
   return (
     <Wrapper backgroundImage={backgroundImage}>
@@ -40,7 +44,7 @@ const Login = () => {
           그 무한은 숨겨진 가치를 밝혀줍니다. <br />
           예술 속에 숨겨진 가치를 찾아드립니다.
         </Text>
-        <KakaoLoginButton isMember={isMember} />
+        <KakaoLoginButton onClick={handleLogin} />
       </ContentWrapper>
       <Text
         fontSize="var(--font-size-xs)"
@@ -57,19 +61,13 @@ const Login = () => {
 
 export default Login;
 
-type KakaoLoginButtonProps = { isMember: boolean };
+type KakaoLoginButtonProps = {
+  onClick: () => void;
+};
 
-const KakaoLoginButton = ({ isMember }: KakaoLoginButtonProps) => {
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    if (!isMember) {
-      navigate(`/${RouterPath.signup}`);
-    }
-  };
-
+const KakaoLoginButton = ({ onClick }: KakaoLoginButtonProps) => {
   return (
-    <StyledKakaoLoginButton onClick={handleLogin}>
+    <StyledKakaoLoginButton onClick={onClick}>
       <KakaoSymbol />
       카카오로 시작하기
     </StyledKakaoLoginButton>

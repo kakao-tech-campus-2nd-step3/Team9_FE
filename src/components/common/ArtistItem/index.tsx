@@ -7,27 +7,17 @@ import Thumbnail from '@/components/common/Thumbnail';
 import { useState } from 'react';
 import LikesAndFollowers from '../LikesAndFollowers';
 
-interface ArtistItemProps {
+type ArtistItemProps = {
   artistId: number;
   author: string;
   like: number;
   follower: number;
-  size?: 'large' | 'default';
   src?: string;
   alt?: string;
   isFollow: boolean;
-}
+};
 
-const ArtistItem = ({
-  artistId,
-  author,
-  like,
-  follower,
-  size = 'default',
-  src,
-  alt,
-  isFollow,
-}: ArtistItemProps) => {
+const ArtistItem = ({ artistId, author, like, follower, src, alt, isFollow }: ArtistItemProps) => {
   const [isFollowed, setIsFollowed] = useState(isFollow);
 
   const { mutate: postFollow, status: isPostStatus } = usePostFollow();
@@ -58,7 +48,7 @@ const ArtistItem = ({
   };
 
   return (
-    <Wrapper size={size}>
+    <Wrapper>
       <Thumbnail ratio="square" src={src} alt={alt} />
       <MidWrapper>
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
@@ -77,9 +67,10 @@ const ArtistItem = ({
 
 export default ArtistItem;
 
-const Wrapper = styled.div<{ size: 'large' | 'default' }>`
-  width: ${({ size }) => (size === 'large' ? '15.8rem' : '14rem')};
-  height: ${({ size }) => (size === 'large' ? '22.5em' : '20.7em')};
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 170px;
   background-color: var(--color-white);
 `;
 
@@ -88,6 +79,6 @@ const MidWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 1.7rem;
+  height: 17px;
   margin: 0.8rem 0;
 `;

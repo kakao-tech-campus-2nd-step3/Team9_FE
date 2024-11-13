@@ -1,3 +1,4 @@
+import { Z_INDEX } from '@/styles/constants';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
@@ -39,12 +40,13 @@ const CategoryTabBar = ({ tabClick, tabState, tabList }: CategoryTabBarProps) =>
 export default CategoryTabBar;
 
 const Wrapper = styled.div`
+  z-index: ${Z_INDEX.Header};
+  position: fixed;
   width: 100%;
-  height: 44px;
+  height: 41px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0px 16px;
   align-items: center;
   border-bottom: 1px solid var(--color-gray-md);
   background: var(--color-white);
@@ -54,7 +56,8 @@ const Wrapper = styled.div`
 
 const TabWrapper = styled.div<TapWrapperProps>`
   width: 100%;
-  padding: 11px 58px;
+  height: 100%;
+  padding: 11px;
   cursor: pointer;
   text-align: center;
 

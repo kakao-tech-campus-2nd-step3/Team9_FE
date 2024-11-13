@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import CancelDefault from '@/assets/icons/cancel-default.svg?react';
+import { useNavigate } from 'react-router-dom';
 
 interface ChipProps {
   tag: string;
@@ -8,9 +9,10 @@ interface ChipProps {
 }
 
 const Chip = ({ tag, onClick }: ChipProps) => {
+  const navigate = useNavigate();
   return (
     <Wrapper>
-      <span>{tag}</span>
+      <button onClick={() => navigate(`/results?query=${tag}`)}>{tag}</button>
       <CancelIconButton onClick={onClick}>
         <CancelDefault />
       </CancelIconButton>

@@ -1,10 +1,11 @@
+import ProfileImage from '@/components/common/ProfileImage';
 import { UserInfo } from '@/types';
 import styled from '@emotion/styled';
 
 const UserProfileBox = ({ userImageUrl, hashTags, username }: UserInfo) => {
   return (
     <Wrapper>
-      <Image src={userImageUrl} alt={username} />
+      <ProfileImage imageUrl={userImageUrl} alt={username} width={96} />
       <DetailWrapper>
         <NameWrapper>{username}</NameWrapper>
         <TagWrapper>
@@ -33,14 +34,6 @@ const Wrapper = styled.div`
   border-radius: 2px;
   border: 1px solid var(--color-gray-md);
   background: var(--color-white);
-`;
-
-const Image = styled.img`
-  width: 96px;
-  height: 96px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  border: 1px solid var(--color-gray-md);
 `;
 
 const DetailWrapper = styled.div`

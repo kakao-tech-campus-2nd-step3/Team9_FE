@@ -2,19 +2,18 @@ import styled from '@emotion/styled';
 
 import Thumbnail from '@/components/common/Thumbnail';
 
-interface ArtistItemProps {
+type ArtistItemProps = {
   author: string;
   title: string;
   price: number;
-  size?: 'large' | 'default';
   heart?: boolean;
   src?: string;
   alt?: string;
-}
+};
 
-const ProductItem = ({ author, title, price, size = 'default', src, alt }: ArtistItemProps) => {
+const ProductItem = ({ author, title, price, src, alt }: ArtistItemProps) => {
   return (
-    <Wrapper size={size}>
+    <Wrapper>
       <Thumbnail ratio="square" src={src} alt={alt} heart={true} />
       <MidWrapper>
         <DescriptionWrapper style={{ fontWeight: '600' }}>{author}</DescriptionWrapper>
@@ -27,9 +26,10 @@ const ProductItem = ({ author, title, price, size = 'default', src, alt }: Artis
 
 export default ProductItem;
 
-const Wrapper = styled.div<{ size: 'large' | 'default' }>`
-  width: ${({ size }) => (size === 'large' ? '15.8rem' : '14rem')};
-  height: ${({ size }) => (size === 'large' ? '24.1em' : '22.3em')};
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 170px;
   background-color: var(--color-white);
 `;
 
@@ -39,7 +39,7 @@ const MidWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  height: 1.7rem;
+  height: 60px;
   margin: 0.8rem 0;
 `;
 

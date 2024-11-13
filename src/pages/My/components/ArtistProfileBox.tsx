@@ -1,4 +1,5 @@
 import LikesAndFollowers from '@/components/common/LikesAndFollowers';
+import ProfileImage from '@/components/common/ProfileImage';
 import { ArtistInfo } from '@/types';
 import styled from '@emotion/styled';
 
@@ -12,7 +13,7 @@ const ArtistProfileBox = ({
 }: ArtistInfo) => {
   return (
     <Wrapper>
-      <Image src={ImageUrl} alt={nickname} />
+      <ProfileImage imageUrl={ImageUrl} alt={nickname} width={96} />
       <DetailWrapper>
         <NameWrapper>{nickname}</NameWrapper>
         <TagWrapper>
@@ -38,14 +39,6 @@ const Wrapper = styled.div`
   border-radius: 2px;
   border: 1px solid var(--color-gray-md);
   background: var(--color-white);
-`;
-
-const Image = styled.img`
-  width: 96px;
-  height: 96px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  border: 1px solid var(--color-gray-md);
 `;
 
 const DetailWrapper = styled.div`

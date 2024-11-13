@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
-import Chip from '../Chip';
-import { useState, useEffect } from 'react';
 import { Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
+import Chip from '../Chip';
 
 export const SEARCH_ARRAY_KEY = 'searchArray';
 
@@ -47,6 +47,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px;
+  margin-top: 41px;
 `;
 
 const ChipWrapper = styled.div`

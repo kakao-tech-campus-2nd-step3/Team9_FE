@@ -51,6 +51,19 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
     }
   };
 
+  // 키보드 이벤트 핸들러
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        // shift + enter는 줄바꿈
+        return;
+      }
+      // enter만 누르면 메시지 전송
+      e.preventDefault(); // 기본 Enter 동작(줄바꿈)을 막음
+      handleSendMessage();
+    }
+  };
+
   return (
     <StyledChatInput height={chatInputHeight}>
       <StyledTextarea
@@ -58,6 +71,7 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
         ref={textareaRef}
         value={content}
         onChange={handleInput}
+        onKeyDown={handleKeyDown}
       />
       <button disabled={!countNonSpaceChars(content)} onClick={handleSendMessage}>
         <SendIcon />

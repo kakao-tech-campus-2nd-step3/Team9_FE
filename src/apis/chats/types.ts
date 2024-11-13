@@ -10,14 +10,14 @@ export type ChatRoom = {
   title: string;
 };
 
-export type MessageType = 'ENTER' | 'TALK' | 'EXIT' | 'IMAGE';
+export type MessageType = 'ENTER' | 'TALK' | 'EXIT' | 'IMAGE' | 'TEXT';
 
 export type ChatMessage = {
-  id?: number;
-  chatRoom?: ChatRoom;
+  id: number;
+  chatRoom: ChatRoom;
   sender: User;
   content: string;
   imageUrl?: string;
-  timestamp?: string; // $date-time // YYYY-MM-DDTHH:mm:ss.sssZ
+  timestamp: string; // $date-time // YYYY-MM-DDTHH:mm:ss.sssZ
   messageType: MessageType;
 };

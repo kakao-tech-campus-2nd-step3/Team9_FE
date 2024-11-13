@@ -3,7 +3,7 @@ import { isSameDay } from 'date-fns';
 import { Fragment } from 'react';
 
 import type { ChatMessage } from '@/apis/chats/types';
-import { formatDate } from '@/utils';
+import { formatDate, getDay } from '@/utils';
 import MessageItem from '../MessageItem';
 
 type MessageListProps = {
@@ -18,8 +18,9 @@ const MessageList = ({ messageList }: MessageListProps) => {
       {messageList.map((item, index) => {
         const messageDate = new Date(item.timestamp); // 메시지 타임스탬프
         const formattedDate = formatDate(messageDate.toString());
+        const day = getDay(messageDate);
 
-        // 마지막 보여준 날짜와 메시지 타임스탬프의 날짜가 같다면 true로 설정
+        // lastMessageDate가 없거나 마지막 보여준 날짜와 메시지 타임스탬프의 날짜가 같지 않다면 true로 설정
         const showDate = !lastMessageDate || !isSameDay(lastMessageDate, messageDate);
 
         if (showDate) {
@@ -29,7 +30,11 @@ const MessageList = ({ messageList }: MessageListProps) => {
         return (
           <Fragment key={item.id}>
             {/* 날짜가 바뀌는 경우에만 렌더링 */}
-            {showDate && <StyledDate>{formattedDate}</StyledDate>}
+            {showDate && (
+              <StyledDate>
+                {formattedDate} {day}
+              </StyledDate>
+            )}
             <MessageItem
               key={index}
               senderName={item.sender.email}

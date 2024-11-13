@@ -1,4 +1,4 @@
-import { Client, Stomp } from '@stomp/stompjs';
+import { Client, CompatClient, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
 import type { ChatMessage, MessageType } from './types';
@@ -50,18 +50,15 @@ export function connectWebSocket(
 
 // 메시지 전송 함수
 export function sendMessage(
+  stompClient: CompatClient,
   chatRoomId: number,
   email: string,
-  name: string,
   content: string,
 ): void {
-  const message: SendFrame = {
-    sender: {
-      email,
-      name,
-    },
+  const message = {
+    sender: email,
     content,
-    messageType: 'TALK',
+    messageType: 'TEXT',
   };
 
   if (stompClient && stompClient.connected) {
@@ -71,20 +68,12 @@ export function sendMessage(
       body: JSON.stringify(message),
       // headers: { receipt: 'message-12345' },
     });
+    // client.send(`/v1/pub/chat/${chatRoomId}`, {}, JSON.stringify(messageDto));
   } else {
     console.log('STOMP 클라이언트를 먼저 연결해주세요');
     throw new Error('연결이 끊겼습니다.');
   }
 }
-
-type SendFrame = {
-  sender: {
-    email: string;
-    name: string;
-  };
-  content: string;
-  messageType: MessageType;
-};
 
 // WebSocket 연결 해제 함수
 export function disconnectWebSocket(): void {

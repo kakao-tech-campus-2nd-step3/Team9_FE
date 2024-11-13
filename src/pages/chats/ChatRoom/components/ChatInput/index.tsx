@@ -38,20 +38,13 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
 
   // 메시지 전송 핸들러
   const handleSendMessage = () => {
-    const messageDto = {
-      sender: sender.email,
-      content: content,
-      messageType: 'TEXT',
-    };
-
     if (!client || !content || content.trim() === '') {
       return;
     }
 
     try {
-      // chatRoomId, email, name, content
-      // sendMessage(chatRoomId, sender.email, sender.email, content);
-      client.send(`/v1/pub/chat/${chatRoomId}`, {}, JSON.stringify(messageDto));
+      // 파라미터: client, chatRoomId, email, content
+      sendMessage(client, chatRoomId, sender.email, content);
       setContent('');
     } catch (error) {
       alert(error);

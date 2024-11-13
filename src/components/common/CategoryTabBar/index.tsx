@@ -40,7 +40,7 @@ const CategoryTabBar = ({ tabClick, tabState, tabList }: CategoryTabBarProps) =>
 export default CategoryTabBar;
 
 const Wrapper = styled.div`
-  z-index: ${Z_INDEX.TabBar};
+  z-index: ${Z_INDEX.Header};
   position: fixed;
   width: 100%;
   height: 41px;

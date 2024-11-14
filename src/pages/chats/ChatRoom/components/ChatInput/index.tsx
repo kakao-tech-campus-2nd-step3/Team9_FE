@@ -57,28 +57,34 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
     }
   };
 
-  // 이미지 업로드/삭제 핸들러
+  // 이미지 선택 핸들러
   const handleUploadImage = () => {
     fileRef.current?.click();
   };
 
-  const handleImage = (fileBlob: File) => {
+  // 이미지 미리보기
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileBlob = e.target.files ? e.target.files[0] : null;
     setImage(fileBlob); // File 객체를 직접 설정합니다.
 
     // 미리보기를 위해 FileReader를 사용합니다.
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    reader.onload = () => {
-      if (reader.result && typeof reader.result === 'string') {
-        // 여기서 미리보기 이미지 URL을 설정합니다.
-        const imgElement = document.querySelector('#previewImage') as HTMLImageElement;
-        if (imgElement) {
-          imgElement.src = reader.result;
+    if (fileBlob) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileBlob);
+
+      reader.onload = () => {
+        if (reader.result && typeof reader.result === 'string') {
+          // 여기서 미리보기 이미지 URL을 설정합니다.
+          const imgElement = document.querySelector('#previewImage') as HTMLImageElement;
+          if (imgElement) {
+            imgElement.src = reader.result;
+          }
         }
-      }
-    };
+      };
+    }
   };
 
+  // 이미지 삭제 핸들러
   const handleDeleteImage = (e: React.MouseEvent) => {
     e.preventDefault();
     setImage(null);
@@ -97,6 +103,28 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
     } catch (error) {
       alert(error);
     }
+
+    // // 이미지 전송 test
+    // const reader = new FileReader();
+
+    // reader.onload = function (e) {
+    //   const fileBytes = new Uint8Array(e.target?.result as ArrayBuffer);
+    //   const fileBase64 = btoa(
+    //     fileBytes.reduce((data, byte) => data + String.fromCharCode(byte), ''),
+    //   );
+
+    //   if (fileBase64) {
+    //     const message = {
+    //       chatRoomId,
+    //       userEmail: sender.email,
+    //       fileBase64,
+    //     };
+
+    //     client.send(JSON.stringify(message));
+    //   }
+    // };
+
+    // reader.readAsArrayBuffer(image); // 파일을 ArrayBuffer로 읽음
   };
 
   // 키보드 이벤트 핸들러
@@ -109,11 +137,13 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
       // enter만 누르면 메시지 전송
       e.preventDefault(); // 기본 Enter 동작(줄바꿈)을 막음
       handleSendText();
+      handleSendImage();
     }
   };
 
   return (
     <StyledChatInput height={chatInputHeight}>
+      {/* 텍스트 전송 */}
       {!image && (
         <>
           <button onClick={handleUploadImage}>
@@ -123,11 +153,7 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
               ref={fileRef}
               accept="image/*"
               style={{ display: 'none' }}
-              onChange={(e) => {
-                if (e.target.files) {
-                  handleImage(e.target.files[0]);
-                }
-              }}
+              onChange={handleImageChange}
             />
           </button>
           <StyledTextarea
@@ -142,6 +168,7 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
           </button>
         </>
       )}
+      {/* 이미지 전송 */}
       {image && (
         <>
           <PreviewImageContainer>

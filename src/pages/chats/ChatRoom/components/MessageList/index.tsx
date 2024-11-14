@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { isSameDay } from 'date-fns';
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 
 import type { ChatMessage } from '@/apis/chats/types';
 import { formatDate, getDay } from '@/utils';
@@ -11,10 +11,17 @@ type MessageListProps = {
 };
 
 const MessageList = ({ messageList }: MessageListProps) => {
+  const messageListRef = useRef<HTMLDivElement | null>(null); // 메시지 리스트 참조
+
   let lastMessageDate: Date | null = null;
 
+  // base64 형식을 이미지 src로 변환
+  const displayImage = (encodedContent: string) => {
+    return `data:image/jpeg;base64,${encodedContent}`;
+  };
+
   return (
-    <Wrapper>
+    <Wrapper ref={messageListRef}>
       {messageList.map((item, index) => {
         const messageDate = new Date(item.timestamp); // 메시지 타임스탬프
         const formattedDate = formatDate(messageDate.toString());
@@ -35,13 +42,17 @@ const MessageList = ({ messageList }: MessageListProps) => {
                 {formattedDate} {day}
               </StyledDate>
             )}
-            <MessageItem
-              key={index}
-              senderName={item.sender.email}
-              // imageUrl={item.imageUrl || undefined}
-              timestamp={item.timestamp || ''}
-              content={item.content}
-            />
+            {item.messageType === 'IMAGE' ? (
+              <img src={displayImage(item.content || '')} />
+            ) : (
+              <MessageItem
+                key={index}
+                senderName={item.sender.email}
+                profileImageUrl={undefined}
+                timestamp={item.timestamp || ''}
+                content={item.content}
+              />
+            )}
           </Fragment>
         );
       })}

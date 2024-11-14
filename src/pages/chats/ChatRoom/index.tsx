@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { CompatClient, Stomp } from '@stomp/stompjs';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SockJS from 'sockjs-client';
 
-import { connectWebSocket, disconnectWebSocket } from '@/apis/chats';
+import { disconnectWebSocket } from '@/apis/chats';
 import type { ChatMessage, ChatRoom } from '@/apis/chats/types';
 import useGetChatRoom from '@/apis/chats/useGetChatRoom';
 import IconButton from '@/components/common/IconButton';
@@ -92,6 +92,8 @@ const ChatRoom = () => {
   //     return () => disconnectWebSocket();
   //   }, [chatRoomId]);
 
+  //
+
   return (
     <Wrapper>
       <Header
@@ -112,6 +114,8 @@ const ChatRoom = () => {
   );
 };
 
+export default ChatRoom;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -127,133 +131,3 @@ const ContentWrapper = styled.div<{ marginBottom: string }>`
   display: flex;
   flex-direction: column;
 `;
-
-// const [socket, setSocket] = useState<WebSocket | null>(null); // WebSocket 상태
-// const [content, setContent] = useState<string>(''); // 채팅 메시지 상태
-// const [file, setFile] = useState<File | null>(null); // 업로드된 파일 상태
-// const [messages, setMessages] = useState<ChatMessage[]>([]); // 채팅 메시지 목록
-// const messageListRef = useRef<HTMLDivElement | null>(null); // 메시지 리스트 참조
-
-// WebSocket 연결
-// useEffect(() => {
-//   const socket = new SockJS(`${BASE_URL}/ws`);
-//   socket.onopen = () => {
-//     console.log('WebSocket 연결 성공!');
-//   };
-
-//   socket.onmessage = (event: MessageEvent) => {
-//     const serverMessage: ChatMessage = JSON.parse(event.data);
-//     setMessages((prevMessages) => [...prevMessages, serverMessage]); // 서버에서 받은 메시지 추가
-//   };
-
-//   socket.onerror = (error: Event) => {
-//     console.error('WebSocket 오류:', error);
-//   };
-
-//   socket.onclose = () => {
-//     console.log('WebSocket 연결 종료!');
-//   };
-
-//   setSocket(socket);
-
-//   return () => {
-//     socket.close(); // 컴포넌트가 언마운트 될 때 WebSocket 연결 종료
-//   };
-// }, []);
-
-//   // 파일 선택 핸들러
-//   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-//     const selectedFile = e.target.files ? e.target.files[0] : null;
-//     setFile(selectedFile);
-//   };
-
-//   // 파일 전송 함수
-//   const sendFile = () => {
-//     if (!file) {
-//       alert('파일을 선택해주세요.');
-//       return;
-//     }
-
-//     const reader = new FileReader();
-//     reader.onload = function (e) {
-//       const fileBytes = e.target?.result; // 파일 데이터를 읽어옴
-
-//       if (fileBytes) {
-//         // WebSocket 메시지 보내기
-//         const message = {
-//           chatRoomId: chatRoomId,
-//           userEmail: userEmail,
-//           fileBytes: Array.from(new Uint8Array(fileBytes as ArrayBuffer)), // Uint8Array로 변환하여 전송
-//         };
-
-//         socket?.send(JSON.stringify(message)); // WebSocket을 통해 서버로 메시지 전송
-//       }
-//     };
-
-//     reader.readAsArrayBuffer(file); // 파일을 ArrayBuffer로 읽음
-//   };
-
-//   // 채팅 메시지 입력 처리
-//   const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-//     setContent(event.target.value);
-//   };
-
-//   // 채팅 메시지 전송
-//   const sendMessage = () => {
-//     if (content.trim()) {
-//       // 텍스트 메시지 전송
-//       const message = {
-//         chatRoomId: chatRoomId,
-//         userEmail: userEmail,
-//         messageContent: content,
-//       };
-//       socket?.send(JSON.stringify(message));
-//       setContent('');
-//     }
-//   };
-
-//   // 이미지 표시 함수
-//   const displayImage = (encodedContent: string) => {
-//     return `data:image/jpeg;base64,${encodedContent}`;
-//   };
-
-//   // 메시지 목록 렌더링
-//   const renderMessages = () => {
-//     return messages.map((msg, index) => (
-//       <div key={index} className="message">
-//         {msg.messageType === 'IMAGE' ? (
-//           <img src={displayImage(msg.content || '')} alt="Uploaded file" />
-//         ) : (
-//           <p>{msg.content}</p>
-//         )}
-//       </div>
-//     ));
-//   };
-
-//   return (
-//     <div className="chat-room">
-//       <h2>Chat Room: {chatRoomId}</h2>
-
-//       {/* 파일 업로드 */}
-//       <input type="file" onChange={handleFileChange} />
-//       <button onClick={sendFile}>파일 전송</button>
-
-//       {/* 메시지 입력 */}
-//       <div>
-//         <textarea
-//           value={content}
-//           onChange={handleMessageChange}
-//           placeholder="메시지를 입력하세요"
-//         />
-//         <button onClick={sendMessage}>전송</button>
-//       </div>
-
-//       {/* 채팅 메시지 리스트 */}
-//       <div ref={messageListRef} className="message-list">
-//         {renderMessages()}
-//       </div>
-//     </div>
-//   );
-// };
-
-export default ChatRoom;

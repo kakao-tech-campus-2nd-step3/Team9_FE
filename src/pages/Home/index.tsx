@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
+import getUserMode from '@/apis/users/getUserMode';
 import SearchModal from '@/components/common/SearchModal';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
@@ -14,7 +15,16 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    setTokens();
+    const initializeTokensAndUserMode = async () => {
+      await setTokens();
+
+      const accessToken = localStorage.getItem('accessToken');
+      if (accessToken) {
+        getUserMode();
+      }
+    };
+
+    initializeTokensAndUserMode();
   }, []);
 
   const handleModalOpen = () => {

@@ -3,10 +3,10 @@ import { CompatClient } from '@stomp/stompjs';
 import { useRef, useState } from 'react';
 
 import { sendFile, sendMessage } from '@/apis/chats';
-import type { User } from '@/apis/chats/types';
 import CancelIcon from '@/assets/icons/cancel-default.svg?react';
 import ImageIcon from '@/assets/icons/image.svg?react';
 import SendIcon from '@/assets/icons/send.svg?react';
+import type { User } from '@/types/chats';
 import { countNonSpaceChars } from '@/utils';
 
 type ChatInputProps = {

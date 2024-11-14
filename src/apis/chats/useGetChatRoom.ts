@@ -1,10 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
+import type { ChatRoom } from '@/types/chats';
 import fetchInstance from '../fetchInstance';
 import QUERY_KEYS from '../queryKeys';
 import { BASE_URL } from './index';
-import type { ChatRoom } from './types';
 
 type GetChatRoomProps = {
   chatRoomId: number;

@@ -5,11 +5,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import SockJS from 'sockjs-client';
 
 import { disconnectWebSocket } from '@/apis/chats';
-import type { ChatMessage, ChatRoom } from '@/apis/chats/types';
 import useGetChatRoom from '@/apis/chats/useGetChatRoom';
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
 import { HEIGHTS } from '@/styles/constants';
+import type { ChatMessage, ChatRoom } from '@/types/chats';
 import ChatInput from './components/ChatInput';
 import MessageList from './components/MessageList';
 

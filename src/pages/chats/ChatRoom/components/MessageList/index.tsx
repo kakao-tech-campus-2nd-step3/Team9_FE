@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { isSameDay } from 'date-fns';
 import { Fragment, useRef } from 'react';
 
-import type { ChatMessage } from '@/apis/chats/types';
+import type { ChatMessage } from '@/types/chats';
 import { formatDate, getDay } from '@/utils';
 import MessageItem from '../MessageItem';
 

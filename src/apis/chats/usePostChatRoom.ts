@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
+import type { ChatRoom } from '@/types/chats';
 import { getQueryParams } from '@/utils/queryParams';
 import fetchInstance from '../fetchInstance';
 import { BASE_URL } from './index';
-import type { ChatRoom } from './types';
 
 type PostChatRoomProps = {
   userEmail1: string;

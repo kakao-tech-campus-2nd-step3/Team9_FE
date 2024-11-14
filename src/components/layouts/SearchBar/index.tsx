@@ -87,7 +87,8 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
 export default SearchBar;
 
 const SearchBarWrapper = styled.div`
-  position: sticky;
+  position: fixed;
+  z-index: ${Z_INDEX.Header};
   top: 0;
   width: 100%;
   height: ${HEIGHTS.HEADER};
@@ -96,6 +97,7 @@ const SearchBarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  background-color: var(--color-white);
 `;
 
 const InputBox = styled.form`

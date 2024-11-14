@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 // import { getKakaoLgoin } from '@/apis/login/useGetKakaoLogin';
-import KakaoSymbol from '@/assets/kakao-symbol.svg?react';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
 import { BACKGROUND_IMAGE_LIST } from '@/constants/login';
 import { RouterPath } from '@/routes/path';
 import { HEIGHTS } from '@/styles/constants';
+import KakaoLoginButton from './components/KakaoLoginButton';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -61,19 +61,6 @@ const Login = () => {
 
 export default Login;
 
-type KakaoLoginButtonProps = {
-  onClick: () => void;
-};
-
-const KakaoLoginButton = ({ onClick }: KakaoLoginButtonProps) => {
-  return (
-    <StyledKakaoLoginButton onClick={onClick}>
-      <KakaoSymbol />
-      카카오로 시작하기
-    </StyledKakaoLoginButton>
-  );
-};
-
 const Wrapper = styled.div<{ backgroundImage: string }>`
   display: flex;
   flex-direction: column;
@@ -107,17 +94,4 @@ const ContentWrapper = styled.div`
       height: 50px;
     }
   }
-`;
-
-const StyledKakaoLoginButton = styled.button`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 16px;
-  padding: 10px 50px;
-  background-color: var(--color-yellow-kakao);
-  border-radius: var(--border-radius);
-  gap: 16px;
-  font-size: var(--font-size-md);
-  font-weight: 500;
 `;

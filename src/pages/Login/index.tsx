@@ -2,7 +2,7 @@ import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import { getKakaoLgoin } from '@/apis/login/useGetKakaoLogin';
+// import { getKakaoLgoin } from '@/apis/login/useGetKakaoLogin';
 import KakaoSymbol from '@/assets/kakao-symbol.svg?react';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
@@ -20,7 +20,7 @@ const Login = () => {
   const backgroundImageCreator = BACKGROUND_IMAGE_LIST[randomIndex].creator;
 
   const handleLogin = () => {
-    getKakaoLgoin();
+    window.location.href = `http://golden-ratio.duckdns.org/oauth2/login/kakao`; // 외부 경로로 리다이렉트
   };
 
   return (

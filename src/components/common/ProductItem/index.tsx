@@ -57,6 +57,8 @@ const ProductItem = ({ id, author, title, price, src, alt, isLiked }: ProductIte
         productLiked={productLiked}
         isPostStatus={isPostStatus}
         isDeleteStatus={isDeleteStatus}
+        id={id}
+        type="product"
       />
       <MidWrapper>
         <DescriptionWrapper style={{ fontWeight: '600' }}>{author}</DescriptionWrapper>

@@ -95,3 +95,38 @@ export type SearchProductsResponse = {
   products: SearchProductInfo[];
   hasNext: boolean;
 };
+
+export type DetailArtistInfo = {
+  id: number;
+  userId: number;
+  artistName: string;
+  artistImageUrl: string;
+  artistType: string;
+  totalFollowers: number;
+  totalLikes: number;
+  about: string;
+};
+
+export type ProductResponse = {
+  id: number;
+  name: string;
+  category: string;
+  size: string;
+  price: number;
+  description: string;
+  preferredLocation: string;
+  hashTags: string[];
+  artistInfo: DetailArtistInfo;
+  imageUrls: string[];
+};
+
+export type ProfileResponse = {
+  id: number;
+  nickname: string;
+  description: string;
+  totalFollowers: number;
+  totalLikes: number;
+  about: string;
+  ImageUrl: string;
+  isFollowed: boolean;
+};

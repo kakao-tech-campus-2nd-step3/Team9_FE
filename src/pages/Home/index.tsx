@@ -1,16 +1,21 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import SearchModal from '@/components/common/SearchModal';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import { AD_LIST, ARTICLE_LIST } from '@/constants/home';
 import { HEIGHTS } from '@/styles/constants';
+import { setTokens } from '@/utils/setTokens';
 import AdBanner from './components/AdBanner';
 import ArticleBanner from './components/ArticleBanner';
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    setTokens();
+  }, []);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -19,7 +24,6 @@ const Home = () => {
   return (
     <Wrapper>
       {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
-
       <Header modalOpen={handleModalOpen} />
       <AdBanner adList={AD_LIST} />
       {ARTICLE_LIST.map((item) => (

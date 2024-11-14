@@ -5,6 +5,7 @@ const QUERY_KEYS = {
   ARTIST_LIST: 'artistList',
   PRODUCT_LIST: 'productList',
   CHAT_ROOM: 'chatRoom',
+  PRODUCT_DETAIL: 'productDetail',
 };
 
 export default QUERY_KEYS;

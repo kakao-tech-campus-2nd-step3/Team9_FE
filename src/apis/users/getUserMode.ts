@@ -1,16 +1,17 @@
 // import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
+import { Mode } from '@/types';
 import fetchInstance from '../fetchInstance';
 // import QUERY_KEYS from '../queryKeys';
 
-type UserModeResponse = { role: string; userType: string };
+type UserModeResponse = { role: string; userType: Mode };
 
 async function getUserMode(): Promise<UserModeResponse> {
   try {
     const response = await fetchInstance().get('/users/type');
 
-    return response.data.data; // todo: dto 확인하기, 타입이 뭔지 확인
+    return response.data.data;
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {

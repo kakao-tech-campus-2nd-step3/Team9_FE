@@ -6,6 +6,7 @@ import SearchModal from '@/components/common/SearchModal';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import { AD_LIST, ARTICLE_LIST } from '@/constants/home';
+import useModeStore from '@/store/useModeStore';
 import { HEIGHTS } from '@/styles/constants';
 import { setTokens } from '@/utils/queryParams';
 import AdBanner from './components/AdBanner';
@@ -13,6 +14,7 @@ import ArticleBanner from './components/ArticleBanner';
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setMode } = useModeStore();
 
   useEffect(() => {
     const initializeTokensAndUserMode = async () => {
@@ -20,7 +22,16 @@ const Home = () => {
 
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
-        getUserMode();
+        const setUserMode = async () => {
+          try {
+            const { userType } = await getUserMode();
+            setMode(userType);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        setUserMode();
       }
     };
 

@@ -1,4 +1,4 @@
-export type Mode = 'user' | 'artist';
+export type Mode = 'USER' | 'STUDENT' | 'BUSINESS';
 
 export type SearchWork = {
   id: number;

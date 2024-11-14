@@ -1,7 +1,6 @@
 import { Z_INDEX } from '@/styles/constants';
 import styled from '@emotion/styled';
 import { Suspense, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import useSearchArtists from '@/apis/search/useSearchArtists';
 import useSearchProducts from '@/apis/search/useSearchProducts';
@@ -10,7 +9,7 @@ import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
 import HorizontalFrame from './components/HorizontalFrame';

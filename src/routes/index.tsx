@@ -105,7 +105,7 @@ const router = createBrowserRouter([
       {
         path: RouterPath.chats,
         element: <ProtectedRoute />,
-        children: [{ path: ':id', element: <ChatRoom /> }],
+        children: [{ path: ':chatRoomId', element: <ChatRoom /> }],
       },
       {
         path: RouterPath.login,

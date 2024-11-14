@@ -4,6 +4,7 @@ const QUERY_KEYS = {
   USER_INFO: 'userInfo',
   ARTIST_LIST: 'artistList',
   PRODUCT_LIST: 'productList',
+  CHAT_ROOM: 'chatRoom',
 };
 
 export default QUERY_KEYS;

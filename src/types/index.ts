@@ -58,8 +58,40 @@ export type ArtistInfo = {
   ImageUrl: string;
 };
 
+export type SearchArtistInfo = {
+  id: number;
+  nickname: string;
+  artistImageUrl: string;
+  totalFollowers: number;
+  totalLikes: number;
+  isFollowing: boolean;
+};
+
+export type SearchArtistsResponse = {
+  artists: SearchArtistInfo[];
+  hasNext: boolean;
+};
+
 export type APIResponse<T = unknown> = {
   code: number;
   message: string;
   data: T;
+};
+
+export type InfiniteAPIResponse<T> = {
+  pages: APIResponse<T>[];
+  pageParams: number[];
+};
+
+export type SearchProductInfo = {
+  id: number;
+  name: string;
+  artist: string;
+  thumbnailUrl: string;
+  price: number;
+};
+
+export type SearchProductsResponse = {
+  products: SearchProductInfo[];
+  hasNext: boolean;
 };

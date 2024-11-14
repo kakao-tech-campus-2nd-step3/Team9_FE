@@ -1,6 +1,5 @@
 import { Image } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
 
@@ -9,22 +8,31 @@ interface ThumbnailProps {
   src?: string;
   alt?: string;
   heart?: boolean;
+  handleHeartClick?: () => void;
+  productLiked?: boolean;
+  isPostStatus?: string;
+  isDeleteStatus?: string;
 }
 
 const Thumbnail = ({
   ratio = 'default',
   src,
   alt = 'thumbnail image',
-  heart = false,
+  heart,
+  handleHeartClick,
+  productLiked,
+  isPostStatus,
+  isDeleteStatus,
 }: ThumbnailProps) => {
-  const [isLike, setIsLike] = useState(false);
-
   return (
     <Wrapper ratio={ratio}>
       {src && <StyledImage src={src} alt={alt} />}
       {heart && (
-        <FavoriteWrapper onClick={() => setIsLike(!isLike)}>
-          <StyledFavoriteContainer className={isLike ? 'active' : ''}>
+        <FavoriteWrapper
+          onClick={handleHeartClick}
+          disabled={isPostStatus === 'pending' || isDeleteStatus === 'pending'}
+        >
+          <StyledFavoriteContainer className={productLiked ? 'active' : ''}>
             <FavoriteDefault />
           </StyledFavoriteContainer>
         </FavoriteWrapper>
@@ -50,7 +58,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 
-const FavoriteWrapper = styled.div`
+const FavoriteWrapper = styled.button`
   position: absolute;
   top: 80%;
   right: 5%;

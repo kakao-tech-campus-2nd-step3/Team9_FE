@@ -1,14 +1,13 @@
-import searchArtist from '@/apis/data/searchArtist';
 import ArtistItem from '@/components/common/ArtistItem';
 import Grid from '@/components/styles/Grid';
-import { SearchArtist } from '@/types';
+import { SearchArtistInfo } from '@/types';
 import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 import DropdownButton from './Dropdown';
 
 export type ArtistOptions = '최신순' | '인기순' | '이름순' | '팔로우순';
 
-const ArtistContents = () => {
+const ArtistContents = ({ searchArtist }: { searchArtist: SearchArtistInfo[] }) => {
   const searchArtistLen = searchArtist.length;
   const originalSearchArtist = useRef(searchArtist);
 
@@ -27,9 +26,11 @@ const ArtistContents = () => {
     setIsOpen(false);
   };
 
-  const sortByFollowed = (a: SearchArtist, b: SearchArtist) => b.totalFollowers - a.totalFollowers;
-  const sortByName = (a: SearchArtist, b: SearchArtist) => a.name.localeCompare(b.name);
-  const sortByHeart = (a: SearchArtist, b: SearchArtist) => b.totalLikes - a.totalLikes;
+  const sortByFollowed = (a: SearchArtistInfo, b: SearchArtistInfo) =>
+    b.totalFollowers - a.totalFollowers;
+  const sortByName = (a: SearchArtistInfo, b: SearchArtistInfo) =>
+    a.nickname.localeCompare(b.nickname);
+  const sortByHeart = (a: SearchArtistInfo, b: SearchArtistInfo) => b.totalLikes - a.totalLikes;
 
   useEffect(() => {
     if (selectedOption === '최신순') {
@@ -59,12 +60,12 @@ const ArtistContents = () => {
         {sortedArtist.map((item) => (
           <ArtistItem
             artistId={item.id}
-            author={item.name}
-            src={item.src}
+            author={item.nickname}
+            src={item.artistImageUrl}
             like={item.totalLikes}
             follower={item.totalFollowers}
             key={item.id}
-            isFollow={item.followed}
+            isFollow={item.isFollowing}
           />
         ))}
       </Grid>

@@ -97,7 +97,7 @@ video {
 }
 button {
   border: none;
-  background-color: none;
+  background-color: transparent;
   cursor: pointer;
   overflow: visible;
   vertical-align: inherit;
@@ -132,4 +132,16 @@ a:focus {
 }
 hr {
   margin: 0;
+}
+textarea {
+  resize: none;
+  font-family: inherit;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  align-self: center;
+
+  &:focus {
+    outline: none;
+  }
 }

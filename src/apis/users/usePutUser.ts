@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-
-import { fetchInstance } from '../instance';
 import { isAxiosError } from 'axios';
+
+import fetchInstance from '../fetchInstance';
 
 type PutUserProps = {
   name: string;
@@ -34,14 +34,9 @@ async function putUser({
     address,
     hashTags,
   };
-  const token = localStorage.getItem('accessToken');
 
   try {
-    await fetchInstance().put(`/users`, requestBody, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await fetchInstance().put(`/users`, requestBody);
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {

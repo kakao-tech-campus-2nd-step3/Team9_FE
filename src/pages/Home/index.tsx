@@ -1,17 +1,31 @@
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
 
+import getUserMode from '@/apis/users/getUserMode';
 import SearchModal from '@/components/common/SearchModal';
 import Footer from '@/components/layouts/Footer';
-import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
-import { TABBAR_HEIGHT } from '@/components/layouts/TabBar';
-import { articleList } from '@/constants/home/articleList';
-import { homeAdList } from '@/constants/home/homeAdList';
-import { useState } from 'react';
+import Header from '@/components/layouts/Header';
+import { AD_LIST, ARTICLE_LIST } from '@/constants/home';
+import { HEIGHTS } from '@/styles/constants';
+import { setTokens } from '@/utils/queryParams';
 import AdBanner from './components/AdBanner';
 import ArticleBanner from './components/ArticleBanner';
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const initializeTokensAndUserMode = async () => {
+      await setTokens();
+
+      const accessToken = localStorage.getItem('accessToken');
+      if (accessToken) {
+        getUserMode();
+      }
+    };
+
+    initializeTokensAndUserMode();
+  }, []);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -20,10 +34,9 @@ const Home = () => {
   return (
     <Wrapper>
       {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
-
       <Header modalOpen={handleModalOpen} />
-      <AdBanner adList={homeAdList} />
-      {articleList.map((item) => (
+      <AdBanner adList={AD_LIST} />
+      {ARTICLE_LIST.map((item) => (
         <ArticleBanner
           key={item.title}
           image={item.image}
@@ -43,5 +56,5 @@ const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: ${HEADER_HEIGHT} 0 ${TABBAR_HEIGHT} 0;
+  margin: ${HEIGHTS.HEADER} 0 ${HEIGHTS.BOTTOM} 0;
 `;

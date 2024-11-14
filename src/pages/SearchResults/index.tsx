@@ -1,17 +1,18 @@
-import searchArtist from '@/apis/data/searchArtist';
-import searchWork from '@/apis/data/searchWork';
-import SearchBar from '@/components/layouts/SearchBar';
-import Gap from '@/components/styles/Gap';
-import { RouterPath } from '@/routes/path';
-import Z_INDEX from '@/styles/z_index';
+import { Z_INDEX } from '@/styles/constants';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import searchArtist from '@/apis/data/searchArtist';
+import searchWork from '@/apis/data/searchWork';
+import CategoryTabBar from '@/components/common/CategoryTabBar';
+import SearchBar from '@/components/layouts/SearchBar';
+import Gap from '@/components/styles/Gap';
+import { RouterPath } from '@/routes/path';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
-import CategoryTabBar from './components/CategoryTabBar';
+import HorizontalFrame from './components/HorizontalFrame';
 import MoreButton from './components/MoreButton';
-import SwiperFrame from './components/SwiperFrame';
 
 const SearchResults = () => {
   const [selectedTab, setSelectedTab] = useState('전체');
@@ -19,6 +20,7 @@ const SearchResults = () => {
   const searchLen = searchWork.length + searchArtist.length;
   const searchWorkLen = searchWork.length;
   const searchArtistLen = searchArtist.length;
+  const categoryList = ['전체', '작품', '작가'];
 
   const goBack = () => {
     navigate(RouterPath.categories);
@@ -32,8 +34,8 @@ const SearchResults = () => {
     <PageContainer>
       <HeaderSection>
         <SearchBar goBack={goBack} />
-        <CategoryTabBar tabClick={handleTabClick} tabState={selectedTab} />
       </HeaderSection>
+      <CategoryTabBar tabClick={handleTabClick} tabState={selectedTab} tabList={categoryList} />
 
       <ContentSection>
         {selectedTab === '전체' && (
@@ -43,10 +45,10 @@ const SearchResults = () => {
               <SubTitleFont>
                 작품 <ResultLightFont>({searchWorkLen})</ResultLightFont>
               </SubTitleFont>
-              <SwiperWrapper>
-                <SwiperFrame children={searchWork} />
+              <HorizontalWRapper>
+                <HorizontalFrame children={searchWork} />
                 <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
-              </SwiperWrapper>
+              </HorizontalWRapper>
             </Section>
 
             <Gap height={12} />
@@ -55,10 +57,10 @@ const SearchResults = () => {
               <SubTitleFont>
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
               </SubTitleFont>
-              <SwiperWrapper>
-                <SwiperFrame children={searchArtist} />
+              <HorizontalWRapper>
+                <HorizontalFrame children={searchArtist} />
                 <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
-              </SwiperWrapper>
+              </HorizontalWRapper>
             </Section>
           </AllContentWrapper>
         )}
@@ -71,18 +73,20 @@ const SearchResults = () => {
 
 export default SearchResults;
 
-const PageContainer = styled.div``;
+const PageContainer = styled.div`
+  width: 100%;
+`;
 
 const HeaderSection = styled.div`
   position: sticky;
-  top: 0;
+  height: 41px;
   z-index: ${Z_INDEX.SearchHeader};
-  background: var(--color-white);
 `;
 
 const ContentSection = styled.div`
   flex: 1;
   overflow-y: auto;
+  margin-top: 41px;
 `;
 
 const AllContentWrapper = styled.div`
@@ -120,7 +124,7 @@ const ResultLightFont = styled.div`
   margin-left: 2px;
 `;
 
-const SwiperWrapper = styled.div`
+const HorizontalWRapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

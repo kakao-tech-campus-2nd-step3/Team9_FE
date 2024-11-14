@@ -46,7 +46,7 @@ const ArtistContents = () => {
   return (
     <div>
       <ResultWrapper>
-        {searchArtistLen}명의 작가{' '}
+        {searchArtistLen}명의 작가
         <DropdownButton<ArtistOptions>
           isOpen={isOpen}
           selectedOption={selectedOption}
@@ -58,11 +58,13 @@ const ArtistContents = () => {
       <Grid col={2}>
         {sortedArtist.map((item) => (
           <ArtistItem
+            artistId={item.id}
             author={item.name}
             src={item.src}
             like={item.totalLikes}
             follower={item.totalFollowers}
             key={item.id}
+            isFollow={item.followed}
           />
         ))}
       </Grid>
@@ -73,8 +75,8 @@ const ArtistContents = () => {
 export default ArtistContents;
 
 const ResultWrapper = styled.div`
-  color: var(--color-black, #020715);
-  font-size: 1.4rem;
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -82,5 +84,6 @@ const ResultWrapper = styled.div`
   flex-direction: row;
   padding: 8px 16px;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 `;

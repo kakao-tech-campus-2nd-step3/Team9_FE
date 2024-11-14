@@ -16,7 +16,7 @@ export type Tab = {
   linkTo: string;
 };
 
-export const tabList: Tab[] = [
+export const TAB_LIST: Tab[] = [
   {
     label: '카테고리',
     defaultIcon: <CategoriesIcon />,
@@ -39,7 +39,7 @@ export const tabList: Tab[] = [
     label: '채팅',
     defaultIcon: <DefaultChatIcon />,
     activeIcon: <ActiveChatIcon />,
-    linkTo: RouterPath.chat,
+    linkTo: RouterPath.chats,
   },
   {
     label: '마이페이지',

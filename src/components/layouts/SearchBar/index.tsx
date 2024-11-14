@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
+import { useForm } from 'react-hook-form';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
-import { useForm } from 'react-hook-form';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { HEADER_HEIGHT } from '../Header';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 const MAX_RECENT_SEARCHES = 10;
+
 interface SearchBarProps {
   includeFavorite?: boolean;
   goBack?: () => void;
@@ -85,13 +86,11 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
 
 export default SearchBar;
 
-const SEARCHBAR_HEIGHT = HEADER_HEIGHT;
-
 const SearchBarWrapper = styled.div`
   position: sticky;
   top: 0;
   width: 100%;
-  height: ${SEARCHBAR_HEIGHT};
+  height: ${HEIGHTS.HEADER};
   padding: 6px 16px;
   display: flex;
   justify-content: space-between;

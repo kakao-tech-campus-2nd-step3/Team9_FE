@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { useLocation } from 'react-router-dom';
 
-import { tabList } from '@/constants/tabList';
+import { TAB_LIST } from '@/constants/tabList';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 import Tab from './Tab';
 
 const TabBar = () => {
@@ -9,7 +10,7 @@ const TabBar = () => {
 
   return (
     <Wrapper>
-      {tabList.map((tab, index) => {
+      {TAB_LIST.map((tab, index) => {
         const isActive = pathname === tab.linkTo;
 
         return (
@@ -29,15 +30,14 @@ const TabBar = () => {
 
 export default TabBar;
 
-export const TABBAR_HEIGHT = '5.4rem';
-
 const Wrapper = styled.nav`
   width: 100%;
-  height: ${TABBAR_HEIGHT};
+  height: ${HEIGHTS.BOTTOM};
   display: flex;
   flex-direction: row;
   background-color: var(--color-white);
   border-top: 1px solid var(--color-gray-md);
   position: fixed;
   bottom: 0;
+  z-index: ${Z_INDEX.TabBar};
 `;

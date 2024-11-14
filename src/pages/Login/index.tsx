@@ -2,21 +2,26 @@ import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import KakaoSymbol from '@/assets/kakao-symbol.svg?react';
+// import { getKakaoLgoin } from '@/apis/login/useGetKakaoLogin';
 import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
-import Header, { HEADER_HEIGHT } from '@/components/layouts/Header';
-import { backgroundImageList } from '@/constants/login/backgroundImageList';
+import Header from '@/components/layouts/Header';
+import { BACKGROUND_IMAGE_LIST } from '@/constants/login';
 import { RouterPath } from '@/routes/path';
+import { HEIGHTS } from '@/styles/constants';
+import KakaoLoginButton from './components/KakaoLoginButton';
 
 const Login = () => {
-  const isMember = false; // 추후 API 연동
   const navigate = useNavigate();
 
   // 랜덤 배경이미지
-  const randomIndex = Math.floor(Math.random() * backgroundImageList.length);
-  const backgroundImage = backgroundImageList[randomIndex].src;
-  const backgroundImageCreator = backgroundImageList[randomIndex].creator;
+  const randomIndex = Math.floor(Math.random() * BACKGROUND_IMAGE_LIST.length);
+  const backgroundImage = BACKGROUND_IMAGE_LIST[randomIndex].src;
+  const backgroundImageCreator = BACKGROUND_IMAGE_LIST[randomIndex].creator;
+
+  const handleLogin = () => {
+    window.location.href = `http://golden-ratio.duckdns.org/oauth2/login/kakao`; // 외부 경로로 리다이렉트
+  };
 
   return (
     <Wrapper backgroundImage={backgroundImage}>
@@ -39,7 +44,7 @@ const Login = () => {
           그 무한은 숨겨진 가치를 밝혀줍니다. <br />
           예술 속에 숨겨진 가치를 찾아드립니다.
         </Text>
-        <KakaoLoginButton isMember={isMember} />
+        <KakaoLoginButton onClick={handleLogin} />
       </ContentWrapper>
       <Text
         fontSize="var(--font-size-xs)"
@@ -56,25 +61,6 @@ const Login = () => {
 
 export default Login;
 
-type KakaoLoginButtonProps = { isMember: boolean };
-
-const KakaoLoginButton = ({ isMember }: KakaoLoginButtonProps) => {
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    if (!isMember) {
-      navigate(`/${RouterPath.signup}`);
-    }
-  };
-
-  return (
-    <StyledKakaoLoginButton onClick={handleLogin}>
-      <KakaoSymbol />
-      카카오로 시작하기
-    </StyledKakaoLoginButton>
-  );
-};
-
 const Wrapper = styled.div<{ backgroundImage: string }>`
   display: flex;
   flex-direction: column;
@@ -88,7 +74,7 @@ const Wrapper = styled.div<{ backgroundImage: string }>`
 `;
 
 const ContentWrapper = styled.div`
-  margin: ${HEADER_HEIGHT} 0 0 0;
+  margin: ${HEIGHTS.HEADER} 0 0 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -108,17 +94,4 @@ const ContentWrapper = styled.div`
       height: 50px;
     }
   }
-`;
-
-const StyledKakaoLoginButton = styled.button`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 16px;
-  padding: 10px 50px;
-  background-color: var(--color-yellow-kakao);
-  border-radius: var(--border-radius);
-  gap: 16px;
-  font-size: var(--font-size-md);
-  font-weight: 500;
 `;

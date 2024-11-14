@@ -1,35 +1,66 @@
+import { Z_INDEX } from '@/styles/constants';
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
 
-import CategoryTabElement from '@/components/common/CategoryTabBar/CategoryTabElement';
+type TapWrapperProps = {
+  isActive: boolean;
+};
 
-export const TwoCategoryTabs = () => {
+type CategoryTabBarProps = {
+  tabClick: (tab: string) => void;
+  tabState: string;
+  tabList: string[];
+};
+
+const CategoryTabBar = ({ tabClick, tabState, tabList }: CategoryTabBarProps) => {
+  const [onActive, setOnActive] = useState('전체');
+
+  useEffect(() => {
+    setOnActive(tabState);
+  }, [tabState]);
+
   return (
     <Wrapper>
-      <CategoryTabElement color="black" children="작품" />
-      <CategoryTabElement color="white" children="작가" />
+      {tabList.map((category, index) => (
+        <TabWrapper
+          key={index}
+          isActive={onActive === category}
+          onClick={() => {
+            setOnActive(category);
+            tabClick(category);
+          }}
+        >
+          {category}
+        </TabWrapper>
+      ))}
     </Wrapper>
   );
 };
 
-export const ThreeCategoryTabs = () => {
-  return (
-    <Wrapper>
-      <CategoryTabElement color="black" children="통합" />
-      <CategoryTabElement color="white" children="작품" />
-      <CategoryTabElement color="white" children="작가" />
-    </Wrapper>
-  );
-};
+export default CategoryTabBar;
 
 const Wrapper = styled.div`
-  background-color: var(--color-white);
-  color: var(--color-black);
-  padding: 0 1.6rem;
-  width: 36rem;
-  height: 4.4rem;
-  font-size: var(--font-size-sm);
-  border-bottom: 0.1rem solid var(--color-gray-md);
+  z-index: ${Z_INDEX.Header};
+  position: fixed;
+  width: 100%;
+  height: 41px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--color-gray-md);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  text-align: center;
+`;
+
+const TabWrapper = styled.div<TapWrapperProps>`
+  width: 100%;
+  height: 100%;
+  padding: 11px;
+  cursor: pointer;
+  text-align: center;
+
+  color: ${({ isActive }) => (isActive ? 'var(--color-black)' : 'var(--color-gray-dk)')};
+  border-bottom: ${({ isActive }) => (isActive ? '2px solid var(--color-black)' : 'none')};
 `;

@@ -42,7 +42,7 @@ const ArtWorkContents = () => {
   return (
     <div>
       <ResultWrapper>
-        {searchWorkLen}점의 작품{' '}
+        {searchWorkLen}점의 작품
         <DropdownButton<ArtWorkOptions>
           isOpen={isOpen}
           selectedOption={selectedOption}

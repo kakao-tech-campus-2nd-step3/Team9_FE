@@ -5,7 +5,7 @@ import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { RouterPath } from '@/routes/path';
 import useModeStore from '@/store/useModeStore';
-import Z_INDEX from '@/styles/z_index';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 interface HeaderProps {
   title?: string;
@@ -50,15 +50,12 @@ const Header = ({ title, leftSideChildren, rightSideChildren, modalOpen }: Heade
 
 export default Header;
 
-// styles
-export const HEADER_HEIGHT = '4.4rem';
-
 const Wrapper = styled.header`
   position: fixed;
   z-index: ${Z_INDEX.Header};
   top: 0;
   width: 100%;
-  height: ${HEADER_HEIGHT};
+  height: ${HEIGHTS.HEADER};
   padding: 0 16px;
   display: flex;
   justify-content: space-between;

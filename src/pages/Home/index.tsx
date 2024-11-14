@@ -6,7 +6,7 @@ import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import { AD_LIST, ARTICLE_LIST } from '@/constants/home';
 import { HEIGHTS } from '@/styles/constants';
-import { setTokens } from '@/utils/setTokens';
+import { setTokens } from '@/utils/queryParams';
 import AdBanner from './components/AdBanner';
 import ArticleBanner from './components/ArticleBanner';
 

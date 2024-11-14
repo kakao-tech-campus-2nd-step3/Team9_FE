@@ -9,7 +9,7 @@ import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
 import { HEIGHTS } from '@/styles/constants';
 import type { Mode } from '@/types';
-import { setTokens } from '@/utils/setTokens';
+import { setTokens } from '@/utils/queryParams';
 import SellerProgress from './progresses/ArtistProgress';
 import DefaultProgress from './progresses/DefaultProgress';
 import UserProgress from './progresses/UserProgress';

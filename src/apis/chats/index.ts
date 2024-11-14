@@ -71,7 +71,7 @@ export function sendMessage(
     // stompClient.send(`/v1/pub/chat/${chatRoomId}`, {}, JSON.stringify(message));
   } else {
     console.log('STOMP 클라이언트를 먼저 연결해주세요');
-    throw new Error('연결이 끊겼습니다.');
+    throw new Error('연결이 끊겼습니다. 새로고침 해주세요.');
   }
 }
 

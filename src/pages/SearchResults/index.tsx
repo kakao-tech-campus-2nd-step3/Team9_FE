@@ -1,25 +1,37 @@
 import { Z_INDEX } from '@/styles/constants';
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import searchArtist from '@/apis/data/searchArtist';
-import searchWork from '@/apis/data/searchWork';
+import useSearchArtists from '@/apis/search/useSearchArtists';
+import useSearchProducts from '@/apis/search/useSearchProducts';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
 import SearchBar from '@/components/layouts/SearchBar';
 import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useSearchParams } from 'react-router-dom';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
 import HorizontalFrame from './components/HorizontalFrame';
 import MoreButton from './components/MoreButton';
 
-const SearchResults = () => {
+const SearchResultsContent = () => {
   const [selectedTab, setSelectedTab] = useState('전체');
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query') || '';
+
+  console.log('searchQuery: ', searchQuery);
+
+  const searchArtistResults = useSearchArtists(searchQuery);
+  const artistsData = searchArtistResults.data.pages.flatMap((page) => page.data.artists);
+  const searchProductResults = useSearchProducts(searchQuery);
+  const productsData = searchProductResults.data.pages.flatMap((page) => page.data.products);
+
   const navigate = useNavigate();
-  const searchLen = searchWork.length + searchArtist.length;
-  const searchWorkLen = searchWork.length;
-  const searchArtistLen = searchArtist.length;
+  const searchLen = productsData.length + artistsData.length;
+  const searchProductLen = productsData.length;
+  const searchArtistLen = artistsData.length;
   const categoryList = ['전체', '작품', '작가'];
 
   const goBack = () => {
@@ -43,10 +55,10 @@ const SearchResults = () => {
             <ResultFont>{searchLen}건의 결과</ResultFont>
             <Section>
               <SubTitleFont>
-                작품 <ResultLightFont>({searchWorkLen})</ResultLightFont>
+                작품 <ResultLightFont>({searchProductLen})</ResultLightFont>
               </SubTitleFont>
               <HorizontalWRapper>
-                <HorizontalFrame children={searchWork} />
+                <HorizontalFrame children={productsData} />
                 <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
               </HorizontalWRapper>
             </Section>
@@ -58,16 +70,26 @@ const SearchResults = () => {
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
               </SubTitleFont>
               <HorizontalWRapper>
-                <HorizontalFrame children={searchArtist} />
+                <HorizontalFrame children={artistsData} />
                 <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
               </HorizontalWRapper>
             </Section>
           </AllContentWrapper>
         )}
-        {selectedTab === '작품' && <ArtWorkContents />}
-        {selectedTab === '작가' && <ArtistContents />}
+        {selectedTab === '작품' && <ArtWorkContents searchWork={productsData} />}
+        {selectedTab === '작가' && <ArtistContents searchArtist={artistsData} />}
       </ContentSection>
     </PageContainer>
+  );
+};
+
+const SearchResults = () => {
+  return (
+    <ErrorBoundary fallback={<div>Error Status</div>}>
+      <Suspense fallback={<div>Loading Status</div>}>
+        <SearchResultsContent />
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 

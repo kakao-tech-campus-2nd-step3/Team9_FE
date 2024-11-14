@@ -18,19 +18,22 @@ export function formatTimestamp(timestamp: string): string {
 
   let hours = date.getUTCHours();
   const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-  const period = hours <= 12 ? 'A.M.' : 'P.M.';
+  let period = 'A.M.';
 
-  // 12시간 형식으로 변경 (0시는 12시로 표시)
-  hours = hours % 12 || 12;
+  // 12시인 경우는 P.M.으로 표시
+  if (hours >= 12) {
+    period = 'P.M.';
+    if (hours > 12) {
+      hours -= 12; // 오후 1시 이후는 12시간 형식으로 변환
+    }
+  }
+
+  // 0시는 12시로 표시
+  if (hours === 0) {
+    hours = 12;
+  }
 
   return `${hours}:${minutes} ${period}`;
-}
-
-export function getDay(date: Date): string {
-  const dayList = ['일', '월', '화', '수', '목', '금', '토'];
-  const day = dayList[date.getDay()]; // getDay의 반환값을 인덱스로 해서 요일 찾기
-
-  return day;
 }
 
 /**

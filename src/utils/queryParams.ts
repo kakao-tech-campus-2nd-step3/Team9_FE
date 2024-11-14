@@ -1,5 +1,5 @@
 // query param으로 만들어 반환
-export function getQueryParams(params: Record<any, any>) {
+export function getQueryParams(params: Record<any, any>): URLSearchParams {
   const queryParams = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {

@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
 import { CompatClient } from '@stomp/stompjs';
+import { useRef, useState } from 'react';
 
-import { sendMessage } from '@/apis/chats';
+import { sendFile, sendMessage } from '@/apis/chats';
 import type { User } from '@/apis/chats/types';
+import CancelIcon from '@/assets/icons/cancel-default.svg?react';
+import ImageIcon from '@/assets/icons/image.svg?react';
 import SendIcon from '@/assets/icons/send.svg?react';
 import { countNonSpaceChars } from '@/utils';
 
@@ -19,7 +21,10 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [chatInputHeight, setChatInputHeight] = useState<string>('5.4rem');
 
+  // SEND DTO
   const [content, setContent] = useState<string>('');
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [image, setImage] = useState<File | null>(null);
 
   // 내용의 세로 길이에 맞게 입력창 높이 자동 조정하는 함수
   const adjustHeight = (textarea: HTMLTextAreaElement) => {
@@ -31,13 +36,14 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
     onHeightChange(`${newHeight + 12}px`); // 부모로 높이 전달 (패딩 포함)
   };
 
-  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  // 텍스트 컨텐트 핸들러
+  const handleTextContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
     adjustHeight(e.target);
   };
 
-  // 메시지 전송 핸들러
-  const handleSendMessage = () => {
+  // 메시지(TEXT) 전송 핸들러
+  const handleSendText = async () => {
     if (!client || !content || content.trim() === '') {
       return;
     }
@@ -46,6 +52,48 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
       // 파라미터: client, chatRoomId, email, content
       sendMessage(client, chatRoomId, sender.email, content);
       setContent('');
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  // 이미지 업로드/삭제 핸들러
+  const handleUploadImage = () => {
+    fileRef.current?.click();
+  };
+
+  const handleImage = (fileBlob: File) => {
+    setImage(fileBlob); // File 객체를 직접 설정합니다.
+
+    // 미리보기를 위해 FileReader를 사용합니다.
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    reader.onload = () => {
+      if (reader.result && typeof reader.result === 'string') {
+        // 여기서 미리보기 이미지 URL을 설정합니다.
+        const imgElement = document.querySelector('#previewImage') as HTMLImageElement;
+        if (imgElement) {
+          imgElement.src = reader.result;
+        }
+      }
+    };
+  };
+
+  const handleDeleteImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setImage(null);
+  };
+
+  // 메시지(IMAGE) 전송 핸들러
+  const handleSendImage = async () => {
+    if (!client || !image) {
+      return;
+    }
+
+    try {
+      // 파라미터: client, chatRoomId, email, file
+      sendFile(client, chatRoomId, sender.email, image);
+      setImage(null);
     } catch (error) {
       alert(error);
     }
@@ -60,22 +108,53 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
       }
       // enter만 누르면 메시지 전송
       e.preventDefault(); // 기본 Enter 동작(줄바꿈)을 막음
-      handleSendMessage();
+      handleSendText();
     }
   };
 
   return (
     <StyledChatInput height={chatInputHeight}>
-      <StyledTextarea
-        placeholder="메시지 입력"
-        ref={textareaRef}
-        value={content}
-        onChange={handleInput}
-        onKeyDown={handleKeyDown}
-      />
-      <button disabled={!countNonSpaceChars(content)} onClick={handleSendMessage}>
-        <SendIcon />
-      </button>
+      {!image && (
+        <>
+          <button onClick={handleUploadImage}>
+            <ImageIcon />
+            <input
+              type="file"
+              ref={fileRef}
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={(e) => {
+                if (e.target.files) {
+                  handleImage(e.target.files[0]);
+                }
+              }}
+            />
+          </button>
+          <StyledTextarea
+            placeholder="메시지 입력"
+            ref={textareaRef}
+            value={content}
+            onChange={handleTextContent}
+            onKeyDown={handleKeyDown}
+          />
+          <button disabled={!countNonSpaceChars(content)} onClick={handleSendText}>
+            <SendIcon />
+          </button>
+        </>
+      )}
+      {image && (
+        <>
+          <PreviewImageContainer>
+            <PreviewImage id="previewImage" src="" />
+            <DeleteImageButton onClick={handleDeleteImage}>
+              <CancelIcon />
+            </DeleteImageButton>
+          </PreviewImageContainer>
+          <button disabled={!image} onClick={handleSendImage}>
+            <SendIcon />
+          </button>
+        </>
+      )}
     </StyledChatInput>
   );
 };
@@ -86,6 +165,7 @@ const StyledChatInput = styled.div<{ height: string }>`
   width: 100%;
   min-height: 5.4rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 6px 16px;
   gap: 8px;
@@ -99,4 +179,25 @@ const StyledTextarea = styled.textarea`
   width: 100%;
   overflow-y: hidden;
   font-size: var(--font-size-sm);
+`;
+
+const PreviewImageContainer = styled.div`
+  position: relative;
+  max-height: 120px;
+  aspect-ratio: 1 / 1;
+`;
+
+const PreviewImage = styled.img`
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  border: var(--color-gray-md) 1px solid;
+`;
+
+const DeleteImageButton = styled.button`
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  outline: none;
+  color: var(--color-gray-md);
 `;

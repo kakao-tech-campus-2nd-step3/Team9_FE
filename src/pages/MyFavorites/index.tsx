@@ -3,6 +3,7 @@ import ArtistItem from '@/components/common/ArtistItem';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
 import Grid from '@/components/styles/Grid';
 import { User } from '@/types';
+import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 const MyFavorites = () => {
@@ -30,9 +31,9 @@ const MyFavorites = () => {
     <>
       <CategoryTabBar tabList={categoryList} tabClick={handleTabClick} tabState={selectedTab} />
       {selectedTab === '작품' ? (
-        <div>작품</div> // 현재 이부분 api가 없어 비워두었습니다.
+        <Wrapper>작품</Wrapper> // 현재 이부분 api가 없어 비워두었습니다.
       ) : (
-        <div>
+        <Wrapper>
           {data?.data.content?.length === 0 ? (
             <p>팔로우한 작가가 없습니다.</p>
           ) : (
@@ -48,10 +49,14 @@ const MyFavorites = () => {
               ))}
             </Grid>
           )}
-        </div>
+        </Wrapper>
       )}
     </>
   );
 };
 
 export default MyFavorites;
+
+const Wrapper = styled.div`
+  margin-top: 41px;
+`;

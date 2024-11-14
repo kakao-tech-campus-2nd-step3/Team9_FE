@@ -1,5 +1,18 @@
 import styled from '@emotion/styled';
 
+export const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 0px 16px;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+`;
+
+export const UlWrapper = styled.ul`
+  width: 100%;
+`;
+
 export const MenuItem = styled.li`
   display: flex;
   padding: 12px 0px;

@@ -1,5 +1,4 @@
 import searchArtist from '@/apis/data/searchArtist';
-import usePostFollow from '@/apis/users/usePostFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import Grid from '@/components/styles/Grid';
 import { SearchArtist } from '@/types';
@@ -10,8 +9,6 @@ import DropdownButton from './Dropdown';
 export type ArtistOptions = '최신순' | '인기순' | '이름순' | '팔로우순';
 
 const ArtistContents = () => {
-  const { mutate: postFollow } = usePostFollow();
-
   const searchArtistLen = searchArtist.length;
   const originalSearchArtist = useRef(searchArtist);
 
@@ -20,10 +17,6 @@ const ArtistContents = () => {
   const [sortedArtist, setSortedArtist] = useState(searchArtist);
 
   const options: ArtistOptions[] = ['최신순', '인기순', '이름순', '팔로우순'];
-
-  const handleFollow = (artistId: number) => {
-    postFollow(artistId);
-  };
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -53,7 +46,7 @@ const ArtistContents = () => {
   return (
     <div>
       <ResultWrapper>
-        {searchArtistLen}명의 작가{' '}
+        {searchArtistLen}명의 작가
         <DropdownButton<ArtistOptions>
           isOpen={isOpen}
           selectedOption={selectedOption}
@@ -65,12 +58,12 @@ const ArtistContents = () => {
       <Grid col={2}>
         {sortedArtist.map((item) => (
           <ArtistItem
+            artistId={item.id}
             author={item.name}
             src={item.src}
             like={item.totalLikes}
             follower={item.totalFollowers}
             key={item.id}
-            onFollow={() => handleFollow(item.id)}
             isFollow={item.followed}
           />
         ))}
@@ -82,8 +75,8 @@ const ArtistContents = () => {
 export default ArtistContents;
 
 const ResultWrapper = styled.div`
-  color: var(--color-black, #020715);
-  font-size: 1.4rem;
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -91,5 +84,6 @@ const ResultWrapper = styled.div`
   flex-direction: row;
   padding: 8px 16px;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 `;

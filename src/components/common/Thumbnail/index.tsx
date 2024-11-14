@@ -52,8 +52,8 @@ const StyledImage = styled(Image)`
 
 const FavoriteWrapper = styled.div`
   position: absolute;
-  top: 110px;
-  right: 8px;
+  top: 80%;
+  right: 5%;
   width: 24px;
   height: 24px;
   cursor: pointer;

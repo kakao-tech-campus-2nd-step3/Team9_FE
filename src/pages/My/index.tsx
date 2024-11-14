@@ -12,11 +12,11 @@ import UserProfileBox from './components/UserProfileBox';
 
 const MyContent = () => {
   const { mode } = useModeStore();
-  const { data } = mode === 'user' ? useGetUser() : useGetArtist();
+  const { data } = mode === 'USER' ? useGetUser() : useGetArtist();
 
   return (
     <Wrapper>
-      {mode === 'user' ? (
+      {mode === 'USER' ? (
         <>
           <ProfileSection>
             <UserProfileBox

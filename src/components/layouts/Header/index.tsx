@@ -25,7 +25,7 @@ const Header = ({ title, leftSideChildren, rightSideChildren, modalOpen }: Heade
           <Logo />
           <IconBox>
             <IconButton icon="search" onClick={modalOpen} />
-            {mode === 'user' ? (
+            {mode === 'USER' ? (
               <IconButton icon="favorite-default" />
             ) : (
               <IconButton icon="store-default" />

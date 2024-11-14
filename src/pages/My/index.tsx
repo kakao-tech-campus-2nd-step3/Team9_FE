@@ -6,6 +6,7 @@ import useGetArtist from '@/apis/artists/useGetArtist';
 import useGetUser from '@/apis/users/useGetUser';
 import Footer from '@/components/layouts/Footer';
 import useModeStore from '@/store/useModeStore';
+import { HEIGHTS } from '@/styles/constants';
 import { ArtistInfo, UserInfo } from '@/types';
 import ArtistProfileBox from './components/ArtistProfileBox';
 import UserMenuSection from './components/MenuSection/UserMenuSection';
@@ -61,7 +62,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-bottom: 53px;
+  padding-bottom: ${HEIGHTS.BOTTOM};
 `;
 
 const ProfileSection = styled.div`

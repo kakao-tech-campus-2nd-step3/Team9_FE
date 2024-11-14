@@ -36,6 +36,14 @@ export function formatTimestamp(timestamp: string): string {
   return `${hours}:${minutes} ${period}`;
 }
 
+// 요일 반환
+export function getDay(date: Date): string {
+  const dayList = ['일', '월', '화', '수', '목', '금', '토'];
+  const day = dayList[date.getDay()]; // getDay의 반환값을 인덱스로 해서 요일 찾기
+
+  return day;
+}
+
 /**
  * 문자열 관련 함수
  */

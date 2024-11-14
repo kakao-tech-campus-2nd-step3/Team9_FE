@@ -2,6 +2,7 @@ import { Image } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
+import { useNavigate } from 'react-router-dom';
 
 interface ThumbnailProps {
   ratio?: 'square' | 'default';
@@ -12,6 +13,8 @@ interface ThumbnailProps {
   productLiked?: boolean;
   isPostStatus?: string;
   isDeleteStatus?: string;
+  id: number;
+  type: 'artist' | 'product';
 }
 
 const Thumbnail = ({
@@ -23,13 +26,24 @@ const Thumbnail = ({
   productLiked,
   isPostStatus,
   isDeleteStatus,
+  id,
+  type,
 }: ThumbnailProps) => {
+  const navigate = useNavigate();
   return (
-    <Wrapper ratio={ratio}>
+    <Wrapper
+      ratio={ratio}
+      onClick={() =>
+        type === 'product' ? navigate(`/products/${id}`) : navigate(`/artists/${id}`)
+      }
+    >
       {src && <StyledImage src={src} alt={alt} />}
       {heart && (
         <FavoriteWrapper
-          onClick={handleHeartClick}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleHeartClick?.();
+          }}
           disabled={isPostStatus === 'pending' || isDeleteStatus === 'pending'}
         >
           <StyledFavoriteContainer className={productLiked ? 'active' : ''}>
@@ -50,6 +64,7 @@ const Wrapper = styled.div<{ ratio: 'square' | 'default' }>`
   background-color: var(--color-gray-lt);
   border-radius: var(--border-radius);
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const StyledImage = styled(Image)`

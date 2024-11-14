@@ -1,15 +1,14 @@
-import type { Mode } from '@/types';
 import Button from '../../../../components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
 
 type DefaultProgressProps = {
-  memberType: Mode | undefined;
-  onSelectMemberType: (memberType: Mode) => void;
+  memberType: 'user' | 'artist' | undefined;
+  onSelectMemberType: (memberType: 'user' | 'artist') => void;
 };
 
 const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProps) => {
-  const handleSelect = (type: Mode) => {
+  const handleSelect = (type: 'user' | 'artist') => {
     onSelectMemberType(type);
   };
 

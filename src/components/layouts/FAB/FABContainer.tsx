@@ -36,7 +36,7 @@ const FABContainer = ({ scrollContainerRef }: FABContainerProps) => {
   return (
     <Wrapper>
       {showScrollToTopButton && <ScrollToTopButton scrollContainerRef={scrollContainerRef} />}
-      {mode === 'artist' && <PostButton />}
+      {(mode === 'STUDENT' || mode === 'BUSINESS') && <PostButton />}
     </Wrapper>
   );
 };

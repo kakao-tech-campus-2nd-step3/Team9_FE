@@ -8,7 +8,6 @@ import { RouterPath } from '@/routes/path';
 import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
 import { HEIGHTS } from '@/styles/constants';
-import type { Mode } from '@/types';
 import { setTokens } from '@/utils/queryParams';
 import SellerProgress from './progresses/ArtistProgress';
 import DefaultProgress from './progresses/DefaultProgress';
@@ -18,16 +17,16 @@ const Signup = () => {
   const { clearUserInfo } = useUserStore();
   const { clearStudentInfo } = useStudentArtistStore();
   const navigate = useNavigate();
-  const [memberType, setMemberType] = useState<Mode | undefined>();
-  const [progressStep, setProgressStep] = useState<'default' | Mode>('default');
+  const [memberType, setMemberType] = useState<'user' | 'artist'>();
+  const [progressStep, setProgressStep] = useState<'default' | 'user' | 'artist'>('default');
 
   useEffect(() => {
     setTokens();
   }, []);
 
-  const handleMemberTypeSelection = (type: Mode) => {
+  const handleMemberTypeSelection = (type: 'user' | 'artist') => {
     setMemberType(type);
-    setProgressStep(type === 'user' ? 'user' : 'artist');
+    setProgressStep(type);
   };
 
   return (

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import type { Mode } from '@/types';
 
 type ModeState = {
@@ -7,7 +8,7 @@ type ModeState = {
 };
 
 const useModeStore = create<ModeState>((set) => ({
-  mode: 'user',
+  mode: 'USER',
   setMode: (mode) => set({ mode }),
 }));
 

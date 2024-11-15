@@ -52,15 +52,14 @@
 
 ### Backend
 
-![Java](https://img.shields.io/badge/java-17-007396?style=flat-square&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1.8-6DB33F?style=flat-square&logo=springboot&logoColor=6DB33F)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=MySQL&logoColor=white)
+![Java](https://img.shields.io/badge/java-17-007396?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1.8-6DB33F?style=for-the-badge&logo=springboot&logoColor=6DB33F)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=MySQL&logoColor=white)
 
 ### DevOps
 
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white)
-![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=flat-square&logo=GitHub&logoColor=white)
-![Google Cloud Platform](https://img.shields.io/badge/Google_Cloud_Platforms-4285F4?style=flat-square&logo=GoogleCloud&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
+![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=for-the-badge&logo=GitHub&logoColor=white)
 
 ![alt text](image.png)
 

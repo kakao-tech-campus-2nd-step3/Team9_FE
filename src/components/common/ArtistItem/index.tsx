@@ -49,7 +49,7 @@ const ArtistItem = ({ artistId, author, like, follower, src, alt, isFollow }: Ar
 
   return (
     <Wrapper>
-      <Thumbnail ratio="square" src={src} alt={alt} />
+      <Thumbnail ratio="square" src={src} alt={alt} id={artistId} type="artist" />
       <MidWrapper>
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold' }}>{author}</p>
         <FollowButton

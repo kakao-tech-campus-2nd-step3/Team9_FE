@@ -1,30 +1,52 @@
 import { Image } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import FavoriteDefault from '@/assets/icons/favorite-default.svg?react';
+import { useNavigate } from 'react-router-dom';
 
 interface ThumbnailProps {
   ratio?: 'square' | 'default';
   src?: string;
   alt?: string;
   heart?: boolean;
+  handleHeartClick?: () => void;
+  productLiked?: boolean;
+  isPostStatus?: string;
+  isDeleteStatus?: string;
+  id: number;
+  type: 'artist' | 'product';
 }
 
 const Thumbnail = ({
   ratio = 'default',
   src,
   alt = 'thumbnail image',
-  heart = false,
+  heart,
+  handleHeartClick,
+  productLiked,
+  isPostStatus,
+  isDeleteStatus,
+  id,
+  type,
 }: ThumbnailProps) => {
-  const [isLike, setIsLike] = useState(false);
-
+  const navigate = useNavigate();
   return (
-    <Wrapper ratio={ratio}>
+    <Wrapper
+      ratio={ratio}
+      onClick={() =>
+        type === 'product' ? navigate(`/products/${id}`) : navigate(`/artists/${id}`)
+      }
+    >
       {src && <StyledImage src={src} alt={alt} />}
       {heart && (
-        <FavoriteWrapper onClick={() => setIsLike(!isLike)}>
-          <StyledFavoriteContainer className={isLike ? 'active' : ''}>
+        <FavoriteWrapper
+          onClick={(e) => {
+            e.stopPropagation();
+            handleHeartClick?.();
+          }}
+          disabled={isPostStatus === 'pending' || isDeleteStatus === 'pending'}
+        >
+          <StyledFavoriteContainer className={productLiked ? 'active' : ''}>
             <FavoriteDefault />
           </StyledFavoriteContainer>
         </FavoriteWrapper>
@@ -42,6 +64,7 @@ const Wrapper = styled.div<{ ratio: 'square' | 'default' }>`
   background-color: var(--color-gray-lt);
   border-radius: var(--border-radius);
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const StyledImage = styled(Image)`
@@ -50,7 +73,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 
-const FavoriteWrapper = styled.div`
+const FavoriteWrapper = styled.button`
   position: absolute;
   top: 80%;
   right: 5%;

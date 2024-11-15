@@ -1,14 +1,13 @@
-import searchWork from '@/apis/data/searchWork';
 import ProductItem from '@/components/common/ProductItem';
 import Grid from '@/components/styles/Grid';
-import { SearchWork } from '@/types';
+import { SearchProductInfo } from '@/types';
 import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 import DropdownButton from './Dropdown';
 
 export type ArtWorkOptions = '최신순' | '가격순' | '제목순';
 
-const ArtWorkContents = () => {
+const ArtWorkContents = ({ searchWork }: { searchWork: SearchProductInfo[] }) => {
   const searchWorkLen = searchWork.length;
   const originalSearchWork = useRef(searchWork);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,8 +25,8 @@ const ArtWorkContents = () => {
     setIsOpen(false);
   };
 
-  const sortByPrice = (a: SearchWork, b: SearchWork) => a.price - b.price;
-  const sortByTitle = (a: SearchWork, b: SearchWork) => a.title.localeCompare(b.title);
+  const sortByPrice = (a: SearchProductInfo, b: SearchProductInfo) => a.price - b.price;
+  const sortByTitle = (a: SearchProductInfo, b: SearchProductInfo) => a.name.localeCompare(b.name);
 
   useEffect(() => {
     if (selectedOption === '최신순') {
@@ -54,11 +53,13 @@ const ArtWorkContents = () => {
       <Grid col={2}>
         {sortedWork.map((item) => (
           <ProductItem
+            id={item.id}
             key={item.id}
             author={item.artist}
-            title={item.title}
-            src={item.src}
+            title={item.name}
+            src={item.thumbnailUrl}
             price={item.price}
+            isLiked={false}
           />
         ))}
       </Grid>

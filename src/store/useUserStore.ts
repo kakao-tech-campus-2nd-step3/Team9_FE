@@ -60,8 +60,8 @@ const useUserStore = create<UserState>((set) => ({
       interests: [...state.interests, interest],
     })),
 
-  setUserDetails: () => {
-    const { data, error } = useGetUserDetails();
+  setUserDetails: async () => {
+    const { data, error } = await useGetUserDetails();
 
     if (error) {
       console.error('유저 상세 정보를 가져오지 못했습니다. ', error);

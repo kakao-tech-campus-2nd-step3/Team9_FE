@@ -19,7 +19,6 @@ const Home = () => {
   return (
     <Wrapper>
       {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
-
       <Header modalOpen={handleModalOpen} />
       <AdBanner adList={AD_LIST} />
       {ARTICLE_LIST.map((item) => (

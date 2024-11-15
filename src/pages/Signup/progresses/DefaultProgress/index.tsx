@@ -4,13 +4,13 @@ import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
 
 type DefaultProgressProps = {
-  memberType: Mode | undefined;
-  onSelectMemberType: (memberType: Mode) => void;
+  mode: Mode | undefined;
+  onSelect: (registerType: Mode) => void;
 };
 
-const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProps) => {
+const DefaultProgress = ({ mode, onSelect }: DefaultProgressProps) => {
   const handleSelect = (type: Mode) => {
-    onSelectMemberType(type);
+    onSelect(type);
   };
 
   return (
@@ -25,12 +25,12 @@ const DefaultProgress = ({ memberType, onSelectMemberType }: DefaultProgressProp
         <SelectItem>
           <Button
             label="일반 회원"
-            isSelected={memberType === 'user'}
+            isSelected={mode === 'user'}
             onClick={() => handleSelect('user')}
           />
           <Button
             label="작가(판매자) 회원"
-            isSelected={memberType === 'artist'}
+            isSelected={mode === 'artist'}
             onClick={() => handleSelect('artist')}
           />
         </SelectItem>

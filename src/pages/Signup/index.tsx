@@ -17,12 +17,10 @@ const Signup = () => {
   const { clearUserInfo } = useUserStore();
   const { clearStudentInfo } = useStudentArtistStore();
   const navigate = useNavigate();
-  const [memberType, setMemberType] = useState<Mode | undefined>();
-  const [progressStep, setProgressStep] = useState<'default' | Mode>('default');
+  const [mode, setMode] = useState<Mode>();
 
-  const handleMemberTypeSelection = (type: Mode) => {
-    setMemberType(type);
-    setProgressStep(type === 'user' ? 'user' : 'artist');
+  const handleModeSelect = (type: Mode) => {
+    setMode(type);
   };
 
   return (
@@ -43,11 +41,9 @@ const Signup = () => {
         }
       />
       <ContentWrapper>
-        {progressStep === 'default' && (
-          <DefaultProgress memberType={memberType} onSelectMemberType={handleMemberTypeSelection} />
-        )}
-        {progressStep === 'user' && <UserProgress />}
-        {progressStep === 'artist' && <SellerProgress />}
+        {!mode && <DefaultProgress mode={mode} onSelect={handleModeSelect} />}
+        {mode === 'user' && <UserProgress />}
+        {mode === 'artist' && <SellerProgress />}
       </ContentWrapper>
     </Wrapper>
   );

@@ -1,22 +1,34 @@
+import styled from '@emotion/styled';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+
 import useGetArtist from '@/apis/artists/useGetArtist';
 import useGetUser from '@/apis/users/useGetUser';
 import Footer from '@/components/layouts/Footer';
 import useModeStore from '@/store/useModeStore';
+import { HEIGHTS } from '@/styles/constants';
 import { ArtistInfo, UserInfo } from '@/types';
-import styled from '@emotion/styled';
-import { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 import ArtistProfileBox from './components/ArtistProfileBox';
 import UserMenuSection from './components/MenuSection/UserMenuSection';
 import UserProfileBox from './components/UserProfileBox';
 
+const My = () => {
+  return (
+    <ErrorBoundary fallback={<div>Error...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyContent />
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
+
 const MyContent = () => {
   const { mode } = useModeStore();
-  const { data } = mode === 'user' ? useGetUser() : useGetArtist();
+  const { data } = mode === 'USER' ? useGetUser() : useGetArtist();
 
   return (
     <Wrapper>
-      {mode === 'user' ? (
+      {mode === 'USER' ? (
         <>
           <ProfileSection>
             <UserProfileBox
@@ -44,26 +56,16 @@ const MyContent = () => {
   );
 };
 
-const My = () => {
-  return (
-    <ErrorBoundary fallback={<div>Error...</div>}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <MyContent />
-      </Suspense>
-    </ErrorBoundary>
-  );
-};
-
 export default My;
-
-const ProfileSection = styled.div`
-  background: var(--color-black);
-  padding: 16px;
-`;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-bottom: 53px;
+  padding-bottom: ${HEIGHTS.BOTTOM};
+`;
+
+const ProfileSection = styled.div`
+  background: var(--color-black);
+  padding: 16px;
 `;

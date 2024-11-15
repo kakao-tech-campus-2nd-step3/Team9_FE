@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+const BASE_URL = `${import.meta.env.VITE_APP_BASE_URL}/v1`;
 
 const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({

@@ -63,6 +63,8 @@ CI / CD : Git Action <br>
 ![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=flat-square&logo=GitHub&logoColor=white)
 ![Google Cloud Platform](https://img.shields.io/badge/Google_Cloud_Platforms-4285F4?style=flat-square&logo=GoogleCloud&logoColor=white)
 
+![alt text](image.png)
+
 ## 주요 개발 현황
 
 ### Frontend
@@ -123,6 +125,6 @@ SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜로 메시�
 - 접근성을 높이기 위해서 PWA 적용할 예정입니다.  
 
 ### Backend
-써주세요
+
 
 

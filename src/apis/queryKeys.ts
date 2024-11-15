@@ -3,6 +3,7 @@ const QUERY_KEYS = {
   FEED: 'feed',
   FOLLOW_LIST: 'followList',
   USER_INFO: 'userInfo',
+  USER_DETAILS: 'userDetails',
   ARTIST_LIST: 'artistList',
   PRODUCT_LIST: 'productList',
   CHAT_ROOM: 'chatRoom',

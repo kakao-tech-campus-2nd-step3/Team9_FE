@@ -25,18 +25,6 @@ export type User = {
 
 export type FollowResponse = { content: User[] };
 
-export type UserInfo = {
-  username?: string; // user은 이거,
-  name?: string; // user details는 이게 오는..;; // todo: 키명 수정 요청
-  userImageUrl: string;
-  nickname: string;
-  email: string;
-  birthdate: string;
-  phone: string;
-  address: string;
-  hashTags: string[];
-};
-
 export type ArtistInfo = {
   nickname: string;
   description: string;

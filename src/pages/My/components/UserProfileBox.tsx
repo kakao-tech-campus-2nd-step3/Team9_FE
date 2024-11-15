@@ -1,11 +1,12 @@
-import ProfileImage from '@/components/common/ProfileImage';
-import { UserInfo } from '@/types';
 import styled from '@emotion/styled';
+
+import ProfileImage from '@/components/common/ProfileImage';
+import { UserInfo } from '@/types/user';
 
 const UserProfileBox = ({ userImageUrl, hashTags, username }: UserInfo) => {
   return (
     <Wrapper>
-      <ProfileImage imageUrl={userImageUrl} alt={username} width={96} />
+      <ProfileImage imageUrl={userImageUrl} alt={username || ''} width={96} />
       <DetailWrapper>
         <NameWrapper>{username}</NameWrapper>
         <TagWrapper>

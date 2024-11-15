@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
-import { UserInfo } from '@/types';
+import { UserInfo } from '@/types/user';
 import fetchInstance from '../instance';
 import QueryKeys from '../queryKeys';
 

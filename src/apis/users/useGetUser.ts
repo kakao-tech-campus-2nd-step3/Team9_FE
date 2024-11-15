@@ -1,5 +1,7 @@
-import { APIResponse, UserInfo } from '@/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
+
+import { APIResponse } from '@/types';
+import { UserInfo } from '@/types/user';
 import fetchInstance from '../instance';
 import QueryKeys from '../queryKeys';
 

@@ -1,12 +1,12 @@
 import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
-import categories from '@/apis/data/categories';
 import FakeSearchBar from '@/components/common/FakeSearchBar';
 import SearchModal from '@/components/common/SearchModal';
 import Gap from '@/components/styles/Gap';
 import Grid from '@/components/styles/Grid';
-import { useState } from 'react';
+import { categoryList } from '@/constants/categories';
 import Category from './components/CategoryItem';
 
 const Categories = () => {
@@ -21,7 +21,7 @@ const Categories = () => {
       <FakeSearchBar modalOpen={handleModalOpen} />
       {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
       <Grid col={4}>
-        {categories.map((category) => (
+        {categoryList.map((category) => (
           <Category key={category.id} src={category.src} des={category.des} />
         ))}
       </Grid>
@@ -60,12 +60,12 @@ const CurationItem = styled.div`
 const Title = styled(Text)`
   font-size: var(--font-size-md);
   font-weight: 600;
-  line-height: 1.2; // 줄 높이 추가
+  line-height: 1.2;
 `;
 
 const Des = styled(Text)`
   font-size: var(--font-size-sm);
-  line-height: 1.2; // 줄 높이 추가
+  line-height: 1.2;
 `;
 
 const CurationWrapper = styled.div`

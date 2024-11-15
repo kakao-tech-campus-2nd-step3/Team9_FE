@@ -1,10 +1,10 @@
 import ArtistItem from '@/components/common/ArtistItem';
 import ProductItem from '@/components/common/ProductItem';
-import { SearchArtist, SearchWork } from '@/types/index';
+import { SearchArtistInfo, SearchProductInfo } from '@/types/index';
 import styled from '@emotion/styled';
 
 interface HorizontalFrameProps {
-  children: SearchArtist[] | SearchWork[];
+  children: SearchArtistInfo[] | SearchProductInfo[];
 }
 
 const HorizontalFrame = ({ children }: HorizontalFrameProps) => {
@@ -12,25 +12,27 @@ const HorizontalFrame = ({ children }: HorizontalFrameProps) => {
     <HorizontalScrollWrapper>
       {children.map((item) => (
         <StyledItemWrapper key={item.id}>
-          {'title' in item && (
+          {'name' in item && (
             <ProductItem
+              id={item.id}
               author={item.artist}
-              title={item.title}
-              src={item.src}
+              title={item.name}
+              src={item.thumbnailUrl}
               price={item.price}
               key={item.id}
               alt="artwork"
+              isLiked={false}
             />
           )}
-          {'name' in item && (
+          {'nickname' in item && (
             <ArtistItem
               artistId={item.id}
-              author={item.name}
-              src={item.src}
+              author={item.nickname}
+              src={item.artistImageUrl}
               like={item.totalLikes}
               follower={item.totalFollowers}
               key={item.id}
-              isFollow={item.followed}
+              isFollow={item.isFollowing}
               alt="artist"
             />
           )}

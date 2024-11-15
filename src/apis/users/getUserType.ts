@@ -1,20 +1,21 @@
 // import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
+import type { UserType } from '@/types';
 import fetchInstance from '../fetchInstance';
 // import QUERY_KEYS from '../queryKeys';
 
-type UserModeResponse = { role: string; userType: string };
+type UserTypeResponse = { role: string; userType: UserType };
 
-async function getUserMode(): Promise<UserModeResponse> {
+async function getUserType(): Promise<UserTypeResponse> {
   try {
     const response = await fetchInstance().get('/users/type');
 
-    return response.data.data; // todo: dto 확인하기, 타입이 뭔지 확인
+    return response.data.data;
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {
-        throw new Error(error.response.data.message || 'user mode 가져오기 실패');
+        throw new Error(error.response.data.message || 'user type 가져오기 실패');
       } else {
         throw new Error('네트워크 오류 또는 서버에 연결할 수 없습니다.');
       }
@@ -35,4 +36,4 @@ async function getUserMode(): Promise<UserModeResponse> {
 
 // export default useGetFollow;
 
-export default getUserMode;
+export default getUserType;

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@/components/common/IconButton';
@@ -9,7 +9,6 @@ import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
 import { HEIGHTS } from '@/styles/constants';
 import type { Mode } from '@/types';
-import { setTokens } from '@/utils/queryParams';
 import SellerProgress from './progresses/ArtistProgress';
 import DefaultProgress from './progresses/DefaultProgress';
 import UserProgress from './progresses/UserProgress';
@@ -18,16 +17,10 @@ const Signup = () => {
   const { clearUserInfo } = useUserStore();
   const { clearStudentInfo } = useStudentArtistStore();
   const navigate = useNavigate();
-  const [memberType, setMemberType] = useState<Mode | undefined>();
-  const [progressStep, setProgressStep] = useState<'default' | Mode>('default');
+  const [mode, setMode] = useState<Mode>();
 
-  useEffect(() => {
-    setTokens();
-  }, []);
-
-  const handleMemberTypeSelection = (type: Mode) => {
-    setMemberType(type);
-    setProgressStep(type === 'user' ? 'user' : 'artist');
+  const handleModeSelect = (type: Mode) => {
+    setMode(type);
   };
 
   return (
@@ -48,11 +41,9 @@ const Signup = () => {
         }
       />
       <ContentWrapper>
-        {progressStep === 'default' && (
-          <DefaultProgress memberType={memberType} onSelectMemberType={handleMemberTypeSelection} />
-        )}
-        {progressStep === 'user' && <UserProgress />}
-        {progressStep === 'artist' && <SellerProgress />}
+        {!mode && <DefaultProgress mode={mode} onSelect={handleModeSelect} />}
+        {mode === 'user' && <UserProgress />}
+        {mode === 'artist' && <SellerProgress />}
       </ContentWrapper>
     </Wrapper>
   );

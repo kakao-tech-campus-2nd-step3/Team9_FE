@@ -40,6 +40,8 @@ const MyFavorites = () => {
             <Grid col={2}>
               {data?.data.content?.map((artist: User) => (
                 <ArtistItem
+                  artistId={artist.userId}
+                  key={artist.userId}
                   author={artist.nickname}
                   like={artist.totalLikes}
                   follower={artist.totalFollowers}

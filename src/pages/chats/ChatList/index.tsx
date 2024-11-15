@@ -7,7 +7,7 @@ import { HEIGHTS } from '@/styles/constants';
 import ChatItem from './components/ChatItem';
 
 const ChatList = () => {
-  const [chatList, setChatList] = useState([
+  const [chatList] = useState([
     {
       chatRoomId: 1,
       imageUrl: '',

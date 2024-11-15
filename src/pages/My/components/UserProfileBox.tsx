@@ -6,7 +6,7 @@ import { UserInfo } from '@/types/user';
 const UserProfileBox = ({ userImageUrl, hashTags, username }: UserInfo) => {
   return (
     <Wrapper>
-      <ProfileImage imageUrl={userImageUrl} alt={username || ''} width={96} />
+      <ProfileImage width={96} imageUrl={userImageUrl} />
       <DetailWrapper>
         <NameWrapper>{username}</NameWrapper>
         <TagWrapper>

@@ -19,7 +19,7 @@ const ChatItem = ({ chatRoomId, imageUrl, nickname, date, content }: ChatItemPro
 
   return (
     <Wrapper onClick={() => navigate(`${chatRoomId}`)}>
-      <ProfileImage width={54} imageUrl={imageUrl} alt="profileImage" />
+      <ProfileImage width={54} imageUrl={imageUrl} />
       <Box display="flex" flexDir="column" gap="4px" margin="0 0 0 12px">
         <Box display="flex" flexDir="row" gap="12px" alignItems="center">
           <Text fontSize="var(--font-size-md)" fontWeight="500">

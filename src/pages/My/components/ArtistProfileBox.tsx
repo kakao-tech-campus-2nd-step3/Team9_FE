@@ -13,7 +13,7 @@ const ArtistProfileBox = ({
 }: ArtistInfo) => {
   return (
     <Wrapper>
-      <ProfileImage imageUrl={ImageUrl} alt={nickname} width={96} />
+      <ProfileImage width={96} imageUrl={ImageUrl} />
       <DetailWrapper>
         <NameWrapper>{nickname}</NameWrapper>
         <TagWrapper>

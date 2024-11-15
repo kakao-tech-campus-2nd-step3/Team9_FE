@@ -25,7 +25,7 @@ const MessageItem = ({ senderName, profileImageUrl, timestamp, content }: Messag
       )}
       {!isMe && (
         <>
-          <ProfileImage width={32} imageUrl={profileImageUrl} alt="messageItem" />
+          <ProfileImage width={32} imageUrl={profileImageUrl} />
           <Box display="flex" flexDir="column" gap="8px">
             <Name>{senderName}</Name>
             <Box display="flex" flexDir="row" gap="8px">

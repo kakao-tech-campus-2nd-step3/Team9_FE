@@ -7,7 +7,7 @@ import CancelIcon from '@/assets/icons/cancel-default.svg?react';
 import ImageIcon from '@/assets/icons/image.svg?react';
 import SendIcon from '@/assets/icons/send.svg?react';
 import type { User } from '@/types/chats';
-import { countNonSpaceChars } from '@/utils';
+import { countNonSpaceChars } from '@/utils/strings';
 
 type ChatInputProps = {
   client: CompatClient | null;

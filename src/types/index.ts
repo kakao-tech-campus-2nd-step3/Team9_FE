@@ -1,4 +1,6 @@
-export type Mode = 'USER' | 'STUDENT' | 'BUSINESS';
+export type Mode = 'USER' | 'STUDENT' | 'BUSINESS'; // 서버에서 페칭한 모드
+
+export type RegisterType = 'user' | 'artist'; // 가입 시 선택용
 
 export type SearchWork = {
   id: number;

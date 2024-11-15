@@ -8,6 +8,7 @@ import { RouterPath } from '@/routes/path';
 import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
 import { HEIGHTS } from '@/styles/constants';
+import type { RegisterType } from '@/types';
 import SellerProgress from './progresses/ArtistProgress';
 import DefaultProgress from './progresses/DefaultProgress';
 import UserProgress from './progresses/UserProgress';
@@ -16,12 +17,10 @@ const Signup = () => {
   const { clearUserInfo } = useUserStore();
   const { clearStudentInfo } = useStudentArtistStore();
   const navigate = useNavigate();
-  const [memberType, setMemberType] = useState<'user' | 'artist'>();
-  const [progressStep, setProgressStep] = useState<'default' | 'user' | 'artist'>('default');
+  const [registerType, setRegisterType] = useState<RegisterType>();
 
-  const handleMemberTypeSelection = (type: 'user' | 'artist') => {
-    setMemberType(type);
-    setProgressStep(type);
+  const handleRegisterTypeSelection = (type: RegisterType) => {
+    setRegisterType(type);
   };
 
   return (
@@ -42,11 +41,11 @@ const Signup = () => {
         }
       />
       <ContentWrapper>
-        {progressStep === 'default' && (
-          <DefaultProgress memberType={memberType} onSelectMemberType={handleMemberTypeSelection} />
+        {!registerType && (
+          <DefaultProgress registerType={registerType} onSelect={handleRegisterTypeSelection} />
         )}
-        {progressStep === 'user' && <UserProgress />}
-        {progressStep === 'artist' && <SellerProgress />}
+        {registerType === 'user' && <UserProgress />}
+        {registerType === 'artist' && <SellerProgress />}
       </ContentWrapper>
     </Wrapper>
   );

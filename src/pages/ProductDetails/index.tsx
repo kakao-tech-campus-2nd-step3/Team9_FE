@@ -30,10 +30,9 @@ const ProductDetailsContent = () => {
 
   const { data } = useGetDetail(productIdAsNumber);
   const { mutate: postChatRoom } = usePostChatRoom();
-  // todo: userEmail1 파라미터 이걸로 바꾸기, 작가 이메일 키 넣어달라 요청
-  // const { email } = useUserStore();
+  // todo:  작가 이메일 키 넣어달라 요청
+  const { email } = useUserStore();
   // const artistEmail = data.data.artistInfo.email || USER_EMAIL_2;
-  const email = USER_EMAIL_1; // 사용자 본인 이메일
   const artistEmail = USER_EMAIL_2; // 작가 이메일
 
   const navigate = useNavigate();
@@ -41,7 +40,7 @@ const ProductDetailsContent = () => {
   const handleClickChat = () => {
     postChatRoom(
       {
-        userEmail1: email,
+        userEmail1: email || USER_EMAIL_1, // todo: 수정 - email 값이 ''이면 로그인 리다이렉트
         userEmail2: artistEmail,
       },
       {

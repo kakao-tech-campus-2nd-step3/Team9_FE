@@ -57,19 +57,23 @@ const ArtistContents = ({ searchArtist }: { searchArtist: SearchArtistInfo[] }) 
           handleSelect={handleSelect}
         />
       </ResultWrapper>
-      <G.Grid col={2}>
-        {sortedArtist.map((item) => (
-          <ArtistItem
-            artistId={item.id}
-            author={item.nickname}
-            src={item.artistImageUrl}
-            like={item.totalLikes}
-            follower={item.totalFollowers}
-            key={item.id}
-            isFollow={item.isFollowing}
-          />
-        ))}
-      </G.Grid>
+      {searchArtistLen === 0 ? (
+        <NoDataMessage>데이터가 없습니다.</NoDataMessage>
+      ) : (
+        <G.Grid col={2}>
+          {sortedArtist.map((item) => (
+            <ArtistItem
+              artistId={item.id}
+              author={item.nickname}
+              src={item.artistImageUrl}
+              like={item.totalLikes}
+              follower={item.totalFollowers}
+              key={item.id}
+              isFollow={item.isFollowing}
+            />
+          ))}
+        </G.Grid>
+      )}
     </div>
   );
 };
@@ -88,4 +92,14 @@ const ResultWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+`;
+
+const NoDataMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 40px 0;
+  font-weight: 600;
+  color: var(--color-black);
 `;

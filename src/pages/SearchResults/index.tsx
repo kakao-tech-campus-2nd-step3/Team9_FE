@@ -7,6 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import useSearchArtists from '@/apis/search/useSearchArtists';
 import useSearchProducts from '@/apis/search/useSearchProducts';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
+import Loader from '@/components/common/Loader';
 import SearchBar from '@/components/layouts/SearchBar';
 import { RouterPath } from '@/routes/path';
 import * as G from '@/styles/globalStyles';
@@ -56,20 +57,28 @@ const SearchResultsContent = () => {
               <SubTitleFont>
                 작품 <ResultLightFont>({searchProductLen})</ResultLightFont>
               </SubTitleFont>
-              <HorizontalWRapper>
-                <HorizontalFrame children={productsData} />
-                <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
-              </HorizontalWRapper>
+              {searchProductLen === 0 ? (
+                <NoDataMessage>데이터가 없습니다.</NoDataMessage>
+              ) : (
+                <HorizontalWRapper>
+                  <HorizontalFrame children={productsData} />
+                  <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
+                </HorizontalWRapper>
+              )}
             </Section>
             <G.Gap height={12} />
             <Section>
               <SubTitleFont>
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
               </SubTitleFont>
-              <HorizontalWRapper>
-                <HorizontalFrame children={artistsData} />
-                <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
-              </HorizontalWRapper>
+              {searchArtistLen === 0 ? (
+                <NoDataMessage>데이터가 없습니다.</NoDataMessage>
+              ) : (
+                <HorizontalWRapper>
+                  <HorizontalFrame children={artistsData} />
+                  <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
+                </HorizontalWRapper>
+              )}
             </Section>
           </AllContentWrapper>
         )}
@@ -83,7 +92,7 @@ const SearchResultsContent = () => {
 const SearchResults = () => {
   return (
     <ErrorBoundary fallback={<div>Error Status</div>}>
-      <Suspense fallback={<div>Loading Status</div>}>
+      <Suspense fallback={<Loader />}>
         <SearchResultsContent />
       </Suspense>
     </ErrorBoundary>
@@ -148,4 +157,14 @@ const HorizontalWRapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const NoDataMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  font-weight: 600;
+  color: var(--color-black);
 `;

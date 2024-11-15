@@ -11,6 +11,12 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
 
+    env:
+      VITE_APP_BASE_URL: ${{ secrets.VITE_APP_BASE_URL }}
+      VITE_APP_BASE_URL_CHAT: ${{ secrets.VITE_APP_BASE_URL_CHAT }}
+      VITE_APP_NTS_BUSINESSMAN_API_KEY: ${{ secrets.VITE_APP_NTS_BUSINESSMAN_API_KEY }}
+      VITE_APP_UNIVCERT_API_KEY: ${{ secrets.VITE_APP_UNIVCERT_API_KEY }}
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3

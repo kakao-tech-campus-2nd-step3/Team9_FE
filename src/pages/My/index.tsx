@@ -4,6 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import useGetArtist from '@/apis/artists/useGetArtist';
 import useGetUser from '@/apis/users/useGetUser';
+import Loader from '@/components/common/Loader';
 import Footer from '@/components/layouts/Footer';
 import useModeStore from '@/store/useModeStore';
 import { HEIGHTS } from '@/styles/constants';
@@ -15,7 +16,7 @@ import UserProfileBox from './components/UserProfileBox';
 const My = () => {
   return (
     <ErrorBoundary fallback={<div>Error...</div>}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <MyContent />
       </Suspense>
     </ErrorBoundary>

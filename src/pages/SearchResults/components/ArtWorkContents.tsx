@@ -51,19 +51,23 @@ const ArtWorkContents = ({ searchWork }: { searchWork: SearchProductInfo[] }) =>
           handleSelect={handleSelect}
         />
       </ResultWrapper>
-      <G.Grid col={2}>
-        {sortedWork.map((item) => (
-          <ProductItem
-            id={item.id}
-            key={item.id}
-            author={item.artist}
-            title={item.name}
-            src={item.thumbnailUrl}
-            price={item.price}
-            isLiked={false}
-          />
-        ))}
-      </G.Grid>
+      {searchWorkLen === 0 ? (
+        <NoDataMessage>데이터가 없습니다.</NoDataMessage>
+      ) : (
+        <G.Grid col={2}>
+          {sortedWork.map((item) => (
+            <ProductItem
+              id={item.id}
+              key={item.id}
+              author={item.artist}
+              title={item.name}
+              src={item.thumbnailUrl}
+              price={item.price}
+              isLiked={false}
+            />
+          ))}
+        </G.Grid>
+      )}
     </div>
   );
 };
@@ -82,4 +86,14 @@ const ResultWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+`;
+
+const NoDataMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 40px 0;
+  font-weight: 600;
+  color: var(--color-black);
 `;

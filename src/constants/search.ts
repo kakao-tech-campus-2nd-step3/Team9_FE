@@ -3,7 +3,7 @@ type PopularSearch = {
   text: string;
 };
 
-export const popularSearchList: PopularSearch[] = [
+export const POPULAR_SEARCH_LIST: PopularSearch[] = [
   { id: 1, text: '모던 아트' },
   { id: 2, text: '추상화' },
   { id: 3, text: '인상파' },
@@ -23,7 +23,7 @@ type SearchAd = {
   src: string;
 };
 
-export const adList: SearchAd[] = [
+export const AD_LIST: SearchAd[] = [
   {
     id: 1,
     src: ' https://images.unsplash.com/photo-1579273166152-d725a4e2b755?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fCVFQSVCNyVCOCVFQiVBNiVCQ3xlbnwwfHwwfHx8MA%3D%3D',

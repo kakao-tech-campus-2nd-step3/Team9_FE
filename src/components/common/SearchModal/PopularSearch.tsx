@@ -2,11 +2,11 @@ import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import Grid from '@/components/styles/Grid';
-import { popularSearchList } from '@/constants/search';
+import { POPULAR_SEARCH_LIST } from '@/constants/search';
 import PopularSearchItem from '../PopularSearchItem';
 
 const PopularSearch = () => {
-  const midPoint = Math.ceil(popularSearchList.length / 2);
+  const midPoint = Math.ceil(POPULAR_SEARCH_LIST.length / 2);
 
   return (
     <Wrapper>
@@ -17,12 +17,12 @@ const PopularSearch = () => {
       </TitleWrapper>
       <Grid col={2} style={{ justifyItems: 'flex-start' }}>
         <Column>
-          {popularSearchList.slice(0, midPoint).map((item, index) => (
+          {POPULAR_SEARCH_LIST.slice(0, midPoint).map((item, index) => (
             <PopularSearchItem key={item.id} text={item.text} rank={index + 1} />
           ))}
         </Column>
         <Column>
-          {popularSearchList.slice(midPoint).map((item, index) => (
+          {POPULAR_SEARCH_LIST.slice(midPoint).map((item, index) => (
             <PopularSearchItem key={item.id} text={item.text} rank={midPoint + index + 1} />
           ))}
         </Column>

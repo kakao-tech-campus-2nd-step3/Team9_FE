@@ -4,7 +4,7 @@ type Category = {
   des: string;
 };
 
-export const categoryList: Category[] = [
+export const CATEGORY_LIST: Category[] = [
   {
     id: 1,
     src: 'https://images.unsplash.com/photo-1580136608079-72029d0de130?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8JUVCJThGJTk5JUVDJTk2JTkxJUVBJUI3JUI4JUVCJUE2JUJDfGVufDB8fDB8fHww',

@@ -57,20 +57,28 @@ const SearchResultsContent = () => {
               <SubTitleFont>
                 작품 <ResultLightFont>({searchProductLen})</ResultLightFont>
               </SubTitleFont>
-              <HorizontalWRapper>
-                <HorizontalFrame children={productsData} />
-                <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
-              </HorizontalWRapper>
+              {searchProductLen === 0 ? (
+                <div>데이터가 없습니다.</div>
+              ) : (
+                <HorizontalWRapper>
+                  <HorizontalFrame children={productsData} />
+                  <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
+                </HorizontalWRapper>
+              )}
             </Section>
             <G.Gap height={12} />
             <Section>
               <SubTitleFont>
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
               </SubTitleFont>
-              <HorizontalWRapper>
-                <HorizontalFrame children={artistsData} />
-                <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
-              </HorizontalWRapper>
+              {searchArtistLen === 0 ? (
+                <div>데이터가 없습니다.</div>
+              ) : (
+                <HorizontalWRapper>
+                  <HorizontalFrame children={artistsData} />
+                  <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
+                </HorizontalWRapper>
+              )}
             </Section>
           </AllContentWrapper>
         )}

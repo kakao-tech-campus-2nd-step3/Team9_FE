@@ -7,11 +7,15 @@
 
 졸업 전시 후 버려지는 작품들에 대한 문제성을 인식하고,  
 소비자의 합리적인 가격대의 미술품 및 인테리어의 수요를 충족하자는 아이디어에서 시작하여  
-해당 서비스를 기획•개발하게 되었습니다.
+해당 서비스를 기획•개발하게 되었습니다.  
+<a href="http://1.618.s3-website.ap-northeast-2.amazonaws.com/">
+  <img src="https://github.com/user-attachments/assets/119bf44d-d9ed-42a9-a660-b72be9ef5daf" alt="image" width="300">
+</a>
+</br>
+이미지를 클릭하면 [1.618 홈페이지](http://1.618.s3-website.ap-northeast-2.amazonaws.com/) 로 이동합니다.
 
-## 링크
-[1.618 홈페이지](http://1.618.s3-website.ap-northeast-2.amazonaws.com/)  
 
+## 관련 리소스들
 [프론트엔드 GitHub](https://github.com/kakao-tech-campus-2nd-step3/Team9_FE)  
 [백엔드 GitHub](https://github.com/kakao-tech-campus-2nd-step3/Team9_BE)  
 
@@ -95,7 +99,8 @@ SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜로 메시�
 - API 통신 코드의 에러 핸들링을 개선할 예정입니다.  
 - 미구현한 기능 -회원 정보 수정, 작품 포스팅, 내 갤러리, 채팅 이미지 전송- 을 이어서 구현할 예정입니다.  
 - 프로젝트 구조를 개선하고 도메인을 분리할 예정입니다.  
-- 중복되거나 성능 개선이 필요한 부분을 테스트 도구를 활용하여 개선할 예정입니다.  
+- 중복되거나 성능 개선이 필요한 부분을 테스트 도구를 활용하여 개선할 예정입니다.
+- 접근성을 높이기 위해서 PWA 적용할 예정입니다.  
 
 ### Backend
 써주세요

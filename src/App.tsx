@@ -5,7 +5,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import queryClient from '@/apis/queryClient';
-import getUserType from '@/apis/users/getUserType';
 import Routes from '@/routes';
 import useModeStore from '@/store/useModeStore';
 import { setTokens } from '@/utils/queryParams';
@@ -22,26 +21,12 @@ const App = () => {
 
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
-        const setUserMode = async () => {
-          try {
-            const { userType } = await getUserType();
-
-            if (userType === 'USER') {
-              setMode('user');
-            } else {
-              setMode('artist');
-            }
-          } catch (error) {
-            console.error(error);
-          }
-        };
-
-        setUserMode();
+        await setMode(); // 함수 내부에서 API 응답 처리하여 모드 세팅
       }
     };
 
     initializeTokensAndMode();
-  }, []);
+  }, [setMode]);
 
   return (
     <ChakraProvider {...chakraProps} resetCSS={false}>

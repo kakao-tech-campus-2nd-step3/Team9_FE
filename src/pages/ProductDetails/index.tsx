@@ -9,7 +9,7 @@ import CTA, { CTAContainer } from '@/components/common/CTA';
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
 import { RouterPath } from '@/routes/path';
-import useUserStore from '@/store/useUserStore';
+// import useUserStore from '@/store/useUserStore';
 
 const USER_EMAIL_1 = 'ble6859@knu.ac.kr';
 const USER_EMAIL_2 = 'user2@example.com';
@@ -30,17 +30,20 @@ const ProductDetailsContent = () => {
 
   const { data } = useGetDetail(productIdAsNumber);
   const { mutate: postChatRoom } = usePostChatRoom();
+  // const { email } = useUserStore(); // todo: 주석 해제
   // todo:  작가 이메일 키 넣어달라 요청
-  const { email } = useUserStore();
   // const artistEmail = data.data.artistInfo.email || USER_EMAIL_2;
+  const email = USER_EMAIL_1; // 사용자 본인 이메일
   const artistEmail = USER_EMAIL_2; // 작가 이메일
+
+  // todo: 수정 - email 값이 ''이면 로그인 리다이렉트
 
   const navigate = useNavigate();
 
   const handleClickChat = () => {
     postChatRoom(
       {
-        userEmail1: email || USER_EMAIL_1, // todo: 수정 - email 값이 ''이면 로그인 리다이렉트
+        userEmail1: email,
         userEmail2: artistEmail,
       },
       {

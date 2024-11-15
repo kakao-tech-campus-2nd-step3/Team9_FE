@@ -60,21 +60,22 @@ const useUserStore = create<UserState>((set) => ({
       interests: [...state.interests, interest],
     })),
 
-  setUserDetails: async () => {
-    try {
-      const { name, userImageUrl, nickname, email, birthdate, hashtags } =
-        await useGetUserDetails();
-      set({
-        name,
-        imageUrl: userImageUrl,
-        nickname,
-        email,
-        birthdate,
-        interests: hashtags || [],
-      });
-    } catch (error) {
-      console.error('유저 상세 정보 세팅 실패:', error);
+  setUserDetails: () => {
+    const { data, error } = useGetUserDetails();
+
+    if (error) {
+      console.error('유저 상세 정보를 가져오지 못했습니다. ', error);
+      return;
     }
+
+    set({
+      name: data.name,
+      imageUrl: data.userImageUrl,
+      nickname: data.nickname,
+      email: data.email,
+      birthdate: data.birthdate,
+      interests: data.hashTags || [],
+    });
   },
 
   clearUserInfo: () =>

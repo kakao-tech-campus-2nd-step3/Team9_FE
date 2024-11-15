@@ -38,18 +38,17 @@
 
 ### Frontend
 
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=black)
-![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=flat-square&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-4.4.5-646CFF?style=flat-square&logo=vite&labelColor=white)
-![pnpm](https://img.shields.io/badge/pnpm-10.2.3-CB3837?style=flat-square&logo=npm&labelColor=white)
-![Zustand](https://img.shields.io/badge/Zustand-4.5.0-black?style=flat-square&labelColor=white)
-![styled-components](https://img.shields.io/badge/styled_components-6.1.8-black?style=flat-square&logo=styled-components&logoColor=white&labelColor=DB7093)
-Data Fetching : Axios, Tanstack Query <br>
-CSS / UI : Chackra UI, Emotion, Swiper <br>
-Form : React Hook Form <br>
-Store : Zustand <br>
-Deployment : AWS S3 Bucket, AWS CloudFront <br>
-CI / CD : Git Action <br>
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![PNPM](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220)
+![Zustand](https://img.shields.io/badge/Zustand-black?style=for-the-badge&labelColor=white)
+![TanStack Query](https://img.shields.io/badge/-TanStack%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![Emotion](https://img.shields.io/badge/Emotion-black?style=for-the-badge&labelColor=white)
+![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
+![Chakra](https://img.shields.io/badge/SwiperJS-0B66FF.svg?style=for-the-badge&logo=swiper&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon%20S3-FF9900?style=for-the-badge&logo=amazons3&logoColor=white)
 
 ### Backend
 

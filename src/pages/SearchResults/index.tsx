@@ -58,7 +58,7 @@ const SearchResultsContent = () => {
                 작품 <ResultLightFont>({searchProductLen})</ResultLightFont>
               </SubTitleFont>
               {searchProductLen === 0 ? (
-                <div>데이터가 없습니다.</div>
+                <NoDataMessage>데이터가 없습니다.</NoDataMessage>
               ) : (
                 <HorizontalWRapper>
                   <HorizontalFrame children={productsData} />
@@ -72,7 +72,7 @@ const SearchResultsContent = () => {
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
               </SubTitleFont>
               {searchArtistLen === 0 ? (
-                <div>데이터가 없습니다.</div>
+                <NoDataMessage>데이터가 없습니다.</NoDataMessage>
               ) : (
                 <HorizontalWRapper>
                   <HorizontalFrame children={artistsData} />
@@ -157,4 +157,14 @@ const HorizontalWRapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const NoDataMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  font-weight: 600;
+  color: var(--color-black);
 `;

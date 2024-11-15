@@ -38,30 +38,28 @@
 
 ### Frontend
 
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=black)
-![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=flat-square&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-4.4.5-646CFF?style=flat-square&logo=vite&labelColor=white)
-![pnpm](https://img.shields.io/badge/pnpm-10.2.3-CB3837?style=flat-square&logo=npm&labelColor=white)
-![Zustand](https://img.shields.io/badge/Zustand-4.5.0-black?style=flat-square&labelColor=white)
-![styled-components](https://img.shields.io/badge/styled_components-6.1.8-black?style=flat-square&logo=styled-components&logoColor=white&labelColor=DB7093)
-Data Fetching : Axios, Tanstack Query <br>
-CSS / UI : Chackra UI, Emotion, Swiper <br>
-Form : React Hook Form <br>
-Store : Zustand <br>
-Deployment : AWS S3 Bucket, AWS CloudFront <br>
-CI / CD : Git Action <br>
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![PNPM](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220)
+![Zustand](https://img.shields.io/badge/Zustand-black?style=for-the-badge&labelColor=white)
+![TanStack Query](https://img.shields.io/badge/-TanStack%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![Emotion](https://img.shields.io/badge/Emotion-black?style=for-the-badge&labelColor=white)
+![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
+![Chakra](https://img.shields.io/badge/SwiperJS-0B66FF.svg?style=for-the-badge&logo=swiper&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon%20S3-FF9900?style=for-the-badge&logo=amazons3&logoColor=white)
 
 ### Backend
 
-![Java](https://img.shields.io/badge/java-17-007396?style=flat-square&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1.8-6DB33F?style=flat-square&logo=springboot&logoColor=6DB33F)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=MySQL&logoColor=white)
+![Java](https://img.shields.io/badge/java-17-007396?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1.8-6DB33F?style=for-the-badge&logo=springboot&logoColor=6DB33F)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=MySQL&logoColor=white)
 
 ### DevOps
 
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white)
-![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=flat-square&logo=GitHub&logoColor=white)
-![Google Cloud Platform](https://img.shields.io/badge/Google_Cloud_Platforms-4285F4?style=flat-square&logo=GoogleCloud&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
+![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=for-the-badge&logo=GitHub&logoColor=white)
 
 ## 주요 개발 현황
 
@@ -77,38 +75,42 @@ CI / CD : Git Action <br>
 탠스택 쿼리의 useSuspenseInfiniteQuery를 호출하여 다양한 작품 이미지를 한눈에 볼 수 있게 화면을 제공합니다. <br>
 
 #### 검색
-사용자가 작품이나 작가, 찾고 싶은 작품의 키워드를 입력하면 검색 결과(작품과 작가 별개의 API)를 페칭합니다. <br>
+사용자가 작품이나 작가, 찾고 싶은 작품의 키워드를 입력하면 검색 결과를 페칭합니다. <br>
 최근 검색어, 검색 결과 정렬, 통합/작품/작가 검색 결과를 볼 수 있게 UI를 구성하여 UX를 고려하였습니다.  
 
 #### 채팅
 판매자(작가)와 수요자가 플랫폼 내에서 편리하게 연락을 주고받을 수 있도록 채팅을 구현했습니다.  
-SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜로 메시지 발행 및 구독을 할 수 있게 구현했습니다. <br>
+SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜 통신을 구현했습니다. <br>
 
 #### 마이페이지
 자신의 프로필을 확인 할 수 있습니다. 그리고 자신이 찜한 목록 및 팔로우 목록을 볼 수 있습니다.
 
 ### Backend
 #### 회원가입
-카카오 로그인을 통해 간편하게 회원등록을 할 수 있습니다
+카카오 로그인을 통해 간편하게 회원등록을 할 수 있습니다.  
 
 #### 작가 등록
-작가로 등록하여 상품을 등록하고 판매하고 싶은 사용자는 사업자번호 또는 관련학과 전공자 인증을 통해 작가 프로필을 개선할 수 있습니다
+작가로 등록하여 상품을 등록하고 판매하고 싶은 사용자는 사업자번호 또는 관련학과 전공자 인증을 통해 작가 프로필을 개선할 수 있습니다.  
 
 #### 상품 관련 기능
-작가는 상품 등록과 수정 삭제를 할 수 있습니다.
-상품 사진으로 10MB이하이고 확장자가 jpg,jpeg,png인 파일을 등록할 수 있습니다.
+작가는 상품 등록과 수정 삭제를 할 수 있습니다.  
+상품 사진으로 10MB이하이고 확장자가 jpg,jpeg,png인 파일을 등록할 수 있습니다.  
 
 #### 찜 기능
-사용자는 마음에 드는 작품을 '찜' 기능을 사용하여 설정할 수 있습니다. 사용자는 본인의 찜목록을 확인할 수 있습니다.
+사용자는 마음에 드는 작품을 '찜' 기능을 사용하여 설정할 수 있습니다.  
+사용자는 본인의 찜목록을 확인할 수 있습니다.  
 
 #### 감상평 남기기 기능
-사용자는 작품을 보고 감상평을 남길 수 있습니다. 
+사용자는 작품을 보고 감상평을 남길 수 있습니다.  
 
 #### 채팅 기능
-사용자는 구매를 원하는 작품의 작가에게 채팅으로 구매의사를 표현할 수 있습니다.
+사용자는 구매를 원하는 작품의 작가에게 채팅으로 구매의사를 표현할 수 있습니다.  
 
 #### 검색 기능
-해시태그, 작가명, 상품명을 구분하여 검색할 수 있습니다
+해시태그, 작가명, 상품명을 구분하여 검색할 수 있습니다.  
+
+#### 인프라 구축
+<img src="image.png" alt="image" width="700">
 
 ## 차후 개발 계획
 
@@ -123,6 +125,6 @@ SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜로 메시�
 - 접근성을 높이기 위해서 PWA 적용할 예정입니다.  
 
 ### Backend
-써주세요
+
 
 

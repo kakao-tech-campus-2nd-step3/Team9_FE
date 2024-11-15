@@ -1,3 +1,6 @@
+import styled from '@emotion/styled';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import usePostChatRoom from '@/apis/chats/usePostChatRoom';
@@ -7,31 +10,39 @@ import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
 import { RouterPath } from '@/routes/path';
 import useUserStore from '@/store/useUserStore';
-import styled from '@emotion/styled';
-import { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 
 const USER_EMAIL_1 = 'ble6859@knu.ac.kr';
 const USER_EMAIL_2 = 'user2@example.com';
 
-const ProductDetailsContext = () => {
-  const { email } = useUserStore();
-  const userEmail1 = email || USER_EMAIL_1; // 사용자 본인 이메일
-  const userEmail2 = USER_EMAIL_2; // 상대방 이메일
-  const navigate = useNavigate();
+const ProductDetails = () => {
+  return (
+    <ErrorBoundary fallback={<div>Error Status</div>}>
+      <Suspense fallback={<div>Loading Status</div>}>
+        <ProductDetailsContent />
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
+
+const ProductDetailsContent = () => {
   const { productId } = useParams<{ productId: string }>();
+  const productIdAsNumber = productId ? parseInt(productId, 10) : null;
 
-  const parsedId = productId ? parseInt(productId, 10) : null;
-
-  const { data } = useGetDetail(parsedId);
-
+  const { data } = useGetDetail(productIdAsNumber);
   const { mutate: postChatRoom } = usePostChatRoom();
+  // todo: userEmail1 파라미터 이걸로 바꾸기, 작가 이메일 키 넣어달라 요청
+  // const { email } = useUserStore();
+  // const artistEmail = data.data.artistInfo.email || USER_EMAIL_2;
+  const email = USER_EMAIL_1; // 사용자 본인 이메일
+  const artistEmail = USER_EMAIL_2; // 작가 이메일
+
+  const navigate = useNavigate();
 
   const handleClickChat = () => {
     postChatRoom(
       {
-        userEmail1,
-        userEmail2,
+        userEmail1: email,
+        userEmail2: artistEmail,
       },
       {
         onSuccess: (data) => {
@@ -69,16 +80,6 @@ const ProductDetailsContext = () => {
         </CTAContainer>
       </ContentWrapper>
     </Wrapper>
-  );
-};
-
-const ProductDetails = () => {
-  return (
-    <ErrorBoundary fallback={<div>Error Status</div>}>
-      <Suspense fallback={<div>Loading Status</div>}>
-        <ProductDetailsContext />
-      </Suspense>
-    </ErrorBoundary>
   );
 };
 

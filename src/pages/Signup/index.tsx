@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@/components/common/IconButton';
@@ -8,7 +8,6 @@ import { RouterPath } from '@/routes/path';
 import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
 import { HEIGHTS } from '@/styles/constants';
-import { setTokens } from '@/utils/queryParams';
 import SellerProgress from './progresses/ArtistProgress';
 import DefaultProgress from './progresses/DefaultProgress';
 import UserProgress from './progresses/UserProgress';
@@ -19,10 +18,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const [memberType, setMemberType] = useState<'user' | 'artist'>();
   const [progressStep, setProgressStep] = useState<'default' | 'user' | 'artist'>('default');
-
-  useEffect(() => {
-    setTokens();
-  }, []);
 
   const handleMemberTypeSelection = (type: 'user' | 'artist') => {
     setMemberType(type);

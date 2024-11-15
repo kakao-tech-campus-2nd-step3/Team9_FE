@@ -8,7 +8,7 @@ type ModeState = {
 };
 
 const useModeStore = create<ModeState>((set) => ({
-  mode: 'USER',
+  mode: 'user',
   setMode: (mode) => set({ mode }),
 }));
 

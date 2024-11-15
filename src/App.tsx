@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import queryClient from '@/apis/queryClient';
-import getUserMode from '@/apis/users/getUserMode';
+import getUserType from '@/apis/users/getUserType';
 import Routes from '@/routes';
 import useModeStore from '@/store/useModeStore';
 import { setTokens } from '@/utils/queryParams';
@@ -17,15 +17,20 @@ const App = () => {
 
   // 앱이 실행될 때 토큰과 유저 모드 초기화
   useEffect(() => {
-    const initializeTokensAndUserMode = async () => {
+    const initializeTokensAndMode = async () => {
       await setTokens();
 
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
         const setUserMode = async () => {
           try {
-            const { userType } = await getUserMode();
-            setMode(userType);
+            const { userType } = await getUserType();
+
+            if (userType === 'USER') {
+              setMode('user');
+            } else {
+              setMode('artist');
+            }
           } catch (error) {
             console.error(error);
           }
@@ -35,7 +40,7 @@ const App = () => {
       }
     };
 
-    initializeTokensAndUserMode();
+    initializeTokensAndMode();
   }, []);
 
   return (

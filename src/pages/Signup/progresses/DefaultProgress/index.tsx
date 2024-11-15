@@ -1,15 +1,15 @@
-import type { RegisterType } from '@/types';
+import type { Mode } from '@/types';
 import Button from '../../../../components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
 
 type DefaultProgressProps = {
-  registerType: RegisterType | undefined;
-  onSelect: (registerType: RegisterType) => void;
+  mode: Mode | undefined;
+  onSelect: (registerType: Mode) => void;
 };
 
-const DefaultProgress = ({ registerType, onSelect }: DefaultProgressProps) => {
-  const handleSelect = (type: RegisterType) => {
+const DefaultProgress = ({ mode, onSelect }: DefaultProgressProps) => {
+  const handleSelect = (type: Mode) => {
     onSelect(type);
   };
 
@@ -25,12 +25,12 @@ const DefaultProgress = ({ registerType, onSelect }: DefaultProgressProps) => {
         <SelectItem>
           <Button
             label="일반 회원"
-            isSelected={registerType === 'user'}
+            isSelected={mode === 'user'}
             onClick={() => handleSelect('user')}
           />
           <Button
             label="작가(판매자) 회원"
-            isSelected={registerType === 'artist'}
+            isSelected={mode === 'artist'}
             onClick={() => handleSelect('artist')}
           />
         </SelectItem>

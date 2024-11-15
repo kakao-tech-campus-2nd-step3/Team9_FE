@@ -1,7 +1,11 @@
-![logo(128)](https://github.com/user-attachments/assets/e421222c-50c9-4cea-8e15-2ec2443b721c)
+<a href="http://1.618.s3-website.ap-northeast-2.amazonaws.com/">
+  <img src="https://github.com/user-attachments/assets/e421222c-50c9-4cea-8e15-2ec2443b721c" alt="image">
+</a>  
+</br>
+
 ## 1.618 | 예술과 가치의 황금비
 
-## 개요
+## 1️⃣ 개요
 
 대학생과 신진 작가를 위한 미술 작품 중개 서비스를 개발하였습니다.😀
 
@@ -15,14 +19,14 @@
 이미지를 클릭하면 [1.618 홈페이지](http://1.618.s3-website.ap-northeast-2.amazonaws.com/) 로 이동합니다.
 
 
-## 관련 리소스들
+## 2️⃣ 관련 리소스들
 [프론트엔드 GitHub](https://github.com/kakao-tech-campus-2nd-step3/Team9_FE)  
 [백엔드 GitHub](https://github.com/kakao-tech-campus-2nd-step3/Team9_BE)  
 
 [Swagger](http://golden-ratio.duckdns.org/swagger-ui/index.html#/)  
 [Figma](https://www.figma.com/design/B1WP5pDtbxGT5ZA42qfbM1/%EC%B9%B4%ED%85%8C%EC%BA%A0_step3-%5B1.618%5D?node-id=0-1&t=1Ysk1xzjdd4Px0RG-1)  
 
-## 팀원
+## 3️⃣ 팀원들
 
 |Frontend|Frontend|
 |:------:|:------:|
@@ -34,7 +38,7 @@
 |[<img src="https://github.com/donghyuun.png" width="100px">](https://github.com/donghyuun)|[<img src="https://github.com/pjhcsols.png" width="100px">](https://github.com/pjhcsols)|[<img src="https://github.com/sim-mer.png" width="100px">](https://github.com/sim-mer)|[<img src="https://github.com/yooonwodyd.png" width="100px">](https://github.com/yooonwodyd)|[<img src="https://github.com/jupyter471.png" width="100px">](https://github.com/jupyter471)|
 |[김동현](https://github.com/donghyuun)|[박한솔](https://github.com/pjhcsols)|[심규민](https://github.com/sim-mer)|[윤재용](https://github.com/yooonwodyd)|[주보경](https://github.com/jupyter471)|
 
-## 기술 스택
+## 4️⃣ 기술 스택
 
 ### Frontend
 
@@ -61,7 +65,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 ![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=for-the-badge&logo=GitHub&logoColor=white)
 
-## 주요 개발 현황
+## 5️⃣ 주요 개발 현황
 
 ### Frontend
 
@@ -112,7 +116,7 @@ SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜 통신을 �
 #### 인프라 구축
 <img src="image.png" alt="image" width="700">
 
-## 차후 개발 계획
+## 6️⃣ 차후 개발 계획
 
 ### Frontend
 

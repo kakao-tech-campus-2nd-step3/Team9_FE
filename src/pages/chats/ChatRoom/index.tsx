@@ -24,8 +24,9 @@ const ChatRoom = () => {
   const { chatRoomId } = useParams();
   const chatRoomIdAsNumber = Number(chatRoomId);
   // const { data } = useGetChatRoom(chatRoomIdAsNumber); // ChatRoom 타입
-  const { email } = useUserStore();
-  const senderEmail = email || 'ble6859@knu.ac.kr'; // todo: 테스트용 없애기
+  // const { email } = useUserStore();
+  // const senderEmail = email || 'ble6859@knu.ac.kr'; // todo: 테스트용 없애기
+  const senderEmail = 'ble6859@knu.ac.kr'; // test
   const [client, setClient] = useState<CompatClient | null>(null); // stomp client 상태
   const [messageList, setMessageList] = useState<ChatMessage[]>([]); // 채팅 메시지 목록
 

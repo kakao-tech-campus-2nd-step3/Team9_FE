@@ -1,8 +1,8 @@
+import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import ProfileImage from '@/components/common/ProfileImage';
-import { formatTimestamp } from '@/utils';
-import { Box } from '@chakra-ui/react';
+import { formatTimestamp } from '@/utils/dates';
 
 export type MessageItemProps = {
   senderName: string;

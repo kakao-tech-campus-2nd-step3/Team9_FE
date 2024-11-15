@@ -1,3 +1,7 @@
+/**
+ * URL 쿼리 파라미터 관련 함수
+ */
+
 // query param으로 만들어 반환
 export function getQueryParams(params: Record<any, any>): URLSearchParams {
   const queryParams = new URLSearchParams();

@@ -3,6 +3,7 @@ import { Suspense, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import useGetFeed, { type Product } from '@/apis/products/useGetFeed';
+import Loader from '@/components/common/Loader';
 import SearchBar from '@/components/layouts/SearchBar';
 import { HEIGHTS } from '@/styles/constants';
 
@@ -12,7 +13,7 @@ const Discover = () => (
     <ContentWrapper>
       {/* todo: 폴백 UI 만들기 */}
       <ErrorBoundary fallback={<>Error</>}>
-        <Suspense fallback={<>Loading...</>}>
+        <Suspense fallback={<Loader />}>
           <Feed />
         </Suspense>
       </ErrorBoundary>

@@ -3,7 +3,7 @@ import { isSameDay } from 'date-fns';
 import { Fragment, useRef } from 'react';
 
 import type { ChatMessage } from '@/types/chats';
-import { formatDate, getDay } from '@/utils';
+import { formatDate, getDay } from '@/utils/dates';
 import MessageItem from '../MessageItem';
 
 type MessageListProps = {

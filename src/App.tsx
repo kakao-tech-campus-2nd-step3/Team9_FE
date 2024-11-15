@@ -7,12 +7,14 @@ import 'swiper/css/pagination';
 import queryClient from '@/apis/queryClient';
 import Routes from '@/routes';
 import useModeStore from '@/store/useModeStore';
+import useUserStore from '@/store/useUserStore';
 import { setTokens } from '@/utils/queryParams';
 
 const App = () => {
   const chakraProps: ChakraProviderProps = {};
 
   const { setMode } = useModeStore();
+  const { setUserDetails } = useUserStore();
 
   // 앱이 실행될 때 토큰과 유저 모드 초기화
   useEffect(() => {
@@ -22,6 +24,8 @@ const App = () => {
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
         await setMode(); // 함수 내부에서 API 응답 처리하여 모드 세팅
+
+        setUserDetails();
       }
     };
 

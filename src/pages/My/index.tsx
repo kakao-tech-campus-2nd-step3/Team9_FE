@@ -24,11 +24,11 @@ const My = () => {
 
 const MyContent = () => {
   const { mode } = useModeStore();
-  const { data } = mode === 'USER' ? useGetUser() : useGetArtist();
+  const { data } = mode === 'user' ? useGetUser() : useGetArtist();
 
   return (
     <Wrapper>
-      {mode === 'USER' ? (
+      {mode === 'user' ? (
         <>
           <ProfileSection>
             <UserProfileBox

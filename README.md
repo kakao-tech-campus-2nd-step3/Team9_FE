@@ -34,7 +34,7 @@
 
 ### Frontend
 
-![TypeScript](https://img.shields.io/badge/typescript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=black)
 ![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=flat-square&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-4.4.5-646CFF?style=flat-square&logo=vite&labelColor=white)
 ![pnpm](https://img.shields.io/badge/pnpm-10.2.3-CB3837?style=flat-square&logo=npm&labelColor=white)
@@ -77,7 +77,7 @@ CI / CD : Git Action <br>
 최근 검색어, 검색 결과 정렬, 통합/작품/작가 검색 결과를 볼 수 있게 UI를 구성하여 UX를 고려하였습니다.  
 
 #### 채팅
-판매자(작가)와 수요자가 플랫폼 내에서 편리하게 연락을 주고받을 수 있도록 채팅을 구현했습니다. 
+판매자(작가)와 수요자가 플랫폼 내에서 편리하게 연락을 주고받을 수 있도록 채팅을 구현했습니다.  
 SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜로 메시지 발행 및 구독을 할 수 있게 구현했습니다. <br>
 
 #### 마이페이지

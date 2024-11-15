@@ -8,6 +8,7 @@ import { disconnectWebSocket } from '@/apis/chats';
 import useGetChatRoom from '@/apis/chats/useGetChatRoom';
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
+import useUserStore from '@/store/useUserStore';
 import { HEIGHTS } from '@/styles/constants';
 import type { ChatMessage, ChatRoom } from '@/types/chats';
 import ChatInput from './components/ChatInput';
@@ -15,20 +16,17 @@ import MessageList from './components/MessageList';
 
 export const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
 
-// const senderExample = {
-//   id: 5,
-//   email: 'ble6859@knu.ac.kr',
-// };
-
 const ChatRoom = () => {
   const navigate = useNavigate();
 
+  const [chatInputHeight, setChatInputHeight] = useState('5.4rem');
+
   const { chatRoomId } = useParams();
   const chatRoomIdAsNumber = Number(chatRoomId);
-  const { data } = useGetChatRoom(chatRoomIdAsNumber); // ChatRoom 타입
+  // const { data } = useGetChatRoom(chatRoomIdAsNumber); // ChatRoom 타입
+  const { email } = useUserStore();
+  const senderEmail = email || 'ble6859@knu.ac.kr'; // todo: 테스트용 없애기
   const [client, setClient] = useState<CompatClient | null>(null); // stomp client 상태
-
-  const [chatInputHeight, setChatInputHeight] = useState('5.4rem');
   const [messageList, setMessageList] = useState<ChatMessage[]>([]); // 채팅 메시지 목록
 
   const handleChatInputHeight = (newHeight: string) => {
@@ -98,7 +96,7 @@ const ChatRoom = () => {
     <Wrapper>
       <Header
         leftSideChildren={<IconButton icon="arrow-back" onClick={() => navigate(-1)} />}
-        title={data.title}
+        // title={data.title}
         rightSideChildren={<IconButton icon="menu-kebab" />} // todo: onClick -> 모달
       />
       <ContentWrapper marginBottom={chatInputHeight}>
@@ -107,7 +105,7 @@ const ChatRoom = () => {
       <ChatInput
         client={client}
         chatRoomId={chatRoomIdAsNumber}
-        sender={data.user1}
+        senderEmail={senderEmail}
         onHeightChange={handleChatInputHeight}
       />
     </Wrapper>

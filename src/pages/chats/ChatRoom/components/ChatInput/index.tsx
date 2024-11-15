@@ -6,17 +6,16 @@ import { sendFile, sendMessage } from '@/apis/chats';
 import CancelIcon from '@/assets/icons/cancel-default.svg?react';
 import ImageIcon from '@/assets/icons/image.svg?react';
 import SendIcon from '@/assets/icons/send.svg?react';
-import type { User } from '@/types/chats';
 import { countNonSpaceChars } from '@/utils/strings';
 
 type ChatInputProps = {
   client: CompatClient | null;
   chatRoomId: number;
-  sender: User;
+  senderEmail: string;
   onHeightChange: (height: string) => void;
 };
 
-const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProps) => {
+const ChatInput = ({ client, chatRoomId, senderEmail, onHeightChange }: ChatInputProps) => {
   // 메시지 인풋 창 높이 조정
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [chatInputHeight, setChatInputHeight] = useState<string>('5.4rem');
@@ -50,7 +49,7 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
 
     try {
       // 파라미터: client, chatRoomId, email, content
-      sendMessage(client, chatRoomId, sender.email, content);
+      sendMessage(client, chatRoomId, senderEmail, content);
       setContent('');
     } catch (error) {
       alert(error);
@@ -98,7 +97,7 @@ const ChatInput = ({ client, chatRoomId, sender, onHeightChange }: ChatInputProp
 
     try {
       // 파라미터: client, chatRoomId, email, file
-      sendFile(client, chatRoomId, sender.email, image);
+      sendFile(client, chatRoomId, senderEmail, image);
       setImage(null);
     } catch (error) {
       alert(error);

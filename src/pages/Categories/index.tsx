@@ -4,9 +4,8 @@ import { useState } from 'react';
 
 import FakeSearchBar from '@/components/common/FakeSearchBar';
 import SearchModal from '@/components/common/SearchModal';
-import Gap from '@/components/styles/Gap';
-import Grid from '@/components/styles/Grid';
 import { CATEGORY_LIST } from '@/constants/categories';
+import * as G from '@/styles/globalStyles';
 import Category from './components/CategoryItem';
 
 const Categories = () => {
@@ -20,18 +19,18 @@ const Categories = () => {
     <Wrapper>
       <FakeSearchBar modalOpen={handleModalOpen} />
       {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
-      <Grid col={4}>
+      <G.Grid col={4}>
         {CATEGORY_LIST.map((category) => (
           <Category key={category.id} src={category.src} des={category.des} />
         ))}
-      </Grid>
-      <Gap height={18} />
+      </G.Grid>
+      <G.Gap height={18} />
       <CurationWrapper>
         <CurationItem>
           <Title>매거진</Title>
           <Des>숨겨진 무한의 가치를 발견하고 싶다면</Des>
         </CurationItem>
-        <Gap height={2} />
+        <G.Gap height={2} />
         <CurationItem>
           <Title>아티스트 그라운드</Title>
           <Des>내 취향대로 작가 골라보기</Des>

@@ -1,8 +1,8 @@
 import { Image } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import Grid from '@/components/styles/Grid';
 import { AD_LIST } from '@/constants/search';
+import * as G from '@/styles/globalStyles';
 
 const SearchAd = () => {
   return (
@@ -13,11 +13,11 @@ const SearchAd = () => {
         </div>
         <Tab>광고</Tab>
       </TitleWrapper>
-      <Grid col={2}>
+      <G.Grid col={2}>
         {AD_LIST.map((ad) => (
           <AdImage key={ad.id} src={ad.src} alt="adImage" />
         ))}
-      </Grid>
+      </G.Grid>
     </Wrapper>
   );
 };

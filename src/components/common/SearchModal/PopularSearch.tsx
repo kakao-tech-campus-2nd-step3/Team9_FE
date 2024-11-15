@@ -1,8 +1,8 @@
 import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import Grid from '@/components/styles/Grid';
 import { POPULAR_SEARCH_LIST } from '@/constants/search';
+import * as G from '@/styles/globalStyles';
 import PopularSearchItem from '../PopularSearchItem';
 
 const PopularSearch = () => {
@@ -15,7 +15,7 @@ const PopularSearch = () => {
           <RedText>인기</RedText> 검색어
         </TitleText>
       </TitleWrapper>
-      <Grid col={2} style={{ justifyItems: 'flex-start' }}>
+      <G.Grid col={2} style={{ justifyItems: 'flex-start' }}>
         <Column>
           {POPULAR_SEARCH_LIST.slice(0, midPoint).map((item, index) => (
             <PopularSearchItem key={item.id} text={item.text} rank={index + 1} />
@@ -26,7 +26,7 @@ const PopularSearch = () => {
             <PopularSearchItem key={item.id} text={item.text} rank={midPoint + index + 1} />
           ))}
         </Column>
-      </Grid>
+      </G.Grid>
     </Wrapper>
   );
 };

@@ -1,8 +1,9 @@
-import ProductItem from '@/components/common/ProductItem';
-import Grid from '@/components/styles/Grid';
-import { SearchProductInfo } from '@/types';
 import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
+
+import ProductItem from '@/components/common/ProductItem';
+import * as G from '@/styles/globalStyles';
+import { SearchProductInfo } from '@/types';
 import DropdownButton from './Dropdown';
 
 export type ArtWorkOptions = '최신순' | '가격순' | '제목순';
@@ -50,7 +51,7 @@ const ArtWorkContents = ({ searchWork }: { searchWork: SearchProductInfo[] }) =>
           handleSelect={handleSelect}
         />
       </ResultWrapper>
-      <Grid col={2}>
+      <G.Grid col={2}>
         {sortedWork.map((item) => (
           <ProductItem
             id={item.id}
@@ -62,7 +63,7 @@ const ArtWorkContents = ({ searchWork }: { searchWork: SearchProductInfo[] }) =>
             isLiked={false}
           />
         ))}
-      </Grid>
+      </G.Grid>
     </div>
   );
 };

@@ -1,15 +1,15 @@
 import { Z_INDEX } from '@/styles/constants';
 import styled from '@emotion/styled';
 import { Suspense, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import useSearchArtists from '@/apis/search/useSearchArtists';
 import useSearchProducts from '@/apis/search/useSearchProducts';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
 import SearchBar from '@/components/layouts/SearchBar';
-import Gap from '@/components/styles/Gap';
 import { RouterPath } from '@/routes/path';
-import { ErrorBoundary } from 'react-error-boundary';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import * as G from '@/styles/globalStyles';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
 import HorizontalFrame from './components/HorizontalFrame';
@@ -61,9 +61,7 @@ const SearchResultsContent = () => {
                 <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
               </HorizontalWRapper>
             </Section>
-
-            <Gap height={12} />
-
+            <G.Gap height={12} />
             <Section>
               <SubTitleFont>
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>

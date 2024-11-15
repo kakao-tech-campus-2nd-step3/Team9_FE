@@ -1,8 +1,9 @@
-import ArtistItem from '@/components/common/ArtistItem';
-import Grid from '@/components/styles/Grid';
-import { SearchArtistInfo } from '@/types';
 import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
+
+import ArtistItem from '@/components/common/ArtistItem';
+import * as G from '@/styles/globalStyles';
+import { SearchArtistInfo } from '@/types';
 import DropdownButton from './Dropdown';
 
 export type ArtistOptions = '최신순' | '인기순' | '이름순' | '팔로우순';
@@ -56,7 +57,7 @@ const ArtistContents = ({ searchArtist }: { searchArtist: SearchArtistInfo[] }) 
           handleSelect={handleSelect}
         />
       </ResultWrapper>
-      <Grid col={2}>
+      <G.Grid col={2}>
         {sortedArtist.map((item) => (
           <ArtistItem
             artistId={item.id}
@@ -68,7 +69,7 @@ const ArtistContents = ({ searchArtist }: { searchArtist: SearchArtistInfo[] }) 
             isFollow={item.isFollowing}
           />
         ))}
-      </Grid>
+      </G.Grid>
     </div>
   );
 };

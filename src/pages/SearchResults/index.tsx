@@ -7,6 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import useSearchArtists from '@/apis/search/useSearchArtists';
 import useSearchProducts from '@/apis/search/useSearchProducts';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
+import Loader from '@/components/common/Loader';
 import SearchBar from '@/components/layouts/SearchBar';
 import { RouterPath } from '@/routes/path';
 import * as G from '@/styles/globalStyles';
@@ -83,7 +84,7 @@ const SearchResultsContent = () => {
 const SearchResults = () => {
   return (
     <ErrorBoundary fallback={<div>Error Status</div>}>
-      <Suspense fallback={<div>Loading Status</div>}>
+      <Suspense fallback={<Loader />}>
         <SearchResultsContent />
       </Suspense>
     </ErrorBoundary>

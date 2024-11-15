@@ -4,6 +4,7 @@ import usePostChatRoom from '@/apis/chats/usePostChatRoom';
 import useGetDetail from '@/apis/products/useGetDetail';
 import CTA, { CTAContainer } from '@/components/common/CTA';
 import IconButton from '@/components/common/IconButton';
+import Loader from '@/components/common/Loader';
 import Header from '@/components/layouts/Header';
 import { RouterPath } from '@/routes/path';
 import useUserStore from '@/store/useUserStore';
@@ -75,7 +76,7 @@ const ProductDetailsContext = () => {
 const ProductDetails = () => {
   return (
     <ErrorBoundary fallback={<div>Error Status</div>}>
-      <Suspense fallback={<div>Loading Status</div>}>
+      <Suspense fallback={<Loader />}>
         <ProductDetailsContext />
       </Suspense>
     </ErrorBoundary>

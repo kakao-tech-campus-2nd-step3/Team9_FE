@@ -40,7 +40,7 @@
 
 ## 4️⃣ 기술 스택
 
-### Frontend
+### 📍 Frontend
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -54,13 +54,13 @@
 ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
 ![Amazon S3](https://img.shields.io/badge/Amazon%20S3-FF9900?style=for-the-badge&logo=amazons3&logoColor=white)
 
-### Backend
+### 📍 Backend
 
 ![Java](https://img.shields.io/badge/java-17-007396?style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1.8-6DB33F?style=for-the-badge&logo=springboot&logoColor=6DB33F)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=MySQL&logoColor=white)
 
-### DevOps
+### 📍 DevOps
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 ![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=for-the-badge&logo=GitHub&logoColor=white)
@@ -71,6 +71,7 @@
 
 #### 로그인 / 회원가입
 카카오 로그인 경로로 리다이렉트하여 로그인 완료 시 액세스 토큰을 가져옵니다.  
+로그인이 완료되면 유저 모드와 유저 정보를 세팅합니다.  
 회원가입이 아직 되지 않은 상태라면 회원가입 페이지로 리다이렉트받으며,  
 일반 유저와 작가로 모드를 나누어 회원가입을 진행하며, 모드에 따라 다른 경로로 회원가입 API를 요청합니다.  
 또한 UnivCert 및 국세청 사업자등록정보 API를 통해 학생 작가나 사업자 등록된 신진 작가를 검증했습니다.<br>
@@ -118,7 +119,7 @@ SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜 통신을 �
 
 ## 6️⃣ 차후 개발 계획
 
-### Frontend
+### 📍 Frontend
 
 - 유저 모드와 작가 모드를 나눈 부분을 더 활용하여 모드에 따라 유저들이 서비스를 편리하게 이용하도록 화면 구성 및  
 탠스택 쿼리 서스펜스를 사용한 코드를 발전시켜 데이터 페칭 시 UX를 개선할 예정입니다.  
@@ -128,7 +129,7 @@ SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜 통신을 �
 - 중복되거나 성능 개선이 필요한 부분을 테스트 도구를 활용하여 개선할 예정입니다.
 - 접근성을 높이기 위해서 PWA 적용할 예정입니다.  
 
-### Backend
+### 📍 Backend
 
 
 

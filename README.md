@@ -61,10 +61,6 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 ![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=for-the-badge&logo=GitHub&logoColor=white)
 
-## 
-
-![alt text](image.png)
-
 ## 주요 개발 현황
 
 ### Frontend
@@ -112,6 +108,9 @@ SockJS를 사용하여 웹소켓을 연결하고, STOMP 프로토콜 통신을 �
 
 #### 검색 기능
 해시태그, 작가명, 상품명을 구분하여 검색할 수 있습니다.  
+
+#### 인프라 구축
+<img src="image.png" alt="image" width="700">
 
 ## 차후 개발 계획
 

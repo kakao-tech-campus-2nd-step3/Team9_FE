@@ -56,14 +56,18 @@
 
 ### 📍 Backend
 
-![Java](https://img.shields.io/badge/java-17-007396?style=for-the-badge&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1.8-6DB33F?style=for-the-badge&logo=springboot&logoColor=6DB33F)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=MySQL&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 ### 📍 DevOps
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
-![Github Actions](https://img.shields.io/badge/GitHub_Actions-181717?style=for-the-badge&logo=GitHub&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+
+### 📍 Infrastructure
+[![stackticon](https://firebasestorage.googleapis.com/v0/b/stackticon-81399.appspot.com/o/images%2F1731662381638?alt=media&token=48b442da-4420-48b4-ba2d-d40dc6754cf5)](https://github.com/msdio/stackticon)
 
 ## 5️⃣ 주요 개발 현황
 

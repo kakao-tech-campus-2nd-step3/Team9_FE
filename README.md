@@ -21,8 +21,8 @@ Swagger : http://golden-ratio.duckdns.org/swagger-ui/index.html#/ <br>
 
 |Backend|Backend|Backend|Backend|Backend|
 |:------:|:------:|:------:|:------:|:------:|
-|[<img src="https://github.com/donghyuun.png" width="100px">](https://github.com/donghyuun)|[<img src="https://github.com/pjhcsols.png" width="100px">](https://github.com/pjhcsols)|[<img src="https://github.com/sim-mer.png" width="100px">](https://github.com/sim-mer)|[<img src="https://github.com/yooonwodyd.png" width="100px">](https://github.com/yooonwodyd)|[<img src="https://github.com/jupyter471.png" width="100px">](https://github.com/donghyuun)|
-|[김동현](https://github.com/pjhcsols)|[박한솔](https://github.com/sim-mer)|[심규민](https://github.com/sim-mer)|[윤재용](https://github.com/yooonwodyd)|[주보경](https://github.com/jupyter471)|
+|[<img src="https://github.com/donghyuun.png" width="100px">](https://github.com/donghyuun)|[<img src="https://github.com/pjhcsols.png" width="100px">](https://github.com/pjhcsols)|[<img src="https://github.com/sim-mer.png" width="100px">](https://github.com/sim-mer)|[<img src="https://github.com/yooonwodyd.png" width="100px">](https://github.com/yooonwodyd)|[<img src="https://github.com/jupyter471.png" width="100px">](https://github.com/jupyter471)|
+|[김동현](https://github.com/donghyuun)|[박한솔](https://github.com/pjhcsols)|[심규민](https://github.com/sim-mer)|[윤재용](https://github.com/yooonwodyd)|[주보경](https://github.com/jupyter471)|
 
 
 

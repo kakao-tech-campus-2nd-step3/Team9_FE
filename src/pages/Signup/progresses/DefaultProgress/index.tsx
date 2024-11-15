@@ -1,4 +1,4 @@
-import type { Mode } from '@/types';
+import type { Mode } from '@/types/user';
 import Button from '../../../../components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';

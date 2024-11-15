@@ -1,7 +1,7 @@
 // import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
-import type { UserType } from '@/types';
+import type { UserType } from '@/types/user';
 import fetchInstance from '../fetchInstance';
 // import QUERY_KEYS from '../queryKeys';
 

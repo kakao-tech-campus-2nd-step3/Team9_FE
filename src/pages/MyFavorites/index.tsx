@@ -1,10 +1,11 @@
+import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
+
 import useGetFollow from '@/apis/users/useGetFollow';
 import ArtistItem from '@/components/common/ArtistItem';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
-import Grid from '@/components/styles/Grid';
+import * as G from '@/styles/globalStyles';
 import { User } from '@/types';
-import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
 
 const MyFavorites = () => {
   const categoryList = ['작품', '작가'];
@@ -37,7 +38,7 @@ const MyFavorites = () => {
           {data?.data.content?.length === 0 ? (
             <p>팔로우한 작가가 없습니다.</p>
           ) : (
-            <Grid col={2}>
+            <G.Grid col={2}>
               {data?.data.content?.map((artist: User) => (
                 <ArtistItem
                   artistId={artist.userId}
@@ -49,7 +50,7 @@ const MyFavorites = () => {
                   isFollow={true}
                 />
               ))}
-            </Grid>
+            </G.Grid>
           )}
         </Wrapper>
       )}

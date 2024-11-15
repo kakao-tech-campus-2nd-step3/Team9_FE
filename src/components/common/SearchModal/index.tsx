@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 import SearchBar from '@/components/layouts/SearchBar';
-import HorizontalLine from '@/components/styles/HorizontalLine';
 import { Z_INDEX } from '@/styles/constants';
+import * as G from '@/styles/globalStyles';
 import PopularSearch from './PopularSearch';
 import RecentSearch from './RecentSearch';
 import Ad from './SearchAd';
@@ -17,9 +17,9 @@ const SearchModal = ({ modalClose }: SearchModalProps) => {
       <SearchBar goBack={modalClose} />
       <SearchWrapper>
         <RecentSearch />
-        <HorizontalLine />
+        <G.HorizontalLine />
         <PopularSearch />
-        <HorizontalLine />
+        <G.HorizontalLine />
         <Ad />
       </SearchWrapper>
     </ModalWrapper>

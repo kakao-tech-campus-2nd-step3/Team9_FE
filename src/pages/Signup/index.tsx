@@ -8,7 +8,7 @@ import { RouterPath } from '@/routes/path';
 import useStudentArtistStore from '@/store/useStudentArtistStore';
 import useUserStore from '@/store/useUserStore';
 import { HEIGHTS } from '@/styles/constants';
-import type { Mode } from '@/types';
+import type { Mode } from '@/types/user';
 import SellerProgress from './progresses/ArtistProgress';
 import DefaultProgress from './progresses/DefaultProgress';
 import UserProgress from './progresses/UserProgress';

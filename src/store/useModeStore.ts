@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 import getUserType from '@/apis/users/getUserType';
-import type { Mode } from '@/types';
+import type { Mode } from '@/types/user';
 
 type ModeState = {
   mode: Mode;

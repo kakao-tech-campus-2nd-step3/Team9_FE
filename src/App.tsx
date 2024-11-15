@@ -16,14 +16,14 @@ const App = () => {
   const { setMode } = useModeStore();
   const { setUserDetails } = useUserStore();
 
-  // 앱이 실행될 때 토큰과 유저 모드 초기화
+  // 앱이 실행될 때 토큰, 유저 모드, 유저 상세정보 초기화
   useEffect(() => {
     const initializeTokensAndMode = async () => {
       await setTokens();
 
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
-        await setMode(); // 함수 내부에서 API 응답 처리하여 모드 세팅
+        await setMode();
 
         setUserDetails();
       }

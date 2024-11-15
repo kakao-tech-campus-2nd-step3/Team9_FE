@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import ProfileImage from '@/components/common/ProfileImage';
-import { formatDate } from '@/utils';
+import { formatDate } from '@/utils/dates';
 
 type ChatItemProps = {
   chatRoomId: number;

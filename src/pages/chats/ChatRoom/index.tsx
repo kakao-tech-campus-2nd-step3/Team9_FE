@@ -25,9 +25,10 @@ const ChatRoom = () => {
   // const { email } = useUserStore();
   // const senderEmail = email || 'ble6859@knu.ac.kr'; // todo: 테스트용 없애기
   const senderEmail = 'ble6859@knu.ac.kr'; // test
-  const [client, setClient] = useState<CompatClient | null>(null); // stomp client 상태
-  const [messageList, setMessageList] = useState<ChatMessage[]>([]); // 채팅 메시지 목록
+  const [stompClient, setStompClient] = useState<CompatClient | null>(null);
+  const [messageList, setMessageList] = useState<ChatMessage[]>([]);
 
+  // 컴포넌트 높이 조절
   const handleChatInputHeight = (newHeight: string) => {
     setChatInputHeight(newHeight);
   };
@@ -58,12 +59,12 @@ const ChatRoom = () => {
       setTimeout(() => {
         const newSocket = new SockJS(`${BASE_URL}/ws`);
         const stompClient = Stomp.over(() => newSocket);
-        setClient(stompClient);
+        setStompClient(stompClient);
       }, 3000);
     };
 
     // 클라이언트 상태에 설정
-    setClient(stompClient);
+    setStompClient(stompClient);
 
     // 컴포넌트가 언마운트될 때 WebSocket 연결 해제
     return () => {
@@ -102,7 +103,7 @@ const ChatRoom = () => {
         <MessageList messageList={messageList} />
       </ContentWrapper>
       <ChatInput
-        client={client}
+        client={stompClient}
         chatRoomId={chatRoomIdAsNumber}
         senderEmail={senderEmail}
         onHeightChange={handleChatInputHeight}

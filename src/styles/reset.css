@@ -27,8 +27,9 @@ body {
   position: relative;
   transform: translateX(-50%);
   left: 50%;
+  height: 100vh;
+  height: -webkit-fill-available; /* 모바일 브라우저 대응 */
   min-width: 320px;
-  min-height: 100vh;
 
   @media (min-width: 768px) {
     width: 600px;

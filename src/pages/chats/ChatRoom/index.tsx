@@ -63,34 +63,25 @@ const ChatRoom = () => {
       }, 3000);
     };
 
-    // 클라이언트 상태에 설정
+    // const stompClient = connectWebSocket(
+    //       chatRoomIdAsNumber,
+    //       (receivedMessage: ChatMessage) => {
+    //         setMessageList((prev) => [...prev, receivedMessage]);
+    //       },
+    //       (error) => {
+    //         console.error('WebSocket error:', error);
+    //       },
+    //     );
+
     setStompClient(stompClient);
 
-    // 컴포넌트가 언마운트될 때 WebSocket 연결 해제
+    // 컴포넌트 언마운트 시 WebSocket 연결 해제
     return () => {
       if (stompClient) {
         disconnectWebSocket(stompClient);
-        // stompClient.disconnect();
       }
     };
   }, [chatRoomIdAsNumber]);
-
-  //   useEffect(() => {
-  //     connectWebSocket(
-  //       chatRoomIdAsNumber,
-  //       (receivedMessage: ChatMessage) => {
-  //         setMessageList((prev) => [...prev, receivedMessage]);
-  //       },
-  //       (error) => {
-  //         console.error('WebSocket error:', error);
-  //       },
-  //     );
-
-  //     // 컴포넌트 언마운트 시 WebSocket 연결 해제
-  //     return () => disconnectWebSocket();
-  //   }, [chatRoomId]);
-
-  //
 
   return (
     <Wrapper>

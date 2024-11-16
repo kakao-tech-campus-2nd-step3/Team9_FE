@@ -2,7 +2,7 @@ import { CompatClient } from '@stomp/stompjs';
 // import { Client, CompatClient, Stomp } from '@stomp/stompjs';
 // import SockJS from 'sockjs-client';
 
-// import type { ChatMessage } from './types';
+// import type { ChatMessage } from '@/types/chats';
 
 export const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
 
@@ -53,11 +53,11 @@ export const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
 export function sendMessage(
   stompClient: CompatClient,
   chatRoomId: number,
-  email: string,
+  senderEmail: string,
   content: string,
 ): void {
   const message = {
-    sender: email,
+    sender: senderEmail,
     content,
     messageType: 'TEXT',
   };
@@ -79,7 +79,7 @@ export function sendMessage(
 export async function sendFile(
   stompClient: CompatClient,
   chatRoomId: number,
-  email: string,
+  senderEmail: string,
   file: File,
 ): Promise<void> {
   // File을 바이너리 데이터로 변환
@@ -97,7 +97,7 @@ export async function sendFile(
 
         const message = {
           chatRoomId,
-          userEmail: email,
+          userEmail: senderEmail,
           // fileBytes: fileBuffer,
           // fileBytes,
           fileBase64: fileBase64,

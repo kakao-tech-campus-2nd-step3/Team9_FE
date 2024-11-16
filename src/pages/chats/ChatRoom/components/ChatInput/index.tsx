@@ -96,7 +96,6 @@ const ChatInput = ({ client, chatRoomId, senderEmail, onHeightChange }: ChatInpu
     }
 
     try {
-      // 파라미터: client, chatRoomId, email, file
       sendFile(client, chatRoomId, senderEmail, image);
       setImage(null);
     } catch (error) {

@@ -8,7 +8,6 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
     ...config,
     headers: {
       'Content-Type': 'application/json',
-      'Cross-Control-Allow-Origin': '*',
     },
   });
 

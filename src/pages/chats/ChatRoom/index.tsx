@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SockJS from 'sockjs-client';
 
-import { disconnectWebSocket } from '@/apis/chats';
+import { BASE_URL, disconnectWebSocket } from '@/apis/chats';
 import useGetChatRoom from '@/apis/chats/useGetChatRoom';
 import IconButton from '@/components/common/IconButton';
 import Header from '@/components/layouts/Header';
@@ -13,8 +13,6 @@ import { HEIGHTS } from '@/styles/constants';
 import type { ChatMessage, ChatRoom } from '@/types/chats';
 import ChatInput from './components/ChatInput';
 import MessageList from './components/MessageList';
-
-export const BASE_URL = import.meta.env.VITE_APP_BASE_URL_CHAT;
 
 const ChatRoom = () => {
   const navigate = useNavigate();

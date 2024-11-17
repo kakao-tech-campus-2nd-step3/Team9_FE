@@ -44,8 +44,4 @@ const CurationWrapper = styled.ul`
   height: auto;
   width: 100%;
   margin-bottom: 54px;
-
-  &:not(:last-child) {
-    border-bottom: 0.5px solid var(--color-gray-lt);
-  }
 `;

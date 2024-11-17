@@ -25,6 +25,10 @@ const Wrapper = styled.li`
   min-height: 54px;
   gap: 8px;
   cursor: pointer;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-gray-lt);
+  }
 `;
 
 const Title = styled.span`

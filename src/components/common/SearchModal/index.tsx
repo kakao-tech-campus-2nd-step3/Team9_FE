@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 import SearchBar from '@/components/layouts/SearchBar';
 import { Z_INDEX } from '@/styles/constants';
 import * as G from '@/styles/globalStyles';
+import Ad from './Ad';
 import PopularSearch from './PopularSearch';
 import RecentSearch from './RecentSearch';
-import Ad from './SearchAd';
 
 interface SearchModalProps {
   modalClose: () => void;

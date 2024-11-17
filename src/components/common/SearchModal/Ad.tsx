@@ -13,7 +13,7 @@ const SearchAd = () => {
       <AdWrapper>
         {AD_LIST.map((ad, index) => (
           <AdImage key={index}>
-            <img src={ad} alt="Ad image" />
+            <img src={ad.imageUrl} alt="Ad image" />
           </AdImage>
         ))}
       </AdWrapper>

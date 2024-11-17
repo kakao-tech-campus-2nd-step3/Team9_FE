@@ -99,6 +99,7 @@ video {
 button {
   border: none;
   background-color: transparent;
+  color: var(--color-black);
   cursor: pointer;
   overflow: visible;
   vertical-align: inherit;

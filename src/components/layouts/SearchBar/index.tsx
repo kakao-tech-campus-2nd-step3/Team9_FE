@@ -108,7 +108,6 @@ const InputBox = styled.form`
   flex: 1 0 0;
   border-radius: var(--border-radius);
   border: 1px solid var(--color-gray-md);
-  font-size: var(--font-size-sm);
   cursor: text;
 `;
 
@@ -118,6 +117,7 @@ const Input = styled.input`
   margin: 0 30px 0 34px;
   outline: none;
   border: none;
+  font-size: var(--font-size-sm);
 
   &::placeholder {
     color: var(--color-gray-dk);

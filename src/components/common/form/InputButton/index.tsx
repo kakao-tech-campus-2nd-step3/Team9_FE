@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-type ButtonProps = {
+type InputButtonProps = {
   label: string;
   isSelected?: boolean;
   onClick: () => void;
 };
 
-const Button = ({ label, isSelected, onClick }: ButtonProps) => {
+const InputButton = ({ label, isSelected, onClick }: InputButtonProps) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onClick();
@@ -19,7 +19,7 @@ const Button = ({ label, isSelected, onClick }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default InputButton;
 
 const Wrapper = styled.button<{ selected?: boolean }>`
   display: flex;
@@ -31,6 +31,7 @@ const Wrapper = styled.button<{ selected?: boolean }>`
   border: 1px solid var(--color-gray-md);
   background: var(--color-white);
   flex: 1;
+  font-size: var(--font-size-sm);
 
   ${({ selected }) =>
     selected &&

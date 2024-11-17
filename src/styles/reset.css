@@ -124,6 +124,7 @@ button:disabled {
 }
 a {
   text-decoration: none;
+  color: var(--color-black);
 }
 a:hover {
   cursor: pointer;
@@ -141,8 +142,7 @@ textarea {
   padding: 0;
   background-color: transparent;
   align-self: center;
-
-  &:focus {
-    outline: none;
-  }
+}
+textarea:focus {
+  outline: none;
 }

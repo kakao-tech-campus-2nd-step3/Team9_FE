@@ -1,12 +1,12 @@
-import { Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import FakeSearchBar from '@/components/common/FakeSearchBar';
 import SearchModal from '@/components/common/SearchModal';
-import { CATEGORY_LIST } from '@/constants/categories';
+import { CATEGORY_LIST, CURATION_LIST } from '@/constants/categories';
 import * as G from '@/styles/globalStyles';
 import CategoryItem from './components/CategoryItem';
+import CurationItem from './components/CurationItem';
 
 const Categories = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,20 +21,14 @@ const Categories = () => {
       {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
       <G.Grid col={4}>
         {CATEGORY_LIST.map((category) => (
-          <CategoryItem key={category.id} src={category.src} des={category.des} />
+          <CategoryItem key={category.title} title={category.title} src={category.src} />
         ))}
       </G.Grid>
-      <G.Gap height={18} />
+      <G.Gap height={12} />
       <CurationWrapper>
-        <CurationItem>
-          <Title>매거진</Title>
-          <Des>숨겨진 무한의 가치를 발견하고 싶다면</Des>
-        </CurationItem>
-        <G.Gap height={2} />
-        <CurationItem>
-          <Title>아티스트 그라운드</Title>
-          <Des>내 취향대로 작가 골라보기</Des>
-        </CurationItem>
+        {CURATION_LIST.map((curation) => (
+          <CurationItem key={curation.title} title={curation.title} des={curation.des} />
+        ))}
       </CurationWrapper>
     </Wrapper>
   );
@@ -46,29 +40,12 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const CurationItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  padding: 16px;
-  min-height: 54px;
-  gap: 8px;
-`;
-
-const Title = styled(Text)`
-  font-size: var(--font-size-md);
-  font-weight: 600;
-  line-height: 1.2;
-`;
-
-const Des = styled(Text)`
-  font-size: var(--font-size-sm);
-  line-height: 1.2;
-`;
-
-const CurationWrapper = styled.div`
+const CurationWrapper = styled.ul`
   height: auto;
   width: 100%;
   margin-bottom: 54px;
+
+  &:not(:last-child) {
+    border-bottom: 0.5px solid var(--color-gray-lt);
+  }
 `;

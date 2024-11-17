@@ -1,15 +1,15 @@
 import styled from '@emotion/styled';
 
 interface CategoryItemProps {
+  title: string;
   src: string;
-  des: string;
 }
 
-const CategoryItem = ({ src, des }: CategoryItemProps) => {
+const CategoryItem = ({ title, src }: CategoryItemProps) => {
   return (
     <Wrapper>
-      <CategoryThumbnail src={src} alt="Category thumbnail" />
-      <DesWrapper>{des}</DesWrapper>
+      <CategoryThumbnail>{src && <img src={src} alt="Category thumbnail" />}</CategoryThumbnail>
+      <Title>{title}</Title>
     </Wrapper>
   );
 };
@@ -23,15 +23,20 @@ const Wrapper = styled.button`
   gap: 8px;
 `;
 
-const CategoryThumbnail = styled.img`
-  aspect-ratio: 1/1;
+const CategoryThumbnail = styled.div`
   width: 64px;
-  border-radius: 100%;
-  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  border-radius: 50px;
+  overflow: hidden;
   background-color: var(--color-gray-lt);
+
+  img {
+    object-fit: cover;
+    width: 64px;
+  }
 `;
 
-const DesWrapper = styled.p`
+const Title = styled.p`
   font-size: var(--font-size-sm);
   display: inline;
   white-space: pre-wrap;

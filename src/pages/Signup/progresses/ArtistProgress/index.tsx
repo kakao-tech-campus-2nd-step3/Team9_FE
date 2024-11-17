@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Button from '@/components/common/form/InputButton';
+import InputButton from '@/components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
 import BusinessArtist1 from './BusinessArtist/BusinessArtist1';
@@ -27,12 +27,12 @@ const ArtistProgress = () => {
             </ProgressGuidance>
             <div className="progress-container">
               <SelectItem>
-                <Button
+                <InputButton
                   label="학생"
                   isSelected={artistType === 'student'}
                   onClick={() => setArtistType('student')}
                 />
-                <Button
+                <InputButton
                   label="사업자"
                   isSelected={artistType === 'business'}
                   onClick={() => setArtistType('business')}

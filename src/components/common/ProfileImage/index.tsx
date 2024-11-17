@@ -24,7 +24,7 @@ const StyledProfileImage = styled.div<{ width: number }>`
   border: 1px solid var(--color-gray-md);
   background-color: var(--color-gray-lt);
 
-  .img {
+  img {
     object-fit: cover;
   }
 `;

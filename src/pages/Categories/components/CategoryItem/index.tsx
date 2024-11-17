@@ -16,23 +16,24 @@ const CategoryItem = ({ title, src }: CategoryItemProps) => {
 
 export default CategoryItem;
 
-const Wrapper = styled.button`
+const Wrapper = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 `;
 
 const CategoryThumbnail = styled.div`
-  width: 64px;
+  width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 50px;
+  border-radius: 100%;
   overflow: hidden;
   background-color: var(--color-gray-lt);
 
   img {
     object-fit: cover;
-    width: 64px;
+    width: 100%;
   }
 `;
 

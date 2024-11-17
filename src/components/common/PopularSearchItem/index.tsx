@@ -2,15 +2,15 @@ import styled from '@emotion/styled';
 import { Text } from '@chakra-ui/react';
 
 interface PopularSearchItemProps {
-  text: string;
+  name: string;
   rank: number;
 }
 
-const PopularSearchItem = ({ text, rank }: PopularSearchItemProps) => {
+const PopularSearchItem = ({ name, rank }: PopularSearchItemProps) => {
   return (
     <Wrapper>
       <Rank isTop3={rank <= 3}>{rank}</Rank>
-      <Text>#{text}</Text>
+      <Text>{name}</Text>
     </Wrapper>
   );
 };

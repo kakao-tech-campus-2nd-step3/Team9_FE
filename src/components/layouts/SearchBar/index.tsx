@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
+import CancelIcon from '@/assets/icons/cancel-filled.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
-import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
+import { SEARCH_ARRAY_KEY } from '@/constants/search';
 import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
@@ -138,6 +138,7 @@ const CancelIconButton = styled(CancelIcon)`
   position: absolute;
   right: 8px;
   cursor: pointer;
+  color: var(--color-gray-dk);
 `;
 
 const ErrorMessage = styled.div`

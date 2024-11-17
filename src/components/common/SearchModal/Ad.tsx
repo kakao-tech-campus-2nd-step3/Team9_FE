@@ -1,71 +1,53 @@
-import { Image } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { AD_LIST } from '@/constants/search';
-import * as G from '@/styles/globalStyles';
+import * as S from './styles';
 
 const SearchAd = () => {
   return (
-    <Wrapper>
-      <TitleWrapper>
-        <div>
-          <RedText>요즘 뜨는</RedText> 작품
-        </div>
-        <Tab>광고</Tab>
-      </TitleWrapper>
-      <G.Grid col={2}>
-        {AD_LIST.map((ad) => (
-          <AdImage key={ad.id} src={ad.src} alt="adImage" />
+    <S.SectionWrapper>
+      <S.SectionTitle>
+        <span className="section-title-highlight">요즘 뜨는</span> 작품
+      </S.SectionTitle>
+      <AdTag>광고</AdTag>
+      <AdWrapper>
+        {AD_LIST.map((ad, index) => (
+          <AdImage key={index}>
+            <img src={ad} alt="Ad image" />
+          </AdImage>
         ))}
-      </G.Grid>
-    </Wrapper>
+      </AdWrapper>
+    </S.SectionWrapper>
   );
 };
 
 export default SearchAd;
 
-const Wrapper = styled.div`
+const AdWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 16px;
+  gap: 12px;
 `;
 
-const TitleWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  color: var(--color-black, #020715);
-  font-size: var(--font-size-md);
-  font-weight: 700;
-  line-height: normal;
-`;
-
-const RedText = styled.span`
-  color: var(--color-red);
-`;
-
-const AdImage = styled(Image)`
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  max-width: 200px;
-  max-height: 200px;
-  background-color: var(--color-gray-lt);
-`;
-
-const Tab = styled.p`
-  background: var(--color-gray-lt);
+const AdTag = styled.p`
+  background: var(--color-gray-md);
   border-radius: 50px;
   padding: 3px 7px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 36px;
-  height: 20px;
   font-size: var(--font-size-xs);
-  color: var(--white, #fff);
-  font-weight: 700;
+  color: var(--color-white);
+  font-weight: 500;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+`;
+
+const AdImage = styled.div`
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-gray-lt);
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 `;

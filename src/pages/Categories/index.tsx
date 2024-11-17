@@ -6,7 +6,7 @@ import FakeSearchBar from '@/components/common/FakeSearchBar';
 import SearchModal from '@/components/common/SearchModal';
 import { CATEGORY_LIST } from '@/constants/categories';
 import * as G from '@/styles/globalStyles';
-import Category from './components/CategoryItem';
+import CategoryItem from './components/CategoryItem';
 
 const Categories = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const Categories = () => {
       {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
       <G.Grid col={4}>
         {CATEGORY_LIST.map((category) => (
-          <Category key={category.id} src={category.src} des={category.des} />
+          <CategoryItem key={category.id} src={category.src} des={category.des} />
         ))}
       </G.Grid>
       <G.Gap height={18} />

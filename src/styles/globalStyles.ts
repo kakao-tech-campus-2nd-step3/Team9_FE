@@ -13,8 +13,8 @@ export const HorizontalLine = styled.hr`
 
 export const Grid = styled.div<{ col: number; justifyItems?: string }>`
   display: grid;
-  grid-template-columns: ${({ col }) => (col === 2 ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)')};
+  grid-template-columns: ${({ col }) => `repeat(${col}, 1fr)`};
   justify-items: ${({ justifyItems }) => justifyItems || 'center'};
-  padding: ${({ col }) => (col === 2 ? '16px' : '24px 16px 32px 16px;')};
-  gap: ${({ col }) => (col === 2 ? '8px' : '40px 12px')};
+  padding: ${({ col }) => (col === 2 ? '16px' : '16px 16px 32px 16px;')};
+  gap: ${({ col }) => (col === 2 ? '8px' : '24px')};
 `;

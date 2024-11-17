@@ -1,17 +1,14 @@
-import { Image } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 interface CategoryItemProps {
-  des: string;
   src: string;
+  des: string;
 }
 
-const CategoryItem = ({ des, src }: CategoryItemProps) => {
-  des = des.replace('/', '/\n');
-
+const CategoryItem = ({ src, des }: CategoryItemProps) => {
   return (
     <Wrapper>
-      <RoundImage src={src} alt="CategoryImage" />
+      <CategoryThumbnail src={src} alt="Category thumbnail" />
       <DesWrapper>{des}</DesWrapper>
     </Wrapper>
   );
@@ -19,17 +16,16 @@ const CategoryItem = ({ des, src }: CategoryItemProps) => {
 
 export default CategoryItem;
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
   gap: 8px;
 `;
 
-const RoundImage = styled(Image)`
+const CategoryThumbnail = styled.img`
   aspect-ratio: 1/1;
-  width: 80%;
+  width: 64px;
   border-radius: 100%;
   object-fit: cover;
   background-color: var(--color-gray-lt);

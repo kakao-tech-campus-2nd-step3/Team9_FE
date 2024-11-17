@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 import SearchBar from '@/components/layouts/SearchBar';
 import { Z_INDEX } from '@/styles/constants';
-import * as G from '@/styles/globalStyles';
 import Ad from './Ad';
 import PopularSearch from './PopularSearch';
 import RecentSearch from './RecentSearch';
@@ -12,16 +11,16 @@ interface SearchModalProps {
 }
 
 const SearchModal = ({ modalClose }: SearchModalProps) => {
+  const searchSectionList: React.ReactNode[] = [<RecentSearch />, <PopularSearch />, <Ad />];
+
   return (
     <ModalWrapper>
       <SearchBar goBack={modalClose} />
-      <SearchWrapper>
-        <RecentSearch />
-        <G.HorizontalLine />
-        <PopularSearch />
-        <G.HorizontalLine />
-        <Ad />
-      </SearchWrapper>
+      <SectionsWrapper>
+        {searchSectionList.map((section, index) => (
+          <div key={index}>{section}</div>
+        ))}
+      </SectionsWrapper>
     </ModalWrapper>
   );
 };
@@ -40,8 +39,16 @@ const ModalWrapper = styled.div`
   z-index: ${Z_INDEX.Modal};
 `;
 
-const SearchWrapper = styled.div`
-  flex: 1;
+const SectionsWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+
+  & > * {
+    border-bottom: 1px solid var(--color-gray-lt);
+  }
+
+  & > *:last-child {
+    border-bottom: none;
+  }
 `;

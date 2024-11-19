@@ -43,10 +43,6 @@ const router = createBrowserRouter([
         element: <Categories />,
       },
       {
-        path: `${RouterPath.products}/:productId`,
-        element: <ProductDetails />,
-      },
-      {
         path: RouterPath.products,
         element: <ProtectedRoute />,
         children: [
@@ -114,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: RouterPath.signup,
         element: <Signup />,
+      },
+      {
+        path: `${RouterPath.products}/:productId`,
+        element: <ProductDetails />,
       },
     ],
   },

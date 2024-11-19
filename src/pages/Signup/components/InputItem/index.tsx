@@ -72,7 +72,7 @@ const StyledInputItem = styled.div`
   padding: 0 16px;
 
   .input-label {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     font-weight: 600;
   }
 

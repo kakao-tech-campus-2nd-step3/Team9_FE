@@ -26,6 +26,7 @@ const Wrapper = styled.li`
 
 const CategoryThumbnail = styled.div`
   width: 100%;
+  min-width: 64px;
   aspect-ratio: 1 / 1;
   border-radius: 100%;
   overflow: hidden;

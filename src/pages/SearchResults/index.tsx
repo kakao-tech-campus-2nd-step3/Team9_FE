@@ -31,9 +31,6 @@ const SearchResultsContent = () => {
   const [selectedTab, setSelectedTab] = useState('전체');
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') || '';
-
-  console.log('searchQuery: ', searchQuery);
-
   const searchArtistResults = useSearchArtists(searchQuery);
   const artistsData = searchArtistResults.data.pages.flatMap((page) => page.data.artists);
   const searchProductResults = useSearchProducts(searchQuery);

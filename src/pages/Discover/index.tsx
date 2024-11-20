@@ -51,6 +51,10 @@ const Feed = () => {
         page.products.map((product: Product) => (
           <ImageItem key={product.id}>
             <img src={product.thumbnailUrl} alt={product.name} />
+            <div className="image-item-overlay">
+              <p className="image-item-name">{product.name}</p>
+              <p className="image-item-artist">{product.artist}</p>
+            </div>
           </ImageItem>
         )),
       )}
@@ -88,14 +92,55 @@ const ImageGrid = styled(Masonry)`
   }
 `;
 
-const ImageItem = styled.div`
+const ImageItem = styled.button`
   border-radius: var(--border-radius);
   overflow: hidden;
+  position: relative;
 
   img {
     width: 100%;
     height: auto;
     display: block;
+    transition: filter 0.2s ease;
+  }
+
+  &:hover img {
+    filter: brightness(70%);
+  }
+
+  .image-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--color-white);
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0; /* 초기에는 투명 */
+    transition: opacity 0.2s ease;
+  }
+
+  .image-item-name {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    white-space: nowrap; // 줄바꿈 방지
+    overflow: hidden; // 넘어가면 숨겨줌
+    text-overflow: ellipsis; // 말줄임표
+  }
+
+  .image-item-artist {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+
+  &:hover .image-item-overlay {
+    opacity: 1; /* 호버 시 작품 정보 보임 */
   }
 `;
 

@@ -36,7 +36,6 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
     },
   });
 
-  // 현재 경로가 검색 결과 페이지가 아닐 때 쿼리 파라미터 제거
   useEffect(() => {
     if (!location.pathname.includes(RouterPath.results) && searchParams.has('query')) {
       setSearchParams({});
@@ -80,11 +79,12 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
       }
 
       localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
-
-      // 검색 실행
+      setSearchParams({ query: searchWord });
       navigate(`/${RouterPath.results}?query=${currentSearchWord}`);
     }
   };
+
+  const nowSearchWord = watch('searchWord');
 
   return (
     <SearchBarWrapper>
@@ -97,7 +97,7 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
           {...register('searchWord')}
           onClick={() => setIsModalOpen(true)}
         />
-        {searchWord?.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
+        {nowSearchWord?.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>
       {includeFavorite && <IconButton icon="favorite-default" />}
     </SearchBarWrapper>

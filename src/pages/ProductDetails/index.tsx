@@ -36,27 +36,20 @@ const ProductDetailsContent = () => {
   const { productId } = useParams();
   const productIdAsNumber = productId ? parseInt(productId, 10) : null;
 
-  // const { email } = useUserStore();
-  // const userEmail1 = email || USER_EMAIL_1; // 사용자 본인 이메일
-  // const userEmail2 = USER_EMAIL_2; // 상대방 이메일
+  const { email } = useUserStore();
+  const userEmail1 = email || USER_EMAIL_1; // 사용자 본인 이메일
+  const userEmail2 = USER_EMAIL_2; // 상대방 이메일
 
   const { data } = useGetDetail(productIdAsNumber);
   const { mutate: postChatRoom } = usePostChatRoom();
-  // const { email } = useUserStore(); // todo: 주석 해제
-  // todo:  작가 이메일 키 넣어달라 요청
-  // const artistEmail = data.data.artistInfo.email || USER_EMAIL_2;
-  const email = USER_EMAIL_1; // 사용자 본인 이메일
-  const artistEmail = USER_EMAIL_2; // 작가 이메일
-
-  // todo: 수정 - email 값이 ''이면 로그인 리다이렉트
 
   const navigate = useNavigate();
 
   const handleClickChat = () => {
     postChatRoom(
       {
-        userEmail1: email,
-        userEmail2: artistEmail,
+        userEmail1,
+        userEmail2,
       },
       {
         onSuccess: (data) => {

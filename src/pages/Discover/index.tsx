@@ -44,7 +44,7 @@ const Feed = () => {
   return (
     <ImageGrid
       className="masonry-grid"
-      breakpointCols={{ default: 3, 1100: 2, 700: 1 }}
+      breakpointCols={{ default: 3, 600: 3, 480: 2 }}
       columnClassName="masonry-grid-column"
     >
       {data?.pages.map((page) =>

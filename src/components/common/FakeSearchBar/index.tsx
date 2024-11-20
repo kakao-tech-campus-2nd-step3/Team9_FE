@@ -2,18 +2,17 @@ import styled from '@emotion/styled';
 
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
+import useSearchModalStore from '@/store/useSearchModalStore';
 import { HEIGHTS } from '@/styles/constants';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 
-interface FakeSearchBarProps {
-  modalOpen: () => void;
-}
+const FakeSearchBar = () => {
+  const { isModalOpen, setIsModalOpen } = useSearchModalStore();
 
-const FakeSearchBar = ({ modalOpen }: FakeSearchBarProps) => {
   return (
     <SearchBarWrapper>
-      <InputBox onClick={modalOpen}>
+      <InputBox onClick={() => setIsModalOpen(!isModalOpen)}>
         <StyledSearchIcon />
         <Input type="text" placeholder={SEARCH_PLACEHOLDER} />
       </InputBox>

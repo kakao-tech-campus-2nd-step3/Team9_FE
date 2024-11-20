@@ -12,6 +12,7 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
     },
   });
 
+  // todo: 검색 등은 토큰 넣지 말기
   // API 요청 시마다 최신 토큰을 가져옴
   instance.interceptors.request.use((config) => {
     const token = localStorage.getItem('accessToken');

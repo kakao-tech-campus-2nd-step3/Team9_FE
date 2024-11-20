@@ -57,28 +57,30 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
   const activeEnter = (data: { searchWord: string }) => {
     const { searchWord } = data;
 
-    // 검색 기록 업데이트
-    const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
-    let searchArray = storedData ? JSON.parse(storedData) : [];
-    const existingIndex = searchArray.findIndex(
-      (item: { key: string; keyword: string }) => item.keyword === searchWord,
-    );
+    if (!formState.errors.searchWord) {
+      // 검색 기록 업데이트
+      const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
+      let searchArray = storedData ? JSON.parse(storedData) : [];
+      const existingIndex = searchArray.findIndex(
+        (item: { key: string; keyword: string }) => item.keyword === searchWord,
+      );
 
-    if (existingIndex !== -1) {
-      searchArray.splice(existingIndex, 1);
+      if (existingIndex !== -1) {
+        searchArray.splice(existingIndex, 1);
+      }
+
+      const newItem = { keyword: searchWord, key: generateRandomKey() };
+      searchArray = [newItem, ...searchArray];
+      if (searchArray.length > MAX_RECENT_SEARCHES) {
+        searchArray = searchArray.slice(0, MAX_RECENT_SEARCHES);
+      }
+
+      localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
+
+      // 검색 실행
+      setSearchParams({ query: searchWord });
+      navigate(`/${RouterPath.results}?query=${searchWord}`);
     }
-
-    const newItem = { keyword: searchWord, key: generateRandomKey() };
-    searchArray = [newItem, ...searchArray];
-    if (searchArray.length > MAX_RECENT_SEARCHES) {
-      searchArray = searchArray.slice(0, MAX_RECENT_SEARCHES);
-    }
-
-    localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
-
-    // 검색 실행
-    setSearchParams({ query: searchWord });
-    navigate(`/${RouterPath.results}?query=${searchWord}`);
   };
 
   const nowSearchWord = watch('searchWord');
@@ -98,9 +100,6 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
         />
         {nowSearchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>
-      {formState.errors.searchWord && (
-        <ErrorMessage>{formState.errors.searchWord.message}</ErrorMessage>
-      )}
       {includeFavorite && <IconButton icon="favorite-default" />}
     </SearchBarWrapper>
   );
@@ -161,10 +160,4 @@ const CancelIconButton = styled(CancelIcon)`
   right: 8px;
   cursor: pointer;
   color: var(--color-gray-dk);
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  font-size: var(--font-size-sm);
-  margin-top: 4px;
 `;

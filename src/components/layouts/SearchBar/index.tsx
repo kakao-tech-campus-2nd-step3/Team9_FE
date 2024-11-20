@@ -29,11 +29,11 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
   const initialSearchWord = searchParams.get('query') || '';
   const { setIsModalOpen } = useSearchModalStore();
 
-  const { register, handleSubmit, setValue, watch } = useForm<FormValues>({
-    mode: 'onChange',
+  const { register, handleSubmit, watch, setValue } = useForm<{ searchWord: string }>({
     defaultValues: {
       searchWord: initialSearchWord,
     },
+    mode: 'onSubmit',
   });
 
   useEffect(() => {
@@ -41,6 +41,11 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
       setSearchParams({});
     }
   }, [location.pathname]);
+
+  useEffect(() => {
+    const query = searchParams.get('query') || '';
+    setValue('searchWord', query);
+  }, [searchParams]);
 
   const searchWord = watch('searchWord');
 
@@ -79,12 +84,10 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
       }
 
       localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
-      setSearchParams({ query: searchWord });
+      setSearchParams({ query: currentSearchWord });
       navigate(`/${RouterPath.results}?query=${currentSearchWord}`);
     }
   };
-
-  const nowSearchWord = watch('searchWord');
 
   return (
     <SearchBarWrapper>
@@ -97,7 +100,7 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
           {...register('searchWord')}
           onClick={() => setIsModalOpen(true)}
         />
-        {nowSearchWord?.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
+        {searchWord?.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>
       {includeFavorite && <IconButton icon="favorite-default" />}
     </SearchBarWrapper>

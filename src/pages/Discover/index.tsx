@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Suspense, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import Masonry from 'react-masonry-css';
 
 import useGetFeed, { type Product } from '@/apis/products/useGetFeed';
 import Loader from '@/components/common/Loader';
@@ -41,7 +42,11 @@ const Feed = () => {
   }, [fetchNextPage, hasNextPage]);
 
   return (
-    <ImageGrid>
+    <ImageGrid
+      className="masonry-grid"
+      breakpointCols={{ default: 3, 1100: 2, 700: 1 }}
+      columnClassName="masonry-grid-column"
+    >
       {data?.pages.map((page) =>
         page.products.map((product: Product) => (
           <ImageItem key={product.id}>
@@ -66,10 +71,21 @@ const ContentWrapper = styled.div`
   flex: 1;
 `;
 
-const ImageGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 8px;
+const ImageGrid = styled(Masonry)`
+  display: flex;
+  margin-left: -8px; /* gutter size */
+  width: auto;
+
+  & > div {
+    padding-left: 8px; /* gutter size */
+    background-clip: padding-box;
+  }
+
+  .masonry-grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
 
 const ImageItem = styled.div`

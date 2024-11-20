@@ -1,20 +1,17 @@
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
 
 import CancelIcon from '@/assets/icons/cancel-filled.svg?react';
-import { RouterPath } from '@/routes/path';
 
 interface ChipProps {
   tag: string;
   onDeleteClick: () => void;
+  onSearchClick: () => void;
 }
 
-const Chip = ({ tag, onDeleteClick }: ChipProps) => {
-  const navigate = useNavigate();
-
+const Chip = ({ tag, onDeleteClick, onSearchClick }: ChipProps) => {
   return (
     <Wrapper>
-      <a onClick={() => navigate(`/${RouterPath.results}?query=${tag}`)}>{tag}</a>
+      <a onClick={onSearchClick}>{tag}</a>
       <DeleteButton onClick={onDeleteClick}>
         <CancelIcon />
       </DeleteButton>

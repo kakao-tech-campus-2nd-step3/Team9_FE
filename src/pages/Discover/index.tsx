@@ -4,12 +4,14 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import useGetFeed, { type Product } from '@/apis/products/useGetFeed';
 import Loader from '@/components/common/Loader';
+import SearchModal from '@/components/common/SearchModal';
 import SearchBar from '@/components/layouts/SearchBar';
 import { HEIGHTS } from '@/styles/constants';
 
 const Discover = () => (
   <Wrapper>
-    <SearchBar />
+    <SearchBar includeBack={false} includeFavorite={true} />
+    <SearchModal />
     <ContentWrapper>
       {/* todo: 폴백 UI 만들기 */}
       <ErrorBoundary fallback={<>Error</>}>

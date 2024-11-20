@@ -1,30 +1,31 @@
 import styled from '@emotion/styled';
 
 import SearchBar from '@/components/layouts/SearchBar';
+import useSearchModalStore from '@/store/useSearchModalStore';
 import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 import Ad from './Ad';
 import PopularSearch from './PopularSearch';
 import RecentSearch from './RecentSearch';
 
-interface SearchModalProps {
-  modalClose: () => void;
-}
-
-const SearchModal = ({ modalClose }: SearchModalProps) => {
+const SearchModal = () => {
+  const { isModalOpen } = useSearchModalStore();
   const searchSectionList: React.ReactNode[] = [<RecentSearch />, <PopularSearch />, <Ad />]; // 각 섹션을 리스트로 관리
 
   // todo: 검색어 존재 시 자동 완성 모달 뜨게
-  // x 버튼 클릭 시 검색 모달 뜨게
 
   return (
-    <ModalLayout>
-      <SearchBar goBack={modalClose} />
-      <SectionsWrapper>
-        {searchSectionList.map((section, index) => (
-          <div key={index}>{section}</div>
-        ))}
-      </SectionsWrapper>
-    </ModalLayout>
+    <>
+      {isModalOpen && (
+        <ModalLayout>
+          <SearchBar />
+          <SectionsWrapper>
+            {searchSectionList.map((section, index) => (
+              <div key={index}>{section}</div>
+            ))}
+          </SectionsWrapper>
+        </ModalLayout>
+      )}
+    </>
   );
 };
 

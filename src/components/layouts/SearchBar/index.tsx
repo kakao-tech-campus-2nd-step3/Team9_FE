@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -6,20 +7,24 @@ import CancelIcon from '@/assets/icons/cancel-filled.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { SEARCH_ARRAY_KEY } from '@/constants/search';
+import { RouterPath } from '@/routes/path';
+import useSearchModalStore from '@/store/useSearchModalStore';
 import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 const MAX_RECENT_SEARCHES = 10;
 
 interface SearchBarProps {
+  includeBack?: boolean;
   includeFavorite?: boolean;
-  goBack?: () => void;
+  goBack?: () => void; // SearchResult에서만 전달됨
 }
 
-const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
+const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: SearchBarProps) => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const initialSearchWord = searchParams.get('query') || '';
+  const { isModalOpen, setIsModalOpen } = useSearchModalStore();
 
   const { register, handleSubmit, watch, setValue, formState } = useForm<{ searchWord: string }>({
     defaultValues: {
@@ -28,13 +33,25 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
     mode: 'onSubmit',
   });
 
+  // test
+  useEffect(() => {
+    console.log('isModalOpen: ', isModalOpen);
+  }, [isModalOpen]);
+
   const generateRandomKey = () => {
     return Math.random().toString(36).substr(2, 9);
   };
 
+  const handleClickBack = () => {
+    if (goBack) goBack(); // SearchResult에서만 전달됨 // pathname 추출해서 해도 된다 생각했는데 안 됨
+    setIsModalOpen(false);
+  };
+
   const handleRemoveSearchWord = (e: React.MouseEvent) => {
+    console.log('called');
     e.preventDefault();
     setValue('searchWord', '');
+    setIsModalOpen(true);
   };
 
   const activeEnter = (data: { searchWord: string }) => {
@@ -57,14 +74,14 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
 
     localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
     setSearchParams({ query: searchWord });
-    navigate(`/results?query=${searchWord}`);
+    navigate(`/${RouterPath.results}?query=${searchWord}`);
   };
 
   const nowSearchWord = watch('searchWord');
 
   return (
     <SearchBarWrapper>
-      <IconButton icon="arrow-back" onClick={goBack} />
+      {includeBack && <IconButton icon="arrow-back" onClick={handleClickBack} />}
       <InputBox onSubmit={handleSubmit(activeEnter)}>
         <StyledSearchIcon />
         <Input
@@ -73,6 +90,7 @@ const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
           {...register('searchWord', {
             validate: (value) => value.trim() !== '' || '공백만 입력할 수 없습니다.',
           })}
+          onClick={() => setIsModalOpen(true)}
         />
         {nowSearchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>

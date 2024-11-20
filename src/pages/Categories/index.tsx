@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import FakeSearchBar from '@/components/common/FakeSearchBar';
 import SearchModal from '@/components/common/SearchModal';
@@ -9,16 +8,10 @@ import CategoryItem from './components/CategoryItem';
 import CurationItem from './components/CurationItem';
 
 const Categories = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
   return (
     <Wrapper>
-      <FakeSearchBar modalOpen={handleModalOpen} />
-      {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
+      <FakeSearchBar />
+      <SearchModal />
       <CategoryGrid>
         {CATEGORY_LIST.map((category) => (
           <CategoryItem key={category.title} title={category.title} src={category.src} />

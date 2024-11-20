@@ -15,7 +15,7 @@ import { HEIGHTS } from '@/styles/constants';
 import * as G from '@/styles/globalStyles';
 
 const USER_EMAIL_1 = 'ble6859@knu.ac.kr';
-const USER_EMAIL_2 = 'user2@example.com';
+const USER_EMAIL_2 = 'francisco53@hotmail.com';
 
 const ProductDetails = () => {
   const navigate = useNavigate();

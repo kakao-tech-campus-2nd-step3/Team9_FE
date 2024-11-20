@@ -1,34 +1,37 @@
 import styled from '@emotion/styled';
 
 import SearchBar from '@/components/layouts/SearchBar';
-import { Z_INDEX } from '@/styles/constants';
-import * as G from '@/styles/globalStyles';
+import useSearchModalStore from '@/store/useSearchModalStore';
+import { HEIGHTS, Z_INDEX } from '@/styles/constants';
+import Ad from './Ad';
 import PopularSearch from './PopularSearch';
 import RecentSearch from './RecentSearch';
-import Ad from './SearchAd';
 
-interface SearchModalProps {
-  modalClose: () => void;
-}
+const SearchModal = () => {
+  const { isModalOpen } = useSearchModalStore();
+  const searchSectionList: React.ReactNode[] = [<RecentSearch />, <PopularSearch />, <Ad />]; // 각 섹션을 리스트로 관리
 
-const SearchModal = ({ modalClose }: SearchModalProps) => {
+  // todo: 검색어 존재 시 자동 완성 모달 뜨게
+
   return (
-    <ModalWrapper>
-      <SearchBar goBack={modalClose} />
-      <SearchWrapper>
-        <RecentSearch />
-        <G.HorizontalLine />
-        <PopularSearch />
-        <G.HorizontalLine />
-        <Ad />
-      </SearchWrapper>
-    </ModalWrapper>
+    <>
+      {isModalOpen && (
+        <ModalLayout>
+          <SearchBar />
+          <SectionsWrapper>
+            {searchSectionList.map((section, index) => (
+              <div key={index}>{section}</div>
+            ))}
+          </SectionsWrapper>
+        </ModalLayout>
+      )}
+    </>
   );
 };
 
 export default SearchModal;
 
-const ModalWrapper = styled.div`
+const ModalLayout = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -40,8 +43,17 @@ const ModalWrapper = styled.div`
   z-index: ${Z_INDEX.Modal};
 `;
 
-const SearchWrapper = styled.div`
-  flex: 1;
+const SectionsWrapper = styled.div`
+  margin-top: ${HEIGHTS.HEADER};
+  width: 100%;
   display: flex;
   flex-direction: column;
+
+  & > * {
+    border-bottom: 1px solid var(--color-gray-lt);
+  }
+
+  & > *:last-child {
+    border-bottom: none;
+  }
 `;

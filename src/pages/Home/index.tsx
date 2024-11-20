@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import SearchModal from '@/components/common/SearchModal';
 import Footer from '@/components/layouts/Footer';
@@ -10,16 +9,10 @@ import AdBanner from './components/AdBanner';
 import ArticleBanner from './components/ArticleBanner';
 
 const Home = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
   return (
     <Wrapper>
-      {isModalOpen && <SearchModal modalClose={() => setIsModalOpen(false)} />}
-      <Header modalOpen={handleModalOpen} />
+      <Header />
+      <SearchModal />
       <AdBanner adList={AD_LIST} />
       {ARTICLE_LIST.map((item) => (
         <ArticleBanner

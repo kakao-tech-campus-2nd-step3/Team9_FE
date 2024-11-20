@@ -1,84 +1,93 @@
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import CancelIcon from '@/assets/icons/cancel-filled-gray.svg?react';
+import CancelIcon from '@/assets/icons/cancel-filled.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import IconButton from '@/components/common/IconButton';
-import { SEARCH_ARRAY_KEY } from '@/components/common/SearchModal/RecentSearch';
+import { SEARCH_ARRAY_KEY } from '@/constants/search';
+import { RouterPath } from '@/routes/path';
+import useSearchModalStore from '@/store/useSearchModalStore';
 import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 const SEARCH_PLACEHOLDER = '작품/작가 외 검색은 #을 붙여주세요';
 const MAX_RECENT_SEARCHES = 10;
 
 interface SearchBarProps {
+  includeBack?: boolean;
   includeFavorite?: boolean;
-  goBack?: () => void;
+  goBack?: () => void; // SearchResult에서만 전달됨
 }
 
-const SearchBar = ({ includeFavorite = false, goBack }: SearchBarProps) => {
+const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: SearchBarProps) => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const initialSearchWord = searchParams.get('query') || '';
+  const { setIsModalOpen } = useSearchModalStore();
+  const [searchWord, setSearchWord] = useState(initialSearchWord);
 
-  const { register, handleSubmit, watch, setValue, formState } = useForm<{ searchWord: string }>({
-    defaultValues: {
-      searchWord: initialSearchWord,
-    },
+  const { handleSubmit, setValue, formState } = useForm<{ searchWord: string }>({
     mode: 'onSubmit',
   });
 
-  const generateRandomKey = () => {
-    return Math.random().toString(36).substr(2, 9);
+  useEffect(() => {
+    setValue('searchWord', searchWord); // React Hook Form의 값도 초기화
+  }, [searchWord, setValue]);
+
+  const generateRandomKey = () => Math.random().toString(36).substr(2, 9);
+
+  const handleClickBack = () => {
+    if (goBack) goBack(); // SearchResult에서만 전달됨 // pathname 추출해서 해도 된다 생각했는데 안 됨
+    setIsModalOpen(false);
   };
 
   const handleRemoveSearchWord = (e: React.MouseEvent) => {
     e.preventDefault();
-    setValue('searchWord', '');
+    setSearchWord('');
+    setIsModalOpen(true);
   };
 
-  const activeEnter = (data: { searchWord: string }) => {
-    const { searchWord } = data;
-    const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
-    let searchArray = storedData ? JSON.parse(storedData) : [];
-    const existingIndex = searchArray.findIndex(
-      (item: { key: string; keyword: string }) => item.keyword === searchWord,
-    );
+  const activeEnter = () => {
+    if (!formState.errors.searchWord) {
+      // 검색 기록 업데이트
+      const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
+      let searchArray = storedData ? JSON.parse(storedData) : [];
+      const existingIndex = searchArray.findIndex(
+        (item: { key: string; keyword: string }) => item.keyword === searchWord,
+      );
 
-    if (existingIndex !== -1) {
-      searchArray.splice(existingIndex, 1);
+      if (existingIndex !== -1) {
+        searchArray.splice(existingIndex, 1);
+      }
+
+      const newItem = { keyword: searchWord, key: generateRandomKey() };
+      searchArray = [newItem, ...searchArray];
+      if (searchArray.length > MAX_RECENT_SEARCHES) {
+        searchArray = searchArray.slice(0, MAX_RECENT_SEARCHES);
+      }
+
+      localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
+
+      // 검색 실행
+      navigate(`/${RouterPath.results}?query=${searchWord}`);
     }
-
-    const newItem = { keyword: searchWord, key: generateRandomKey() };
-    searchArray = [newItem, ...searchArray];
-    if (searchArray.length > MAX_RECENT_SEARCHES) {
-      searchArray = searchArray.slice(0, MAX_RECENT_SEARCHES);
-    }
-
-    localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
-    setSearchParams({ query: searchWord });
-    navigate(`/results?query=${searchWord}`);
   };
-
-  const nowSearchWord = watch('searchWord');
 
   return (
     <SearchBarWrapper>
-      <IconButton icon="arrow-back" onClick={goBack} />
+      {includeBack && <IconButton icon="arrow-back" onClick={handleClickBack} />}
       <InputBox onSubmit={handleSubmit(activeEnter)}>
         <StyledSearchIcon />
         <Input
           type="text"
           placeholder={SEARCH_PLACEHOLDER}
-          {...register('searchWord', {
-            validate: (value) => value.trim() !== '' || '공백만 입력할 수 없습니다.',
-          })}
+          value={searchWord}
+          onChange={(e) => setSearchWord(e.target.value)}
+          onClick={() => setIsModalOpen(true)}
         />
-        {nowSearchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
+        {searchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>
-      {formState.errors.searchWord && (
-        <ErrorMessage>{formState.errors.searchWord.message}</ErrorMessage>
-      )}
       {includeFavorite && <IconButton icon="favorite-default" />}
     </SearchBarWrapper>
   );
@@ -138,10 +147,5 @@ const CancelIconButton = styled(CancelIcon)`
   position: absolute;
   right: 8px;
   cursor: pointer;
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  font-size: var(--font-size-sm);
-  margin-top: 4px;
+  color: var(--color-gray-dk);
 `;

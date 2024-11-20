@@ -9,6 +9,7 @@ const QUERY_KEYS = {
   CHAT_ROOM: 'chatRoom',
   PRODUCT_DETAIL: 'productDetail',
   ARTIST_PROFILE: 'artistProfile',
+  WISH_LIST: 'wishList',
 };
 
 export default QUERY_KEYS;

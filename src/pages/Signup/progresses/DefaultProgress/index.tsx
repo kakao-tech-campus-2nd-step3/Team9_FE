@@ -1,5 +1,5 @@
 import type { Mode } from '@/types/user';
-import Button from '../../../../components/common/form/InputButton';
+import InputButton from '../../../../components/common/form/InputButton';
 import ProgressBar from '../../components/ProgressBar';
 import { ProgressBox, ProgressGuidance, SelectItem } from '../styles';
 
@@ -23,12 +23,12 @@ const DefaultProgress = ({ mode, onSelect }: DefaultProgressProps) => {
       </ProgressGuidance>
       <div className="progress-container">
         <SelectItem>
-          <Button
+          <InputButton
             label="일반 회원"
             isSelected={mode === 'user'}
             onClick={() => handleSelect('user')}
           />
-          <Button
+          <InputButton
             label="작가(판매자) 회원"
             isSelected={mode === 'artist'}
             onClick={() => handleSelect('artist')}

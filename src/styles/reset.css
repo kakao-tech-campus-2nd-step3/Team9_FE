@@ -27,8 +27,9 @@ body {
   position: relative;
   transform: translateX(-50%);
   left: 50%;
+  height: 100vh;
+  height: -webkit-fill-available; /* 모바일 브라우저 대응 */
   min-width: 320px;
-  min-height: 100vh;
 
   @media (min-width: 768px) {
     width: 600px;
@@ -98,6 +99,7 @@ video {
 button {
   border: none;
   background-color: transparent;
+  color: var(--color-black);
   cursor: pointer;
   overflow: visible;
   vertical-align: inherit;
@@ -123,6 +125,7 @@ button:disabled {
 }
 a {
   text-decoration: none;
+  color: var(--color-black);
 }
 a:hover {
   cursor: pointer;
@@ -140,8 +143,7 @@ textarea {
   padding: 0;
   background-color: transparent;
   align-self: center;
-
-  &:focus {
-    outline: none;
-  }
+}
+textarea:focus {
+  outline: none;
 }

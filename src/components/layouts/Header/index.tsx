@@ -5,18 +5,19 @@ import Logo from '@/assets/logo.svg?react';
 import IconButton from '@/components/common/IconButton';
 import { RouterPath } from '@/routes/path';
 import useModeStore from '@/store/useModeStore';
+import useSearchModalStore from '@/store/useSearchModalStore';
 import { HEIGHTS, Z_INDEX } from '@/styles/constants';
 
 interface HeaderProps {
   title?: string;
   leftSideChildren?: React.ReactNode;
   rightSideChildren?: React.ReactNode;
-  modalOpen?: () => void;
 }
 
-const Header = ({ title, leftSideChildren, rightSideChildren, modalOpen }: HeaderProps) => {
+const Header = ({ title, leftSideChildren, rightSideChildren }: HeaderProps) => {
   const { pathname } = useLocation();
   const { mode } = useModeStore();
+  const { isModalOpen, setIsModalOpen } = useSearchModalStore();
 
   const renderElements = () => {
     if (pathname === RouterPath.home) {
@@ -24,7 +25,7 @@ const Header = ({ title, leftSideChildren, rightSideChildren, modalOpen }: Heade
         <>
           <Logo />
           <IconBox>
-            <IconButton icon="search" onClick={modalOpen} />
+            <IconButton icon="search" onClick={() => setIsModalOpen(!isModalOpen)} />
             {mode === 'user' ? (
               <IconButton icon="favorite-default" />
             ) : (

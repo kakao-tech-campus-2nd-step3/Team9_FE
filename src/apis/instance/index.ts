@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
-const BASE_URL = `${import.meta.env.VITE_APP_BASE_URL}/v1`;
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
 const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
@@ -8,7 +8,6 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
     ...config,
     headers: {
       'Content-Type': 'application/json',
-      'Cross-Control-Allow-Origin': '*',
     },
   });
 

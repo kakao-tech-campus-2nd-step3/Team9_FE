@@ -1,19 +1,30 @@
-import { Z_INDEX } from '@/styles/constants';
 import styled from '@emotion/styled';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import useSearchArtists from '@/apis/search/useSearchArtists';
 import useSearchProducts from '@/apis/search/useSearchProducts';
 import CategoryTabBar from '@/components/common/CategoryTabBar';
+import Loader from '@/components/common/Loader';
+import SearchModal from '@/components/common/SearchModal';
 import SearchBar from '@/components/layouts/SearchBar';
-import { RouterPath } from '@/routes/path';
+import useSearchModalStore from '@/store/useSearchModalStore';
 import * as G from '@/styles/globalStyles';
 import ArtWorkContents from './components/ArtWorkContents';
 import ArtistContents from './components/ArtistContents';
 import HorizontalFrame from './components/HorizontalFrame';
 import MoreButton from './components/MoreButton';
+
+const SearchResults = () => {
+  return (
+    <ErrorBoundary fallback={<div>Error Status</div>}>
+      <Suspense fallback={<Loader />}>
+        <SearchResultsContent />
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
 
 const SearchResultsContent = () => {
   const [selectedTab, setSelectedTab] = useState('전체');
@@ -33,8 +44,15 @@ const SearchResultsContent = () => {
   const searchArtistLen = artistsData.length;
   const categoryList = ['전체', '작품', '작가'];
 
+  const { isModalOpen, setIsModalOpen } = useSearchModalStore();
+
+  // 검색어 바꿔 새로 검색 시 검색 모달 닫음
+  useEffect(() => {
+    setIsModalOpen(false);
+  }, [searchQuery]);
+
   const goBack = () => {
-    navigate(RouterPath.categories);
+    navigate(-1);
   };
 
   const handleTabClick = (tab: string) => {
@@ -43,11 +61,9 @@ const SearchResultsContent = () => {
 
   return (
     <PageContainer>
-      <HeaderSection>
-        <SearchBar goBack={goBack} />
-      </HeaderSection>
+      <SearchBar goBack={goBack} />
+      {isModalOpen && <SearchModal />}
       <CategoryTabBar tabClick={handleTabClick} tabState={selectedTab} tabList={categoryList} />
-
       <ContentSection>
         {selectedTab === '전체' && (
           <AllContentWrapper>
@@ -56,20 +72,28 @@ const SearchResultsContent = () => {
               <SubTitleFont>
                 작품 <ResultLightFont>({searchProductLen})</ResultLightFont>
               </SubTitleFont>
-              <HorizontalWRapper>
-                <HorizontalFrame children={productsData} />
-                <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
-              </HorizontalWRapper>
+              {searchProductLen === 0 ? (
+                <NoDataMessage>데이터가 없습니다.</NoDataMessage>
+              ) : (
+                <HorizontalWRapper>
+                  <HorizontalFrame children={productsData} />
+                  <MoreButton onClick={() => handleTabClick('작품')}> 더보기 </MoreButton>
+                </HorizontalWRapper>
+              )}
             </Section>
             <G.Gap height={12} />
             <Section>
               <SubTitleFont>
                 작가 <ResultLightFont>({searchArtistLen})</ResultLightFont>
               </SubTitleFont>
-              <HorizontalWRapper>
-                <HorizontalFrame children={artistsData} />
-                <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
-              </HorizontalWRapper>
+              {searchArtistLen === 0 ? (
+                <NoDataMessage>데이터가 없습니다.</NoDataMessage>
+              ) : (
+                <HorizontalWRapper>
+                  <HorizontalFrame children={artistsData} />
+                  <MoreButton onClick={() => handleTabClick('작가')}> 더보기 </MoreButton>
+                </HorizontalWRapper>
+              )}
             </Section>
           </AllContentWrapper>
         )}
@@ -80,26 +104,10 @@ const SearchResultsContent = () => {
   );
 };
 
-const SearchResults = () => {
-  return (
-    <ErrorBoundary fallback={<div>Error Status</div>}>
-      <Suspense fallback={<div>Loading Status</div>}>
-        <SearchResultsContent />
-      </Suspense>
-    </ErrorBoundary>
-  );
-};
-
 export default SearchResults;
 
 const PageContainer = styled.div`
   width: 100%;
-`;
-
-const HeaderSection = styled.div`
-  position: sticky;
-  height: 41px;
-  z-index: ${Z_INDEX.SearchHeader};
 `;
 
 const ContentSection = styled.div`
@@ -148,4 +156,14 @@ const HorizontalWRapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const NoDataMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  font-weight: 600;
+  color: var(--color-black);
 `;

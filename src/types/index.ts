@@ -1,20 +1,3 @@
-export type SearchWork = {
-  id: number;
-  src: string;
-  title: string;
-  artist: string;
-  price: number;
-};
-
-export type SearchArtist = {
-  id: number;
-  name: string;
-  src: string;
-  totalFollowers: number;
-  totalLikes: number;
-  followed: boolean;
-};
-
 export type User = {
   userId: number;
   nickname: string;

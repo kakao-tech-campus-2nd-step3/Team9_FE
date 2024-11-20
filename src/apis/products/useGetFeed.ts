@@ -20,9 +20,8 @@ type GetFeedResponse = {
 async function getFeed(size: number): Promise<GetFeedResponse> {
   try {
     const response = await fetchInstance().get(`/products/feed?size=${size}`);
-    // console.log('getFeed response: ', response);
 
-    return response.data;
+    return response.data.data;
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response) {

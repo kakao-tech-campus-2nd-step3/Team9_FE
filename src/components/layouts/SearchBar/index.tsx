@@ -56,6 +56,8 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
 
   const activeEnter = (data: { searchWord: string }) => {
     const { searchWord } = data;
+
+    // 검색 기록 업데이트
     const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
     let searchArray = storedData ? JSON.parse(storedData) : [];
     const existingIndex = searchArray.findIndex(
@@ -73,6 +75,8 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
     }
 
     localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
+
+    // 검색 실행
     setSearchParams({ query: searchWord });
     navigate(`/${RouterPath.results}?query=${searchWord}`);
   };

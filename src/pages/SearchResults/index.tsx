@@ -16,6 +16,16 @@ import ArtistContents from './components/ArtistContents';
 import HorizontalFrame from './components/HorizontalFrame';
 import MoreButton from './components/MoreButton';
 
+const SearchResults = () => {
+  return (
+    <ErrorBoundary fallback={<div>Error Status</div>}>
+      <Suspense fallback={<Loader />}>
+        <SearchResultsContent />
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
+
 const SearchResultsContent = () => {
   const [selectedTab, setSelectedTab] = useState('전체');
   const [searchParams] = useSearchParams();
@@ -36,10 +46,10 @@ const SearchResultsContent = () => {
 
   const { isModalOpen, setIsModalOpen } = useSearchModalStore();
 
-  // 검색 결과로 이동 직후 검색 모달 닫음
+  // 검색어 바꿔 새로 검색 시 검색 모달 닫음
   useEffect(() => {
     setIsModalOpen(false);
-  }, []);
+  }, [searchQuery]);
 
   const goBack = () => {
     navigate(-1);
@@ -91,16 +101,6 @@ const SearchResultsContent = () => {
         {selectedTab === '작가' && <ArtistContents searchArtist={artistsData} />}
       </ContentSection>
     </PageContainer>
-  );
-};
-
-const SearchResults = () => {
-  return (
-    <ErrorBoundary fallback={<div>Error Status</div>}>
-      <Suspense fallback={<Loader />}>
-        <SearchResultsContent />
-      </Suspense>
-    </ErrorBoundary>
   );
 };
 

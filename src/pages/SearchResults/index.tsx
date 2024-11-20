@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import useSearchArtists from '@/apis/search/useSearchArtists';
 import useSearchProducts from '@/apis/search/useSearchProducts';
@@ -9,6 +9,7 @@ import CategoryTabBar from '@/components/common/CategoryTabBar';
 import Loader from '@/components/common/Loader';
 import SearchModal from '@/components/common/SearchModal';
 import SearchBar from '@/components/layouts/SearchBar';
+import { RouterPath } from '@/routes/path';
 import useSearchModalStore from '@/store/useSearchModalStore';
 import * as G from '@/styles/globalStyles';
 import ArtWorkContents from './components/ArtWorkContents';
@@ -43,6 +44,7 @@ const SearchResultsContent = () => {
   const searchProductLen = productsData.length;
   const searchArtistLen = artistsData.length;
   const categoryList = ['전체', '작품', '작가'];
+  const location = useLocation();
 
   const { isModalOpen, setIsModalOpen } = useSearchModalStore();
 
@@ -52,7 +54,11 @@ const SearchResultsContent = () => {
   }, [searchQuery]);
 
   const goBack = () => {
-    navigate(-1);
+    if (location.pathname.startsWith(`/${RouterPath.results}`)) {
+      navigate(-1);
+    } else {
+      navigate(RouterPath.categories);
+    }
   };
 
   const handleTabClick = (tab: string) => {

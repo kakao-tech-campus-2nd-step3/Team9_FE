@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -22,25 +22,20 @@ interface SearchBarProps {
 
 const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: SearchBarProps) => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const initialSearchWord = searchParams.get('query') || '';
-  const { isModalOpen, setIsModalOpen } = useSearchModalStore();
+  const { setIsModalOpen } = useSearchModalStore();
+  const [searchWord, setSearchWord] = useState(initialSearchWord);
 
-  const { register, handleSubmit, watch, setValue, formState } = useForm<{ searchWord: string }>({
-    defaultValues: {
-      searchWord: initialSearchWord,
-    },
+  const { handleSubmit, setValue, formState } = useForm<{ searchWord: string }>({
     mode: 'onSubmit',
   });
 
-  // test
   useEffect(() => {
-    console.log('isModalOpen: ', isModalOpen);
-  }, [isModalOpen]);
+    setValue('searchWord', searchWord); // React Hook Form의 값도 초기화
+  }, [searchWord, setValue]);
 
-  const generateRandomKey = () => {
-    return Math.random().toString(36).substr(2, 9);
-  };
+  const generateRandomKey = () => Math.random().toString(36).substr(2, 9);
 
   const handleClickBack = () => {
     if (goBack) goBack(); // SearchResult에서만 전달됨 // pathname 추출해서 해도 된다 생각했는데 안 됨
@@ -48,15 +43,12 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
   };
 
   const handleRemoveSearchWord = (e: React.MouseEvent) => {
-    console.log('called');
     e.preventDefault();
-    setValue('searchWord', '');
+    setSearchWord('');
     setIsModalOpen(true);
   };
 
-  const activeEnter = (data: { searchWord: string }) => {
-    const { searchWord } = data;
-
+  const activeEnter = () => {
     if (!formState.errors.searchWord) {
       // 검색 기록 업데이트
       const storedData = localStorage.getItem(SEARCH_ARRAY_KEY);
@@ -78,12 +70,9 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
       localStorage.setItem(SEARCH_ARRAY_KEY, JSON.stringify(searchArray));
 
       // 검색 실행
-      setSearchParams({ query: searchWord });
       navigate(`/${RouterPath.results}?query=${searchWord}`);
     }
   };
-
-  const nowSearchWord = watch('searchWord');
 
   return (
     <SearchBarWrapper>
@@ -93,12 +82,11 @@ const SearchBar = ({ includeBack = true, includeFavorite = false, goBack }: Sear
         <Input
           type="text"
           placeholder={SEARCH_PLACEHOLDER}
-          {...register('searchWord', {
-            validate: (value) => value.trim() !== '' || '공백만 입력할 수 없습니다.',
-          })}
+          value={searchWord}
+          onChange={(e) => setSearchWord(e.target.value)}
           onClick={() => setIsModalOpen(true)}
         />
-        {nowSearchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
+        {searchWord.trim().length > 0 && <CancelIconButton onClick={handleRemoveSearchWord} />}
       </InputBox>
       {includeFavorite && <IconButton icon="favorite-default" />}
     </SearchBarWrapper>
